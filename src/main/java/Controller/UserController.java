@@ -12,7 +12,7 @@ import javax.enterprise.context.RequestScoped;
 
 @Named(value = "userController")
 @RequestScoped
-public class UserController {
+public class UserController  {
 
     private String mensaje;
     
