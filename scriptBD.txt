@@ -1,0 +1,117 @@
+CREATE DATABASE tienda;
+USE tienda;
+
+CREATE TABLE marca(
+		id int auto_increment primary key,
+		nombre varchar(50) not null);
+
+CREATE TABLE talla(
+		id int auto_increment primary key,
+		talla varchar(50) not null);
+
+CREATE TABLE tipo_ropa(
+		id int auto_increment primary key,
+		nombre varchar(50) not null);
+
+CREATE TABLE categoria(
+		id int auto_increment primary key,
+		nombre varchar(50) not null);
+
+CREATE TABLE producto(
+		id int auto_increment primary key,
+		nombre varchar(50) not null,
+		stock int not null,
+		precio_venta double(8,2) not null,
+		precio_compra double(8,2) not null,
+		marca int not null,
+		talla int not null,
+		tipo int not null,
+		categoria int not null);
+
+ALTER TABLE producto ADD CONSTRAINT FOREIGN KEY fk_producto_marca(marca) REFERENCES marca(id);
+
+ALTER TABLE producto ADD CONSTRAINT FOREIGN KEY fk_producto_talla(talla) REFERENCES talla(id);
+
+ALTER TABLE producto ADD CONSTRAINT FOREIGN KEY fk_producto_tipo(tipo) REFERENCES tipo_ropa(id);
+
+ALTER TABLE producto ADD CONSTRAINT FOREIGN KEY fk_producto_categoria(categoria) REFERENCES categoria(id);
+
+CREATE TABLE pais(
+		id int auto_increment primary key,
+		nombre varchar(50) not null);
+
+CREATE TABLE cliente(
+		id int auto_increment primary key,
+		nombre varchar(50) not null,
+		apellido varchar(50) not null,
+		correo varchar(50) not null,
+		direccion varchar(100) not null,
+		pais int not null);
+
+ALTER TABLE cliente ADD CONSTRAINT FOREIGN KEY fk_cliente_pais(pais) REFERENCES pais(id);
+
+CREATE TABLE detalle_tarjeta(
+		id int auto_increment primary key,
+		cliente int not null,
+		ping int not null,
+		expiracion date not null);
+
+ALTER TABLE detalle_tarjeta ADD CONSTRAINT FOREIGN KEY fk_tarjeta_cliente(cliente) REFERENCES cliente(id);
+
+CREATE TABLE rol(
+		id int auto_increment primary key,
+		nombre varchar(50) not null);
+
+CREATE TABLE user(
+		id int auto_increment primary key,
+		usuario varchar(50) not null,
+		cliente int not null,
+		clave int not null,
+		rol int not null,
+		estado boolean not null);
+
+ALTER TABLE user ADD CONSTRAINT FOREIGN KEY fk_user_cliente(cliente) REFERENCES cliente(id);
+
+ALTER TABLE user ADD CONSTRAINT FOREIGN KEY fk_user_rol(rol) REFERENCES rol(id);
+
+CREATE TABLE forma_pago(
+		id int auto_increment primary key,
+		forma varchar(50) not null);
+
+CREATE TABLE venta(
+		id int auto_increment primary key,
+		cliente int not null,
+		tarjeta int not null,
+		pago int not null,
+		fecha date not null,
+		estado boolean not null);
+
+ALTER TABLE venta ADD CONSTRAINT FOREIGN KEY fk_venta_cliente(cliente) REFERENCES cliente(id);
+
+ALTER TABLE venta ADD CONSTRAINT FOREIGN KEY fk_venta_tarjeta(tarjeta) REFERENCES detalle_tarjeta(id);
+
+ALTER TABLE venta ADD CONSTRAINT FOREIGN KEY fk_venta_pago(pago) REFERENCES forma_pago(id);
+
+CREATE TABLE descuento(
+		id int auto_increment primary key,
+		descuento double(8,2) not null);
+
+CREATE TABLE detalle_venta(
+		id int auto_increment primary key,
+		producto int not null,
+		cantidad int not null,
+		descuento int not null,
+		venta int not null,
+		total double(10,2) not null);
+
+ALTER TABLE detalle_venta ADD CONSTRAINT FOREIGN KEY fk_detalle_producto(producto) REFERENCES producto(id);
+
+ALTER TABLE detalle_venta ADD CONSTRAINT FOREIGN KEY fk_detalle_descuento(descuento) REFERENCES descuento(id);
+
+ALTER TABLE detalle_venta ADD CONSTRAINT FOREIGN KEY fk_detalle_venta(venta) REFERENCES venta(id);
+
+CREATE TABLE factura(
+		id int auto_increment primary key,
+		venta int not null);
+
+ALTER TABLE factura ADD CONSTRAINT FOREIGN KEY fk_factura_venta(venta) REFERENCES venta(id);
