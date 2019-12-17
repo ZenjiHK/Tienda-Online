@@ -1,19 +1,15 @@
-
 package Controller;
 
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-@Named(value = "ProductoController")
+@Named(value = "categoriaController")
 @RequestScoped
-public class ProductoController implements Serializable{
+public class CategoriaController implements Serializable{
     
     private String mensaje;
-
-
-package Controller;
-
-public class ProductoController {
+    
+    
     
 }
