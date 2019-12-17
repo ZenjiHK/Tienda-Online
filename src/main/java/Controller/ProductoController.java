@@ -12,8 +12,4 @@ public class ProductoController implements Serializable{
     private String mensaje;
 
 
-package Controller;
-
-public class ProductoController {
-    
 }
