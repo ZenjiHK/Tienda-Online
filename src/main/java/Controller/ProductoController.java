@@ -1,3 +1,4 @@
+
 package Controller;
 
 import java.io.Serializable;
@@ -9,5 +10,10 @@ import javax.inject.Named;
 public class ProductoController implements Serializable{
     
     private String mensaje;
+
+
+package Controller;
+
+public class ProductoController {
     
 }

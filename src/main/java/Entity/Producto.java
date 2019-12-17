@@ -1,3 +1,4 @@
+
 package Entity;
 
 import java.io.Serializable;
@@ -12,10 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- * @author alex.lemususam
- */
+
+
 @Entity
 @Table(name = "producto")
 public class Producto implements Serializable {
@@ -30,29 +29,29 @@ public class Producto implements Serializable {
 
     @Column(name = "precio_compra")
     private double precioCompra;
-    
+
     @Column(name = "precio_venta")
     private double precioVenta;
-    
+
     @Column(name = "stock")
     private int stock;
-    
+
     @JoinColumn(name = "categoria", referencedColumnName = "id")
     @ManyToOne
     private Categoria categoria;
-    
+
     @JoinColumn(name = "marca", referencedColumnName = "id")
     @ManyToOne
     private Marca marca;
-    
+
     @JoinColumn(name = "talla", referencedColumnName = "id")
     @ManyToOne
     private Talla talla;
-    
+
     @JoinColumn(name = "tipo", referencedColumnName = "id")
     @ManyToOne
     private TipoRopa tipo;
-    
+
     @OneToMany(mappedBy = "producto")
     private List<DetalleVenta> detalleVentaList;
 
@@ -171,5 +170,5 @@ public class Producto implements Serializable {
 
     public void setDetalleVentaList(List<DetalleVenta> detalleVentaList) {
         this.detalleVentaList = detalleVentaList;
-    }    
+    }
 }
