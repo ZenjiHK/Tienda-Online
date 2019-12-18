@@ -10,6 +10,8 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 @Named(value = "rolController")
 @RequestScoped
@@ -41,8 +43,47 @@ public class RolController implements Serializable{
 
     @PostConstruct
     public void init(){
-        
+        rol = new Rol();
     }
     
+    public void insertar(){
+        try {
+            rolFacade.create(rol);
+            this.mensaje = "Insertado con éxito";
+        } catch (Exception e) {
+            this.mensaje = "ERROR: "+e.getMessage();
+        }
+        FacesMessage msj = new FacesMessage(this.mensaje);
+        FacesContext.getCurrentInstance().addMessage(mensaje, msj);
+    }
     
+    public void cargarDatos(Rol rol){
+        try {
+            this.rol = rol;
+        } catch (Exception e) {
+        }
+    }
+    
+    public void editar(){
+        try {
+            rolFacade.edit(rol);
+            this.mensaje = "Editado con éxito";
+        } catch (Exception e) {
+            this.mensaje = "ERROR: "+e.getMessage();
+        }
+        FacesMessage msj = new FacesMessage(this.mensaje);
+        FacesContext.getCurrentInstance().addMessage(mensaje, msj);
+    }
+    
+    public void eliminar(Rol r){
+        try {
+            this.rol = r;
+            rolFacade.remove(r);
+            this.mensaje = "Eliminado con éxito";
+        } catch (Exception e) {
+            this.mensaje = "ERROR: "+e.getMessage();
+        }
+        FacesMessage msj = new FacesMessage(this.mensaje);
+        FacesContext.getCurrentInstance().addMessage(mensaje, msj);
+    }
 }
