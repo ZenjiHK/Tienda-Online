@@ -22,8 +22,8 @@ public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_cliente")
+    private int id_cliente;
     
     @Column(name = "nombre")
     private String nombre;
@@ -40,7 +40,7 @@ public class Cliente implements Serializable {
     @OneToMany(mappedBy = "cliente")
     private List<Venta> ventaList;
     
-    @JoinColumn(name = "pais", referencedColumnName = "id")
+    @JoinColumn(name = "pais", referencedColumnName = "id_pais")
     @ManyToOne
     private Pais pais;
     
@@ -53,16 +53,16 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(int id) {
-        this.id = id;
+    public Cliente(int id_cliente) {
+        this.id_cliente = id_cliente;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 29 * hash + this.id;
+        int hash = 7;
+        hash = 13 * hash + this.id_cliente;
         return hash;
-    }
+    }      
 
     @Override
     public boolean equals(Object obj) {
@@ -76,7 +76,7 @@ public class Cliente implements Serializable {
             return false;
         }
         final Cliente other = (Cliente) obj;
-        if (this.id != other.id) {
+        if (this.id_cliente != other.id_cliente) {
             return false;
         }
         return true;
@@ -84,15 +84,15 @@ public class Cliente implements Serializable {
     
     @Override
     public String toString() {
-        return "Categoria{" + "id=" + id + '}';
+        return "Categoria{" + "id=" + id_cliente + '}';
     }
 
     public int getId() {
-        return id;
+        return id_cliente;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_cliente = id;
     }
 
     public String getApellido() {

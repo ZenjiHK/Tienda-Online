@@ -190,7 +190,7 @@ public class ProductoController implements Serializable{
     
     public void cargarData(Producto p){
         try {
-            this.marca.setId(this.producto.getMarca().getId());
+            this.marca.setId_marca(this.producto.getMarca().getId_marca());
             this.talla.setId(this.producto.getTalla().getId());
             this.tiporopa.setId(this.producto.getTipo().getId());
             this.categoria.setId(this.producto.getCategoria().getId());

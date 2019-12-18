@@ -20,8 +20,8 @@ public class Marca implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_marca")
+    private int id_marca;
     
     @Column(name = "nombre")
     private String nombre;
@@ -32,14 +32,14 @@ public class Marca implements Serializable {
     public Marca() {
     }
 
-    public Marca(int id) {
-        this.id = id;
+    public Marca(int id_marca) {
+        this.id_marca = id_marca;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 29 * hash + this.id;
+        int hash = 7;
+        hash = 59 * hash + this.id_marca;
         return hash;
     }
 
@@ -55,25 +55,25 @@ public class Marca implements Serializable {
             return false;
         }
         final Marca other = (Marca) obj;
-        if (this.id != other.id) {
+        if (this.id_marca != other.id_marca) {
             return false;
         }
         return true;
     }
-
+        
     @Override
     public String toString() {
-        return "Entity.Marca[ id=" + id + " ]";
+        return "Entity.Marca[ id=" + id_marca + " ]";
     }
 
-    public int getId() {
-        return id;
+    public int getId_marca() {
+        return id_marca;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_marca(int id_marca) {
+        this.id_marca = id_marca;
     }
-
+    
     public String getNombre() {
         return nombre;
     }

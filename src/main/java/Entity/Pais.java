@@ -20,8 +20,8 @@ public class Pais implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_pais")
+    private int id_pais;
     
     @Column(name = "nombre")
     private String nombre;
@@ -32,14 +32,14 @@ public class Pais implements Serializable {
     public Pais() {
     }
 
-    public Pais(int id) {
-        this.id = id;
+    public Pais(int id_pais) {
+        this.id_pais = id_pais;
     }
-
+    
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 19 * hash + this.id;
+        int hash = 3;
+        hash = 73 * hash + this.id_pais;
         return hash;
     }
 
@@ -55,25 +55,25 @@ public class Pais implements Serializable {
             return false;
         }
         final Pais other = (Pais) obj;
-        if (this.id != other.id) {
+        if (this.id_pais != other.id_pais) {
             return false;
         }
         return true;
-    }
-
+    }   
+    
     @Override
     public String toString() {
-        return "Entity.Pais[ id=" + id + " ]";
+        return "Entity.Pais[ id=" + id_pais + " ]";
     }   
 
-    public int getId() {
-        return id;
+    public int getId_pais() {
+        return id_pais;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_pais(int id_pais) {
+        this.id_pais = id_pais;
     }
-
+    
     public String getNombre() {
         return nombre;
     }

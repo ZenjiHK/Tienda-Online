@@ -25,8 +25,8 @@ public class DetalleTarjeta implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_tarjeta")
+    private int id_tarjeta;
     
     @Column(name = "expiracion")
     @Temporal(TemporalType.DATE)
@@ -38,24 +38,24 @@ public class DetalleTarjeta implements Serializable {
     @OneToMany(mappedBy = "tarjeta")
     private List<Venta> ventaList;
     
-    @JoinColumn(name = "cliente", referencedColumnName = "id")
+    @JoinColumn(name = "cliente", referencedColumnName = "id_cliente")
     @ManyToOne
     private Cliente cliente;
 
     public DetalleTarjeta() {
     }
 
-    public DetalleTarjeta(int id) {
-        this.id = id;
+    public DetalleTarjeta(int id_tarjeta) {
+        this.id_tarjeta = id_tarjeta;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + this.id;
+        int hash = 5;
+        hash = 47 * hash + this.id_tarjeta;
         return hash;
     }
-
+        
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -68,7 +68,7 @@ public class DetalleTarjeta implements Serializable {
             return false;
         }
         final DetalleTarjeta other = (DetalleTarjeta) obj;
-        if (this.id != other.id) {
+        if (this.id_tarjeta != other.id_tarjeta) {
             return false;
         }
         return true;
@@ -76,17 +76,17 @@ public class DetalleTarjeta implements Serializable {
     
     @Override
     public String toString() {
-        return "Entity.DetalleTarjeta[ id=" + id + " ]";
+        return "Entity.DetalleTarjeta[ id=" + id_tarjeta + " ]";
     }
 
-    public int getId() {
-        return id;
+    public int getId_tarjeta() {
+        return id_tarjeta;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_tarjeta(int id_tarjeta) {
+        this.id_tarjeta = id_tarjeta;
     }
-
+    
     public Date getExpiracion() {
         return expiracion;
     }

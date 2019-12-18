@@ -20,8 +20,8 @@ public class DetalleVenta implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_venta")
+    private int id_venta;
     
     @Column(name = "cantidad")
     private int cantidad;
@@ -29,32 +29,32 @@ public class DetalleVenta implements Serializable {
     @Column(name = "total")
     private double total;
     
-    @JoinColumn(name = "descuento", referencedColumnName = "id")
+    @JoinColumn(name = "descuento", referencedColumnName = "id_descuento")
     @ManyToOne
     private Descuento descuento;
     
-    @JoinColumn(name = "producto", referencedColumnName = "id")
+    @JoinColumn(name = "producto", referencedColumnName = "id_producto")
     @ManyToOne
     private Producto producto;
     
-    @JoinColumn(name = "venta", referencedColumnName = "id")
+    @JoinColumn(name = "venta", referencedColumnName = "id_venta")
     @ManyToOne
     private Venta venta;
 
     public DetalleVenta() {
     }
 
-    public DetalleVenta(int id) {
-        this.id = id;
+    public DetalleVenta(int id_venta) {
+        this.id_venta = id_venta;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 89 * hash + this.id;
+        int hash = 7;
+        hash = 79 * hash + this.id_venta;
         return hash;
     }
-
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -67,7 +67,7 @@ public class DetalleVenta implements Serializable {
             return false;
         }
         final DetalleVenta other = (DetalleVenta) obj;
-        if (this.id != other.id) {
+        if (this.id_venta != other.id_venta) {
             return false;
         }
         return true;
@@ -75,17 +75,17 @@ public class DetalleVenta implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.DetalleVenta[ id=" + id + " ]";
+        return "Entity.DetalleVenta[ id=" + id_venta + " ]";
     }
 
-    public int getId() {
-        return id;
+    public int getId_venta() {
+        return id_venta;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_venta(int id_venta) {
+        this.id_venta = id_venta;
     }
-
+    
     public int getCantidad() {
         return cantidad;
     }

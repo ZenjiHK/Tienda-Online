@@ -20,27 +20,27 @@ public class Factura implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_factura")
+    private int id_factura;
     
-    @JoinColumn(name = "venta", referencedColumnName = "id")
+    @JoinColumn(name = "venta", referencedColumnName = "id_venta")
     @ManyToOne
     private Venta venta;
 
     public Factura() {
     }
 
-    public Factura(int id) {
-        this.id = id;
+    public Factura(int id_factura) {
+        this.id_factura = id_factura;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + this.id;
+        int hash = 7;
+        hash = 59 * hash + this.id_factura;
         return hash;
     }
-
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -53,7 +53,7 @@ public class Factura implements Serializable {
             return false;
         }
         final Factura other = (Factura) obj;
-        if (this.id != other.id) {
+        if (this.id_factura != other.id_factura) {
             return false;
         }
         return true;
@@ -61,17 +61,17 @@ public class Factura implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.Factura[ id=" + id + " ]";
+        return "Entity.Factura[ id=" + id_factura + " ]";
     }
 
-    public int getId() {
-        return id;
+    public int getId_factura() {
+        return id_factura;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_factura(int id_factura) {
+        this.id_factura = id_factura;
     }
-
+     
     public Venta getVenta() {
         return venta;
     }

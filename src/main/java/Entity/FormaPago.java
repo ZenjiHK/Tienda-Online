@@ -20,8 +20,8 @@ public class FormaPago implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_pago")
+    private int id_pago;
     
     @Column(name = "forma")
     private String forma;
@@ -32,17 +32,17 @@ public class FormaPago implements Serializable {
     public FormaPago() {
     }
 
-    public FormaPago(int id) {
-        this.id = id;
+    public FormaPago(int id_pago) {
+        this.id_pago = id_pago;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + this.id;
+        int hash = 5;
+        hash = 47 * hash + this.id_pago;
         return hash;
     }
-
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -55,7 +55,7 @@ public class FormaPago implements Serializable {
             return false;
         }
         final FormaPago other = (FormaPago) obj;
-        if (this.id != other.id) {
+        if (this.id_pago != other.id_pago) {
             return false;
         }
         return true;
@@ -63,17 +63,17 @@ public class FormaPago implements Serializable {
     
     @Override
     public String toString() {
-        return "Entity.FormaPago[ id=" + id + " ]";
+        return "Entity.FormaPago[ id=" + id_pago + " ]";
     }
 
-    public int getId() {
-        return id;
+    public int getId_pago() {
+        return id_pago;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_pago(int id_pago) {
+        this.id_pago = id_pago;
     }
-
+    
     public String getForma() {
         return forma;
     }

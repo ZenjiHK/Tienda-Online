@@ -20,11 +20,11 @@ public class Categoria implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_categoria")
+    private int id_categoria;
     
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "categoria")
+    private String categoria;
     
     @OneToMany(mappedBy = "categoria")
     private List<Producto> productoList;
@@ -32,17 +32,17 @@ public class Categoria implements Serializable {
     public Categoria() {
     }
 
-    public Categoria(int id) {
-        this.id = id;
+    public Categoria(int id_categoria) {
+        this.id_categoria = id_categoria;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 29 * hash + this.id;
+        int hash = 7;
+        hash = 47 * hash + this.id_categoria;
         return hash;
     }
-
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -55,7 +55,7 @@ public class Categoria implements Serializable {
             return false;
         }
         final Categoria other = (Categoria) obj;
-        if (this.id != other.id) {
+        if (this.id_categoria != other.id_categoria) {
             return false;
         }
         return true;
@@ -63,25 +63,25 @@ public class Categoria implements Serializable {
     
     @Override
     public String toString() {
-        return "Categoria{" + "id=" + id + '}';
+        return "Categoria{" + "id=" + id_categoria + '}';
     }
 
     public int getId() {
-        return id;
+        return id_categoria;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_categoria = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getCategoria() {
+        return categoria;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
-
+     
     public List<Producto> getProductoList() {
         return productoList;
     }
