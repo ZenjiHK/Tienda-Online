@@ -23,7 +23,6 @@ public class TipoRopaController implements Serializable {
     private List<TipoRopa> listaTipoRopa;
 
     public TipoRopa getTipoRopa() {
-        this.listaTipoRopa = tipoRopaFacade.findAll();
         return tipoRopa;
     }
 
@@ -32,6 +31,7 @@ public class TipoRopaController implements Serializable {
     }
 
     public List<TipoRopa> getListaTipoRopa() {
+        this.listaTipoRopa = tipoRopaFacade.findAll();
         return listaTipoRopa;
     }
 

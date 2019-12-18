@@ -137,13 +137,14 @@ public class ProductoController implements Serializable{
         this.talla = new Talla();
         this.tiporopa = new TipoRopa();
         this.categoria = new Categoria();
+        this.producto = new Producto();
     }
     
    public void consultarMarca(){
        listamarca = marcaEJB.findAll();
    }
     public void consultarTalla(){
-        listacategoria = categoriaEJB.findAll();
+        listatalla = tallaEJB.findAll();
     }
     
     public void consultarTipoRopa(){

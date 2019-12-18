@@ -5,22 +5,21 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Categoria - Tienda en linea</title>
         <title>Tipo Ropa- Tienda en linea</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
         <p:growl id="msj"/>
         <h:form>
-            <p:outputLabel value="Ingrese nombre"/>
+            <p:outputLabel value="Ingrese tipo de ropaq"/>
             <p:inputText value="#{tipoRopaController.tipoRopa.nombre}"/>           
             <p:commandButton value="Enviar" actionListener="#{tipoRopaController.insertar()}" update=":msj :tabla"/>
         </h:form>
         <p:dataTable id="tabla" value="#{tipoRopaController.listaTipoRopa}" var="c" >
-            <p:column headerText="Código">
+             <p:column headerText="id">
                 <p:outputLabel value="#{c.id}"/>
             </p:column>
-            <p:column headerText="talla">
+            <p:column headerText="tipo ropa">
                 <p:outputLabel value="#{c.nombre}"/>
             </p:column>
             <p:column headerText="Modificar">
@@ -28,26 +27,7 @@
                                oncomplete="PF('w').show()"/>
             </p:column>
             <p:column headerText="Eliminar" >
-                <p:commandLink value="Eliminar" actionListener="#{tipoRopaController.eliminar(c)}" />
-            </p:column>
-            </p
-            <p:outputLabel value="Ingrese Talla"/>
-            <p:inputText value="#{tipoRopaController.tipoRopa.nombre}"/>
-            <p:commandButton value="Enviar" actionListener="#{tipoRopaController.insertar()}" update=":msj :tabla"/>
-            </h:form>
-            <p:dataTable id="tabla" value="#{tipoRopaController.listaTipoRopa}" var="c" >
-                <p:column headerText="Código">
-                    <p:outputLabel value="#{c.id}"/>
-                </p:column>
-                <p:column headerText="Marca">
-                    <p:outputLabel value="#{c.nombre}"/>
-                </p:column>
-                <p:column headerText="Modificar">
-                    <p:commandLink value="Modificar" actionListener="#{tipoRopaController.cargarDatos(t)}" update=":nuevo"
-                                   oncomplete="PF('w').show()"/>
-                </p:column>
-                <p:column headerText="Eliminar" >
-                    <p:commandLink value="Eliminar" actionListener="#{tipoRopaController.eliminar(c)}" 
+                <p:commandLink value="Eliminar" actionListener="#{tipoRopaController.eliminar(c)}" update=":nuevo" />
             </p:column>
         </p:dataTable>
 
