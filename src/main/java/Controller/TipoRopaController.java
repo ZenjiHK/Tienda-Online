@@ -1,9 +1,7 @@
 package Controller;
 
 import EJB.TipoRopaFacadeLocal;
-import Entity.Talla;
 import Entity.TipoRopa;
-import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -14,7 +12,7 @@ import javax.inject.Named;
 
 @Named(value = "tipoRopaController")
 @RequestScoped
-public class TipoRopaController implements Serializable {
+public class TipoRopaController {
 
     private String mensaje = "";
     @EJB
@@ -22,8 +20,7 @@ public class TipoRopaController implements Serializable {
     private TipoRopa tipoRopa;
     private List<TipoRopa> listaTipoRopa;
 
-    public TipoRopa getTipoRopa() {
-        this.listaTipoRopa = tipoRopaFacade.findAll();
+    public TipoRopa getTipoRopa() {        
         return tipoRopa;
     }
 
@@ -32,6 +29,7 @@ public class TipoRopaController implements Serializable {
     }
 
     public List<TipoRopa> getListaTipoRopa() {
+        this.listaTipoRopa = tipoRopaFacade.findAll();
         return listaTipoRopa;
     }
 
@@ -67,14 +65,12 @@ public class TipoRopaController implements Serializable {
     public void editar() {
         try {
             this.tipoRopaFacade.edit(tipoRopa);
-            this.tipoRopa = new TipoRopa();
-            this.mensaje = "Tipo de ropa editada correctamente";
+            this.mensaje = "Editado con éxito";
         } catch (Exception e) {
-            this.mensaje = "Error " + e.getMessage();
-            e.printStackTrace();
+            this.mensaje = "ERROR";
         }
         FacesMessage msj = new FacesMessage(this.mensaje);
-        FacesContext.getCurrentInstance().addMessage(null, msj);
+        FacesContext.getCurrentInstance().addMessage(mensaje, msj);
     }
 
     //Metodo limpiar
