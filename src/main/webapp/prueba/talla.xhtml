@@ -5,12 +5,17 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
+<<<<<<< Updated upstream
         <title>Categoria - Tienda en linea</title>
+=======
+        <title>Talla - Tienda en linea</title>
+>>>>>>> Stashed changes
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
         <p:growl id="msj"/>
              <h:form >
+<<<<<<< Updated upstream
             <p:outputLabel value="Ingrese talla"/>
             <p:inputText value="#{tallaController.talla.talla}"/>
             <p:commandButton value="Enviar" actionListener="#{tallaController.insertar()}" update=":msj :tabla"/>
@@ -28,6 +33,25 @@
             </p:column>
             <p:column headerText="Eliminar" >
                 <p:commandLink value="Eliminar" actionListener="#{tallaController.eliminar(c)}" 
+=======
+            <p:outputLabel value="Ingrese Talla"/>
+            <p:inputText value="#{tallaController.talla.talla}"/>
+            <p:commandButton value="Enviar" actionListener="#{tallaController.insertar()}" update=":msj :tabla"/>
+        </h:form>
+        <p:dataTable id="tabla" value="#{marcaController.listamarca}" var="c" >
+            <p:column headerText="Código">
+                <p:outputLabel value="#{c.id}"/>
+            </p:column>
+            <p:column headerText="Marca">
+                <p:outputLabel value="#{c.nombre}"/>
+            </p:column>
+            <p:column headerText="Modificar">
+                <p:commandLink value="Modificar" actionListener="#{marcaController.leerid(c)}" update=":nuevo"
+                               oncomplete="PF('w').show()"/>
+            </p:column>
+            <p:column headerText="Eliminar" >
+                <p:commandLink value="Eliminar" actionListener="#{marcaController.eliminar(c)}" 
+>>>>>>> Stashed changes
                                update="tabla :msj" />
             </p:column>
         </p:dataTable>
@@ -35,10 +59,17 @@
         <p:dialog id="nuevo" widgetVar="w" header="Datos">
             <h:form>
                 <p:outputLabel value="id"/>
+<<<<<<< Updated upstream
                 <p:inputText value="#{tallaController.talla.id}"/>
                 <p:outputLabel value="Nombre"/>
                 <p:inputText value="#{tallaController.talla.talla}"/>
                 <p:commandButton value="Modificar" actionListener="#{tallaController.editar()}" update=":tabla :msj"/>
+=======
+                <p:inputText value="#{marcaController.marca.id}"/>
+                <p:outputLabel value="Nombre"/>
+                <p:inputText value="#{marcaController.marca.nombre}"/>
+                <p:commandButton value="Modificar" actionListener="#{marcaController.actualizar()}" update=":tabla :msj"/>
+>>>>>>> Stashed changes
                 <p:commandButton value="Cancelar" oncomplete="PF('w').hide()"/>
             </h:form>
         </p:dialog>
