@@ -60,6 +60,7 @@ public class ProductoController implements Serializable{
     }
 
     public List<Producto> getListaproducto() {
+         this.listaproducto = this.productoEJB.findAll();
         return listaproducto;
     }
 
