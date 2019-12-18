@@ -21,7 +21,6 @@ public class TipoRopaController {
     private List<TipoRopa> listaTipoRopa;
 
     public TipoRopa getTipoRopa() {
-        this.listaTipoRopa = tipoRopaFacade.findAll();
         return tipoRopa;
     }
 
@@ -30,6 +29,7 @@ public class TipoRopaController {
     }
 
     public List<TipoRopa> getListaTipoRopa() {
+        this.listaTipoRopa = tipoRopaFacade.findAll();
         return listaTipoRopa;
     }
 

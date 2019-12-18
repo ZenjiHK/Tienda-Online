@@ -35,7 +35,7 @@
         <p:dialog id="nuevo" widgetVar="w" header="Datos">
             <h:form>
                 <p:outputLabel value="Código"/>
-                <p:inputText value="#{categoriaController.categoria.id}" readonly="true"/>
+                <p:inputText value="#{categoriaController.categoria.id}"/>
                 <p:outputLabel value="Nombre"/>
                 <p:inputText value="#{categoriaController.categoria.nombre}"/>
                 <p:commandButton value="Modificar" actionListener="#{categoriaController.modificar()}" update=":tabla :msj"/>
