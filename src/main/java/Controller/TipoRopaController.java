@@ -20,7 +20,8 @@ public class TipoRopaController {
     private TipoRopa tipoRopa;
     private List<TipoRopa> listaTipoRopa;
 
-    public TipoRopa getTipoRopa() {        
+    public TipoRopa getTipoRopa() {
+
         return tipoRopa;
     }
 
