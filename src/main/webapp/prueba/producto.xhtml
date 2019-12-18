@@ -73,11 +73,11 @@
                 <p:outputLabel value="#{ver.categoria.nombre}"/>
             </p:column>
             <p:column headerText="Modificar">
-                <p:commandLink value="Modificar" actionListener="#{ProductoController.cargarData(c)}" update=":nuevo"
+                <p:commandLink value="Modificar" actionListener="#{ProductoController.cargarData(ver)}" update=":nuevo"
                                oncomplete="PF('p').show()"/>
             </p:column>
             <p:column headerText="Eliminar" >
-                <p:commandLink value="Eliminar" actionListener="#{ProductoController.eliminar(c)}" 
+                <p:commandLink value="Eliminar" actionListener="#{ProductoController.eliminar(ver)}" 
                                update="tabla :msj" />
             </p:column>
         </p:dataTable>
@@ -114,7 +114,7 @@
                     <f:selectItems value="#{categoriaController.listaCategoria}" var="c"
                                    itemLabel="#{c.nombre}" itemValue="#{c.id}"/>
                 </p:selectOneMenu>
-                <p:commandButton value="Modificar" actionListener="#{productoController.editar()}" update=":tabla :msj"/>
+                <p:commandButton value="Modificar" actionListener="#{ProductoController.actualizar()}" update=":tabla :msj" oncomplete="PF('p').hide()"/>
                 <p:commandButton value="Cancelar" oncomplete="PF('p').hide()"/>
             </h:form>
         </p:dialog>
