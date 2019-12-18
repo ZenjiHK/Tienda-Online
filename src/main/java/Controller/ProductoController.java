@@ -172,6 +172,7 @@ public class ProductoController implements Serializable{
         FacesContext.getCurrentInstance().addMessage(mensaje, msj);
     }
     
+    
     public void actualizar(){
          try {
             this.producto.setMarca(marca);
@@ -190,10 +191,10 @@ public class ProductoController implements Serializable{
     
     public void cargarData(Producto p){
         try {
-            this.marca.setId(this.producto.getMarca().getId());
-            this.talla.setId(this.producto.getTalla().getId());
-            this.tiporopa.setId(this.producto.getTipo().getId());
-            this.categoria.setId(this.producto.getCategoria().getId());
+            this.marca.setId(p.getMarca().getId());
+            this.talla.setId(p.getTalla().getId());
+            this.tiporopa.setId(p.getTipo().getId());
+            this.categoria.setId(p.getCategoria().getId());
             this.producto = p;
         } catch (Exception e) {
         }
