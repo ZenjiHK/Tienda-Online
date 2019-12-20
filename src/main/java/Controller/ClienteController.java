@@ -12,8 +12,11 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
 
 /**
  *
@@ -28,6 +31,9 @@ public class ClienteController implements Serializable{
     private List<Cliente> listaCliente;
     private Cliente cliente; 
     private Pais pais;
+    String msj;
+    
+
 
     public List<Cliente> getListaCliente() {
         this.listaCliente= this.ClienteEJB.findAll();
@@ -62,33 +68,56 @@ public class ClienteController implements Serializable{
     
     public void insertar(){
         try {
-            ClienteEJB.create(cliente);
+            this.cliente.setPais(pais);
+            this.ClienteEJB.create(cliente);
+            this.cliente=new Cliente();
+            this.pais=new Pais();
+            this.msj="Cliente Ingresado correctamente";            
         } catch (Exception e) {
+            this.msj="Error al ingresar Cliente"+e.getMessage();
+            e.printStackTrace();
         }
+        FacesMessage mensaje=new FacesMessage(this.msj);
+        FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
     
-    public void cargarDatos(Cliente c){
-        try {
-            this.cliente=c;
-        } catch (Exception e) {
-        }
+    public void cargarCliente(Cliente c){
+        this.pais.setId(c.getPais().getId());
+        this.cliente=c;       
     }
     
     public void editar(){
         try {
-            ClienteEJB.edit(cliente);
-            this.listaCliente=ClienteEJB.findAll();
+            this.cliente.setPais(pais);
+            this.ClienteEJB.edit(cliente);
+            this.cliente=new Cliente();
+            this.pais=new Pais();
+            this.msj="Cliente Actualizado correctamente";            
         } catch (Exception e) {
+            this.msj="Error al Actualizar Cliente"+e.getMessage();
+            e.printStackTrace();
         }
+        FacesMessage mensaje=new FacesMessage(this.msj);
+        FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
     
-    public void eliminar(Cliente c){
-        this.cliente=c;
+    public void limpiar(){
+    this.cliente=new Cliente();
+    this.pais=new Pais();
+    }
+    
+     public void eliminar(Cliente cl){
         try {
-            ClienteEJB.remove(cliente);
-            listaCliente=ClienteEJB.findAll();
+            this.ClienteEJB.remove(cl);
+            this.cliente=new Cliente();            
+            this.msj="Cliente Eliminado correctamente";            
         } catch (Exception e) {
+            this.msj="Error al Eliminar Cliente"+e.getMessage();
+            e.printStackTrace();
         }
-}
+        FacesMessage mensaje=new FacesMessage(this.msj);
+        FacesContext.getCurrentInstance().addMessage(null, mensaje);
+    }
+
     
 }
