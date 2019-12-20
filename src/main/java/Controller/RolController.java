@@ -77,7 +77,6 @@ public class RolController implements Serializable{
     
     public void eliminar(Rol r){
         try {
-            this.rol = r;
             rolFacade.remove(r);
             this.mensaje = "Eliminado con éxito";
         } catch (Exception e) {
