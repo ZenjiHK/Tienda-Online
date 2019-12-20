@@ -8,18 +8,50 @@
         <title>Facelet Title</title>
     </h:head>
     <body>
+        <p:growl id="msj"/>
         <h:form id="nuevo">
             <p:fieldset legend="Nuevo Usuario" toggleable="true">
-                <p:panelGrid columns="2">
+                <p:panelGrid columns="1">
                     <p:commandButton value="Nuevo" oncomplete="PF('registro').show()"/>
                 </p:panelGrid>
             </p:fieldset>
         </h:form>
+        <p:dialog widgetVar="registro" header="Ingresar usuario" showEffect="clip" resizable="true">
+            <p:ajax event="close" listener="#{userController.limpiar()}" update="r"/>
+            <h:form id="r">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Cliente"/>
+                    <p:selectOneMenu value="#{userController.cliente.id}">
+                        <f:selectItems value="#{clienteController.listaCliente}" var="c"
+                                       itemLabel="#{c.nombre} #{c.apellido}" itemValue="#{c.id}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Usuario"/>
+                    <p:inputText value="#{userController.user.usuario}"/>
+                    <p:outputLabel value="Contraseña"/>
+                    <p:inputText value="#{userController.user.clave}"/>
+                    
+                    <p:outputLabel value="Rol"/>
+                    <p:selectOneMenu value="#{userController.rol.id}">
+                        <f:selectItems value="#{rolController.listaRol}" var="r"
+                                       itemLabel="#{r.nombre}" itemValue="#{r.id}"/>
+                    </p:selectOneMenu>
+                    <p:commandButton value="Insertar" actionListener="#{userController.insertar()}" 
+                                     oncomplete="PF('registro').hide()" update=":datos :msj :r"
+                                     rendered="#{userController.user.id == 0}"/>
+                    <p:commandButton value="Editar" actionListener="#{userController.editar()}" 
+                                     oncomplete="PF('registro').hide()" update=":datos :msj :r"
+                                     rendered="#{userController.user.id != 0}"/>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
         <h:form id="datos">
             <p:fieldset legend="Usuarios" toggleable="true">
                 <p:dataTable value="#{userController.listaUser}" var="u">
                     <p:column headerText="ID">
                         <h:outputText value="#{u.id}"/>
+                    </p:column>
+                    <p:column headerText="Cliente">
+                        <h:outputText value="#{u.cliente.nombre} #{u.cliente.apellido}"/>
                     </p:column>
                     <p:column headerText="Usuario">
                         <h:outputText value="#{u.usuario}"/>
@@ -34,10 +66,12 @@
                         <h:outputText value="#{u.estado}"/>
                     </p:column>
                     <p:column headerText="Editar">
-                        <p:commandButton value="Editar" actionListener="#{userController.cargarDatos(u)}"/>
+                        <p:commandButton value="Editar" actionListener="#{userController.cargarDatos(u)}"
+                                         update=":r" oncomplete="PF('registro').show()"/>
                     </p:column>
                     <p:column headerText="Eliminar">
-                        <p:commandButton value="Eliminar" actionListener="#{userController.eliminar(u)}"/>
+                        <p:commandButton value="Eliminar" actionListener="#{userController.eliminar(u)}"
+                                         update=":datos :msj :r"/>
                     </p:column>
                 </p:dataTable>
             </p:fieldset>

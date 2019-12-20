@@ -113,6 +113,7 @@ public class UserController {
 
     public void insertar() {
         try {
+            this.user.setEstado(true);
             this.user.setCliente(cliente);
             this.user.setRol(rol);
             this.userFacade.create(user);
@@ -146,6 +147,12 @@ public class UserController {
             this.user = u;
         } catch (Exception e) {
         }
+    }
+    
+    public void limpiar(){
+        this.cliente = new Cliente();
+        this.rol = new Rol();
+        this.user = new User();
     }
 
     public void eliminar(User u) {
