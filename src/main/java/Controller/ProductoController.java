@@ -11,6 +11,7 @@ import Entity.Producto;
 import Entity.Talla;
 import Entity.TipoRopa;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -50,6 +51,8 @@ public class ProductoController implements Serializable{
     private Categoria categoria;
     private List<Categoria> listacategoria;
 
+    private List<Producto> filtroProducto=new ArrayList<>();
+    
     public Producto getProducto() {
         return producto;
     }
@@ -130,6 +133,16 @@ public class ProductoController implements Serializable{
     public void setListacategoria(List<Categoria> listacategoria) {
         this.listacategoria = listacategoria;
     }
+
+    public List<Producto> getFiltroProducto() {
+        return filtroProducto;
+    }
+
+    public void setFiltroProducto(List<Producto> filtroProducto) {
+        this.filtroProducto = filtroProducto;
+    }
+    
+    
    
     @PostConstruct
     public void init(){
