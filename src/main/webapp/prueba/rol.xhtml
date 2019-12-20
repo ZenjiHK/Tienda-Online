@@ -19,8 +19,7 @@
                                  update=":msj :datos"/>
             </p:fieldset>
         </h:form>
-        <h:form id="datos">
-            <p:fieldset legend="Roles" toggleable="true">
+        <h:form id="datos">            
                 <p:dataTable value="#{rolController.listaRol}" var="r">
                     <p:column headerText="ID">
                         <h:outputText value="#{r.id}"/>
@@ -30,22 +29,21 @@
                     </p:column>
 
                     <p:column headerText="Editar">
-                        <p:commandButton value="Editar" actionListener="#{rolController.cargarDatos(r)}"
-                                         oncomplete="PF('rol').show()" update=":nuevo :msj :datos"/>
+                        <p:commandButton value="Editar" actionListener="#{rolController.cargarDatos(r)}" update=":nuevo :datos"
+                                         oncomplete="PF('rol').show()"/>
                     </p:column>
                     <p:column headerText="Eliminar">
-                        <p:commandButton value="Eliminar" actionListener="#{rolController.eliminar(r)}" update=":msj :datos"/>
+                        <p:commandButton value="Eliminar" actionListener="#{rolController.eliminar(r)}" update=":nuevo :datos"/>
                     </p:column>
-                </p:dataTable>
-            </p:fieldset>
+                </p:dataTable>         
         </h:form>
-        <p:dialog id="nuevo" widgetVar="rol">
+         <p:dialog id="nuevo" widgetVar="rol" >
             <h:form>
                 <p:outputLabel value="Código"/>
                 <p:inputText value="#{rolController.rol.id}"/>
-                <p:outputLabel value="Rol"/>
+                <p:outputLabel value="Nombre"/>
                 <p:inputText value="#{rolController.rol.nombre}"/>
-                <p:commandButton value="Modificar" actionListener="#{rolController.editar()}" oncomplete="PF('rol').hide()" update=":datos :msj"/>
+                <p:commandButton value="Modificar" actionListener="#{rolController.editar()}" update=":datos :msj" oncomplete="PF('rol').hide()"/>
                 <p:commandButton value="Cancelar" oncomplete="PF('rol').hide()"/>
             </h:form>
         </p:dialog>
