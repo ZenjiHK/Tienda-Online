@@ -22,7 +22,7 @@ public class Descuento implements Serializable {
     @Column(name = "descuento")
     private double descuento;
     
-    @OneToMany
+    @OneToMany(targetEntity=DetalleVenta.class,mappedBy="descuento")
     private List<DetalleVenta> lista_detalle_ventas;
 
     public Descuento() {

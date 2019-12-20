@@ -9,8 +9,8 @@
         <property name="portNumber" value="3306"/>
         <property name="databaseName" value="tienda"/>
         <property name="User" value="root"/>
-        <property name="Password" value=""/>
-        <property name="URL" value="jdbc:mysql://127.0.0.1:3306/tienda?"/>
+        <property name="Password" value="root"/>
+        <property name="URL" value="jdbc:mysql://127.0.0.1:3306/tienda?useSSL=false"/>
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
     </jdbc-connection-pool>
     <jdbc-resource

@@ -49,7 +49,7 @@ public class Producto implements Serializable {
     @ManyToOne
     private TipoRopa tipoRopa;
 
-    @OneToMany
+    @OneToMany(targetEntity=DetalleVenta.class,mappedBy="producto")
     private List<DetalleVenta> lista_detalle_ventas;
 
     public Producto() {

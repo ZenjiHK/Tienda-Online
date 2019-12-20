@@ -16,20 +16,19 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 @Named(value = "ProductoController")
-@SessionScoped
+@RequestScoped
 public class ProductoController implements Serializable{
     
-    private String mensaje;
     
     @EJB
     private ProductoFacadeLocal productoEJB;
     private Producto producto;
     private List<Producto> listaproducto;
+    private String mensaje;
     
     @EJB
     private MarcaFacadeLocal marcaEJB;
@@ -139,6 +138,12 @@ public class ProductoController implements Serializable{
         this.tiporopa = new TipoRopa();
         this.categoria = new Categoria();
         this.producto = new Producto();
+        this.listamarca=marcaEJB.findAll();
+        this.listatalla=tallaEJB.findAll();
+        this.listatiporopa=tiporopaEJB.findAll();
+        this.listacategoria=categoriaEJB.findAll();
+        this.listaproducto=productoEJB.findAll();
+        this.mensaje="";
     }
     
     public void consultarMarca(){
@@ -207,5 +212,19 @@ public class ProductoController implements Serializable{
             this.mensaje = "Error" + e.getMessage();
             e.printStackTrace();
         }
-    }   
+    }
+    
+    public void limpiar(){
+        this.marca = new Marca();
+        this.talla = new Talla();
+        this.tiporopa = new TipoRopa();
+        this.categoria = new Categoria();
+        this.producto = new Producto();
+        this.listamarca=marcaEJB.findAll();
+        this.listatalla=tallaEJB.findAll();
+        this.listatiporopa=tiporopaEJB.findAll();
+        this.listacategoria=categoriaEJB.findAll();
+        this.listaproducto=productoEJB.findAll();
+        this.mensaje="";
+    }
 }

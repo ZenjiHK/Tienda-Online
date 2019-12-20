@@ -12,19 +12,17 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 @Named(value = "userController")
-@SessionScoped
+@RequestScoped
 public class UserController {
-
-    private String mensaje;
 
     @EJB
     private UserFacadeLocal userFacade;
     private User user;
     private List<User> listaUser;
+    private String mensaje;
 
     @EJB
     private RolFacadeLocal rolFacade;
@@ -92,9 +90,12 @@ public class UserController {
     
     @PostConstruct
     public void init() {
-        user = new User();
-        rol = new Rol();
-        cliente = new Cliente();
+        this.user = new User();
+        this.rol = new Rol();
+        this.cliente = new Cliente();
+        this.listaUser=userFacade.findAll();
+        this.listaRol=rolFacade.findAll();
+        this.listaCliente=clienteFacade.findAll();
     }
 
     public void consultarRol() {
@@ -160,5 +161,14 @@ public class UserController {
         }
         FacesMessage msj = new FacesMessage(mensaje);
         FacesContext.getCurrentInstance().addMessage(null, msj);
+    }
+    
+    public void limpiar() {
+        this.user = new User();
+        this.rol = new Rol();
+        this.cliente = new Cliente();
+        this.listaUser=userFacade.findAll();
+        this.listaRol=rolFacade.findAll();
+        this.listaCliente=clienteFacade.findAll();
     }
 }

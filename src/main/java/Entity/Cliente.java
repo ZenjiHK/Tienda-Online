@@ -33,17 +33,17 @@ public class Cliente implements Serializable {
     @Column(name = "direccion")
     private String direccion;
     
-    @OneToMany
+    @OneToMany(targetEntity=Venta.class,mappedBy="cliente")
     private List<Venta> lista_ventas;
     
     @JoinColumn(name = "id_pais", referencedColumnName = "id_pais")
     @ManyToOne
     private Pais pais;
     
-    @OneToMany
+    @OneToMany(targetEntity=DetalleTarjeta.class,mappedBy="cliente")
     private List<DetalleTarjeta> lista_detalle_tarjetas;
     
-    @OneToMany
+    @OneToMany(targetEntity=User.class,mappedBy="cliente")
     private List<User> lista_users;
 
     public Cliente() {

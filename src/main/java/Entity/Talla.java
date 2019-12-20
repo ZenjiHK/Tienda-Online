@@ -22,7 +22,7 @@ public class Talla implements Serializable {
     @Column(name = "talla")
     private String talla;
     
-    @OneToMany
+    @OneToMany(targetEntity=Producto.class,mappedBy="talla")
     private List<Producto> lista_productos;
 
     public Talla() {

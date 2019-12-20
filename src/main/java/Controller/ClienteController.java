@@ -6,16 +6,15 @@
 package Controller;
 
 import EJB.ClienteFacadeLocal;
-import EJB.VentaFacadeLocal;
 import Entity.Cliente;
 import Entity.Pais;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 
@@ -24,7 +23,7 @@ import javax.faces.context.FacesContext;
  * @author evelyn.andradeusam
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class ClienteController implements Serializable{
     
     @EJB    
@@ -63,17 +62,18 @@ public class ClienteController implements Serializable{
     public void init(){
     this.cliente=new Cliente();
     this.pais=new Pais();
+    this.listaCliente = clienteEJB.findAll();
+    this.msj="";
     }
     
     public void insertar(){
         try {
             this.cliente.setPais(pais);
             this.clienteEJB.create(cliente);
-            this.cliente=new Cliente();
-            this.pais=new Pais();
+            limpiar();
             this.msj="Cliente Ingresado correctamente";            
         } catch (Exception e) {
-            this.msj="Error al ingresar Cliente"+e.getMessage();
+            this.msj="Error al ingresar Cliente "+e.getMessage();
             e.printStackTrace();
         }
         FacesMessage mensaje=new FacesMessage(this.msj);
@@ -93,7 +93,7 @@ public class ClienteController implements Serializable{
             this.pais=new Pais();
             this.msj="Cliente Actualizado correctamente";            
         } catch (Exception e) {
-            this.msj="Error al Actualizar Cliente"+e.getMessage();
+            this.msj="Error al Actualizar Cliente "+e.getMessage();
             e.printStackTrace();
         }
         FacesMessage mensaje=new FacesMessage(this.msj);
@@ -101,8 +101,10 @@ public class ClienteController implements Serializable{
     }
     
     public void limpiar(){
-    this.cliente=new Cliente();
-    this.pais=new Pais();
+        this.cliente=new Cliente();
+        this.pais=new Pais();
+        this.listaCliente = clienteEJB.findAll();
+        this.msj="";
     }
     
      public void eliminar(Cliente cl){
@@ -111,7 +113,7 @@ public class ClienteController implements Serializable{
             this.cliente=new Cliente();            
             this.msj="Cliente Eliminado correctamente";            
         } catch (Exception e) {
-            this.msj="Error al Eliminar Cliente"+e.getMessage();
+            this.msj="Error al Eliminar Cliente "+e.getMessage();
             e.printStackTrace();
         }
         FacesMessage mensaje=new FacesMessage(this.msj);

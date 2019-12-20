@@ -11,23 +11,25 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author evelyn.andradeusam
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class FormaPagoController implements Serializable{
+    
     @EJB
-private FormaPagoFacadeLocal FormaPagoEJB;
-private List<FormaPago> listapago;
-private FormaPago formapago;
+    private FormaPagoFacadeLocal formaPagoEJB;
+    private List<FormaPago> listapago;
+    private FormaPago formapago;
+    private String msg;
 
     public List<FormaPago> getListapago() {
-        this.listapago=this.FormaPagoEJB.findAll();
+        this.listapago=this.formaPagoEJB.findAll();
         return listapago;
     }
 
@@ -45,8 +47,55 @@ private FormaPago formapago;
     
     @PostConstruct
     public void init(){
-    formapago=new FormaPago();    
+        limpiar();
     }
     
-
+    public void limpiar(){
+        this.formapago=new FormaPago();
+        this.listapago = formaPagoEJB.findAll();
+    }
+    
+    public void crear(){
+        try{
+            formaPagoEJB.create(formapago);
+            limpiar();
+            msg = "Exito";
+        }catch(Exception e){
+            msg = "Error " + e.getMessage();
+            e.printStackTrace();
+        }
+    }
+    
+    public void editar(){
+        try{
+            formaPagoEJB.edit(formapago);
+            limpiar();
+            msg = "Exito";
+        }catch(Exception e){
+            msg = "Error " + e.getMessage();
+            e.printStackTrace();
+        }
+    }
+    
+    public void eliminar(){
+        try{
+            formaPagoEJB.remove(formapago);
+            limpiar();
+            msg = "Exito";
+        }catch(Exception e){
+            msg = "Error " + e.getMessage();
+            e.printStackTrace();
+        }
+    }
+    
+    public void cargarDatos(FormaPago fp){
+        try{
+            this.formapago = fp;
+            limpiar();
+            msg = "Exito";
+        }catch(Exception e){
+            msg = "Error " + e.getMessage();
+            e.printStackTrace();
+        }
+    }
 }

@@ -7,21 +7,20 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 @Named(value = "tallaController")
-@SessionScoped
-public class TallaController {        
-    private String mensaje="";
-   
+@RequestScoped
+public class TallaController {
+
     @EJB
     private TallaFacadeLocal tallaFacade;
     private Talla talla;
     private List<Talla> listaTalla;
+    private String mensaje = "";
 
-    public Talla getTalla() {        
+    public Talla getTalla() {
         return talla;
     }
 
@@ -37,12 +36,14 @@ public class TallaController {
     public void setListaTalla(List<Talla> listaTalla) {
         this.listaTalla = listaTalla;
     }
-   
+
     @PostConstruct
-    public void init(){
+    public void init() {
         this.talla = new Talla();
+        this.listaTalla=tallaFacade.findAll();
+        this.mensaje="";
     }
-   
+
     //Metodo insertar
     public void insertar() {
         try {
@@ -56,29 +57,32 @@ public class TallaController {
         FacesMessage msj = new FacesMessage(this.mensaje);
         FacesContext.getCurrentInstance().addMessage(null, msj);
     }
-   
+
     //Metodo para cargar datos
     public void cargarDatos(Talla t) {
         this.talla = t;
     }
-   
+
     //Metodo editar
     public void editar() {
         try {
-            tallaFacade.edit(talla);
-           this.mensaje="Editado con éxito";
+            this.tallaFacade.edit(talla);
+            this.mensaje = "Editado con éxito";
         } catch (Exception e) {
-            this.mensaje="ERROR";
+            this.mensaje = "Error " + e.getMessage();
+            e.printStackTrace();
         }
         FacesMessage msj = new FacesMessage(this.mensaje);
         FacesContext.getCurrentInstance().addMessage(mensaje, msj);
     }
-   
+
     //Metodo limpiar
     public void limpiar() {
         this.talla = new Talla();
+        this.listaTalla=tallaFacade.findAll();
+        this.mensaje="";
     }
-   
+
     //Metodo eliminar
     public void eliminar(Talla t) {
         try {

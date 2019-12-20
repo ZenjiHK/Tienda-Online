@@ -22,7 +22,7 @@ public class FormaPago implements Serializable {
     @Column(name = "nombre_forma_pago")
     private String nombreFormaPago;
     
-    @OneToMany
+    @OneToMany(targetEntity=Factura.class,mappedBy="formaPago")
     private List<Factura> lista_facturas;
 
     public FormaPago() {
