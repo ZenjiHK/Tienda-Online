@@ -31,10 +31,10 @@
 
                     <p:column headerText="Editar">
                         <p:commandButton value="Editar" actionListener="#{rolController.cargarDatos(r)}"
-                                         oncomplete="PF('rol').show()"/>
+                                         oncomplete="PF('rol').show()" update=":nuevo :msj :datos"/>
                     </p:column>
                     <p:column headerText="Eliminar">
-                        <p:commandButton value="Eliminar" actionListener="#{rolController.eliminar(r)}"/>
+                        <p:commandButton value="Eliminar" actionListener="#{rolController.eliminar(r)}" update=":msj :datos"/>
                     </p:column>
                 </p:dataTable>
             </p:fieldset>
@@ -45,7 +45,7 @@
                 <p:inputText value="#{rolController.rol.id}"/>
                 <p:outputLabel value="Rol"/>
                 <p:inputText value="#{rolController.rol.nombre}"/>
-                <p:commandButton value="Modificar" actionListener="#{userController.editar()}" oncomplete="PF('rol').hide()" update=":datos :msj"/>
+                <p:commandButton value="Modificar" actionListener="#{rolController.editar()}" oncomplete="PF('rol').hide()" update=":datos :msj"/>
                 <p:commandButton value="Cancelar" oncomplete="PF('rol').hide()"/>
             </h:form>
         </p:dialog>
