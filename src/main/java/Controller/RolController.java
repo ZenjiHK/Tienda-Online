@@ -11,10 +11,11 @@ import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 @Named(value = "rolController")
-@RequestScoped
+@SessionScoped
 public class RolController implements Serializable{
 
     private String mensaje;

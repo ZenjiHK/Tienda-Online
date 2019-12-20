@@ -15,55 +15,44 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author alex.lemususam
- */
 @Entity
 @Table(name = "venta")
 public class Venta implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
-    
-    @Column(name = "estado")
-    private boolean estado;
+    @Column(name = "id_venta")
+    private int idVenta;
     
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
     
-    @JoinColumn(name = "cliente", referencedColumnName = "id")
+    @Column(name = "estado")
+    private boolean estado;
+    
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
     @ManyToOne
     private Cliente cliente;
     
-    @JoinColumn(name = "pago", referencedColumnName = "id")
+    @JoinColumn(name = "id_detalle_tarjeta", referencedColumnName = "id_detalle_tarjeta")
     @ManyToOne
-    private FormaPago pago;
+    private DetalleTarjeta detalleTarjeta;
     
-    @JoinColumn(name = "tarjeta", referencedColumnName = "id")
-    @ManyToOne
-    private DetalleTarjeta tarjeta;
-    
-    @OneToMany(mappedBy = "venta")
-    private List<DetalleVenta> detalleVentaList;
-    
-    @OneToMany(mappedBy = "venta")
-    private List<Factura> facturaList;
+    @OneToMany
+    private List<Factura> lista_facturas;
 
     public Venta() {
     }
 
-    public Venta(int id) {
-        this.id = id;
+    public Venta(int idVenta) {
+        this.idVenta = idVenta;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 17 * hash + this.id;
+        hash = 37 * hash + this.idVenta;
         return hash;
     }
 
@@ -79,25 +68,25 @@ public class Venta implements Serializable {
             return false;
         }
         final Venta other = (Venta) obj;
-        if (this.id != other.id) {
+        if (this.idVenta != other.idVenta) {
             return false;
         }
         return true;
     }
-    
+
     @Override
     public String toString() {
-        return "Entity.Venta[ id=" + id + " ]";
+        return "Venta{" + "idVenta=" + idVenta + '}';
     }
 
-    public int getId() {
-        return id;
+    public int getIdVenta() {
+        return idVenta;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdVenta(int idVenta) {
+        this.idVenta = idVenta;
     }
-
+    
     public boolean getEstado() {
         return estado;
     }
@@ -114,6 +103,14 @@ public class Venta implements Serializable {
         this.fecha = fecha;
     }
 
+    public List<Factura> getLista_facturas() {
+        return lista_facturas;
+    }
+
+    public void setLista_facturas(List<Factura> lista_facturas) {
+        this.lista_facturas = lista_facturas;
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -122,35 +119,11 @@ public class Venta implements Serializable {
         this.cliente = cliente;
     }
 
-    public FormaPago getPago() {
-        return pago;
+    public DetalleTarjeta getDetalleTarjeta() {
+        return detalleTarjeta;
     }
 
-    public void setPago(FormaPago pago) {
-        this.pago = pago;
+    public void setDetalleTarjeta(DetalleTarjeta detalleTarjeta) {
+        this.detalleTarjeta = detalleTarjeta;
     }
-
-    public DetalleTarjeta getTarjeta() {
-        return tarjeta;
-    }
-
-    public void setTarjeta(DetalleTarjeta tarjeta) {
-        this.tarjeta = tarjeta;
-    }
-
-    public List<DetalleVenta> getDetalleVentaList() {
-        return detalleVentaList;
-    }
-
-    public void setDetalleVentaList(List<DetalleVenta> detalleVentaList) {
-        this.detalleVentaList = detalleVentaList;
-    }
-
-    public List<Factura> getFacturaList() {
-        return facturaList;
-    }
-
-    public void setFacturaList(List<Factura> facturaList) {
-        this.facturaList = facturaList;
-    }    
 }

@@ -12,19 +12,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
-
 @Entity
 @Table(name = "producto")
 public class Producto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_producto")
+    private int idProducto;
 
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "nombre_producto")
+    private String nombreProducto;
 
     @Column(name = "precio_compra")
     private double precioCompra;
@@ -35,36 +33,36 @@ public class Producto implements Serializable {
     @Column(name = "stock")
     private int stock;
 
-    @JoinColumn(name = "categoria", referencedColumnName = "id")
+    @JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
     @ManyToOne
     private Categoria categoria;
 
-    @JoinColumn(name = "marca", referencedColumnName = "id")
+    @JoinColumn(name = "id_marca", referencedColumnName = "id_marca")
     @ManyToOne
     private Marca marca;
 
-    @JoinColumn(name = "talla", referencedColumnName = "id")
+    @JoinColumn(name = "id_talla", referencedColumnName = "id_talla")
     @ManyToOne
     private Talla talla;
 
-    @JoinColumn(name = "tipo", referencedColumnName = "id")
+    @JoinColumn(name = "id_tipo_ropa", referencedColumnName = "id_tipo_ropa")
     @ManyToOne
-    private TipoRopa tipo;
+    private TipoRopa tipoRopa;
 
-    @OneToMany(mappedBy = "producto")
-    private List<DetalleVenta> detalleVentaList;
+    @OneToMany
+    private List<DetalleVenta> lista_detalle_ventas;
 
     public Producto() {
     }
 
-    public Producto(int id) {
-        this.id = id;
+    public Producto(int idProducto) {
+        this.idProducto = idProducto;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 47 * hash + this.id;
+        hash = 23 * hash + this.idProducto;
         return hash;
     }
 
@@ -80,7 +78,7 @@ public class Producto implements Serializable {
             return false;
         }
         final Producto other = (Producto) obj;
-        if (this.id != other.id) {
+        if (this.idProducto != other.idProducto) {
             return false;
         }
         return true;
@@ -88,25 +86,17 @@ public class Producto implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.Producto[ id=" + id + " ]";
+        return "Producto{" + "idProducto=" + idProducto + '}';
     }
 
-    public int getId() {
-        return id;
+    public int getIdProducto() {
+        return idProducto;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
     }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
+    
     public double getPrecioCompra() {
         return precioCompra;
     }
@@ -155,19 +145,27 @@ public class Producto implements Serializable {
         this.talla = talla;
     }
 
-    public TipoRopa getTipo() {
-        return tipo;
+    public String getNombreProducto() {
+        return nombreProducto;
     }
 
-    public void setTipo(TipoRopa tipo) {
-        this.tipo = tipo;
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
     }
 
-    public List<DetalleVenta> getDetalleVentaList() {
-        return detalleVentaList;
+    public TipoRopa getTipoRopa() {
+        return tipoRopa;
     }
 
-    public void setDetalleVentaList(List<DetalleVenta> detalleVentaList) {
-        this.detalleVentaList = detalleVentaList;
+    public void setTipoRopa(TipoRopa tipoRopa) {
+        this.tipoRopa = tipoRopa;
+    }
+
+    public List<DetalleVenta> getLista_detalle_ventas() {
+        return lista_detalle_ventas;
+    }
+
+    public void setLista_detalle_ventas(List<DetalleVenta> lista_detalle_ventas) {
+        this.lista_detalle_ventas = lista_detalle_ventas;
     }
 }

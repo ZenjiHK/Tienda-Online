@@ -10,13 +10,13 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 @Named(value = "userController")
-@RequestScoped
+@SessionScoped
 public class UserController {
 
     private String mensaje;
@@ -141,8 +141,8 @@ public class UserController {
 
     public void cargarDatos(User u) {
         try {
-            this.cliente.setId(this.user.getCliente().getId());
-            this.rol.setId(this.user.getRol().getId());
+            this.cliente.setIdCliente(this.user.getCliente().getIdCliente());
+            this.rol.setIdRol(this.user.getRol().getIdRol());
             this.user = u;
         } catch (Exception e) {
         }

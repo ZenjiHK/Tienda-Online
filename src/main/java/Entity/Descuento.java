@@ -10,36 +10,32 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- * @author alex.lemususam
- */
 @Entity
 @Table(name = "descuento")
 public class Descuento implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_descuento")
+    private int idDescuento;
 
     @Column(name = "descuento")
     private double descuento;
     
-    @OneToMany(mappedBy = "descuento")
-    private List<DetalleVenta> detalleVentaList;
+    @OneToMany
+    private List<DetalleVenta> lista_detalle_ventas;
 
     public Descuento() {
     }
 
     public Descuento(int id) {
-        this.id = id;
+        this.idDescuento = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 17 * hash + this.id;
+        hash = 17 * hash + this.idDescuento;
         return hash;
     }
 
@@ -55,7 +51,7 @@ public class Descuento implements Serializable {
             return false;
         }
         final Descuento other = (Descuento) obj;
-        if (this.id != other.id) {
+        if (this.idDescuento != other.idDescuento) {
             return false;
         }
         return true;
@@ -63,15 +59,15 @@ public class Descuento implements Serializable {
 
     @Override
     public String toString() {
-        return "Descuento{" + "id=" + id + '}';
+        return "Descuento{" + "idDescuento=" + idDescuento + '}';
     }
     
-    public int getId() {
-        return id;
+    public int getIdDescuento() {
+        return idDescuento;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdDescuento(int id) {
+        this.idDescuento = id;
     }
 
     public double getDescuento() {
@@ -82,11 +78,11 @@ public class Descuento implements Serializable {
         this.descuento = descuento;
     }
 
-    public List<DetalleVenta> getDetalleVentaList() {
-        return detalleVentaList;
+    public List<DetalleVenta> getLista_detalle_ventas() {
+        return lista_detalle_ventas;
     }
 
-    public void setDetalleVentaList(List<DetalleVenta> detalleVentaList) {
-        this.detalleVentaList = detalleVentaList;
+    public void setLista_detalle_ventas(List<DetalleVenta> lista_detalle_ventas) {
+        this.lista_detalle_ventas = lista_detalle_ventas;
     }
 }

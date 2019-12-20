@@ -65,14 +65,15 @@ CREATE TABLE rol(
 CREATE TABLE user(
 		id_user int auto_increment primary key,
 		nombre_usuario varchar(50) not null,
-		id_cliente int not null,
 		clave int not null,
 		id_rol int not null,
-		estado boolean not null);
+		estado boolean not null,
+		id_cliente int not null);
 
-ALTER TABLE user ADD CONSTRAINT FOREIGN KEY fk_user_cliente(id_cliente) REFERENCES cliente(id_cliente);
 
 ALTER TABLE user ADD CONSTRAINT FOREIGN KEY fk_user_rol(id_rol) REFERENCES rol(id_rol);
+
+ALTER TABLE user ADD CONSTRAINT FOREIGN KEY fk_user_cliente(id_cliente) REFERENCES cliente(id_cliente);
 
 CREATE TABLE forma_pago(
 		id_forma_pago int auto_increment primary key,

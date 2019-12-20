@@ -16,11 +16,12 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 @Named(value = "ProductoController")
-@RequestScoped
+@SessionScoped
 public class ProductoController implements Serializable{
     
     private String mensaje;
@@ -140,9 +141,9 @@ public class ProductoController implements Serializable{
         this.producto = new Producto();
     }
     
-   public void consultarMarca(){
+    public void consultarMarca(){
        listamarca = marcaEJB.findAll();
-   }
+    }
     public void consultarTalla(){
         listatalla = tallaEJB.findAll();
     }
@@ -159,7 +160,7 @@ public class ProductoController implements Serializable{
         try {
             this.producto.setMarca(marca);
             this.producto.setTalla(talla);
-            this.producto.setTipo(tiporopa);
+            this.producto.setTipoRopa(tiporopa);
             this.producto.setCategoria(categoria);
             this.productoEJB.create(producto);
             this.mensaje = "Producto registrado exitosamente";
@@ -169,14 +170,13 @@ public class ProductoController implements Serializable{
         }
         FacesMessage msj = new FacesMessage(mensaje);
         FacesContext.getCurrentInstance().addMessage(mensaje, msj);
-    }
-    
+    }  
     
     public void actualizar(){
          try {
             this.producto.setMarca(marca);
             this.producto.setTalla(talla);
-            this.producto.setTipo(tiporopa);
+            this.producto.setTipoRopa(tiporopa);
             this.producto.setCategoria(categoria);
             this.productoEJB.edit(producto);
             this.mensaje = "Producto actualizado exitosamente";
@@ -190,10 +190,10 @@ public class ProductoController implements Serializable{
     
     public void cargarData(Producto p){
         try {
-            this.marca.setId(p.getMarca().getId());
-            this.talla.setId(p.getTalla().getId());
-            this.tiporopa.setId(p.getTipo().getId());
-            this.categoria.setId(p.getCategoria().getId());
+            this.marca.setIdMarca(p.getMarca().getIdMarca());
+            this.talla.setIdTalla(p.getTalla().getIdTalla());
+            this.tiporopa.setIdTipoRopa(p.getTipoRopa().getIdTipoRopa());
+            this.categoria.setIdCategoria(p.getCategoria().getIdCategoria());
             this.producto = p;
         } catch (Exception e) {
         }
@@ -201,17 +201,11 @@ public class ProductoController implements Serializable{
     
     public void eliminar(Producto p){
         try {
-           this.producto.setMarca(marca);
-           this.producto.setTalla(talla);
-           this.producto.setTipo(tiporopa);
-           this.producto.setCategoria(categoria);
            this.productoEJB.remove(p);
            this.mensaje = "Producto eliminado";
         } catch (Exception e) {
             this.mensaje = "Error" + e.getMessage();
             e.printStackTrace();
         }
-    }
-   
-    
+    }   
 }

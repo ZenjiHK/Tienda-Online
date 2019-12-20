@@ -10,34 +10,34 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author alex.lemususam
- */
 @Entity
 @Table(name = "factura")
 public class Factura implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_factura")
+    private int idFactura;
     
-    @JoinColumn(name = "venta", referencedColumnName = "id")
+    @JoinColumn(name = "id_forma_pago", referencedColumnName = "id_forma_pago")
+    @ManyToOne
+    private FormaPago formaPago;
+    
+    @JoinColumn(name = "id_venta", referencedColumnName = "id_venta")
     @ManyToOne
     private Venta venta;
 
     public Factura() {
     }
 
-    public Factura(int id) {
-        this.id = id;
+    public Factura(int idFactura) {
+        this.idFactura = idFactura;
     }
-
+    
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + this.id;
+        int hash = 5;
+        hash = 37 * hash + this.idFactura;
         return hash;
     }
 
@@ -53,7 +53,7 @@ public class Factura implements Serializable {
             return false;
         }
         final Factura other = (Factura) obj;
-        if (this.id != other.id) {
+        if (this.idFactura != other.idFactura) {
             return false;
         }
         return true;
@@ -61,15 +61,23 @@ public class Factura implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.Factura[ id=" + id + " ]";
+        return "Factura{" + "idFactura=" + idFactura + '}';
     }
 
-    public int getId() {
-        return id;
+    public int getIdFactura() {
+        return idFactura;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdFactura(int idFactura) {
+        this.idFactura = idFactura;
+    }
+
+    public FormaPago getFormaPago() {
+        return formaPago;
+    }
+
+    public void setFormaPago(FormaPago formaPago) {
+        this.formaPago = formaPago;
     }
 
     public Venta getVenta() {

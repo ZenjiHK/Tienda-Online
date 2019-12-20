@@ -15,18 +15,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author alex.lemususam
- */
 @Entity
 @Table(name = "detalle_tarjeta")
 public class DetalleTarjeta implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_detalle_tarjeta")
+    private int idDetalleTarjeta;
     
     @Column(name = "expiracion")
     @Temporal(TemporalType.DATE)
@@ -35,10 +31,10 @@ public class DetalleTarjeta implements Serializable {
     @Column(name = "ping")
     private int ping;
     
-    @OneToMany(mappedBy = "tarjeta")
-    private List<Venta> ventaList;
+    @OneToMany
+    private List<Venta> lista_ventas;
     
-    @JoinColumn(name = "cliente", referencedColumnName = "id")
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
     @ManyToOne
     private Cliente cliente;
 
@@ -46,13 +42,13 @@ public class DetalleTarjeta implements Serializable {
     }
 
     public DetalleTarjeta(int id) {
-        this.id = id;
+        this.idDetalleTarjeta = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 53 * hash + this.id;
+        hash = 53 * hash + this.idDetalleTarjeta;
         return hash;
     }
 
@@ -68,7 +64,7 @@ public class DetalleTarjeta implements Serializable {
             return false;
         }
         final DetalleTarjeta other = (DetalleTarjeta) obj;
-        if (this.id != other.id) {
+        if (this.idDetalleTarjeta != other.idDetalleTarjeta) {
             return false;
         }
         return true;
@@ -76,15 +72,15 @@ public class DetalleTarjeta implements Serializable {
     
     @Override
     public String toString() {
-        return "Entity.DetalleTarjeta[ id=" + id + " ]";
+        return "DetalleTarjeta{" + "idDetalleTarjeta=" + idDetalleTarjeta + '}';
     }
 
-    public int getId() {
-        return id;
+    public int getIdDetalleTarjeta() {
+        return idDetalleTarjeta;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdDetalleTarjeta(int id) {
+        this.idDetalleTarjeta = id;
     }
 
     public Date getExpiracion() {
@@ -103,12 +99,12 @@ public class DetalleTarjeta implements Serializable {
         this.ping = ping;
     }
 
-    public List<Venta> getVentaList() {
-        return ventaList;
+    public List<Venta> getLista_ventas() {
+        return lista_ventas;
     }
 
-    public void setVentaList(List<Venta> ventaList) {
-        this.ventaList = ventaList;
+    public void setLista_ventas(List<Venta> lista_ventas) {
+        this.lista_ventas = lista_ventas;
     }
 
     public Cliente getCliente() {
@@ -117,5 +113,5 @@ public class DetalleTarjeta implements Serializable {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }   
+    }
 }

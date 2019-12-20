@@ -8,11 +8,12 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 @Named(value = "marcaController")
-@RequestScoped
+@SessionScoped
 public class MarcaController implements Serializable{
     
     private String mensaje;

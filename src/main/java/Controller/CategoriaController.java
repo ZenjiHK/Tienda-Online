@@ -49,7 +49,6 @@ public class CategoriaController implements Serializable{
     //La palabra init es obligación. De lo contrario, da problemas
     public void init(){
         //Inicializamos variable categoría. Es lo primero que se ejecuta
-        
         categoria = new Categoria();
     }
     

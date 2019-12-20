@@ -12,24 +12,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- * @author alex.lemususam
- */
 @Entity
 @Table(name = "cliente")
 public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_cliente")
+    private int idCliente;
     
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "nombre_cliente")
+    private String nombreCliente;
     
-    @Column(name = "apellido")
-    private String apellido;
+    @Column(name = "apellido_cliente")
+    private String apellidoCliente;
     
     @Column(name = "correo")
     private String correo;
@@ -37,30 +33,30 @@ public class Cliente implements Serializable {
     @Column(name = "direccion")
     private String direccion;
     
-    @OneToMany(mappedBy = "cliente")
-    private List<Venta> ventaList;
+    @OneToMany
+    private List<Venta> lista_ventas;
     
-    @JoinColumn(name = "pais", referencedColumnName = "id")
+    @JoinColumn(name = "id_pais", referencedColumnName = "id_pais")
     @ManyToOne
     private Pais pais;
     
-    @OneToMany(mappedBy = "cliente")
-    private List<DetalleTarjeta> detalleTarjetaList;
+    @OneToMany
+    private List<DetalleTarjeta> lista_detalle_tarjetas;
     
-    @OneToMany(mappedBy = "cliente")
-    private List<User> userList;
+    @OneToMany
+    private List<User> lista_users;
 
     public Cliente() {
     }
 
     public Cliente(int id) {
-        this.id = id;
+        this.idCliente = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 29 * hash + this.id;
+        hash = 29 * hash + this.idCliente;
         return hash;
     }
 
@@ -76,7 +72,7 @@ public class Cliente implements Serializable {
             return false;
         }
         final Cliente other = (Cliente) obj;
-        if (this.id != other.id) {
+        if (this.idCliente != other.idCliente) {
             return false;
         }
         return true;
@@ -84,23 +80,23 @@ public class Cliente implements Serializable {
     
     @Override
     public String toString() {
-        return "Categoria{" + "id=" + id + '}';
+        return "Categoria{" + "idCliente=" + idCliente + '}';
     }
 
-    public int getId() {
-        return id;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdCliente(int id) {
+        this.idCliente = id;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getApellidoCliente() {
+        return apellidoCliente;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellidoCliente(String apellido) {
+        this.apellidoCliente = apellido;
     }
 
     public String getCorreo() {
@@ -119,20 +115,12 @@ public class Cliente implements Serializable {
         this.direccion = direccion;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreCliente() {
+        return nombreCliente;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public List<Venta> getVentaList() {
-        return ventaList;
-    }
-
-    public void setVentaList(List<Venta> ventaList) {
-        this.ventaList = ventaList;
+    public void setNombreCliente(String nombre) {
+        this.nombreCliente = nombre;
     }
 
     public Pais getPais() {
@@ -143,19 +131,27 @@ public class Cliente implements Serializable {
         this.pais = pais;
     }
 
-    public List<DetalleTarjeta> getDetalleTarjetaList() {
-        return detalleTarjetaList;
+    public List<Venta> getLista_ventas() {
+        return lista_ventas;
     }
 
-    public void setDetalleTarjetaList(List<DetalleTarjeta> detalleTarjetaList) {
-        this.detalleTarjetaList = detalleTarjetaList;
+    public void setLista_ventas(List<Venta> lista_ventas) {
+        this.lista_ventas = lista_ventas;
     }
 
-    public List<User> getUserList() {
-        return userList;
+    public List<DetalleTarjeta> getLista_detalle_tarjetas() {
+        return lista_detalle_tarjetas;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setLista_detalle_tarjetas(List<DetalleTarjeta> lista_detalle_tarjetas) {
+        this.lista_detalle_tarjetas = lista_detalle_tarjetas;
+    }
+
+    public List<User> getLista_users() {
+        return lista_users;
+    }
+
+    public void setLista_users(List<User> lista_users) {
+        this.lista_users = lista_users;
     }
 }

@@ -6,6 +6,7 @@
 package Controller;
 
 import EJB.ClienteFacadeLocal;
+import EJB.VentaFacadeLocal;
 import Entity.Cliente;
 import Entity.Pais;
 import java.io.Serializable;
@@ -25,18 +26,16 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @SessionScoped
 public class ClienteController implements Serializable{
-     @EJB
     
-    private ClienteFacadeLocal ClienteEJB;       
+    @EJB    
+    private ClienteFacadeLocal clienteEJB;       
     private List<Cliente> listaCliente;
     private Cliente cliente; 
     private Pais pais;
     String msj;
-    
-
 
     public List<Cliente> getListaCliente() {
-        this.listaCliente= this.ClienteEJB.findAll();
+        this.listaCliente= this.clienteEJB.findAll();
         return listaCliente;
     }
 
@@ -69,7 +68,7 @@ public class ClienteController implements Serializable{
     public void insertar(){
         try {
             this.cliente.setPais(pais);
-            this.ClienteEJB.create(cliente);
+            this.clienteEJB.create(cliente);
             this.cliente=new Cliente();
             this.pais=new Pais();
             this.msj="Cliente Ingresado correctamente";            
@@ -82,14 +81,14 @@ public class ClienteController implements Serializable{
     }
     
     public void cargarCliente(Cliente c){
-        this.pais.setId(c.getPais().getId());
+        this.pais.setIdPais(c.getPais().getIdPais());
         this.cliente=c;       
     }
     
     public void editar(){
         try {
             this.cliente.setPais(pais);
-            this.ClienteEJB.edit(cliente);
+            this.clienteEJB.edit(cliente);
             this.cliente=new Cliente();
             this.pais=new Pais();
             this.msj="Cliente Actualizado correctamente";            
@@ -108,7 +107,7 @@ public class ClienteController implements Serializable{
     
      public void eliminar(Cliente cl){
         try {
-            this.ClienteEJB.remove(cl);
+            this.clienteEJB.remove(cl);
             this.cliente=new Cliente();            
             this.msj="Cliente Eliminado correctamente";            
         } catch (Exception e) {
@@ -117,7 +116,5 @@ public class ClienteController implements Serializable{
         }
         FacesMessage mensaje=new FacesMessage(this.msj);
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
-    }
-
-    
+    }   
 }
