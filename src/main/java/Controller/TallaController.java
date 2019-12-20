@@ -12,15 +12,16 @@ import javax.inject.Named;
 
 @Named(value = "tallaController")
 @RequestScoped
-public class TallaController {        
-    private String mensaje="";
-   
+public class TallaController {
+
+    private String mensaje = "";
+
     @EJB
     private TallaFacadeLocal tallaFacade;
     private Talla talla;
     private List<Talla> listaTalla;
 
-    public Talla getTalla() {        
+    public Talla getTalla() {
         return talla;
     }
 
@@ -36,12 +37,12 @@ public class TallaController {
     public void setListaTalla(List<Talla> listaTalla) {
         this.listaTalla = listaTalla;
     }
-   
+
     @PostConstruct
-    public void init(){
+    public void init() {
         this.talla = new Talla();
     }
-   
+
     //Metodo insertar
     public void insertar() {
         try {
@@ -55,29 +56,29 @@ public class TallaController {
         FacesMessage msj = new FacesMessage(this.mensaje);
         FacesContext.getCurrentInstance().addMessage(null, msj);
     }
-   
+
     //Metodo para cargar datos
     public void cargarDatos(Talla t) {
         this.talla = t;
     }
-   
+
     //Metodo editar
     public void editar() {
         try {
-            tallaFacade.edit(talla);
-           this.mensaje="Editado con éxito";
+            this.tallaFacade.edit(talla);
+            this.mensaje = "Editado con éxito";
         } catch (Exception e) {
-            this.mensaje="ERROR";
+            this.mensaje = "ERROR";
         }
         FacesMessage msj = new FacesMessage(this.mensaje);
         FacesContext.getCurrentInstance().addMessage(mensaje, msj);
     }
-   
+
     //Metodo limpiar
     public void limpiar() {
         this.talla = new Talla();
     }
-   
+
     //Metodo eliminar
     public void eliminar(Talla t) {
         try {

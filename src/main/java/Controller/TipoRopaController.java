@@ -21,6 +21,7 @@ public class TipoRopaController {
     private List<TipoRopa> listaTipoRopa;
 
     public TipoRopa getTipoRopa() {
+
         return tipoRopa;
     }
 
