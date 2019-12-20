@@ -57,9 +57,9 @@ public class RolController implements Serializable{
         FacesContext.getCurrentInstance().addMessage(mensaje, msj);
     }
     
-    public void cargarDatos(Rol rol){
+    public void cargarDatos(Rol r){
         try {
-            this.rol = rol;
+            this.rol = r;
         } catch (Exception e) {
         }
     }
