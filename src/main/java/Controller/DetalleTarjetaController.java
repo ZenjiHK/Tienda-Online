@@ -52,14 +52,14 @@ public class DetalleTarjetaController implements Serializable {
     public void init() {
         this.detalletarjeta = new DetalleTarjeta();
         this.cliente = new Cliente();
+        this.detalletarjeta.setCliente(cliente);
     }
 
     public void insertar() {
         try {
             this.detalletarjeta.setCliente(cliente);
             this.DetalleTarjetaEJB.create(detalletarjeta);
-            this.detalletarjeta = new DetalleTarjeta();
-            this.cliente = new Cliente();
+            limpiar();
             this.msj = "Detalle de tarjeta ingresado correctamente";
         } catch (Exception e) {
             this.msj = "Error al ingresar" + e.getMessage();
@@ -93,6 +93,7 @@ public class DetalleTarjetaController implements Serializable {
     public void limpiar() {
         this.detalletarjeta = new DetalleTarjeta();
         this.cliente = new Cliente();
+        this.detalletarjeta.setCliente(cliente);
     }
 
     public void eliminar(DetalleTarjeta dta) {
