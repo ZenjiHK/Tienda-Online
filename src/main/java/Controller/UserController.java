@@ -149,13 +149,6 @@ public class UserController {
         } catch (Exception e) {
         }
     }
-    
-    public void limpiar(){
-        this.cliente = new Cliente();
-        this.rol = new Rol();
-        this.user = new User();
-    }
-
     public void eliminar(User u) {
         try {
             this.user.setCliente(cliente);

@@ -71,7 +71,7 @@ public class DetalleTarjetaController implements Serializable {
     }
 
     public void CargarTarjeta(DetalleTarjeta dta) {
-        this.cliente.setId(dta.getCliente().getId());
+        this.cliente.setIdCliente(dta.getCliente().getIdCliente());
         this.detalletarjeta = dta;
     }
 
