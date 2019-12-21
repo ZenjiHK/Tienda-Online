@@ -39,10 +39,12 @@
                                    itemLabel="#{r.nombre}" itemValue="#{r.id}"/>
                 </p:selectOneMenu>
                 <p:outputLabel value="Seleccione una categoria" for="categoria"/>
-                <p:selectOneMenu id="categoria" value="#{ProductoController.categoria.id}">
+                <p:selectOneMenu id="categoria" value="#{ProductoController.categoria.id_marca}">
                     <f:selectItems value="#{categoriaController.listaCategoria}" var="c"
-                                   itemLabel="#{c.nombre}" itemValue="#{c.id}"/>
+                                   itemLabel="#{c.nombre_marca}" itemValue="#{c.id}"/>
                 </p:selectOneMenu>
+                <p:outputLabel value="Imagen"/>
+                <p:inputText value="#{ProductoController.producto.url}"/>
                 <p:commandButton value="Enviar" actionListener="#{ProductoController.insertar()}" update=":msj :tabla"/>
             </p:panelGrid>                        
         </h:form>
