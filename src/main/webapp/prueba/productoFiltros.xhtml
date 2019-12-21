@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <body>
+        <p:growl id="msj"/>
+        <p:outputLabel value="Producto"/>
+
+        <h:form id="tabla">             
+            <p:dataTable  value="#{ProductoController.listaproducto}" var="ver" 
+                          emptyMessage="El producto buscado no existe." >
+             
+                <p:column headerText="id" filterBy="#{ver.id}">
+                    <p:outputLabel value="#{ver.id}"/>
+                </p:column>
+                <p:column headerText="nombre" filterBy="#{ver.nombre}" >
+                    <p:outputLabel value="#{ver.nombre}"/>
+                </p:column>
+                <p:column headerText="stock">
+                    <p:outputLabel value="#{ver.stock}"/>
+                </p:column>
+                <p:column headerText="precio de venta" >
+                    <p:outputLabel value="#{ver.precioVenta}"/>
+                </p:column>
+                <p:column headerText="precio de compra">
+                    <p:outputLabel value="#{ver.precioCompra}"/>
+                </p:column>
+                <p:column headerText="Marca" filterBy="#{ver.marca.nombre}"  >
+                    <p:outputLabel value="#{ver.marca.nombre}"/>
+                </p:column>
+                <p:column headerText="Talla" filterBy="#{ver.talla.talla}">
+                    <p:outputLabel value="#{ver.talla.talla}"/>
+                </p:column>
+                <p:column headerText="Tipo de ropa" filterBy="#{ver.tipo.nombre}">
+                    <p:outputLabel value="#{ver.tipo.nombre}"/>
+                </p:column>
+                <p:column headerText="Categoria" filterBy="#{ver.categoria.nombre}">
+                    <p:outputLabel value="#{ver.categoria.nombre}"/>
+                </p:column>         
+            </p:dataTable>    
+        </h:form>
+    </body>
+</html>

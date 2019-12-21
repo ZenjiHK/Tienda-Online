@@ -26,7 +26,8 @@ CREATE TABLE producto(
 		id_marca int not null,
 		id_talla int not null,
 		id_tipo int not null,
-		id_categoria int not null);
+		id_categoria int not null,
+		img varchar(500) null);
 
 ALTER TABLE producto ADD CONSTRAINT FOREIGN KEY fk_producto_marca(id_marca) REFERENCES marca(id_marca);
 

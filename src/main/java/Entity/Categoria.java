@@ -10,36 +10,32 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- * @author alex.lemususam
- */
 @Entity
 @Table(name = "categoria")
 public class Categoria implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_categoria")
+    private int idCategoria;
     
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "nombre_categoria")
+    private String nombreCategoria;
     
-    @OneToMany(mappedBy = "categoria")
-    private List<Producto> productoList;
+    @OneToMany
+    private List<Producto> lista_productos;
 
     public Categoria() {
     }
 
     public Categoria(int id) {
-        this.id = id;
+        this.idCategoria = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 29 * hash + this.id;
+        hash = 29 * hash + this.idCategoria;
         return hash;
     }
 
@@ -55,7 +51,7 @@ public class Categoria implements Serializable {
             return false;
         }
         final Categoria other = (Categoria) obj;
-        if (this.id != other.id) {
+        if (this.idCategoria != other.idCategoria) {
             return false;
         }
         return true;
@@ -63,30 +59,30 @@ public class Categoria implements Serializable {
     
     @Override
     public String toString() {
-        return "Categoria{" + "id=" + id + '}';
+        return "Categoria{" + "idCategoria=" + idCategoria + '}';
     }
 
-    public int getId() {
-        return id;
+    public int getIdCategoria() {
+        return idCategoria;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdCategoria(int id) {
+        this.idCategoria = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreCategoria() {
+        return nombreCategoria;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreCategoria(String nombre) {
+        this.nombreCategoria = nombre;
     }
 
-    public List<Producto> getProductoList() {
-        return productoList;
+    public List<Producto> getLista_productos() {
+        return lista_productos;
     }
 
-    public void setProductoList(List<Producto> productoList) {
-        this.productoList = productoList;
+    public void setLista_productos(List<Producto> lista_productos) {
+        this.lista_productos = lista_productos;
     }
 }

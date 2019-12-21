@@ -6,9 +6,12 @@
 package EJB;
 
 import Entity.DetalleTarjeta;
+import java.util.List;
+import javax.annotation.PreDestroy;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +30,16 @@ public class DetalleTarjetaFacade extends AbstractFacade<DetalleTarjeta> impleme
 
     public DetalleTarjetaFacade() {
         super(DetalleTarjeta.class);
+    }  
+
+    @PreDestroy
+    public void destruct()
+    {
+        getEntityManager().getEntityManagerFactory().close();
     }
     
+    @Override
+    public List<DetalleTarjeta> findByC(int idCliente) {
+        return null;
+    }
 }

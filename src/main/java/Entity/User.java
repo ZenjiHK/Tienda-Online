@@ -10,18 +10,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author alex.lemususam
- */
 @Entity
 @Table(name = "user")
 public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_user")
+    private int idUser;
     
     @Column(name = "clave")
     private int clave;
@@ -29,28 +25,28 @@ public class User implements Serializable {
     @Column(name = "estado")
     private boolean estado=true;
 
-    @Column(name = "usuario")
-    private String usuario;
+    @Column(name = "nombre_usuario")
+    private String nombreUsuario;
     
-    @JoinColumn(name = "cliente", referencedColumnName = "id")
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
     @ManyToOne
     private Cliente cliente;
     
-    @JoinColumn(name = "rol", referencedColumnName = "id")
+    @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")
     @ManyToOne
     private Rol rol;
 
     public User() {
     }
 
-    public User(int id) {
-        this.id = id;
+    public User(int idUser) {
+        this.idUser = idUser;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 67 * hash + this.id;
+        int hash = 7;
+        hash = 29 * hash + this.idUser;
         return hash;
     }
 
@@ -66,25 +62,33 @@ public class User implements Serializable {
             return false;
         }
         final User other = (User) obj;
-        if (this.id != other.id) {
+        if (this.idUser != other.idUser) {
             return false;
         }
         return true;
     }
- 
+
     @Override
     public String toString() {
-        return "Entity.User[ id=" + id + " ]";
+        return "User{" + "idUser=" + idUser + '}';
+    }
+    
+    public int getIdUser() {
+        return idUser;
     }
 
-    public int getId() {
-        return id;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+    
     public int getClave() {
         return clave;
     }
@@ -99,14 +103,6 @@ public class User implements Serializable {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
     }
 
     public Cliente getCliente() {

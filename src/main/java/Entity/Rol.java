@@ -10,36 +10,33 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- * @author alex.lemususam
- */
 @Entity
 @Table(name = "rol")
 public class Rol implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "id")
     private int id=2;
     
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "nombre_rol")
+    private String nombreRol;
     
-    @OneToMany(mappedBy = "rol")
-    private List<User> userList;
+    @OneToMany(targetEntity=User.class,mappedBy="rol")
+    private List<User> lista_users;
 
     public Rol() {
     }
 
-    public Rol(int id) {
-        this.id = id;
+    public Rol(int idRol) {
+        this.idRol = idRol;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 83 * hash + this.id;
+        int hash = 7;
+        hash = 89 * hash + this.idRol;
         return hash;
     }
 
@@ -55,7 +52,7 @@ public class Rol implements Serializable {
             return false;
         }
         final Rol other = (Rol) obj;
-        if (this.id != other.id) {
+        if (this.idRol != other.idRol) {
             return false;
         }
         return true;
@@ -63,30 +60,30 @@ public class Rol implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.Rol[ id=" + id + " ]";
+        return "Rol{" + "idRol=" + idRol + '}';
+    }
+    
+    public int getIdRol() {
+        return idRol;
     }
 
-    public int getId() {
-        return id;
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
+    }
+    
+    public String getNombreRol() {
+        return nombreRol;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setNombreRol(String nombreRol) {
+        this.nombreRol = nombreRol;
+    }   
+
+    public List<User> getLista_users() {
+        return lista_users;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setLista_users(List<User> lista_users) {
+        this.lista_users = lista_users;
     }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public List<User> getUserList() {
-        return userList;
-    }
-
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
-    }    
 }

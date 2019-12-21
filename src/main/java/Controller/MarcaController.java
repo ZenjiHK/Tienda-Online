@@ -15,13 +15,11 @@ import javax.inject.Named;
 @RequestScoped
 public class MarcaController implements Serializable{
     
-    private String mensaje;
-    
     @EJB
     private MarcaFacadeLocal marcaEJB;
-    
     private Marca marca;
     private List<Marca> listamarca;
+    private String mensaje;
 
     public Marca getMarca() {
         return marca;
@@ -42,7 +40,9 @@ public class MarcaController implements Serializable{
     
     @PostConstruct
     public void init(){
-        marca = new Marca();
+        this.marca = new Marca();
+        this.listamarca= marcaEJB.findAll();
+        this.mensaje="";
     }
     
     public void insertar(){
@@ -86,6 +86,12 @@ public class MarcaController implements Serializable{
         }
         FacesMessage msj = new FacesMessage(this.mensaje);
         FacesContext.getCurrentInstance().addMessage(mensaje, msj);
+    }
+    
+    public void limpiar(){
+        this.marca = new Marca();
+        this.listamarca= marcaEJB.findAll();
+        this.mensaje="";
     }
 }
 

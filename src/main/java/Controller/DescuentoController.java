@@ -1,4 +1,3 @@
-
 package Controller;
 
 import EJB.DescuentoFacadeLocal;
@@ -6,21 +5,21 @@ import Entity.Descuento;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author jose.cortezusam
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class DescuentoController {
     
     @EJB
     private DescuentoFacadeLocal descuentoEJB;
     private Descuento descuento;
-    private List<Descuento> lista;
+    private List<Descuento> listaDescuento;
 
     public Descuento getDescuento() {
         return descuento;
@@ -31,16 +30,17 @@ public class DescuentoController {
     }
 
     public List<Descuento> getLista() {
-        return lista;
+        return listaDescuento;
     }
 
     public void setLista(List<Descuento> lista) {
-        this.lista = lista;
+        this.listaDescuento = lista;
     }
     
     @PostConstruct
     public void init(){
         descuento = new Descuento();
+        listaDescuento= descuentoEJB.findAll();
     }
     
     public void insertar(){
@@ -52,7 +52,7 @@ public class DescuentoController {
     
     public void listar(){
         try {
-            lista = descuentoEJB.findAll();
+            listaDescuento = descuentoEJB.findAll();
         } catch (Exception e) {
         }
     }
@@ -75,8 +75,13 @@ public class DescuentoController {
         try {
             this.descuento = d;
             descuentoEJB.remove(descuento);
-            lista = descuentoEJB.findAll();
+            listaDescuento = descuentoEJB.findAll();
         } catch (Exception e) {
         }
+    }
+    
+    public void limpiar(){
+        descuento = new Descuento();
+        listaDescuento= descuentoEJB.findAll();
     }
 }

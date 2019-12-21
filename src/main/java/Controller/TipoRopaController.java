@@ -14,12 +14,12 @@ import javax.inject.Named;
 @RequestScoped
 public class TipoRopaController {
 
-    private String mensaje = "";
     @EJB
     private TipoRopaFacadeLocal tipoRopaFacade;
     private TipoRopa tipoRopa;
     private List<TipoRopa> listaTipoRopa;
-
+    private String mensaje = "";
+    
     public TipoRopa getTipoRopa() {
 
         return tipoRopa;
@@ -41,6 +41,8 @@ public class TipoRopaController {
     @PostConstruct
     public void init() {
         this.tipoRopa = new TipoRopa();
+        this.listaTipoRopa=tipoRopaFacade.findAll();
+        this.mensaje="";
     }
 
     //Metodo insertar
@@ -68,7 +70,8 @@ public class TipoRopaController {
             this.tipoRopaFacade.edit(tipoRopa);
             this.mensaje = "Editado con éxito";
         } catch (Exception e) {
-            this.mensaje = "ERROR";
+            this.mensaje = "Error " + e.getMessage();
+            e.printStackTrace();
         }
         FacesMessage msj = new FacesMessage(this.mensaje);
         FacesContext.getCurrentInstance().addMessage(mensaje, msj);
@@ -77,6 +80,8 @@ public class TipoRopaController {
     //Metodo limpiar
     public void limpiar() {
         this.tipoRopa = new TipoRopa();
+        this.listaTipoRopa=tipoRopaFacade.findAll();
+        this.mensaje="";
     }
 
     //Metodo eliminar

@@ -10,36 +10,32 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- * @author alex.lemususam
- */
 @Entity
 @Table(name = "talla")
 public class Talla implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_talla")
+    private int idTalla;
     
     @Column(name = "talla")
     private String talla;
     
-    @OneToMany(mappedBy = "talla")
-    private List<Producto> productoList;
+    @OneToMany(targetEntity=Producto.class,mappedBy="talla")
+    private List<Producto> lista_productos;
 
     public Talla() {
     }
 
-    public Talla(int id) {
-        this.id = id;
+    public Talla(int idTalla) {
+        this.idTalla = idTalla;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 73 * hash + this.id;
+        hash = 29 * hash + this.idTalla;
         return hash;
     }
 
@@ -55,23 +51,23 @@ public class Talla implements Serializable {
             return false;
         }
         final Talla other = (Talla) obj;
-        if (this.id != other.id) {
+        if (this.idTalla != other.idTalla) {
             return false;
         }
         return true;
     }
-    
+
     @Override
     public String toString() {
-        return "Entity.Talla[ id=" + id + " ]";
+        return "Talla{" + "idTalla=" + idTalla + '}';
     }
 
-    public int getId() {
-        return id;
+    public int getIdTalla() {
+        return idTalla;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdTalla(int idTalla) {
+        this.idTalla = idTalla;
     }
 
     public String getTalla() {
@@ -82,11 +78,11 @@ public class Talla implements Serializable {
         this.talla = talla;
     }
 
-    public List<Producto> getProductoList() {
-        return productoList;
+    public List<Producto> getLista_productos() {
+        return lista_productos;
     }
 
-    public void setProductoList(List<Producto> productoList) {
-        this.productoList = productoList;
-    }    
+    public void setLista_productos(List<Producto> lista_productos) {
+        this.lista_productos = lista_productos;
+    }
 }
