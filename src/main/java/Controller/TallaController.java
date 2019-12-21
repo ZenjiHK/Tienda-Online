@@ -14,12 +14,11 @@ import javax.inject.Named;
 @RequestScoped
 public class TallaController {
 
-    private String mensaje = "";
-
     @EJB
     private TallaFacadeLocal tallaFacade;
     private Talla talla;
     private List<Talla> listaTalla;
+    private String mensaje = "";
 
     public Talla getTalla() {
         return talla;
@@ -41,6 +40,8 @@ public class TallaController {
     @PostConstruct
     public void init() {
         this.talla = new Talla();
+        this.listaTalla=tallaFacade.findAll();
+        this.mensaje="";
     }
 
     //Metodo insertar
@@ -68,7 +69,8 @@ public class TallaController {
             this.tallaFacade.edit(talla);
             this.mensaje = "Editado con éxito";
         } catch (Exception e) {
-            this.mensaje = "ERROR";
+            this.mensaje = "Error " + e.getMessage();
+            e.printStackTrace();
         }
         FacesMessage msj = new FacesMessage(this.mensaje);
         FacesContext.getCurrentInstance().addMessage(mensaje, msj);
@@ -77,6 +79,8 @@ public class TallaController {
     //Metodo limpiar
     public void limpiar() {
         this.talla = new Talla();
+        this.listaTalla=tallaFacade.findAll();
+        this.mensaje="";
     }
 
     //Metodo eliminar

@@ -10,36 +10,32 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- * @author alex.lemususam
- */
 @Entity
 @Table(name = "forma_pago")
 public class FormaPago implements Serializable {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_forma_pago")
+    private int idFormaPago;
+
+    @Column(name = "nombre_forma_pago")
+    private String nombreFormaPago;
     
-    @Column(name = "forma")
-    private String forma;
-    
-    @OneToMany(mappedBy = "pago")
-    private List<Venta> ventaList;
+    @OneToMany(targetEntity=Factura.class,mappedBy="formaPago")
+    private List<Factura> lista_facturas;
 
     public FormaPago() {
     }
 
     public FormaPago(int id) {
-        this.id = id;
+        this.idFormaPago = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + this.id;
+        hash = 89 * hash + this.idFormaPago;
         return hash;
     }
 
@@ -55,7 +51,7 @@ public class FormaPago implements Serializable {
             return false;
         }
         final FormaPago other = (FormaPago) obj;
-        if (this.id != other.id) {
+        if (this.idFormaPago != other.idFormaPago) {
             return false;
         }
         return true;
@@ -63,30 +59,30 @@ public class FormaPago implements Serializable {
     
     @Override
     public String toString() {
-        return "Entity.FormaPago[ id=" + id + " ]";
+        return "FormaPago[ idFormaPago=" + idFormaPago + " ]";
     }
 
-    public int getId() {
-        return id;
+    public int getIdFormaPago() {
+        return idFormaPago;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdFormaPago(int id) {
+        this.idFormaPago = id;
     }
 
-    public String getForma() {
-        return forma;
+    public String getNombreFormaPago() {
+        return nombreFormaPago;
     }
 
-    public void setForma(String forma) {
-        this.forma = forma;
+    public void setNombreFormaPago(String nombreFormaPago) {
+        this.nombreFormaPago = nombreFormaPago;
     }
 
-    public List<Venta> getVentaList() {
-        return ventaList;
+    public List<Factura> getLista_facturas() {
+        return lista_facturas;
     }
 
-    public void setVentaList(List<Venta> ventaList) {
-        this.ventaList = ventaList;
-    }   
+    public void setLista_facturas(List<Factura> lista_facturas) {
+        this.lista_facturas = lista_facturas;
+    }
 }

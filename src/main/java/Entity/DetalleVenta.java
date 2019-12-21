@@ -10,10 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author alex.lemususam
- */
 @Entity
 @Table(name = "detalle_venta")
 public class DetalleVenta implements Serializable {
@@ -21,7 +17,7 @@ public class DetalleVenta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private int idDetalleVenta;
     
     @Column(name = "cantidad")
     private int cantidad;
@@ -29,15 +25,15 @@ public class DetalleVenta implements Serializable {
     @Column(name = "total")
     private double total;
     
-    @JoinColumn(name = "descuento", referencedColumnName = "id")
+    @JoinColumn(name = "id_descuento", referencedColumnName = "id_descuento")
     @ManyToOne
     private Descuento descuento;
     
-    @JoinColumn(name = "producto", referencedColumnName = "id")
+    @JoinColumn(name = "id_producto", referencedColumnName = "id_producto")
     @ManyToOne
     private Producto producto;
     
-    @JoinColumn(name = "venta", referencedColumnName = "id")
+    @JoinColumn(name = "id_venta", referencedColumnName = "id_venta")
     @ManyToOne
     private Venta venta;
 
@@ -45,13 +41,13 @@ public class DetalleVenta implements Serializable {
     }
 
     public DetalleVenta(int id) {
-        this.id = id;
+        this.idDetalleVenta = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 89 * hash + this.id;
+        hash = 89 * hash + this.idDetalleVenta;
         return hash;
     }
 
@@ -67,7 +63,7 @@ public class DetalleVenta implements Serializable {
             return false;
         }
         final DetalleVenta other = (DetalleVenta) obj;
-        if (this.id != other.id) {
+        if (this.idDetalleVenta != other.idDetalleVenta) {
             return false;
         }
         return true;
@@ -75,15 +71,15 @@ public class DetalleVenta implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.DetalleVenta[ id=" + id + " ]";
+        return "DetalleVenta{" + "idDetalleVenta=" + idDetalleVenta + '}';
     }
 
-    public int getId() {
-        return id;
+    public int getIdDetalleVenta() {
+        return idDetalleVenta;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdDetalleVenta(int id) {
+        this.idDetalleVenta = id;
     }
 
     public int getCantidad() {
@@ -114,7 +110,7 @@ public class DetalleVenta implements Serializable {
         return producto;
     }
 
-    public void setProducto(Producto producto) {
+    public void setIdProducto(Producto producto) {
         this.producto = producto;
     }
 

@@ -11,7 +11,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
-
 @Entity
 @Table(name = "marca")
 public class Marca implements Serializable {
@@ -19,33 +18,22 @@ public class Marca implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_marca")
-    private int idMarca;
-
-    
+    private int idMarca;   
 
     @Column(name = "nombre_marca")
-    private String nombreMarca;
-
-    
+    private String nombreMarca; 
 
     @OneToMany(targetEntity=Producto.class,mappedBy="marca")
     private List<Producto> lista_productos;
 
-
-
     public Marca() {
-
     }
 
     public Marca(int idMarca) {
         this.idMarca = idMarca;
-
     }
 
-
-
     @Override
-
     public int hashCode() {
         int hash = 3;
         hash = 97 * hash + this.idMarca;
@@ -68,7 +56,7 @@ public class Marca implements Serializable {
 
         final Marca other = (Marca) obj;
         if (this.idMarca != other.idMarca) {
-           return false;
+     return false;
         }
         return true;
     }
@@ -87,30 +75,22 @@ public class Marca implements Serializable {
     }
 
 
-
     public void setIdMarca(int idMarca) {
         this.idMarca = idMarca;
     }
-
 
 
     public String getNombreMarca() {
         return nombreMarca;
     }
 
-
-
     public void setNombreMarca(String nombreMarca) {
        this.nombreMarca = nombreMarca;
     }
 
-
-
     public List<Producto> getLista_productos() {
         return lista_productos;
     }
-
-
 
     public void setLista_productos(List<Producto> lista_productos) {
         this.lista_productos = lista_productos;

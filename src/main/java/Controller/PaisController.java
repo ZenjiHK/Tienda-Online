@@ -20,6 +20,7 @@ public class PaisController implements Serializable{
     private PaisFacadeLocal paisEJB;
     private Pais pais;
     private List<Pais> listaPais;
+    private String msg;
 //asdasdasdasdas
     public Pais getPais() {
         return pais;
@@ -40,8 +41,60 @@ public class PaisController implements Serializable{
     
     @PostConstruct
     public void init(){
-    pais=new Pais();
+        this.pais=new Pais(1);
+        this.listaPais=paisEJB.findAll();
+        this.msg="";
     }
     
+    public void limpiar(){
+        this.pais=new Pais();
+        this.listaPais=paisEJB.findAll();
+        this.msg="";
+    }
+
+    public void crear(){
+        try{
+            paisEJB.create(pais);
+            limpiar();
+            msg="Exito";
+        }catch(Exception e){
+            this.msg="Error "+e.getMessage();
+            e.printStackTrace();
+        }
+    }
     
+    public void editar(){
+        try{
+            paisEJB.edit(pais);
+            limpiar();
+            msg="Exito";
+        }catch(Exception e){
+            this.msg="Error "+e.getMessage();
+            e.printStackTrace();
+        }
+    }
+    
+    public void remover(){
+        try{
+            paisEJB.remove(pais);
+            limpiar();
+            msg="Exito";
+        }catch(Exception e){
+            this.msg="Error "+e.getMessage();
+            e.printStackTrace();
+        }
+    }
+    
+    public Pais cargarDatos(Object id){
+        try{
+            pais = paisEJB.find(id);
+            limpiar();
+            msg="Exito";
+            return pais;
+        }catch(Exception e){
+            this.msg="Error "+e.getMessage();
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

@@ -7,14 +7,13 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <p:dataTable value="#{paisController.listaPais}" var="ps"  >
+        <p:dataTable value="#{paisController.listaPais}" var="p"  >
         <p:column headerText="IdPais">
-            <p:outputLabel value="#{ps.id}"/>
+            <p:outputLabel value="#{p.idPais}"/>
             </p:column>
             <p:column headerText="Nombre">
-                <p:outputLabel value="#{ps.nombre}"/>
+                <p:outputLabel value="#{p.nombrePais}"/>
             </p:column>
         </p:dataTable>
     </h:body>
 </html>
-
