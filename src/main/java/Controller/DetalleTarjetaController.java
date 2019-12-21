@@ -1,3 +1,5 @@
+package Controller;
+
 import EJB.DetalleTarjetaFacadeLocal;
 import Entity.Cliente;
 import Entity.DetalleTarjeta;
@@ -13,7 +15,7 @@ import javax.faces.context.FacesContext;
 @Named(value = "detalleTarjetaController")
 @RequestScoped
 public class DetalleTarjetaController implements Serializable {
-
+  
     @EJB
     private DetalleTarjetaFacadeLocal DetalleTarjetaEJB;
     private List<DetalleTarjeta> listaTarjeta;
@@ -69,7 +71,7 @@ public class DetalleTarjetaController implements Serializable {
     }
 
     public void CargarTarjeta(DetalleTarjeta dta) {
-        this.cliente.setIdCliente(dta.getCliente().getIdCliente());
+        this.cliente.setId(dta.getCliente().getId());
         this.detalletarjeta = dta;
     }
 

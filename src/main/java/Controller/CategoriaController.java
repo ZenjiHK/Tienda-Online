@@ -18,15 +18,11 @@ public class CategoriaController implements Serializable{
      private String mensaje;
     
     @EJB
-    //Este NO tiene Get y Set
     private CategoriaFacadeLocal categoriaEJB;
-    
-    //Solamente a este se le coloca Get y Set
     private Categoria categoria;
     private List<Categoria> listaCategoria;
 
     public List<Categoria> getListaCategoria() {
-        //Llenamos listaCategoria a través de categoriaFacade
         this.listaCategoria = this.categoriaEJB.findAll();
         return listaCategoria;
     }

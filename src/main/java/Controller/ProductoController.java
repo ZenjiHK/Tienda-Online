@@ -23,7 +23,7 @@ import javax.inject.Named;
 @Named(value = "ProductoController")
 @RequestScoped
 public class ProductoController implements Serializable{
-
+    
     @EJB
     private ProductoFacadeLocal productoEJB;
     private Producto producto;
@@ -140,7 +140,7 @@ public class ProductoController implements Serializable{
     public void setFiltroProducto(List<Producto> filtroProducto) {
         this.filtroProducto = filtroProducto;
     }
-   
+
     @PostConstruct
     public void init(){
         this.marca = new Marca();
@@ -228,6 +228,7 @@ public class ProductoController implements Serializable{
             e.printStackTrace();
         }
     }
+
     public void limpiar(){
         this.marca = new Marca();
         this.talla = new Talla();

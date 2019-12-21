@@ -8,15 +8,18 @@
         <title>Facelet Title</title>
     </h:head>
     <body>
-        <h:form id="nuevo">
-            <p:fieldset legend="Nuevo Usuario" toggleable="true">
+        <p:growl id="msj"/>
+        <h:form>
+            <p:fieldset legend="Nuevo rol" toggleable="true">
                 <p:panelGrid columns="2">
-                    <p:commandButton value="Nuevo" oncomplete="PF('registro').show()"/>
+                    <p:outputLabel value="Rol: "/>
+                    <p:inputText value="#{rolController.rol.nombre}"/>
                 </p:panelGrid>
+                <p:commandButton value="Insertar" actionListener="#{rolController.insertar()}"
+                                 update=":msj :datos"/>
             </p:fieldset>
         </h:form>
-        <h:form id="datos">
-            <p:fieldset legend="Roles" toggleable="true">
+        <h:form id="datos">            
                 <p:dataTable value="#{rolController.listaRol}" var="r">
                     <p:column headerText="ID">
                         <h:outputText value="#{r.id}"/>
@@ -24,15 +27,25 @@
                     <p:column headerText="Usuario">
                         <h:outputText value="#{r.nombre}"/>
                     </p:column>
-                   
+
                     <p:column headerText="Editar">
-                        <p:commandButton value="Editar" actionListener="#{rolController.cargarDatos(rol)}"/>
+                        <p:commandButton value="Editar" actionListener="#{rolController.cargarDatos(r)}" update=":nuevo :datos"
+                                         oncomplete="PF('rol').show()"/>
                     </p:column>
                     <p:column headerText="Eliminar">
-                        <p:commandButton value="Eliminar" actionListener="#{rolController.eliminar(r)}"/>
+                        <p:commandButton value="Eliminar" actionListener="#{rolController.eliminar(r)}" update=":nuevo :datos"/>
                     </p:column>
-                </p:dataTable>
-            </p:fieldset>
+                </p:dataTable>         
         </h:form>
+         <p:dialog id="nuevo" widgetVar="rol" >
+            <h:form>
+                <p:outputLabel value="Código"/>
+                <p:inputText value="#{rolController.rol.id}"/>
+                <p:outputLabel value="Nombre"/>
+                <p:inputText value="#{rolController.rol.nombre}"/>
+                <p:commandButton value="Modificar" actionListener="#{rolController.editar()}" update=":datos :msj" oncomplete="PF('rol').hide()"/>
+                <p:commandButton value="Cancelar" oncomplete="PF('rol').hide()"/>
+            </h:form>
+        </p:dialog>
     </body>
 </html>

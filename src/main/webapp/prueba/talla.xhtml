@@ -5,7 +5,6 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Categoria - Tienda en linea</title>
         <title>Talla - Tienda en linea</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
@@ -16,22 +15,23 @@
             <p:inputText value="#{tallaController.talla.talla}"/>
             <p:commandButton value="Enviar" actionListener="#{tallaController.insertar()}" update=":msj :tabla"/>
         </h:form>
-        <p:dataTable id="tabla" value="#{tallaController.listaTalla}" var="c" >
-            <p:column headerText="Código">
-                <p:outputLabel value="#{c.id}"/>
-            </p:column>
-            <p:column headerText="talla">
-                <p:outputLabel value="#{c.talla}"/>
-            </p:column>
-            <p:column headerText="Modificar">
-                <p:commandLink value="Modificar" actionListener="#{tallaController.cargarDatos(c)}" update=":nuevo"
-                               oncomplete="PF('w').show()"/>
-            </p:column>
-            <p:column headerText="Eliminar" >
-                <p:commandLink value="Eliminar" actionListener="#{tallaController.eliminar(c)}" update=":tabla :msj"/>
-            </p:column>
-        </p:dataTable>
-
+        <h:form id="tabla">
+            <p:dataTable  value="#{tallaController.listaTalla}" var="c" >     
+                <p:column headerText="Código">
+                    <p:outputLabel value="#{c.id}"/>
+                </p:column>
+                <p:column headerText="talla">
+                    <p:outputLabel value="#{c.talla}"/>
+                </p:column>
+                <p:column headerText="Modificar">
+                    <p:commandButton value="Modificar" actionListener="#{tallaController.cargarDatos(c)}" update=":nuevo"
+                                     oncomplete="PF('w').show()"/>
+                </p:column>
+                <p:column headerText="Eliminar" >
+                    <p:commandButton value="Eliminar" actionListener="#{tallaController.eliminar(c)}" update=":tabla :msj"/>                  
+                </p:column>
+            </p:dataTable>
+        </h:form>
 
         <p:dialog id="nuevo" widgetVar="w" header="Datos">
             <h:form>
