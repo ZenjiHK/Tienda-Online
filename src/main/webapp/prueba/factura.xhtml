@@ -33,7 +33,7 @@
                         <h:form id="f">
                             <p:panelGrid columns="2">
                                 <p:outputLabel value="Venta realizada"/>
-                                <p:selectOneMenu value="#{facturaController.venta.idVenta}">     
+                                <p:selectOneMenu value="#{facturaController.venta.idVenta}" label="#{facturaController.factura.venta.cliente.nombreCliente} | #{facturaController.factura.venta.fecha} | #{facturaController.factura.venta.detalleTarjeta.ping}">     
                                       <f:selectItems value="#{ventaController.lista_ventas}" var="venta" itemLabel="#{venta.cliente.nombreCliente} | #{venta.fecha} | #{venta.detalleTarjeta.ping}" itemValue="#{venta.idVenta}"/>
                                 </p:selectOneMenu>
                                 <p:outputLabel value="Forma de pago"/>
@@ -41,8 +41,8 @@
                                     <f:selectItems value="#{formaPagoController.listapago}" var="forma" itemLabel="#{forma.nombreFormaPago}" itemValue="#{forma.idFormaPago}"/>
                                 </p:selectOneMenu>
                                 <p:commandButton value="Guardar" actionListener="#{facturaController.crear()}" rendered="#{facturaController.factura.idFactura==0}" update=":Datos f :mensaje" oncomplete="PF('modal').hide()"/>
-                                <p:commandButton value="Actualizar" actionListener="#{facturaController.editar()}" rendered="#{facturaController.factura.idFactura!=0}" update=":Datos f :mensaje" oncomplete="PF('modal').hide()"/>
-                            </p:panelGrid>                
+                                <p:commandButton value="Actualizar" actionListener="#{facturaController.editar()}" rendered="#{facturaController.factura.idFactura>0}" update=":Datos f :mensaje" oncomplete="PF('modal').hide()"/>
+                            </p:panelGrid>  
                         </h:form>
                     </p:dialog>
                 </ui:insert>

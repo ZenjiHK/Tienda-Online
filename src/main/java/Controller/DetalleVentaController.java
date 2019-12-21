@@ -78,6 +78,5 @@ public class DetalleVentaController implements Serializable{
             lista = detalleVentaEJB.findAll();
         } catch (Exception e) {
         }
-    }
-    
+    }   
 }
