@@ -90,8 +90,8 @@ public class FormaPagoController implements Serializable{
     
     public void cargarDatos(FormaPago fp){
         try{
-            this.formapago = fp;
             limpiar();
+            this.formapago = fp;
             msg = "Exito";
         }catch(Exception e){
             msg = "Error " + e.getMessage();
