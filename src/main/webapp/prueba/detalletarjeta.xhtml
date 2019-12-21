@@ -21,9 +21,9 @@
             <h:form id="d">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="cmbCliente" value="Cliente"/>
-                    <p:selectOneMenu id="cmbCliente" value="#{detalleTarjetaController.cliente.id}">
+                    <p:selectOneMenu id="cmbCliente" value="#{detalleTarjetaController.cliente.idCliente}">
                         <f:selectItems value="#{clienteController.listaCliente}" var="cli"
-                                       itemLabel="#{cli.nombre} #{cli.apellido}" itemValue="#{cli.id}"/>
+                                       itemLabel="#{cli.nombre} #{cli.apellido}" itemValue="#{cli.idCliente}"/>
                     </p:selectOneMenu>
                     <p:outputLabel for="txtPing" value="Ping"/>
                     <p:inputText id="txtPing" value="#{detalleTarjetaController.detalletarjeta.ping}" required="true"/>
@@ -42,7 +42,7 @@
             <p:fieldset legend="Datos Tarjeta">
                 <p:dataTable value="#{detalleTarjetaController.listaTarjeta}" var="dt">
                     <p:column headerText="Id">
-                        <h:outputText value="#{dt.id}"/>
+                        <h:outputText value="#{dt.idDetalleTarjeta}"/>
                     </p:column>
                     <p:column headerText="Cliente">
                         <h:outputText value="#{dt.cliente.nombre} #{dt.cliente.apellido}"/>
