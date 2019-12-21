@@ -10,38 +10,49 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- * @author alex.lemususam
- */
+
+
 @Entity
 @Table(name = "marca")
 public class Marca implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_marca")
+    private int idMarca;
+
     
-    @Column(name = "nombre")
-    private String nombre;
+
+    @Column(name = "nombre_marca")
+    private String nombreMarca;
+
     
-    @OneToMany(mappedBy = "marca")
-    private List<Producto> productoList;
+
+    @OneToMany(targetEntity=Producto.class,mappedBy="marca")
+    private List<Producto> lista_productos;
+
+
 
     public Marca() {
+
     }
 
-    public Marca(int id) {
-        this.id = id;
+    public Marca(int idMarca) {
+        this.idMarca = idMarca;
+
     }
+
+
 
     @Override
+
     public int hashCode() {
         int hash = 3;
-        hash = 29 * hash + this.id;
+        hash = 97 * hash + this.idMarca;
         return hash;
     }
+
+
 
     @Override
     public boolean equals(Object obj) {
@@ -54,39 +65,55 @@ public class Marca implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
+
         final Marca other = (Marca) obj;
-        if (this.id != other.id) {
-            return false;
+        if (this.idMarca != other.idMarca) {
+           return false;
         }
         return true;
     }
 
+
+
     @Override
     public String toString() {
-        return "Entity.Marca[ id=" + id + " ]";
+        return "Marca{" + "idMarca=" + idMarca + '}';
     }
 
-    public int getId() {
-        return id;
+
+
+    public int getIdMarca() {
+       return idMarca;
     }
 
-    public void setId(int id) {
-        this.id = id;
+
+
+    public void setIdMarca(int idMarca) {
+        this.idMarca = idMarca;
     }
 
-    public String getNombre() {
-        return nombre;
+
+
+    public String getNombreMarca() {
+        return nombreMarca;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+
+
+    public void setNombreMarca(String nombreMarca) {
+       this.nombreMarca = nombreMarca;
     }
 
-    public List<Producto> getProductoList() {
-        return productoList;
+
+
+    public List<Producto> getLista_productos() {
+        return lista_productos;
     }
 
-    public void setProductoList(List<Producto> productoList) {
-        this.productoList = productoList;
+
+
+    public void setLista_productos(List<Producto> lista_productos) {
+        this.lista_productos = lista_productos;
     }
+
 }
