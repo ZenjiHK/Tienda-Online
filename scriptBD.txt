@@ -26,7 +26,8 @@ CREATE TABLE producto(
 		id_marca int not null,
 		id_talla int not null,
 		id_tipo int not null,
-		id_categoria int not null);
+		id_categoria int not null,
+		img varchar(500) null);
 
 ALTER TABLE producto ADD CONSTRAINT FOREIGN KEY fk_producto_marca(id_marca) REFERENCES marca(id_marca);
 
@@ -65,15 +66,14 @@ CREATE TABLE rol(
 CREATE TABLE user(
 		id_user int auto_increment primary key,
 		nombre_usuario varchar(50) not null,
+		id_cliente int not null,
 		clave int not null,
 		id_rol int not null,
-		estado boolean not null,
-		id_cliente int not null);
-
-
-ALTER TABLE user ADD CONSTRAINT FOREIGN KEY fk_user_rol(id_rol) REFERENCES rol(id_rol);
+		estado boolean not null);
 
 ALTER TABLE user ADD CONSTRAINT FOREIGN KEY fk_user_cliente(id_cliente) REFERENCES cliente(id_cliente);
+
+ALTER TABLE user ADD CONSTRAINT FOREIGN KEY fk_user_rol(id_rol) REFERENCES rol(id_rol);
 
 CREATE TABLE forma_pago(
 		id_forma_pago int auto_increment primary key,
