@@ -10,36 +10,32 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- * @author alex.lemususam
- */
 @Entity
 @Table(name = "pais")
 public class Pais implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_pais")
+    private int idPais;
     
-    @Column(name = "nombre")
-    private String nombre;
-    
-    @OneToMany(mappedBy = "pais")
-    private List<Cliente> clienteList;
+    @Column(name = "nombre_pais")
+    private String nombrePais;
+        
+    @OneToMany(targetEntity=Cliente.class,mappedBy="pais")
+    private List<Cliente> lista_clientes;
 
     public Pais() {
     }
 
-    public Pais(int id) {
-        this.id = id;
+    public Pais(int idPais) {
+        this.idPais = idPais;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 19 * hash + this.id;
+        hash = 13 * hash + this.idPais;
         return hash;
     }
 
@@ -55,7 +51,7 @@ public class Pais implements Serializable {
             return false;
         }
         final Pais other = (Pais) obj;
-        if (this.id != other.id) {
+        if (this.idPais != other.idPais) {
             return false;
         }
         return true;
@@ -63,30 +59,30 @@ public class Pais implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.Pais[ id=" + id + " ]";
-    }   
-
-    public int getId() {
-        return id;
+        return "Pais{" + "idPais=" + idPais + '}';
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdPais() {
+        return idPais;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setIdPais(int idPais) {
+        this.idPais = idPais;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public String getNombrePais() {
+        return nombrePais;
     }
 
-    public List<Cliente> getClienteList() {
-        return clienteList;
+    public void setNombrePais(String nombrePais) {
+        this.nombrePais = nombrePais;
     }
 
-    public void setClienteList(List<Cliente> clienteList) {
-        this.clienteList = clienteList;
+    public List<Cliente> getLista_clientes() {
+        return lista_clientes;
+    }
+
+    public void setLista_clientes(List<Cliente> lista_clientes) {
+        this.lista_clientes = lista_clientes;
     }
 }

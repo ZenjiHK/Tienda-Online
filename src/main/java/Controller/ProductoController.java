@@ -23,14 +23,13 @@ import javax.inject.Named;
 @Named(value = "ProductoController")
 @RequestScoped
 public class ProductoController implements Serializable{
-   
-    private String mensaje;
-   
+    
     @EJB
     private ProductoFacadeLocal productoEJB;
     private Producto producto;
     private List<Producto> listaproducto;
-   
+    private String mensaje;
+    
     @EJB
     private MarcaFacadeLocal marcaEJB;
     private Marca marca;
@@ -141,9 +140,7 @@ public class ProductoController implements Serializable{
     public void setFiltroProducto(List<Producto> filtroProducto) {
         this.filtroProducto = filtroProducto;
     }
-    
-    
-   
+
     @PostConstruct
     public void init(){
         this.marca = new Marca();
@@ -151,6 +148,12 @@ public class ProductoController implements Serializable{
         this.tiporopa = new TipoRopa();
         this.categoria = new Categoria();
         this.producto = new Producto();
+        this.listamarca=marcaEJB.findAll();
+        this.listatalla=tallaEJB.findAll();
+        this.listatiporopa=tiporopaEJB.findAll();
+        this.listacategoria=categoriaEJB.findAll();
+        this.listaproducto=productoEJB.findAll();
+        this.mensaje="";
     }
    
    public void consultarMarca(){
@@ -172,7 +175,7 @@ public class ProductoController implements Serializable{
         try {
             this.producto.setMarca(marca);
             this.producto.setTalla(talla);
-            this.producto.setTipo(tiporopa);
+            this.producto.setTipoRopa(tiporopa);
             this.producto.setCategoria(categoria);
             this.productoEJB.create(producto);
             this.mensaje = "Producto registrado exitosamente";
@@ -189,7 +192,7 @@ public class ProductoController implements Serializable{
          try {
             this.producto.setMarca(marca);
             this.producto.setTalla(talla);
-            this.producto.setTipo(tiporopa);
+            this.producto.setTipoRopa(tiporopa);
             this.producto.setCategoria(categoria);
             this.productoEJB.edit(producto);
             this.mensaje = "Producto actualizado exitosamente";
@@ -203,10 +206,10 @@ public class ProductoController implements Serializable{
    
     public void cargarData(Producto p){
         try {
-            this.marca.setId(p.getMarca().getId());
-            this.talla.setId(p.getTalla().getId());
-            this.tiporopa.setId(p.getTipo().getId());
-            this.categoria.setId(p.getCategoria().getId());
+            this.marca.setIdMarca(p.getMarca().getIdMarca());
+            this.talla.setIdTalla(p.getTalla().getIdTalla());
+            this.tiporopa.setIdTipoRopa(p.getTipoRopa().getIdTipoRopa());
+            this.categoria.setIdCategoria(p.getCategoria().getIdCategoria());
             this.producto = p;
         } catch (Exception e) {
         }
@@ -216,7 +219,7 @@ public class ProductoController implements Serializable{
         try {
            this.producto.setMarca(marca);
            this.producto.setTalla(talla);
-           this.producto.setTipo(tiporopa);
+           this.producto.setTipoRopa(tiporopa);
            this.producto.setCategoria(categoria);
            this.productoEJB.remove(p);
            this.mensaje = "Producto eliminado";
@@ -225,6 +228,18 @@ public class ProductoController implements Serializable{
             e.printStackTrace();
         }
     }
-   
-   
+
+    public void limpiar(){
+        this.marca = new Marca();
+        this.talla = new Talla();
+        this.tiporopa = new TipoRopa();
+        this.categoria = new Categoria();
+        this.producto = new Producto();
+        this.listamarca=marcaEJB.findAll();
+        this.listatalla=tallaEJB.findAll();
+        this.listatiporopa=tiporopaEJB.findAll();
+        this.listacategoria=categoriaEJB.findAll();
+        this.listaproducto=productoEJB.findAll();
+        this.mensaje="";
+    }
 }

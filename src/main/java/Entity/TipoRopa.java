@@ -10,36 +10,32 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- * @author alex.lemususam
- */
 @Entity
 @Table(name = "tipo_ropa")
 public class TipoRopa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_tipo_ropa")
+    private int idTipoRopa;
     
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "nombre_ropa")
+    private String nombreTipoRopa;
     
-    @OneToMany(mappedBy = "tipo")
-    private List<Producto> productoList;
+    @OneToMany(targetEntity=Producto.class,mappedBy="tipoRopa")
+    private List<Producto> lista_productos;
 
     public TipoRopa() {
     }
 
-    public TipoRopa(int id) {
-        this.id = id;
+    public TipoRopa(int idTipoRopa) {
+        this.idTipoRopa = idTipoRopa;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 79 * hash + this.id;
+        int hash = 7;
+        hash = 67 * hash + this.idTipoRopa;
         return hash;
     }
 
@@ -55,7 +51,7 @@ public class TipoRopa implements Serializable {
             return false;
         }
         final TipoRopa other = (TipoRopa) obj;
-        if (this.id != other.id) {
+        if (this.idTipoRopa != other.idTipoRopa) {
             return false;
         }
         return true;
@@ -63,30 +59,30 @@ public class TipoRopa implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.TipoRopa[ id=" + id + " ]";
+        return "TipoRopa{" + "idTipoRopa=" + idTipoRopa + '}';
     }
 
-    public int getId() {
-        return id;
+    public int getIdTipoRopa() {
+        return idTipoRopa;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdTipoRopa(int idTipoRopa) {
+        this.idTipoRopa = idTipoRopa;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreTipoRopa() {
+        return nombreTipoRopa;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreTipoRopa(String nombreTipoRopa) {
+        this.nombreTipoRopa = nombreTipoRopa;
     }
 
-    public List<Producto> getProductoList() {
-        return productoList;
+    public List<Producto> getLista_productos() {
+        return lista_productos;
     }
 
-    public void setProductoList(List<Producto> productoList) {
-        this.productoList = productoList;
-    }    
+    public void setLista_productos(List<Producto> lista_productos) {
+        this.lista_productos = lista_productos;
+    }
 }

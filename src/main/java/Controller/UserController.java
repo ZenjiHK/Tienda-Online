@@ -10,7 +10,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -19,12 +18,11 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 public class UserController {
 
-    private String mensaje;
-
     @EJB
     private UserFacadeLocal userFacade;
     private User user;
     private List<User> listaUser;
+    private String mensaje;
 
     @EJB
     private RolFacadeLocal rolFacade;
@@ -92,9 +90,12 @@ public class UserController {
     
     @PostConstruct
     public void init() {
-        user = new User();
-        rol = new Rol();
-        cliente = new Cliente();
+        this.user = new User();
+        this.rol = new Rol();
+        this.cliente = new Cliente();
+        this.listaUser=userFacade.findAll();
+        this.listaRol=rolFacade.findAll();
+        this.listaCliente=clienteFacade.findAll();
     }
 
     public void consultarRol() {
@@ -142,8 +143,8 @@ public class UserController {
 
     public void cargarDatos(User u) {
         try {
-            this.cliente.setId(this.user.getCliente().getId());
-            this.rol.setId(this.user.getRol().getId());
+            this.cliente.setIdCliente(this.user.getCliente().getIdCliente());
+            this.rol.setIdRol(this.user.getRol().getIdRol());
             this.user = u;
         } catch (Exception e) {
         }
@@ -167,5 +168,14 @@ public class UserController {
         }
         FacesMessage msj = new FacesMessage(mensaje);
         FacesContext.getCurrentInstance().addMessage(null, msj);
+    }
+    
+    public void limpiar() {
+        this.user = new User();
+        this.rol = new Rol();
+        this.cliente = new Cliente();
+        this.listaUser=userFacade.findAll();
+        this.listaRol=rolFacade.findAll();
+        this.listaCliente=clienteFacade.findAll();
     }
 }
