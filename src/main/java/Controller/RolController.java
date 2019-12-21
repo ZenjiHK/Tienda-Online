@@ -1,4 +1,3 @@
-
 package Controller;
 
 import EJB.RolFacadeLocal;
@@ -8,14 +7,12 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 @Named(value = "rolController")
-@SessionScoped
+@RequestScoped
 public class RolController implements Serializable{
 
     private String mensaje;
@@ -58,9 +55,9 @@ public class RolController implements Serializable{
         FacesContext.getCurrentInstance().addMessage(mensaje, msj);
     }
     
-    public void cargarDatos(Rol rol){
+    public void cargarDatos(Rol r){
         try {
-            this.rol = rol;
+            this.rol = r;
         } catch (Exception e) {
         }
     }
@@ -78,7 +75,6 @@ public class RolController implements Serializable{
     
     public void eliminar(Rol r){
         try {
-            this.rol = r;
             rolFacade.remove(r);
             this.mensaje = "Eliminado con éxito";
         } catch (Exception e) {

@@ -11,46 +11,48 @@ import Entity.Producto;
 import Entity.Talla;
 import Entity.TipoRopa;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 @Named(value = "ProductoController")
-@SessionScoped
+@RequestScoped
 public class ProductoController implements Serializable{
-    
+   
     private String mensaje;
-    
+   
     @EJB
     private ProductoFacadeLocal productoEJB;
     private Producto producto;
     private List<Producto> listaproducto;
-    
+   
     @EJB
     private MarcaFacadeLocal marcaEJB;
     private Marca marca;
     private List<Marca> listamarca;
-    
+   
     @EJB
     private TallaFacadeLocal tallaEJB;
     private Talla talla;
     private List<Talla> listatalla;
-    
+   
     @EJB
     private TipoRopaFacadeLocal tiporopaEJB;
     private TipoRopa tiporopa;
     private List<TipoRopa> listatiporopa;
-    
+   
     @EJB
     private CategoriaFacadeLocal categoriaEJB;
     private Categoria categoria;
     private List<Categoria> listacategoria;
 
+    private List<Producto> filtroProducto=new ArrayList<>();
+    
     public Producto getProducto() {
         return producto;
     }
@@ -131,7 +133,17 @@ public class ProductoController implements Serializable{
     public void setListacategoria(List<Categoria> listacategoria) {
         this.listacategoria = listacategoria;
     }
+
+    public List<Producto> getFiltroProducto() {
+        return filtroProducto;
+    }
+
+    public void setFiltroProducto(List<Producto> filtroProducto) {
+        this.filtroProducto = filtroProducto;
+    }
     
+    
+   
     @PostConstruct
     public void init(){
         this.marca = new Marca();
@@ -140,22 +152,22 @@ public class ProductoController implements Serializable{
         this.categoria = new Categoria();
         this.producto = new Producto();
     }
-    
-    public void consultarMarca(){
+   
+   public void consultarMarca(){
        listamarca = marcaEJB.findAll();
-    }
+   }
     public void consultarTalla(){
         listatalla = tallaEJB.findAll();
     }
-    
+   
     public void consultarTipoRopa(){
         listatiporopa = tiporopaEJB.findAll();
     }
-    
+   
     public void consultarCategoria(){
         listacategoria = categoriaEJB.findAll();
     }
-    
+   
     public void insertar(){
         try {
             this.producto.setMarca(marca);
@@ -170,8 +182,9 @@ public class ProductoController implements Serializable{
         }
         FacesMessage msj = new FacesMessage(mensaje);
         FacesContext.getCurrentInstance().addMessage(mensaje, msj);
-    }  
-    
+    }
+   
+   
     public void actualizar(){
          try {
             this.producto.setMarca(marca);
@@ -187,7 +200,7 @@ public class ProductoController implements Serializable{
         FacesMessage msj = new FacesMessage(mensaje);
         FacesContext.getCurrentInstance().addMessage(mensaje, msj);
     }
-    
+   
     public void cargarData(Producto p){
         try {
             this.marca.setIdMarca(p.getMarca().getIdMarca());
@@ -198,14 +211,18 @@ public class ProductoController implements Serializable{
         } catch (Exception e) {
         }
     }
-    
+   
     public void eliminar(Producto p){
         try {
+           this.producto.setMarca(marca);
+           this.producto.setTalla(talla);
+           this.producto.setTipoRopa(tiporopa);
+           this.producto.setCategoria(categoria);
            this.productoEJB.remove(p);
            this.mensaje = "Producto eliminado";
         } catch (Exception e) {
             this.mensaje = "Error" + e.getMessage();
             e.printStackTrace();
         }
-    }   
+    }
 }
