@@ -81,6 +81,12 @@ public class CategoriaController implements Serializable{
         FacesContext.getCurrentInstance().addMessage(mensaje, msj);
     }
     
+    public void limpiar(){
+        this.categoria = new Categoria();
+        this.listaCategoria = categoriaEJB.findAll();
+        this.mensaje = "";
+    }
+    
     public void eliminar(Categoria cat){
         try {
             this.categoria = cat;
@@ -94,8 +100,4 @@ public class CategoriaController implements Serializable{
         FacesContext.getCurrentInstance().addMessage(mensaje, msj);
     }
     
-    public void limpiar(){
-        categoria = new Categoria();
-        listaCategoria = categoriaEJB.findAll();
-    }
 }
