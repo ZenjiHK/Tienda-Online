@@ -30,4 +30,5 @@ public interface DetalleTarjetaFacadeLocal {
 
     int count();
     
+    List<DetalleTarjeta> findByC(int idCliente);   
 }

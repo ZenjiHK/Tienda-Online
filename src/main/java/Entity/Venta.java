@@ -35,11 +35,11 @@ public class Venta implements Serializable {
     @ManyToOne
     private Cliente cliente;
     
-    @JoinColumn(name = "id_detalle_tarjeta", referencedColumnName = "id_detalle_tarjeta")
     @ManyToOne
+    @JoinColumn(name = "id_detalle_tarjeta", referencedColumnName = "id_detalle_tarjeta")
     private DetalleTarjeta detalleTarjeta;
     
-    @OneToMany
+    @OneToMany(targetEntity=Factura.class,mappedBy="venta")
     private List<Factura> lista_facturas;
 
     public Venta() {

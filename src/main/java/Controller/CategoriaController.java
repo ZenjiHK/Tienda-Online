@@ -50,6 +50,7 @@ public class CategoriaController implements Serializable{
     public void init(){
         //Inicializamos variable categoría. Es lo primero que se ejecuta
         categoria = new Categoria();
+        listaCategoria = categoriaEJB.findAll();
     }
     
     public void insertar(){
@@ -57,6 +58,7 @@ public class CategoriaController implements Serializable{
             //Llamamos al método "create", y le mandamos un objeto de Categoria
             categoriaEJB.create(categoria);
             this.mensaje="Insertado con éxito";
+            limpiar();
         } catch (Exception e) {
             this.mensaje="ERROR";
         }
@@ -94,5 +96,10 @@ public class CategoriaController implements Serializable{
         }
         FacesMessage msj = new FacesMessage(this.mensaje);
         FacesContext.getCurrentInstance().addMessage(mensaje, msj);
+    }
+    
+    public void limpiar(){
+        categoria = new Categoria();
+        listaCategoria = categoriaEJB.findAll();
     }
 }

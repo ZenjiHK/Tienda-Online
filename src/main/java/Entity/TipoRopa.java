@@ -22,7 +22,7 @@ public class TipoRopa implements Serializable {
     @Column(name = "nombre_ropa")
     private String nombreTipoRopa;
     
-    @OneToMany
+    @OneToMany(targetEntity=Producto.class,mappedBy="tipoRopa")
     private List<Producto> lista_productos;
 
     public TipoRopa() {

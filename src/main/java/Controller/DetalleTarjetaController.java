@@ -1,5 +1,3 @@
-package Controller;
-
 import EJB.DetalleTarjetaFacadeLocal;
 import Entity.Cliente;
 import Entity.DetalleTarjeta;
@@ -7,17 +5,13 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-/**
- *
- * @author evelyn.andradeusam
- */
-@ManagedBean
-@SessionScoped
+@Named(value = "detalleTarjetaController")
+@RequestScoped
 public class DetalleTarjetaController implements Serializable {
 
     @EJB

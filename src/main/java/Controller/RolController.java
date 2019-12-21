@@ -14,13 +14,12 @@ import javax.faces.context.FacesContext;
 @Named(value = "rolController")
 @RequestScoped
 public class RolController implements Serializable{
-
-    private String mensaje;
     
     @EJB
     private RolFacadeLocal rolFacade;
     private Rol rol;
     private List<Rol> listaRol;
+    private String mensaje;
 
     public List<Rol> getListaRol() {
         this.listaRol = rolFacade.findAll();
@@ -41,7 +40,9 @@ public class RolController implements Serializable{
 
     @PostConstruct
     public void init(){
-        rol = new Rol();
+        this.rol = new Rol();
+        this.listaRol=rolFacade.findAll();
+        this.mensaje="";
     }
     
     public void insertar(){
@@ -82,5 +83,10 @@ public class RolController implements Serializable{
         }
         FacesMessage msj = new FacesMessage(this.mensaje);
         FacesContext.getCurrentInstance().addMessage(mensaje, msj);
+    }
+    public void limpiar(){
+        this.rol = new Rol();
+        this.listaRol=rolFacade.findAll();
+        this.mensaje="";
     }
 }

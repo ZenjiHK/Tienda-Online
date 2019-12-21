@@ -1,6 +1,8 @@
 package Controller;
 
 import EJB.VentaFacadeLocal;
+import Entity.Cliente;
+import Entity.DetalleTarjeta;
 import Entity.Venta;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -19,16 +21,20 @@ public class VentaController implements Serializable {
     private VentaFacadeLocal ventaEJB;
     private List<Venta> lista_ventas;
     private Venta venta;
+    private Cliente cliente;
+    private DetalleTarjeta detalleTarjeta;
     private String msg;
 
+    
     @PostConstruct
     public void init(){
-        this.venta = new Venta();
-        this.msg = "";
+        limpiar();
     }
     
-    public void guardar(){
+    public void crear(){
         try{
+            this.venta.setCliente(cliente);
+            this.venta.setDetalleTarjeta(detalleTarjeta);
             this.ventaEJB.create(venta);
             limpiar();
             this.msg = "Exito";
@@ -39,7 +45,7 @@ public class VentaController implements Serializable {
         FacesMessage mensaje = new FacesMessage(this.msg);
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
-    public void actualizar(){
+    public void editar(){
         try{
             this.ventaEJB.edit(venta);
             limpiar();
@@ -63,12 +69,55 @@ public class VentaController implements Serializable {
         FacesMessage mensaje = new FacesMessage(this.msg);
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
-    public void cargar(Venta v){
-        this.venta=v;
+    public void cargarDatos(Venta v){
+        try{
+            limpiar();
+            this.venta=v;
+            this.msg = "Exito";
+        }catch(Exception e){
+            this.msg = "Error "+e.getMessage();
+            e.printStackTrace();
+        }
+        FacesMessage mensaje = new FacesMessage(this.msg);
+        FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
     public void limpiar(){
         this.venta = new Venta();
-        this.lista_ventas = ventaEJB.findAll();
+        this.cliente = new Cliente();
+        this.detalleTarjeta = new DetalleTarjeta();
+        this.lista_ventas=ventaEJB.findAll();
         this.msg = "";
+    }
+
+    public List<Venta> getLista_ventas() {
+        return lista_ventas;
+    }
+
+    public void setLista_ventas(List<Venta> lista_ventas) {
+        this.lista_ventas = lista_ventas;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public DetalleTarjeta getDetalleTarjeta() {
+        return detalleTarjeta;
+    }
+
+    public void setDetalleTarjeta(DetalleTarjeta detalleTarjeta) {
+        this.detalleTarjeta = detalleTarjeta;
     }
 }

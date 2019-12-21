@@ -22,7 +22,7 @@ public class Rol implements Serializable {
     @Column(name = "nombre_rol")
     private String nombreRol;
     
-    @OneToMany
+    @OneToMany(targetEntity=User.class,mappedBy="rol")
     private List<User> lista_users;
 
     public Rol() {

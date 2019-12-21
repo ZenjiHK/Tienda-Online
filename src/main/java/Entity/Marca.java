@@ -22,7 +22,7 @@ public class Marca implements Serializable {
     @Column(name = "nombre_marca")
     private String nombreMarca;
     
-    @OneToMany
+    @OneToMany(targetEntity=Producto.class,mappedBy="marca")
     private List<Producto> lista_productos;
 
     public Marca() {

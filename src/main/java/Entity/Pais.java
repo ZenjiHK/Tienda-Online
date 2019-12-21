@@ -22,7 +22,7 @@ public class Pais implements Serializable {
     @Column(name = "nombre_pais")
     private String nombrePais;
         
-    @OneToMany
+    @OneToMany(targetEntity=Cliente.class,mappedBy="pais")
     private List<Cliente> lista_clientes;
 
     public Pais() {

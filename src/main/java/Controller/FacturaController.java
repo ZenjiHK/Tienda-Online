@@ -1,43 +1,36 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 import EJB.FacturaFacadeLocal;
 import Entity.Factura;
+import Entity.FormaPago;
+import Entity.Venta;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-/**
- *
- * @author Usuario
- */
 @Named(value = "facturaController")
-@SessionScoped
+@RequestScoped
 public class FacturaController implements Serializable {
 
     @EJB
     private FacturaFacadeLocal facturaEJB;
     private List<Factura> lista_facturas;
     private Factura factura;
+    private Venta venta;
+    private FormaPago formaPago;
     private String msg;
 
     @PostConstruct
     public void init(){
-        this.factura = new Factura();
-        this.lista_facturas = facturaEJB.findAll();
-        this.msg = "";
+        limpiar();
     }
     
-    public void guardar(){
+    public void crear(){
         try{
             this.facturaEJB.create(factura);
             limpiar();
@@ -49,7 +42,7 @@ public class FacturaController implements Serializable {
         FacesMessage mensaje = new FacesMessage(this.msg);
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
-    public void actualizar(){
+    public void editar(){
         try{
             this.facturaEJB.edit(factura);
             limpiar();
@@ -73,12 +66,55 @@ public class FacturaController implements Serializable {
         FacesMessage mensaje = new FacesMessage(this.msg);
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
-    public void cargar(Factura f){
-        this.factura=f;
+    public void cargarDatos(Factura f){
+        try{
+            limpiar();
+            this.factura=f;
+            this.msg = "Exito";
+        }catch(Exception e){
+            this.msg = "Error "+e.getMessage();
+            e.printStackTrace();
+        }
+        FacesMessage mensaje = new FacesMessage(this.msg);
+        FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
     public void limpiar(){
         this.factura = new Factura();
         this.lista_facturas = facturaEJB.findAll();
+        this.venta = new Venta();
+        this.formaPago = new FormaPago();
         this.msg = "";
+    }
+
+    public List<Factura> getLista_facturas() {
+        return lista_facturas;
+    }
+
+    public void setLista_facturas(List<Factura> lista_facturas) {
+        this.lista_facturas = lista_facturas;
+    }
+
+    public Factura getFactura() {
+        return factura;
+    }
+
+    public void setFactura(Factura factura) {
+        this.factura = factura;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
+
+    public FormaPago getFormaPago() {
+        return formaPago;
+    }
+
+    public void setFormaPago(FormaPago formaPago) {
+        this.formaPago = formaPago;
     }
 }
