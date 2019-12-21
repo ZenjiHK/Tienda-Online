@@ -51,6 +51,9 @@ public class Producto implements Serializable {
 
     @OneToMany(targetEntity=DetalleVenta.class,mappedBy="producto")
     private List<DetalleVenta> lista_detalle_ventas;
+    
+    @Column(name = "img")
+    private String url;
 
     public Producto() {
     }
@@ -168,4 +171,12 @@ public class Producto implements Serializable {
     public void setLista_detalle_ventas(List<DetalleVenta> lista_detalle_ventas) {
         this.lista_detalle_ventas = lista_detalle_ventas;
     }
+
+      public String getUrl() {
+            return url;
+      }
+
+      public void setUrl(String url) {
+            this.url = url;
+      }
 }

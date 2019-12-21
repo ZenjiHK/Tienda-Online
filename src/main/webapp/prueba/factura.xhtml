@@ -34,11 +34,11 @@
                             <p:panelGrid columns="2">
                                 <p:outputLabel value="Venta realizada"/>
                                 <p:selectOneMenu value="#{facturaController.venta.idVenta}">     
-                                    <f:selectItems value="#{ventaController.lista_ventas}" var="v" itemLabel="#{v.cliente +'-' + v.fecha + '-' + v.detalleTarjeta.ping}" itemValue="#{v.idVenta}"/>
+                                    <f:selectItems value="#{ventaController.lista_ventas}" var="v" itemLabel="#{v.cliente + '-' + v.fecha + '-' + v.detalleTarjeta.ping}" itemValue="#{v.idVenta}"/>
                                 </p:selectOneMenu>
                                 <p:outputLabel value="Forma de pago"/>
                                 <p:selectOneMenu value="#{facturaController.formaPago.idFormaPago}">     
-                                    <f:selectItems value="#{formaPagoController.listapago}" var="fp" itemLabel="#{fp.nombreFormaPago}" itemValue="#{fp.idFormaPago}"/>
+                                    <f:selectItems value="#{formaPagoController.listapago}" var="forma" itemLabel="#{forma.nombreFormaPago}" itemValue="#{forma.idFormaPago}"/>
                                 </p:selectOneMenu>
                                 <p:commandButton value="Guardar" actionListener="#{facturaController.crear()}" rendered="#{facturaController.factura.idFactura==0}" update=":Datos f :mensaje" oncomplete="PF('modal').hide()"/>
                                 <p:commandButton value="Actualizar" actionListener="#{facturaController.editar()}" rendered="#{facturaController.factura.idFactura!=0}" update=":Datos f :mensaje" oncomplete="PF('modal').hide()"/>
@@ -51,35 +51,35 @@
                   <ui:insert name="content">
                         <h:form id="Datos">    
                               <p:fieldset legend="Facturas">
-                                    <p:dataTable value="#{facturaController.lista_facturas}" var="f">
+                                    <p:dataTable value="#{facturaController.lista_facturas}" var="fa">
                                       <p:column headerText="Id">
-                                            <h:outputText value="#{f.idFactura}"/>
+                                            <h:outputText value="#{fa.idFactura}"/>
                                       </p:column>
                                       <p:column headerText="Nombre del cliente">
-                                            <h:outputText value="#{f.venta.cliente.nombreCliente}"/>
+                                            <h:outputText value="#{fa.venta.cliente.nombreCliente}"/>
                                       </p:column>
                                       <p:column headerText="Apellido del cliente">
-                                            <h:outputText value="#{f.venta.cliente.apellidoCliente}"/>
+                                            <h:outputText value="#{fa.venta.cliente.apellidoCliente}"/>
                                       </p:column>
                                       <p:column headerText="Correo electronico">
-                                            <h:outputText value="#{f.venta.cliente.correo}"/>
+                                            <h:outputText value="#{fa.venta.cliente.correo}"/>
                                       </p:column>
                                       <p:column headerText="Metodo de pago">
-                                            <h:outputText value="#{f.formaPago.nombreFormaPago}"/>
+                                            <h:outputText value="#{fa.formaPago.nombreFormaPago}"/>
                                       </p:column>
                                       <p:column headerText="Numero de tarjeta">
-                                            <h:outputText value="#{f.venta.detalleTarjeta.ping}"/>
+                                            <h:outputText value="#{fa.venta.detalleTarjeta.ping}"/>
                                       </p:column>
                                       <p:column headerText="Fecha">
-                                            <h:outputText value="#{f.venta.fecha}">
+                                            <h:outputText value="#{fa.venta.fecha}">
                                               <f:convertDateTime pattern="YYYY-MM-dd"/>
                                           </h:outputText>
                                       </p:column>
                                       <p:column headerText="Modificar">
-                                            <p:commandButton value="Editar" actionListener="#{facturaController.cargarDatos(f)}" update=":f" oncomplete="PF('modal').show()"/>
+                                            <p:commandButton value="Editar" actionListener="#{facturaController.cargarDatos(fa)}" update=":f" oncomplete="PF('modal').show()"/>
                                       </p:column>
                                       <p:column headerText="Eliminar">
-                                            <p:commandButton value="Eliminar" actionListener="#{facturaController.eliminar(f)}" update=":Datos :mensaje"/>
+                                            <p:commandButton value="Eliminar" actionListener="#{facturaController.eliminar(fa)}" update=":Datos :mensaje"/>
                                       </p:column>            
                                   </p:dataTable>
                               </p:fieldset>
