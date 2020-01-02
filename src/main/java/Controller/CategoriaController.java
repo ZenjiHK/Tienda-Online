@@ -15,10 +15,10 @@ import javax.inject.Named;
 @RequestScoped
 public class CategoriaController implements Serializable{
     
-     private String mensaje;
+     private String mensaje;//Mensaje
     
     @EJB
-    private CategoriaFacadeLocal categoriaEJB;
+    private CategoriaFacadeLocal categoriaEJB;    
     private Categoria categoria;
     private List<Categoria> listaCategoria;
 
