@@ -1,5 +1,4 @@
 package Entity;
-
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
@@ -9,12 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 @Entity
 @Table(name = "categoria")
 public class Categoria implements Serializable {
-    //este es un comentarioddddddddddd
-
+    //este es un comentario
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_categoria")
@@ -25,21 +22,17 @@ public class Categoria implements Serializable {
     
     @OneToMany
     private List<Producto> lista_productos;
-
     public Categoria() {
     }
-
     public Categoria(int id) {
         this.idCategoria = id;
     }
-
     @Override
     public int hashCode() {
         int hash = 5;
         hash = 29 * hash + this.idCategoria;
         return hash;
     }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -62,27 +55,21 @@ public class Categoria implements Serializable {
     public String toString() {
         return "Categoria{" + "idCategoria=" + idCategoria + '}';
     }
-
     public int getIdCategoria() {
         return idCategoria;
     }
-
     public void setIdCategoria(int id) {
         this.idCategoria = id;
     }
-
     public String getNombreCategoria() {
         return nombreCategoria;
     }
-
     public void setNombreCategoria(String nombre) {
         this.nombreCategoria = nombre;
     }
-
     public List<Producto> getLista_productos() {
         return lista_productos;
     }
-
     public void setLista_productos(List<Producto> lista_productos) {
         this.lista_productos = lista_productos;
     }

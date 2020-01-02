@@ -10,14 +10,15 @@
     </h:head>
     <h:body>
         <p:growl id="msj"/>
+        
              <h:form id="cat">
-            <p:outputLabel value="Ingrese categoría"/>
+            <p:outputLabel value="Ingrese categoría" />
             <p:inputText value="#{categoriaController.categoria.nombreCategoria}"/>
             <p:commandButton value="Enviar" actionListener="#{categoriaController.insertar()}" update=":msj :tabla"/>
         </h:form>
         <p:dataTable id="tabla" value="#{categoriaController.listaCategoria}" var="c" >
             <p:column headerText="Código">
-                <p:outputLabel value="#{c.id_categoria}"/>
+                <p:outputLabel value="#{c.idCategoria}"/>
             </p:column>
             <p:column headerText="Categoría">
                 <p:outputLabel value="#{c.nombreCategoria}"/>
@@ -36,9 +37,8 @@
             </p:column>
         </p:dataTable>
         <p:dialog id="nuevo" widgetVar="w" header="Datos">
-            <h:form>
-                <p:outputLabel value="Código"/>
-                <p:inputText value="#{categoriaController.categoria.idCategoria}"/>
+            <h:form>                
+                <p:inputText type="hidden" value="#{categoriaController.categoria.idCategoria}"/>
                 <p:outputLabel value="Nombre"/>
                 <p:inputText value="#{categoriaController.categoria.nombreCategoria}"/>
                 <p:commandButton value="Modificar" actionListener="#{categoriaController.modificar()}" update=":tabla :msj" oncomplete="PF('w').hide()"/>
