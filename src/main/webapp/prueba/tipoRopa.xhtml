@@ -12,7 +12,7 @@
         <p:growl id="msj"/>
         <h:form>
             <p:outputLabel value="Ingrese tipo de ropa: "/>
-            <p:inputText value="#{TipoRopaController.tipoRopa.nombreTipoRopa}"/>           
+            <p:inputText value="#{tipoRopaController.tipoRopa.nombreTipoRopa}"/>           
             <p:commandButton value="Enviar" actionListener="#{tipoRopaController.insertar()}" update=":msj :tabla"/>
         </h:form>
         <h:form id="tabla">
