@@ -16,7 +16,7 @@
             <p:commandButton value="Enviar" actionListener="#{tipoRopaController.insertar()}" update=":msj :tabla"/>
         </h:form>
         <h:form id="tabla">
-            <p:dataTable  value="#{TipoRopaController.listaTipoRopa}" var="c" >
+            <p:dataTable  value="#{tipoRopaController.listaTipoRopa}" var="c" >
              <p:column headerText="id">
                  <p:outputLabel value="#{c.idTipoRopa}"/>
             </p:column>
@@ -24,21 +24,20 @@
                 <p:outputLabel value="#{c.nombreTipoRopa}"/>
             </p:column>
             <p:column headerText="Modificar">
-                <p:commandButton value="Modificar" actionListener="#{TipoRopaController.cargarDatos(c)}" update=":nuevo"
+                <p:commandButton value="Modificar" actionListener="#{tipoRopaController.cargarDatos(c)}" update=":nuevo"
                                oncomplete="PF('w').show()"/>
             </p:column>
             <p:column headerText="Eliminar" >
-                <p:commandButton value="Eliminar" actionListener="#{TipoRopaController.eliminar(c)}" update=":nuevo :tabla" />
-            </p:column>
+                <p:commandButton value="Eliminar" actionListener="#{tipoRopaController.eliminar(c)}" update=":nuevo :tabla" />            </p:column>
         </p:dataTable>            
         </h:form>
         
         <p:dialog id="nuevo" widgetVar="w" header="Datos">
             <h:form>                
-                <p:inputText type="hidden" value="#{TipoRopaController.tipoRopa.idTipoRopa}"/>
+                <p:inputText type="hidden" value="#{tipoRopaController.tipoRopa.idTipoRopa}"/>
                 <p:outputLabel value="Nombre"/>
-                <p:inputText value="#{TipoRopaController.tipoRopa.nombreTipoRopa}"/>                
-                <p:commandButton value="Modificar" actionListener="#{TipoRopaController.editar()}" update=":tabla :msj" oncomplete="PF('w').hide()"/>
+                <p:inputText value="#{tipoRopaController.tipoRopa.nombreTipoRopa}"/>                
+                <p:commandButton value="Modificar" actionListener="#{tipoRopaController.editar()}" update=":tabla :msj" oncomplete="PF('w').hide()"/>
                 <p:commandButton value="Cancelar" oncomplete="PF('w').hide()"/>
             </h:form>
         </p:dialog>
