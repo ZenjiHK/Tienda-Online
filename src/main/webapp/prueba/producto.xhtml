@@ -15,7 +15,7 @@
         <h:form >
             <p:panelGrid columns="2">
                 <p:outputLabel value="Nombre"/>
-                <p:inputText value="#{ProductoController.producto.nombre}"/>
+                <p:inputText value="#{ProductoController.producto.nombreProducto}"/>
                 <p:outputLabel value="Stock"/>
                 <p:inputText value="#{ProductoController.producto.stock}"/>
                 <p:outputLabel value="Precio Venta"/>
@@ -24,24 +24,24 @@
                 <p:outputLabel value="Precio Compra"/>            
                 <p:inputText value="#{ProductoController.producto.precioCompra}"/>
                 <p:outputLabel value="Seleccione una    Marca" for="marca"/>
-                <p:selectOneMenu id="marca" value="#{ProductoController.marca.id}">
+                <p:selectOneMenu id="marca" value="#{ProductoController.marca.idMarca}">
                     <f:selectItems value="#{marcaController.listamarca}" var="m"
-                                   itemLabel="#{m.nombre}" itemValue="#{m.id}"/>
+                                   itemLabel="#{m.nombreMarca}" itemValue="#{m.idMarca}"/>
                 </p:selectOneMenu>
                 <p:outputLabel value="Seleccione una talla" for="talla"/>
-                <p:selectOneMenu id="talla" value="#{ProductoController.talla.id}">
+                <p:selectOneMenu id="talla" value="#{ProductoController.talla.idTalla}">
                     <f:selectItems value="#{tallaController.listaTalla}" var="t"
-                                   itemLabel="#{t.talla}" itemValue="#{t.id}"/>
+                                   itemLabel="#{t.talla}" itemValue="#{t.idTalla}"/>
                 </p:selectOneMenu>
                 <p:outputLabel value="Seleccione un tipo de ropa" for="tipo"/>
-                <p:selectOneMenu id="tipo" value="#{ProductoController.tiporopa.id}">
+                <p:selectOneMenu id="tipo" value="#{ProductoController.tiporopa.idTipoRopa}">
                     <f:selectItems value="#{tipoRopaController.listaTipoRopa}" var="r"
-                                   itemLabel="#{r.nombre}" itemValue="#{r.id}"/>
+                                   itemLabel="#{r.nombreTipoRopa}" itemValue="#{r.idTipoRopa}"/>
                 </p:selectOneMenu>
                 <p:outputLabel value="Seleccione una categoria" for="categoria"/>
-                <p:selectOneMenu id="categoria" value="#{ProductoController.categoria.id}">
+                <p:selectOneMenu id="categoria" value="#{ProductoController.categoria.idCategoria}">
                     <f:selectItems value="#{categoriaController.listaCategoria}" var="c"
-                                   itemLabel="#{c.nombre}" itemValue="#{c.id}"/>
+                                   itemLabel="#{c.nombreCategoria}" itemValue="#{c.idCategoria}"/>
                 </p:selectOneMenu>
                 <p:commandButton value="Enviar" actionListener="#{ProductoController.insertar()}" update=":msj :tabla"/>
             </p:panelGrid>                        
@@ -52,10 +52,10 @@
             <p:dataTable  value="#{ProductoController.listaproducto}" var="ver" emptyMessage="El producto buscado no existe." >
              
                 <p:column headerText="id" >
-                    <p:outputLabel value="#{ver.id}"/>
+                    <p:outputLabel value="#{ver.idProducto}"/>
                 </p:column>
                 <p:column headerText="nombre">
-                    <p:outputLabel value="#{ver.nombre}"/>
+                    <p:outputLabel value="#{ver.nombreProducto}"/>
                 </p:column>
                 <p:column headerText="stock">
                     <p:outputLabel value="#{ver.stock}"/>
@@ -67,16 +67,16 @@
                     <p:outputLabel value="#{ver.precioCompra}"/>
                 </p:column>
                 <p:column headerText="Marca" >
-                    <p:outputLabel value="#{ver.marca.nombre}"/>
+                    <p:outputLabel value="#{ver.marca.nombreMarca}"/>
                 </p:column>
                 <p:column headerText="Talla">
                     <p:outputLabel value="#{ver.talla.talla}"/>
                 </p:column>
                 <p:column headerText="Tipo de ropa">
-                    <p:outputLabel value="#{ver.tipo.nombre}"/>
+                    <p:outputLabel value="#{ver.tipoRopa.nombreTipoRopa}"/>
                 </p:column>
                 <p:column headerText="Categoria">
-                    <p:outputLabel value="#{ver.categoria.nombre}"/>
+                    <p:outputLabel value="#{ver.categoria.nombreCategoria}"/>
                 </p:column>
                 <p:column headerText="Modificar ">
                     <p:commandButton value="Modificar" actionListener="#{ProductoController.cargarData(ver)}" update=":nuevo :tabla"
@@ -93,9 +93,9 @@
             <h:form>
                 <p:panelGrid columns="2">
                     <p:outputLabel value="id"/>
-                    <p:inputText value="#{ProductoController.producto.id}"/>
+                    <p:inputText value="#{ProductoController.producto.idProducto}"/>
                     <p:outputLabel value="Nombre"/>
-                    <p:inputText value="#{ProductoController.producto.nombre}"/>
+                    <p:inputText value="#{ProductoController.producto.nombreProducto}"/>
                     <p:outputLabel value="Stock"/>
                     <p:inputText value="#{ProductoController.producto.stock}"/>
                     <p:outputLabel value="Precio Venta"/>
@@ -103,24 +103,24 @@
                     <p:outputLabel value="Precio Compra"/>
                     <p:inputText value="#{ProductoController.producto.precioCompra}"/>
                     <p:outputLabel value="Seleccione una    Marca" for="marca"/>
-                    <p:selectOneMenu id="marca" value="#{ProductoController.marca.id}">
+                    <p:selectOneMenu id="marca" value="#{ProductoController.marca.idMarca}">
                         <f:selectItems value="#{marcaController.listamarca}" var="m"
-                                       itemLabel="#{m.nombre}" itemValue="#{m.id}"/>
+                                       itemLabel="#{m.nombreMarca}" itemValue="#{m.idMarca}"/>
                     </p:selectOneMenu>
                     <p:outputLabel value="Seleccione una talla" for="talla"/>
-                    <p:selectOneMenu id="talla" value="#{ProductoController.talla.id}">
+                    <p:selectOneMenu id="talla" value="#{ProductoController.talla.idTalla}">
                         <f:selectItems value="#{tallaController.listaTalla}" var="t"
-                                       itemLabel="#{t.talla}" itemValue="#{t.id}"/>
+                                       itemLabel="#{t.talla}" itemValue="#{t.idTalla}"/>
                     </p:selectOneMenu>
                     <p:outputLabel value="Seleccione un tipo de ropa" for="tipo"/>
-                    <p:selectOneMenu id="tipo" value="#{ProductoController.tiporopa.id}">
+                    <p:selectOneMenu id="tipo" value="#{ProductoController.tiporopa.idTipoRopa}">
                         <f:selectItems value="#{tipoRopaController.listaTipoRopa}" var="r"
-                                       itemLabel="#{r.nombre}" itemValue="#{r.id}"/>
+                                       itemLabel="#{r.nombreTipoRopa}" itemValue="#{r.idTipoRopa}"/>
                     </p:selectOneMenu>
                     <p:outputLabel value="Seleccione una categoria" for="categoria"/>
-                    <p:selectOneMenu id="categoria" value="#{ProductoController.categoria.id}">
+                    <p:selectOneMenu id="categoria" value="#{ProductoController.categoria.idCategoria}">
                         <f:selectItems value="#{categoriaController.listaCategoria}" var="c"
-                                       itemLabel="#{c.nombre}" itemValue="#{c.id}"/>
+                                       itemLabel="#{c.nombreCategoria}" itemValue="#{c.idCategoria}"/>
                     </p:selectOneMenu>
                     <p:commandButton value="Modificar" actionListener="#{ProductoController.actualizar()}" update=":tabla :msj" oncomplete="PF('p').hide()"/>
                     <p:commandButton value="Cancelar" oncomplete="PF('p').hide()"/>                   
