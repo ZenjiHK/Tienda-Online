@@ -95,7 +95,7 @@
                 </p:column>
                 <p:column headerText="Eliminar" >
                     <p:commandButton value="Eliminar" actionListener="#{ProductoController.eliminar(ver)}"
-                                     update=":tabla :msj" styleClass="michi" />
+                                     update=":tabla :msj"/>
                 </p:column>
             </p:dataTable>    
         </h:form>
@@ -133,6 +133,8 @@
                         <f:selectItems value="#{categoriaController.listaCategoria}" var="c"
                                        itemLabel="#{c.nombreCategoria}" itemValue="#{c.idCategoria}"/>
                     </p:selectOneMenu>
+                    <p:outputLabel value="Imagen"/>
+                <p:inputText value="#{ProductoController.producto.url}"/>
                     <p:commandButton value="Modificar" actionListener="#{ProductoController.actualizar()}" update=":tabla :msj" oncomplete="PF('p').hide()"/>
                     <p:commandButton value="Cancelar" oncomplete="PF('p').hide()"/>                   
                 </p:panelGrid>                

@@ -179,6 +179,7 @@ public class ProductoController implements Serializable{
             this.producto.setCategoria(categoria);
             this.productoEJB.create(producto);
             this.mensaje = "Producto registrado exitosamente";
+            limpiar();
         } catch (Exception e) {
             this.mensaje = "Error, imposible registrar";
             e.printStackTrace();
