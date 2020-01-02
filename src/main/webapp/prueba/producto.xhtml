@@ -25,6 +25,9 @@
                 <p:inputText value="#{ProductoController.producto.precioCompra}"/>
                 <p:outputLabel value="Seleccione una Marca" for="marca"/>
                 <p:selectOneMenu id="marca" value="#{ProductoController.marca.idMarca}">
+
+                    <f:selectItems value="#{MarcaController.listamarca}" var="m"/>
+
                     <f:selectItems value="#{marcaController.listamarca}" var="m"
                                    itemLabel="#{m.nombreMarca}" itemValue="#{m.idMarca}"/>
                 </p:selectOneMenu>
@@ -40,10 +43,12 @@
                 </p:selectOneMenu>
                 <p:outputLabel value="Seleccione una categoria" for="categoria"/>
 
+
                 <p:selectOneMenu id="categoria" value="#{ProductoController.categoria.idCategoria}">
                     <f:selectItems value="#{categoriaController.listaCategoria}" var="c"
                                    itemLabel="#{c.nombreCategoria}" itemValue="#{c.idCategoria}"/>
                  </p:selectOneMenu>
+
                 <p:outputLabel value="Imagen"/>
                 <p:inputText value="#{ProductoController.producto.url}"/>
                 <p:commandButton value="Enviar" actionListener="#{ProductoController.insertar()}" update=":msj :tabla"/>
