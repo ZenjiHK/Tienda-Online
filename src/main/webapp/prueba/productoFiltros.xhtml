@@ -16,11 +16,11 @@
             <p:dataTable  value="#{ProductoController.listaproducto}" var="ver" 
                           emptyMessage="El producto buscado no existe." >
              
-                <p:column headerText="id" filterBy="#{ver.id}">
-                    <p:outputLabel value="#{ver.id}"/>
+                <p:column headerText="id" filterBy="#{ver.idProducto}">
+                    <p:outputLabel value="#{ver.idProducto}"/>
                 </p:column>
-                <p:column headerText="nombre" filterBy="#{ver.nombre}" >
-                    <p:outputLabel value="#{ver.nombre}"/>
+                <p:column headerText="nombre" filterBy="#{ver.nombreProducto}" >
+                    <p:outputLabel value="#{ver.nombreProducto}"/>
                 </p:column>
                 <p:column headerText="stock">
                     <p:outputLabel value="#{ver.stock}"/>
@@ -31,17 +31,17 @@
                 <p:column headerText="precio de compra">
                     <p:outputLabel value="#{ver.precioCompra}"/>
                 </p:column>
-                <p:column headerText="Marca" filterBy="#{ver.marca.nombre}"  >
-                    <p:outputLabel value="#{ver.marca.nombre}"/>
+                <p:column headerText="Marca" filterBy="#{ver.marca.nombreMarca}"  >
+                    <p:outputLabel value="#{ver.marca.nombreMarca}"/>
                 </p:column>
                 <p:column headerText="Talla" filterBy="#{ver.talla.talla}">
                     <p:outputLabel value="#{ver.talla.talla}"/>
                 </p:column>
-                <p:column headerText="Tipo de ropa" filterBy="#{ver.tipo.nombre}">
-                    <p:outputLabel value="#{ver.tipo.nombre}"/>
+                <p:column headerText="Tipo de ropa" filterBy="#{ver.tipoRopa.nombreTipoRopa}">
+                    <p:outputLabel value="#{ver.tipoRopa.nombreTipoRopa}"/>
                 </p:column>
-                <p:column headerText="Categoria" filterBy="#{ver.categoria.nombre}">
-                    <p:outputLabel value="#{ver.categoria.nombre}"/>
+                <p:column headerText="Categoria" filterBy="#{ver.categoria.nombreCategoria}">
+                    <p:outputLabel value="#{ver.categoria.nombreCategoria}"/>
                 </p:column>         
             </p:dataTable>    
         </h:form>
