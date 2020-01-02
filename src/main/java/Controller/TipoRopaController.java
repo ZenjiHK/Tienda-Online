@@ -21,7 +21,6 @@ public class TipoRopaController {
     private String mensaje = "";
     
     public TipoRopa getTipoRopa() {
-
         return tipoRopa;
     }
 
