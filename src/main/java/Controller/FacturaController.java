@@ -32,6 +32,8 @@ public class FacturaController implements Serializable {
     
     public void crear(){
         try{
+              this.factura.setVenta(venta);
+              this.factura.setFormaPago(formaPago);
             this.facturaEJB.create(factura);
             limpiar();
             this.msg = "Exito";
@@ -42,8 +44,11 @@ public class FacturaController implements Serializable {
         FacesMessage mensaje = new FacesMessage(this.msg);
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
+    
     public void editar(){
         try{
+            this.factura.setVenta(venta);
+            this.factura.setFormaPago(formaPago);
             this.facturaEJB.edit(factura);
             limpiar();
             this.msg = "Exito";
@@ -54,6 +59,7 @@ public class FacturaController implements Serializable {
         FacesMessage mensaje = new FacesMessage(this.msg);
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
+    
     public void eliminar(Factura f){
         try{
             this.facturaEJB.remove(f);
@@ -66,6 +72,7 @@ public class FacturaController implements Serializable {
         FacesMessage mensaje = new FacesMessage(this.msg);
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
+    
     public void cargarDatos(Factura f){
         try{
             limpiar();
@@ -78,12 +85,15 @@ public class FacturaController implements Serializable {
         FacesMessage mensaje = new FacesMessage(this.msg);
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
+    
     public void limpiar(){
         this.factura = new Factura();
         this.lista_facturas = facturaEJB.findAll();
         this.venta = new Venta();
         this.formaPago = new FormaPago();
         this.msg = "";
+        this.factura.setVenta(venta);
+        this.factura.setFormaPago(formaPago);
     }
 
     public List<Factura> getLista_facturas() {

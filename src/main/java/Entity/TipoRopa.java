@@ -16,7 +16,7 @@ public class TipoRopa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_tipo_ropa")
+    @Column(name = "id_ropa")
     private int idTipoRopa;
     
     @Column(name = "nombre_ropa")

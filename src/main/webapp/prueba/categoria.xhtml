@@ -10,7 +10,7 @@
     </h:head>
     <h:body>
         <p:growl id="msj"/>
-             <h:form >
+             <h:form id="cat">
             <p:outputLabel value="Ingrese categoría"/>
             <p:inputText value="#{categoriaController.categoria.nombreCategoria}"/>
             <p:commandButton value="Enviar" actionListener="#{categoriaController.insertar()}" update=":msj :tabla"/>

@@ -34,7 +34,7 @@
                             <p:panelGrid columns="2">
                                 <p:outputLabel value="Venta realizada"/>
                                 <p:selectOneMenu value="#{facturaController.venta.idVenta}">     
-                                    <f:selectItems value="#{ventaController.lista_ventas}" var="v" itemLabel="#{v.cliente + '-' + v.fecha + '-' + v.detalleTarjeta.ping}" itemValue="#{v.idVenta}"/>
+                                      <f:selectItems value="#{ventaController.lista_ventas}" var="venta" itemLabel="#{venta.cliente.nombreCliente} | #{venta.fecha} | #{venta.detalleTarjeta.ping}" itemValue="#{venta.idVenta}"/>
                                 </p:selectOneMenu>
                                 <p:outputLabel value="Forma de pago"/>
                                 <p:selectOneMenu value="#{facturaController.formaPago.idFormaPago}">     

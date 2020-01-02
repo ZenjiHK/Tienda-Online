@@ -1,0 +1,1 @@
+INSERT INTO `marca` VALUES (1,'Gucci'),(2,'Chanel'),(3,'Louis Vuitton'),(4,'Armani'),(5,'Prada'),(6,'Dior'),(7,'Valentino'),(8,'Marc Jacobs'),(9,'Versace'),(10,'Fendi'),(11,'Banana Republik'),(12,'Mango'),(13,'Cato'),(14,'Carolina Herrera'),(15,'Gyvenchi'),(16,'Ferragamo'),(17,'Ermenegido Zegna'),(18,'Calvin Klein'),(19,'Nike'),(20,'H&M'),(21,'Dolce & Gabbana');

@@ -64,6 +64,7 @@ public class ClienteController implements Serializable{
     this.pais=new Pais();
     this.listaCliente = clienteEJB.findAll();
     this.msj="";
+    this.cliente.setPais(pais);
     }
     
     public void insertar(){
@@ -105,6 +106,7 @@ public class ClienteController implements Serializable{
         this.pais=new Pais();
         this.listaCliente = clienteEJB.findAll();
         this.msj="";
+        this.cliente.setPais(pais);
     }
     
      public void eliminar(Cliente cl){
