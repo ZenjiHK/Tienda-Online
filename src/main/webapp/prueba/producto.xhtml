@@ -86,6 +86,9 @@
                 <p:column headerText="Categoria">
                     <p:outputLabel value="#{ver.categoria.nombreCategoria}"/>
                 </p:column>
+                 <p:column headerText="url">
+                     <img src="#{ver.url}" style="width:70%; height:22%"/>
+                </p:column>
                 <p:column headerText="Modificar ">
                     <p:commandButton value="Modificar" actionListener="#{ProductoController.cargarData(ver)}" update=":nuevo :tabla"
                                      oncomplete="PF('p').show()"/>

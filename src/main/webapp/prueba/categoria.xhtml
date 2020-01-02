@@ -14,7 +14,7 @@
              <h:form id="cat">
             <p:outputLabel value="Ingrese categoría " />
             <p:inputText value="#{categoriaController.categoria.nombreCategoria}"/>
-            <p:commandButton value="Enviar" actionListener="#{categoriaController.insertar()}" update=":msj :tabla"/>
+            <p:commandButton value="Enviar" actionListener="#{categoriaController.insertar()}" update=":msj :tabla cat"/>
         </h:form>
         <p:dataTable id="tabla" value="#{categoriaController.listaCategoria}" var="c" >
             <p:column headerText="Código">
