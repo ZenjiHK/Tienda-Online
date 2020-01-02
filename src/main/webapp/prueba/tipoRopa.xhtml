@@ -33,6 +33,9 @@
         </h:form>
         
         <p:dialog id="nuevo" widgetVar="w" header="Datos">
+            <h:form>
+                <p:outputLabel value="id"/>
+                <p:inputText value="#{tipoRopaController.tipoRopa.idTipoRopa}"/>
             <h:form>                
                 <p:inputText type="hidden" value="#{tipoRopaController.tipoRopa.idTipoRopa}"/>
                 <p:outputLabel value="Nombre"/>
