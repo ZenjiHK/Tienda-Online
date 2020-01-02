@@ -11,8 +11,9 @@
     <body>
         <p:growl id="msj"/>
         <p:outputLabel value="Producto"/>
-
-        <h:form>
+        
+        <p:dialog id="ingreso" widgetVar="n" header="Datos">
+        <h:form id="pro">
             <p:panelGrid columns="2">
                 <p:outputLabel value="Nombre"/>
                 <p:inputText value="#{ProductoController.producto.nombreProducto}"/>
@@ -51,10 +52,14 @@
 
                 <p:outputLabel value="Imagen"/>
                 <p:inputText value="#{ProductoController.producto.url}"/>
-                <p:commandButton value="Enviar" actionListener="#{ProductoController.insertar()}" update=":msj :tabla"/>
-            </p:panelGrid>                        
+                <p:commandButton value="Enviar" actionListener="#{ProductoController.insertar()}" update=":msj :tabla pro" oncomplete="PF('n').hide()"/>
+            </p:panelGrid>    
+             
         </h:form>
-
+           </p:dialog>
+        <h:form>
+        <p:commandButton value="Agregar producto" oncomplete="PF('n').show()" update=":tabla "/>
+        </h:form>
         <p:separator />
         <h:form id="tabla">            
             <p:dataTable  value="#{ProductoController.listaproducto}" var="ver" emptyMessage="El producto buscado no existe." >
@@ -95,7 +100,7 @@
                 </p:column>
                 <p:column headerText="Eliminar" >
                     <p:commandButton value="Eliminar" actionListener="#{ProductoController.eliminar(ver)}"
-                                     update=":tabla :msj" />
+                                     update=":tabla :msj"/>
                 </p:column>
             </p:dataTable>    
         </h:form>
@@ -133,6 +138,8 @@
                         <f:selectItems value="#{categoriaController.listaCategoria}" var="c"
                                        itemLabel="#{c.nombreCategoria}" itemValue="#{c.idCategoria}"/>
                     </p:selectOneMenu>
+                    <p:outputLabel value="Imagen"/>
+                <p:inputText value="#{ProductoController.producto.url}"/>
                     <p:commandButton value="Modificar" actionListener="#{ProductoController.actualizar()}" update=":tabla :msj" oncomplete="PF('p').hide()"/>
                     <p:commandButton value="Cancelar" oncomplete="PF('p').hide()"/>                   
                 </p:panelGrid>                
