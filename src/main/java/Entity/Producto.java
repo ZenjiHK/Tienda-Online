@@ -45,7 +45,7 @@ public class Producto implements Serializable {
     @ManyToOne
     private Talla talla;
 
-    @JoinColumn(name = "id_tipo_ropa", referencedColumnName = "id_tipo_ropa")
+    @JoinColumn(name = "id_tipo", referencedColumnName = "id_ropa")
     @ManyToOne
     private TipoRopa tipoRopa;
 
