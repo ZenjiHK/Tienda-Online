@@ -11,7 +11,8 @@
     <body>
         <p:growl id="msj"/>
         <p:outputLabel value="Producto"/>
-
+        
+        <p:dialog id="ingreso" widgetVar="n" header="Datos">
         <h:form id="pro">
             <p:panelGrid columns="2">
                 <p:outputLabel value="Nombre"/>
@@ -51,10 +52,14 @@
 
                 <p:outputLabel value="Imagen"/>
                 <p:inputText value="#{ProductoController.producto.url}"/>
-                <p:commandButton value="Enviar" actionListener="#{ProductoController.insertar()}" update=":msj :tabla pro"/>
-            </p:panelGrid>                        
+                <p:commandButton value="Enviar" actionListener="#{ProductoController.insertar()}" update=":msj :tabla pro" oncomplete="PF('n').hide()"/>
+            </p:panelGrid>    
+             
         </h:form>
-
+           </p:dialog>
+        <h:form>
+        <p:commandButton value="Agregar producto" oncomplete="PF('n').show()" update=":tabla "/>
+        </h:form>
         <p:separator />
         <h:form id="tabla">            
             <p:dataTable  value="#{ProductoController.listaproducto}" var="ver" emptyMessage="El producto buscado no existe." >
