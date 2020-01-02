@@ -87,17 +87,18 @@ public class CategoriaController implements Serializable{
         this.mensaje = "";
     }
     
-    public void eliminar(Categoria cat){
+    //Metodo eliminar
+    public void eliminar(Categoria c) {
         try {
-            this.categoria = cat;
-            categoriaEJB.remove(categoria);
-            listaCategoria = categoriaEJB.findAll();
-          this.mensaje="Eliminado con éxito";
+            this.categoriaEJB.remove(c);
+            this.categoria = new Categoria();
+            this.mensaje = "categoria eliminada";
         } catch (Exception e) {
-            this.mensaje="ERROR";
+            this.mensaje = "Error " + e.getMessage();
+            e.printStackTrace();
         }
         FacesMessage msj = new FacesMessage(this.mensaje);
-        FacesContext.getCurrentInstance().addMessage(mensaje, msj);
+        FacesContext.getCurrentInstance().addMessage(null, msj);
     }
     
 }

@@ -47,7 +47,7 @@ public class EnviarController implements Serializable {
                     new InternetAddress(destinatario));
             message.setSubject("Prueba de restaurar contraseña");
             message.setText(
-                    "PruebaNuevaaaaaa");
+                    "Correo nuevo");
 
             // Lo enviamos.
             Transport t = session.getTransport("smtp");
