@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "categoria")
 public class Categoria implements Serializable {
-    //este es un comentario
+    //este es un comentarioddddddddddd
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
