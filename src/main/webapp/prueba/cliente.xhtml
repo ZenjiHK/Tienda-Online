@@ -32,13 +32,8 @@
                     <p:selectOneMenu id="cmbPais" value="#{clienteController.pais.idPais}">     
                         <f:selectItems value="#{paisController.listaPais}" var="pa" itemLabel="#{pa.nombrePais}" itemValue="#{pa.idPais}"/>
                     </p:selectOneMenu>
-                    <p:commandButton value="Guardar" actionListener="#{clienteController.insertar()}"  
-                                     rendered="#{clienteController.cliente.idCliente==0}"
-                                     update=":Datos c :msj" oncomplete="PF('cli').hide()"/>
-                    <p:commandButton value="Actualizar" actionListener="#{clienteController.editar()}" 
-                                     rendered="#{clienteController.cliente.idCliente !=0}"
-                                     update=":Datos c :msj" oncomplete="PF('cli').hide()"/>
-                    
+                        <p:commandButton value="Actualizar" actionListener="#{clienteController.editar()}"
+                                         update=":Datos c :msj" oncomplete="PF('cli').hide()"/>
                 </p:panelGrid>                
             </h:form>
         </p:dialog>

@@ -90,8 +90,7 @@ public class ClienteController implements Serializable{
         try {
             this.cliente.setPais(pais);
             this.clienteEJB.edit(cliente);
-            this.cliente=new Cliente();
-            this.pais=new Pais();
+            limpiar();
             this.msj="Cliente Actualizado correctamente";            
         } catch (Exception e) {
             this.msj="Error al Actualizar Cliente "+e.getMessage();

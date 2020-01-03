@@ -47,6 +47,8 @@ public class VentaController implements Serializable {
     }
     public void editar(){
         try{
+            this.venta.setCliente(cliente);
+            this.venta.setDetalleTarjeta(detalleTarjeta);
             this.ventaEJB.edit(venta);
             limpiar();
             this.msg = "Exito";
@@ -55,7 +57,7 @@ public class VentaController implements Serializable {
             e.printStackTrace();
         }
         FacesMessage mensaje = new FacesMessage(this.msg);
-        FacesContext.getCurrentInstance().addMessage(null, mensaje);
+        FacesContext.getCurrentInstance().addMessage(msg, mensaje);
     }
     public void eliminar(Venta v){
         try{
@@ -67,7 +69,7 @@ public class VentaController implements Serializable {
             e.printStackTrace();
         }
         FacesMessage mensaje = new FacesMessage(this.msg);
-        FacesContext.getCurrentInstance().addMessage(null, mensaje);
+        FacesContext.getCurrentInstance().addMessage(msg, mensaje);
     }
     public void cargarDatos(Venta v){
         try{
@@ -79,7 +81,7 @@ public class VentaController implements Serializable {
             e.printStackTrace();
         }
         FacesMessage mensaje = new FacesMessage(this.msg);
-        FacesContext.getCurrentInstance().addMessage(null, mensaje);
+        FacesContext.getCurrentInstance().addMessage(msg, mensaje);
     }
     public void limpiar(){
         this.venta = new Venta();

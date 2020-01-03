@@ -11,8 +11,9 @@
     <body>
         <p:growl id="msj"/>
         <p:outputLabel value="Producto"/>
-
-        <h:form >
+        
+        <p:dialog id="ingreso" widgetVar="n" header="Datos">
+        <h:form id="pro">
             <p:panelGrid columns="2">
                 <p:outputLabel value="Nombre"/>
                 <p:inputText value="#{ProductoController.producto.nombreProducto}"/>
@@ -23,7 +24,7 @@
 
                 <p:outputLabel value="Precio Compra"/>            
                 <p:inputText value="#{ProductoController.producto.precioCompra}"/>
-                <p:outputLabel value="Seleccione una    Marca" for="marca"/>
+                <p:outputLabel value="Seleccione una Marca" for="marca"/>
                 <p:selectOneMenu id="marca" value="#{ProductoController.marca.idMarca}">
                     <f:selectItems value="#{marcaController.listamarca}" var="m"
                                    itemLabel="#{m.nombreMarca}" itemValue="#{m.idMarca}"/>
@@ -43,19 +44,29 @@
                     <f:selectItems value="#{categoriaController.listaCategoria}" var="c"
                                    itemLabel="#{c.nombreCategoria}" itemValue="#{c.idCategoria}"/>
                 </p:selectOneMenu>
-                <p:commandButton value="Enviar" actionListener="#{ProductoController.insertar()}" update=":msj :tabla"/>
-            </p:panelGrid>                        
+                <p:selectOneMenu id="categoria" value="#{ProductoController.categoria.idCategoria}">
+                    <f:selectItems value="#{categoriaController.listaCategoria}" var="c"
+                                   itemLabel="#{c.nombreCategoria}" itemValue="#{c.idCategoria}"/>
+                 </p:selectOneMenu>
+                <p:outputLabel value="Imagen"/>
+                <p:inputText value="#{ProductoController.producto.url}"/>
+                <p:commandButton value="Enviar" actionListener="#{ProductoController.insertar()}" update=":msj :tabla pro :ingreso" oncomplete="PF('n').hide()"/>
+            </p:panelGrid>    
+             
         </h:form>
-
+           </p:dialog>
+        <h:form>
+        <p:commandButton value="Agregar producto" oncomplete="PF('n').show()" update=":tabla "/>
+        </h:form>
         <p:separator />
         <h:form id="tabla">            
             <p:dataTable  value="#{ProductoController.listaproducto}" var="ver" emptyMessage="El producto buscado no existe." >
              
                 <p:column headerText="id" >
-                      <p:outputLabel value="#{ver.idProducto}"/>
+                    <p:outputLabel value="#{ver.idProducto}"/>
                 </p:column>
                 <p:column headerText="nombre">
-                      <p:outputLabel value="#{ver.nombreProducto}"/>
+                    <p:outputLabel value="#{ver.nombreProducto}"/>
                 </p:column>
                 <p:column headerText="stock">
                     <p:outputLabel value="#{ver.stock}"/>
@@ -67,7 +78,7 @@
                     <p:outputLabel value="#{ver.precioCompra}"/>
                 </p:column>
                 <p:column headerText="Marca" >
-                      <p:outputLabel value="#{ver.marca.nombreMarca}"/>
+                    <p:outputLabel value="#{ver.marca.nombreMarca}"/>
                 </p:column>
                 <p:column headerText="Talla">
                     <p:outputLabel value="#{ver.talla.talla}"/>
@@ -76,7 +87,10 @@
                       <p:outputLabel value="#{ver.tipoRopa.nombreTipoRopa}"/>
                 </p:column>
                 <p:column headerText="Categoria">
-                      <p:outputLabel value="#{ver.categoria.nombreCategoria}"/>
+                    <p:outputLabel value="#{ver.categoria.nombreCategoria}"/>
+                </p:column>
+                 <p:column headerText="url">
+                     <img src="#{ver.url}" style="width:70%; height:22%"/>
                 </p:column>
                 <p:column headerText="Modificar ">
                     <p:commandButton value="Modificar" actionListener="#{ProductoController.cargarData(ver)}" update=":nuevo :tabla"
@@ -84,7 +98,7 @@
                 </p:column>
                 <p:column headerText="Eliminar" >
                     <p:commandButton value="Eliminar" actionListener="#{ProductoController.eliminar(ver)}"
-                                     update=":tabla :msj" />
+                                     update=":tabla :msj"/>
                 </p:column>
             </p:dataTable>    
         </h:form>
@@ -122,6 +136,8 @@
                         <f:selectItems value="#{categoriaController.listaCategoria}" var="c"
                                        itemLabel="#{c.nombreCategoria}" itemValue="#{c.idCategoria}"/>
                     </p:selectOneMenu>
+                    <p:outputLabel value="Imagen"/>
+                <p:inputText value="#{ProductoController.producto.url}"/>
                     <p:commandButton value="Modificar" actionListener="#{ProductoController.actualizar()}" update=":tabla :msj" oncomplete="PF('p').hide()"/>
                     <p:commandButton value="Cancelar" oncomplete="PF('p').hide()"/>                   
                 </p:panelGrid>                

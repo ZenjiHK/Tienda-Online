@@ -17,30 +17,30 @@
             </p:fieldset>
         </h:form>
         <p:dialog widgetVar="registro" header="Ingresar usuario" showEffect="clip" resizable="true">
-            <p:ajax event="close" listener="#{userController.limpiar()}" update="r"/>
+            <p:ajax event="close" listener="#{UserController.limpiar()}" update="r"/>
             <h:form id="r">
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Cliente"/>
-                    <p:selectOneMenu value="#{userController.cliente.id}">
-                        <f:selectItems value="#{clienteController.listaCliente}" var="c"
-                                       itemLabel="#{c.nombre} #{c.apellido}" itemValue="#{c.id}"/>
+                    <p:selectOneMenu value="#{UserController.cliente.idCliente}">
+                        <f:selectItems value="#{ClienteController.listaCliente}" var="c"
+                                       itemLabel="#{c.nombreCliente} #{c.apellidoCliente}" itemValue="#{c.idCliente}"/>
                     </p:selectOneMenu>
                     <p:outputLabel value="Usuario"/>
-                    <p:inputText value="#{userController.user.usuario}"/>
+                    <p:inputText value="#{UserController.user.nombreUsuario}"/>
                     <p:outputLabel value="Contraseña"/>
-                    <p:inputText value="#{userController.user.clave}"/>
+                    <p:inputText value="#{UserController.user.clave}"/>
                     
                     <p:outputLabel value="Rol"/>
-                    <p:selectOneMenu value="#{userController.rol.id}">
-                        <f:selectItems value="#{rolController.listaRol}" var="r"
-                                       itemLabel="#{r.nombre}" itemValue="#{r.id}"/>
+                    <p:selectOneMenu value="#{UserController.rol.idRol}">
+                        <f:selectItems value="#{RolController.listaRol}" var="r"
+                                       itemLabel="#{r.nombreRol}" itemValue="#{r.idRol}"/>
                     </p:selectOneMenu>
-                    <p:commandButton value="Insertar" actionListener="#{userController.insertar()}" 
+                    <p:commandButton value="Insertar" actionListener="#{UserController.insertar()}" 
                                      oncomplete="PF('registro').hide()" update=":datos :msj :r"
-                                     rendered="#{userController.user.id == 0}"/>
+                                     rendered="#{UserController.user.idUser == 0}"/>
                     <p:commandButton value="Editar" actionListener="#{userController.editar()}" 
                                      oncomplete="PF('registro').hide()" update=":datos :msj :r"
-                                     rendered="#{userController.user.id != 0}"/>
+                                     rendered="#{UserController.user.idUser != 0}"/>
                 </p:panelGrid>
             </h:form>
         </p:dialog>
@@ -48,19 +48,19 @@
             <p:fieldset legend="Usuarios" toggleable="true">
                 <p:dataTable value="#{userController.listaUser}" var="u">
                     <p:column headerText="ID">
-                        <h:outputText value="#{u.id}"/>
+                        <h:outputText value="#{u.idUser}"/>
                     </p:column>
                     <p:column headerText="Cliente">
-                        <h:outputText value="#{u.cliente.nombre} #{u.cliente.apellido}"/>
+                        <h:outputText value="#{u.cliente.nombreCliente} #{u.cliente.apellidoCliente}"/>
                     </p:column>
                     <p:column headerText="Usuario">
-                        <h:outputText value="#{u.usuario}"/>
+                        <h:outputText value="#{u.nombreUsuario}"/>
                     </p:column>
                     <p:column headerText="clave">
                         <h:outputText value="#{u.clave}"/>
                     </p:column>
                     <p:column headerText="Rol">
-                        <h:outputText value="#{u.rol.nombre}"/>
+                        <h:outputText value="#{u.rol.nombreRol}"/>
                     </p:column>
                     <p:column headerText="Estado">
                         <h:outputText value="#{u.estado}"/>

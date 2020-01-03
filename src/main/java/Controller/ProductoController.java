@@ -152,8 +152,7 @@ public class ProductoController implements Serializable{
         this.listatalla=tallaEJB.findAll();
         this.listatiporopa=tiporopaEJB.findAll();
         this.listacategoria=categoriaEJB.findAll();
-        this.listaproducto=productoEJB.findAll();
-        this.mensaje="";
+        this.listaproducto=productoEJB.findAll();        
     }
    
    public void consultarMarca(){
@@ -179,6 +178,7 @@ public class ProductoController implements Serializable{
             this.producto.setCategoria(categoria);
             this.productoEJB.create(producto);
             this.mensaje = "Producto registrado exitosamente";
+            limpiar();
         } catch (Exception e) {
             this.mensaje = "Error, imposible registrar";
             e.printStackTrace();
@@ -194,7 +194,7 @@ public class ProductoController implements Serializable{
             this.producto.setTalla(talla);
             this.producto.setTipoRopa(tiporopa);
             this.producto.setCategoria(categoria);
-            this.productoEJB.edit(producto);
+            this.productoEJB.edit(producto); 
             this.mensaje = "Producto actualizado exitosamente";
         } catch (Exception e) {
             this.mensaje = "Error, imposible editar";
@@ -239,7 +239,6 @@ public class ProductoController implements Serializable{
         this.listatalla=tallaEJB.findAll();
         this.listatiporopa=tiporopaEJB.findAll();
         this.listacategoria=categoriaEJB.findAll();
-        this.listaproducto=productoEJB.findAll();
-        this.mensaje="";
+        this.listaproducto=productoEJB.findAll();      
     }
 }

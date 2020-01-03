@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <link href="../Resourse/css/login.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <div class="login">
+            <h:form>
+                <p:panel header=" Ingrese los datos del usuario" widgetVar="dlg">
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Usuario"/>
+                        <p:inputText value="#{userController.user.usuario}"/>
+                        <p:outputLabel value="Clave"/>
+                        <p:inputText value="#{userController.user.clave}"/>
+                        <p:outputLabel value="Cliente"/>
+                        <p:selectOneMenu value="#{userController.cliente.id}">
+                            <f:selectItems value="#{clienteController.listaCliente}" var="c" itemLabel="#{c.nombre} #{c.apellido}" itemValue="#{c.id}"/>
+                        </p:selectOneMenu>
+                        <p:commandButton value="Guardar" actionListener="#{userController.insertar()}" action="login"/>
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+        </div>
+    </h:body>
+</html>

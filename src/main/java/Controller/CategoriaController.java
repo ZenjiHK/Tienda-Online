@@ -15,10 +15,10 @@ import javax.inject.Named;
 @RequestScoped
 public class CategoriaController implements Serializable{
     
-     private String mensaje;
+     private String mensaje;//Mensaje
     
     @EJB
-    private CategoriaFacadeLocal categoriaEJB;
+    private CategoriaFacadeLocal categoriaEJB;    
     private Categoria categoria;
     private List<Categoria> listaCategoria;
 
@@ -81,21 +81,24 @@ public class CategoriaController implements Serializable{
         FacesContext.getCurrentInstance().addMessage(mensaje, msj);
     }
     
-    public void eliminar(Categoria cat){
-        try {
-            this.categoria = cat;
-            categoriaEJB.remove(categoria);
-            listaCategoria = categoriaEJB.findAll();
-          this.mensaje="Eliminado con éxito";
-        } catch (Exception e) {
-            this.mensaje="ERROR";
-        }
-        FacesMessage msj = new FacesMessage(this.mensaje);
-        FacesContext.getCurrentInstance().addMessage(mensaje, msj);
+    public void limpiar(){
+        this.categoria = new Categoria();
+        this.listaCategoria = categoriaEJB.findAll();
+        this.mensaje = "";
     }
     
-    public void limpiar(){
-        categoria = new Categoria();
-        listaCategoria = categoriaEJB.findAll();
+    //Metodo eliminar
+    public void eliminar(Categoria c) {
+        try {
+            this.categoriaEJB.remove(c);
+            this.categoria = new Categoria();
+            this.mensaje = "categoria eliminada";
+        } catch (Exception e) {
+            this.mensaje = "Error " + e.getMessage();
+            e.printStackTrace();
+        }
+        FacesMessage msj = new FacesMessage(this.mensaje);
+        FacesContext.getCurrentInstance().addMessage(null, msj);
     }
+    
 }
