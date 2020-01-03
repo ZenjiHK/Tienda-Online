@@ -28,6 +28,7 @@ public class ProductoController implements Serializable{
     private ProductoFacadeLocal productoEJB;
     private Producto producto;
     private List<Producto> listaproducto;
+    private List<Producto> consultaProductos;   
     private String mensaje;
     
     @EJB
@@ -141,6 +142,15 @@ public class ProductoController implements Serializable{
         this.filtroProducto = filtroProducto;
     }
 
+    public List<Producto> getConsultaProductos() {       
+        this.consultaProductos = this.productoEJB.consultaProductos();
+        return consultaProductos;
+    }
+
+    public void setConsultaProductos(List<Producto> consultaProductos) {
+        this.consultaProductos = consultaProductos;
+    }
+    
     @PostConstruct
     public void init(){
         this.marca = new Marca();
