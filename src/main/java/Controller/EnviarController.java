@@ -11,7 +11,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-@Named(value = "EnviarController")
+@Named(value = "enviarController")
 @SessionScoped
 public class EnviarController implements Serializable {
     //Declaramos la variable que se utilizará    

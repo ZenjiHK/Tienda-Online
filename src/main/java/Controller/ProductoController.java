@@ -20,7 +20,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-@Named(value = "ProductoController")
+@Named(value = "productoController")
 @RequestScoped
 public class ProductoController implements Serializable{
     
