@@ -13,7 +13,7 @@
             <p:fieldset legend="Nuevo rol" toggleable="true">
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Rol: "/>
-                    <p:inputText value="#{rolController.rol.nombre}"/>
+                    <p:inputText value="#{rolController.rol.nombreRol}"/>
                 </p:panelGrid>
                 <p:commandButton value="Insertar" actionListener="#{rolController.insertar()}"
                                  update=":msj :datos"/>
@@ -22,10 +22,10 @@
         <h:form id="datos">            
                 <p:dataTable value="#{rolController.listaRol}" var="r">
                     <p:column headerText="ID">
-                        <h:outputText value="#{r.id}"/>
+                        <h:outputText value="#{r.idRol}"/>
                     </p:column>
                     <p:column headerText="Usuario">
-                        <h:outputText value="#{r.nombre}"/>
+                        <h:outputText value="#{r.nombreRol}"/>
                     </p:column>
 
                     <p:column headerText="Editar">
@@ -40,9 +40,9 @@
          <p:dialog id="nuevo" widgetVar="rol" >
             <h:form>
                 <p:outputLabel value="Código"/>
-                <p:inputText value="#{rolController.rol.id}"/>
+                <p:inputText value="#{rolController.rol.idRol}"/>
                 <p:outputLabel value="Nombre"/>
-                <p:inputText value="#{rolController.rol.nombre}"/>
+                <p:inputText value="#{rolController.rol.nombreRol}"/>
                 <p:commandButton value="Modificar" actionListener="#{rolController.editar()}" update=":datos :msj" oncomplete="PF('rol').hide()"/>
                 <p:commandButton value="Cancelar" oncomplete="PF('rol').hide()"/>
             </h:form>
