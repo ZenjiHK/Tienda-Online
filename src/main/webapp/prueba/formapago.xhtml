@@ -40,11 +40,10 @@
                             <p:commandButton value="Modiifcar" actionListener="#{formaPagoController.cargarDatos(fp)}" update=":formulario" oncomplete="PF('modal').show()"/>
                       </p:column>
                       <p:column headerText="Eliminar">
-                            <p:commandButton value="Eliminar" actionListener="#{formaPagoController.eliminar()}" update=":formulario :tabla"/>
+                            <p:commandButton value="Eliminar" actionListener="#{formaPagoController.eliminar(fp)}" update=":formulario :tabla"/>
                       </p:column>
                 </p:dataTable>
             </p:fieldset>           
         </h:form>
     </h:body>
 </html>
-
