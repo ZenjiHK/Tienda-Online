@@ -14,17 +14,21 @@
                 <p:panel header=" Ingrese los datos del usuario" widgetVar="dlg">
                     <h:panelGrid columns="2">
                         <p:outputLabel value="Usuario"/>
-                        <p:inputText value="#{userController.user.usuario}"/>
-                        <p:outputLabel value="Clave"/>
-                        <p:inputText value="#{userController.user.clave}"/>
+                        <p:inputText value="#{userController.user.nombreUsuario}" required="true"/>
+                        <p:outputLabel for="pss" value="Clave"/>
+                        <p:password id="pss" value="#{userController.user.clave}" match="pss1" label="clave" required="true"/>
+                         <p:outputLabel for="pss1" value="ingrese nueva mente la clave"/>
+                         <p:password id="pss1" value="#{userController.user.clave}"  label="clave2" required="true" feedback="false"
+                                     validatorMessage="password 1 should match password 2"/>
                         <p:outputLabel value="Cliente"/>
-                        <p:selectOneMenu value="#{userController.cliente.id}">
-                            <f:selectItems value="#{clienteController.listaCliente}" var="c" itemLabel="#{c.nombre} #{c.apellido}" itemValue="#{c.id}"/>
+                        <p:selectOneMenu value="#{userController.cliente.idCliente}">
+                            <f:selectItems value="#{clienteController.listaCliente}" var="c" itemLabel="#{c.nombreCliente} #{c.apellidoCliente}" itemValue="#{c.idCliente}"/>
                         </p:selectOneMenu>
                         <p:commandButton value="Guardar" actionListener="#{userController.insertar()}" action="login"/>
                     </h:panelGrid>
                 </p:panel>
             </h:form>
+            <p:messages id="messages" showDetail="true" autoUpdate="true"/> 
         </div>
     </h:body>
 </html>
