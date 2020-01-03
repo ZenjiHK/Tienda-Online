@@ -152,8 +152,7 @@ public class ProductoController implements Serializable{
         this.listatalla=tallaEJB.findAll();
         this.listatiporopa=tiporopaEJB.findAll();
         this.listacategoria=categoriaEJB.findAll();
-        this.listaproducto=productoEJB.findAll();
-        this.mensaje="";
+        this.listaproducto=productoEJB.findAll();        
     }
    
    public void consultarMarca(){
@@ -240,7 +239,6 @@ public class ProductoController implements Serializable{
         this.listatalla=tallaEJB.findAll();
         this.listatiporopa=tiporopaEJB.findAll();
         this.listacategoria=categoriaEJB.findAll();
-        this.listaproducto=productoEJB.findAll();
-        this.mensaje="";
+        this.listaproducto=productoEJB.findAll();      
     }
 }

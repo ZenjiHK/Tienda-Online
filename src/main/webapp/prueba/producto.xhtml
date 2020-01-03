@@ -52,7 +52,7 @@
 
                 <p:outputLabel value="Imagen"/>
                 <p:inputText value="#{ProductoController.producto.url}"/>
-                <p:commandButton value="Enviar" actionListener="#{ProductoController.insertar()}" update=":msj :tabla pro" oncomplete="PF('n').hide()"/>
+                <p:commandButton value="Enviar" actionListener="#{ProductoController.insertar()}" update=":msj :tabla pro :ingreso" oncomplete="PF('n').hide()"/>
             </p:panelGrid>    
              
         </h:form>
