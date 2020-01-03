@@ -21,26 +21,30 @@
             <h:form id="r">
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Cliente"/>
-                    <p:selectOneMenu value="#{UserController.cliente.idCliente}">
-                        <f:selectItems value="#{ClienteController.listaCliente}" var="c"
+
+                    <p:selectOneMenu value="#{userController.cliente.idCliente}">
+                        <f:selectItems value="#{clienteController.listaCliente}" var="c"
                                        itemLabel="#{c.nombreCliente} #{c.apellidoCliente}" itemValue="#{c.idCliente}"/>
                     </p:selectOneMenu>
                     <p:outputLabel value="Usuario"/>
-                    <p:inputText value="#{UserController.user.nombreUsuario}"/>
+                    <p:inputText value="#{userController.user.nombreUsuario}"/>
+
                     <p:outputLabel value="Contraseña"/>
                     <p:inputText value="#{UserController.user.clave}"/>
                     
                     <p:outputLabel value="Rol"/>
-                    <p:selectOneMenu value="#{UserController.rol.idRol}">
-                        <f:selectItems value="#{RolController.listaRol}" var="r"
+
+                    <p:selectOneMenu value="#{userController.rol.idRol}">
+                        <f:selectItems value="#{rolController.listaRol}" var="r"
+
                                        itemLabel="#{r.nombreRol}" itemValue="#{r.idRol}"/>
                     </p:selectOneMenu>
                     <p:commandButton value="Insertar" actionListener="#{UserController.insertar()}" 
                                      oncomplete="PF('registro').hide()" update=":datos :msj :r"
-                                     rendered="#{UserController.user.idUser == 0}"/>
+                                     rendered="#{userController.user.idUser == 0}"/>
                     <p:commandButton value="Editar" actionListener="#{userController.editar()}" 
                                      oncomplete="PF('registro').hide()" update=":datos :msj :r"
-                                     rendered="#{UserController.user.idUser != 0}"/>
+                                     rendered="#{userController.user.idUser != 0}"/>
                 </p:panelGrid>
             </h:form>
         </p:dialog>
