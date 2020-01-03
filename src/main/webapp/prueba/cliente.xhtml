@@ -17,7 +17,7 @@
             </p:fieldset>   
         </h:form>
         <p:dialog widgetVar="cli" modal="true" showEffect="clip" resizable="false">
-            <p:ajax event="close" listener="#{clienteController.limpiar()}" update=":c"/>
+            <p:ajax event="close" listener="#{clienteController.limpiar()}" update="c"/>
             <h:form id="c">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="txtNombre" value="Nombre cliente"/>

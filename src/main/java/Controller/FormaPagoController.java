@@ -11,15 +11,17 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 /**
  *
  * @author evelyn.andradeusam
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class FormaPagoController implements Serializable{
     
     @EJB
@@ -57,35 +59,41 @@ public class FormaPagoController implements Serializable{
     
     public void crear(){
         try{
-            formaPagoEJB.create(formapago);
+            formaPagoEJB.create(this.formapago);
             limpiar();
             msg = "Exito";
         }catch(Exception e){
             msg = "Error " + e.getMessage();
             e.printStackTrace();
         }
+        FacesMessage mensaje = new FacesMessage(this.msg);
+        FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
     
     public void editar(){
         try{
-            formaPagoEJB.edit(formapago);
+            formaPagoEJB.edit(this.formapago);
             limpiar();
             msg = "Exito";
         }catch(Exception e){
             msg = "Error " + e.getMessage();
             e.printStackTrace();
         }
+        FacesMessage mensaje = new FacesMessage(this.msg);
+        FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
     
     public void eliminar(){
         try{
-            formaPagoEJB.remove(formapago);
+            formaPagoEJB.remove(this.formapago);
             limpiar();
             msg = "Exito";
         }catch(Exception e){
             msg = "Error " + e.getMessage();
             e.printStackTrace();
         }
+        FacesMessage mensaje = new FacesMessage(this.msg);
+        FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
     
     public void cargarDatos(FormaPago fp){
@@ -97,5 +105,7 @@ public class FormaPagoController implements Serializable{
             msg = "Error " + e.getMessage();
             e.printStackTrace();
         }
+        FacesMessage mensaje = new FacesMessage(this.msg);
+        FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
 }

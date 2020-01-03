@@ -41,7 +41,7 @@
                                     <f:selectItems value="#{formaPagoController.listapago}" var="forma" itemLabel="#{forma.nombreFormaPago}" itemValue="#{forma.idFormaPago}"/>
                                 </p:selectOneMenu>
                                 <p:commandButton value="Guardar" actionListener="#{facturaController.crear()}" rendered="#{facturaController.factura.idFactura==0}" update=":Datos f :mensaje" oncomplete="PF('modal').hide()"/>
-                                <p:commandButton value="Actualizar" actionListener="#{facturaController.editar()}" rendered="#{facturaController.factura.idFactura>0}" update=":Datos f :mensaje" oncomplete="PF('modal').hide()"/>
+                                <p:commandButton value="Actualizar" actionListener="#{facturaController.editar()}" rendered="#{facturaController.factura.idFactura!=0}" update=":Datos f :mensaje" oncomplete="PF('modal').hide()"/>
                             </p:panelGrid>  
                         </h:form>
                     </p:dialog>
