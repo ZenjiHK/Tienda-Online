@@ -9,21 +9,35 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <style type="text/css">
-
-        #p_megaMenuid{
-            margin-top:20px;
-        }
-
-    </style>
     <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        
+        <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'/>
+	<link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css'/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
+	
+	<link rel="stylesheet" href="css/preloader.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/responsive.css"/>
+	<!-- <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css"> -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css"/>
+	
+	<!-- <script src="js/jquery-1.11.1.min.js"></script> -->
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<!-- <script src="js/jquery.plugin.min.js"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.0.2/jquery.plugin.min.js"></script>
+	<!-- <script src="js/jquery.countdown.min.js"></script> -->
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.0.2/jquery.countdown.min.js"></script>
+	
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.0/jquery.flexslider-min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.js"></script>
+	<script src="js/front.js"></script>
     </h:head>
     <h:body>
-        <div>
-        <h:form>
+       
+        <h:form styleClass="solapado">
             <p:megaMenu orientation="horizontal" id="p_megaMenuid">
                 <p:submenu label="TV" icon="pi pi-check">
                     <p:column>
@@ -138,8 +152,7 @@ and open the template in the editor.
 
                 <p:menuitem value="Quit" url="http://www.primefaces.org" icon="pi pi-times" />
             </p:megaMenu>
-        </h:form>
-            </div>
-        
+        </h:form>   
     </h:body>
+    
 </html>
