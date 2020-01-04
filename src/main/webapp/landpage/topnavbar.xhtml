@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Tienda de ropa JSF</title>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
     </h:head>
     <body>
         <h:form>
@@ -37,17 +37,12 @@
                             </p:submenu>
                         </p:column>
                     </p:submenu>
-                    <p:submenu label="Accesorios y suéteres" icon="pi pi-file">
+                    <p:submenu label="Accesorios" icon="pi pi-file">
                         <p:column>
                             <p:submenu label="Accesorios">
                                 <p:menuitem value="Cinturones" url="#"/>
                                 <p:menuitem value="Pañuelos" url="#"/>
                                 <p:menuitem value="Relojes" url="#"/>
-                            </p:submenu>
-                            <p:submenu label="Suéteres y chaquetas">
-                                <p:menuitem value="Suéteres" url="#"/>
-                                <p:menuitem value="Chaquetas" url="#"/>
-                                <p:menuitem value="Sudaderas" url="#"/>
                             </p:submenu>
                         </p:column>
                     </p:submenu>
