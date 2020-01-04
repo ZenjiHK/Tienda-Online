@@ -40,8 +40,8 @@
                     <f:facet name="header">
                         Ropa disponible
                     </f:facet>
-                    <p:panel  header="#{prod.nombreProducto}" style="text-align:center">
-                        <img src="#{prod.url}" style="width: 25%;height: 25%"/><br/>
+                    <p:panel  header="#{prod.nombreProducto}" style="text-align:center" >
+                        <img src="#{prod.url}" style="width:200px;height:200px"/><br/>
                         <h:outputText value="#{prod.marca.nombreMarca}"/><br/>
                         <h:outputText value="$#{prod.precioVenta}"/><br/>
                         <p:commandButton value="Agregar al carrito"/>
