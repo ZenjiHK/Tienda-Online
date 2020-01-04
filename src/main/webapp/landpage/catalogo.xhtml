@@ -20,13 +20,20 @@
 
                     </p:panel>
                 </h:outputLabel>
-
-
                 <p:dataGrid value="#{ProductoController.listaproducto}" var="prod" columns="3" layout="grid"
                             rows="6" paginator="true" 
                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} 
                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
+                    <!-- Datagrid cumple una función similar a Datatable: mostrar los datos contenidos en una lista. Sin embargo, Datagrid da opciones
+                    extras de personalización que pueden ser bastante útiles en cuanto a mejorar la interfaz de usuario. Nos permite dividir la 
+                    información dentro de ella en columnas, y a su vez en filas(tomar en cuenta de que cada "objeto" o cada registro de la BD, 
+                    conforma una fila nueva), organizando toda esta información a través de un componente que se llama "paginator", cuya función, en
+                    resumen, es crear esos famosos "pies de página", y crear bloques en los que se divide la información en base a las columnas y las
+                    filas (en caso de haber sido definidas previamente).
+                    
+                    PaginatorTemplate es una opción en la cual se agregan los diferentes botones
+                    -->
                     <f:facet name="header">
                         Ropa disponible
                     </f:facet>
