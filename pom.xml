@@ -99,13 +99,13 @@
             <version>1.4.7</version>
             <scope>compile</scope>
         </dependency>  
-        <!-- https://mvnrepository.com/artifact/org.primefaces.themes/all-themes -->
-        <!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
+        <!-- https://mvnrepository.com/artifact/org.primefaces.themes/bootstrap -->
         <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>7.0</version>
+            <groupId>org.primefaces.themes</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>1.0.10</version>
         </dependency>
+
     </dependencies>
     <build>
         <plugins>
