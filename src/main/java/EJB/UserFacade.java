@@ -4,14 +4,11 @@
  * and open the template in the editor.
  */
 package EJB;
-
-import Entity.Cliente;
 import Entity.User;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+
 
 /**
  *
@@ -30,26 +27,6 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
 
     public UserFacade() {
         super(User.class);
-    }
-    
-    @Override
-    public User ExisteCorreo(String d){
-        User user = null;
-        String sql;
-        try {
-            Cliente c=new Cliente();
-            sql = "SELECT  c FROM Cliente c  Where c.correo=?1";
-            Query query = em.createQuery(sql);            
-            query.setParameter(1, c.getCorreo());       
-            
-            List<User> lista = query.getResultList();
-            if (!lista.isEmpty()) {
-                user = lista.get(0);
-            }
-        } catch (Exception e) {
-            throw e;
-        }
-        return user;
-    }
+    }        
   
 }

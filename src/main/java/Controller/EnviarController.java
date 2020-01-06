@@ -1,12 +1,15 @@
 package Controller;
 
+import EJB.ClienteFacadeLocal;
 import EJB.UserFacadeLocal;
+import Entity.Cliente;
 import Entity.User;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.util.Properties;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -27,6 +30,27 @@ public class EnviarController implements Serializable {
     private List<User> listaUser;
     private String mensaje;
 
+     @EJB    
+    private ClienteFacadeLocal clienteFacade;       
+    private List<Cliente> listaCliente;
+    private Cliente cliente; 
+
+    public List<Cliente> getListaCliente() {
+        return listaCliente;
+    }
+
+    public void setListaCliente(List<Cliente> listaCliente) {
+        this.listaCliente = listaCliente;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+    
     public User getUser() {
         return user;
     }
@@ -62,21 +86,26 @@ public class EnviarController implements Serializable {
         this.destinatario = destinatario;
     }
 
+    @PostConstruct
+    public void init(){
+        cliente = new Cliente();
+    }
+    
     //Metodo para enviar correos
     public void enviar() {
-        User usCorreo;
+        Cliente usCorreo;
+        cliente.setCorreo(destinatario);
         try {
-            usCorreo = userFacade.ExisteCorreo(destinatario);
+            usCorreo = clienteFacade.ExisteCorreo(cliente);
+            System.out.println(destinatario);
             if (usCorreo != null) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Existe", "Correo enviado"));               
-                System.out.println(destinatario);
-                System.out.println(usCorreo+" AAAAAAAAAAAAAAAAAAAAAAA");
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se ha enviado un correo a la dirección ingresada. Verifique.", "Existe"));                             
             } else {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso de no existe", "El correo ingresado no coincide con los registrados en esta aplicación."));
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "El correo ingresado no coincide con ninguna cuenta existente.", "El correo ingresado no coincide con los registrados en esta aplicación."));              
             }
 
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso error", "Error"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ha ocurrido un error, intente más tarde", "Error"));
         }
 
         try {
@@ -99,7 +128,7 @@ public class EnviarController implements Serializable {
                     new InternetAddress(destinatario));
             message.setSubject("Prueba de restaurar contraseña");
             message.setText(
-                    "Correo nuevo");
+                    "Su clave nueva es AHJSGASGHJG.");
 
             // Lo enviamos.
             Transport t = session.getTransport("smtp");
