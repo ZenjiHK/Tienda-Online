@@ -31,6 +31,9 @@ public interface UserFacadeLocal {
 
     int count();
     
+
+    User Session(User us);
     public User ExisteCorreo(String d);
+
     
 }

@@ -41,10 +41,10 @@
                     </p:selectOneMenu>
                     <p:commandButton value="Insertar" actionListener="#{UserController.insertar()}" 
                                      oncomplete="PF('registro').hide()" update=":datos :msj :r"
-                                     rendered="#{userController.user.idUser == 0}"/>
+                                     rendered="#{userController.user.cliente == 0}"/>
                     <p:commandButton value="Editar" actionListener="#{userController.editar()}" 
                                      oncomplete="PF('registro').hide()" update=":datos :msj :r"
-                                     rendered="#{userController.user.idUser != 0}"/>
+                                     rendered="#{userController.user.cliente != 0}"/>
                 </p:panelGrid>
             </h:form>
         </p:dialog>
@@ -52,7 +52,7 @@
             <p:fieldset legend="Usuarios" toggleable="true">
                 <p:dataTable value="#{userController.listaUser}" var="u">
                     <p:column headerText="ID">
-                        <h:outputText value="#{u.idUser}"/>
+                        <h:outputText value="#{u.cliente.idCliente}"/>
                     </p:column>
                     <p:column headerText="Cliente">
                         <h:outputText value="#{u.cliente.nombreCliente} #{u.cliente.apellidoCliente}"/>

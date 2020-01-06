@@ -16,13 +16,13 @@
                 <p:panel header="Sistema de reserva de vuelo" widgetVar="dlg" >
                     <h:panelGrid columns="2" cellpadding="5">
                         <h:outputLabel for="usuario" value="Usuario:" />
-                        <p:inputText id="usuario" value="#" placeholder="Usuario" required="true" label="username" requiredMessage="Escriba el usuario por favor" />
+                        <p:inputText id="usuario" value="#{userController.user.nombreUsuario}" placeholder="Usuario" required="true" label="username" requiredMessage="Escriba el usuario por favor" />
 
                         <h:outputLabel for="password" value="Password:" />
-                        <p:password id="password" value="#" placeholder="Password" required="true" label="password" requiredMessage="Escriba el password por favor" />
+                        <p:password id="password" value="#{userController.user.clave}" placeholder="Password" required="true" label="password" requiredMessage="Escriba el password por favor" />
 
                         <f:facet name="footer">
-                            <p:commandButton icon="ui-icon-person" value="Ingresar" update="mensaje" action="#"/>
+                            <p:commandButton icon="ui-icon-person" value="Ingresar" update="mensaje" action="#{userController.login()}"/>
                             <p:button outcome="insertUsuario" value="Nuevo Usuario" icon="pi pi-star" style="margin-left:20px;"/>
                         </f:facet>  
                     </h:panelGrid>
