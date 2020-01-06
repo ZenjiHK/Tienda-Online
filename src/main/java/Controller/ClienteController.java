@@ -60,12 +60,7 @@ public class ClienteController implements Serializable{
     
     @PostConstruct
     public void init(){
-    this.cliente=new Cliente();
-    this.pais=new Pais();
-    this.listaCliente = clienteEJB.findAll();
-    this.msj="";
-    this.cliente.setPais(pais);
-          System.out.println(listaCliente.size());
+    limpiar();
     }
     
     public void insertar(){
@@ -89,8 +84,8 @@ public class ClienteController implements Serializable{
     
     public void editar(){
         try {
-            this.cliente.setPais(pais);
-            this.clienteEJB.edit(cliente);
+            this.cliente.setPais(this.pais);
+            this.clienteEJB.edit(this.cliente);
             limpiar();
             this.msj="Cliente Actualizado correctamente";            
         } catch (Exception e) {
@@ -98,7 +93,7 @@ public class ClienteController implements Serializable{
             e.printStackTrace();
         }
         FacesMessage mensaje=new FacesMessage(this.msj);
-        FacesContext.getCurrentInstance().addMessage(null, mensaje);
+        FacesContext.getCurrentInstance().addMessage(msj, mensaje);
     }
     
     public void limpiar(){

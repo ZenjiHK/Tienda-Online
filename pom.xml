@@ -104,6 +104,12 @@
                   <artifactId>bootstrap</artifactId>
                   <version>1.0.10</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
+            <dependency>
+                  <groupId>net.sf.jasperreports</groupId>
+                  <artifactId>jasperreports</artifactId>
+                  <version>6.11.0</version>
+            </dependency>
 
       </dependencies>
       <build>

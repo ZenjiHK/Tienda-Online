@@ -6,14 +6,14 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.inject.Named;
 
 /**
  *
  * @author maynor.menjivarusam
  */
-@Named(value = "paisController")
+@ManagedBean
 @SessionScoped
 public class PaisController implements Serializable{
     @EJB
@@ -31,7 +31,7 @@ public class PaisController implements Serializable{
     }
 
     public List<Pais> getListaPais() {
-        this.listaPais= this.paisEJB.findAll();
+        this.listaPais=this.paisEJB.findAll();
         return listaPais;
     }
 
@@ -41,12 +41,14 @@ public class PaisController implements Serializable{
     
     @PostConstruct
     public void init(){
-        limpiar();
+        this.pais=new Pais(1);
+        this.listaPais=paisEJB.findAll();
+        this.msg="";
     }
     
     public void limpiar(){
         this.pais=new Pais();
-        this.listaPais=this.paisEJB.findAll();
+        this.listaPais=paisEJB.findAll();
         this.msg="";
     }
 
@@ -63,7 +65,7 @@ public class PaisController implements Serializable{
     
     public void editar(){
         try{
-            paisEJB.edit(pais);
+            this.paisEJB.edit(pais);
             limpiar();
             msg="Exito";
         }catch(Exception e){
@@ -72,9 +74,9 @@ public class PaisController implements Serializable{
         }
     }
     
-    public void remover(){
+    public void remover(Pais p){
         try{
-            paisEJB.remove(pais);
+            this.paisEJB.remove(p);
             limpiar();
             msg="Exito";
         }catch(Exception e){
@@ -83,24 +85,14 @@ public class PaisController implements Serializable{
         }
     }
     
-    public Pais cargarDatos(Object id){
+    public void cargarDatos(Pais p){
         try{
-            pais = paisEJB.find(id);
-            limpiar();
+              limpiar();
+            this.pais = p;
             msg="Exito";
-            return pais;
         }catch(Exception e){
             this.msg="Error "+e.getMessage();
             e.printStackTrace();
-            return null;
         }
     }
-
-      public String getMsg() {
-            return msg;
-      }
-
-      public void setMsg(String msg) {
-            this.msg = msg;
-      }
 }

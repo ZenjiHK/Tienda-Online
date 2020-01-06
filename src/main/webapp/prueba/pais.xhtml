@@ -11,13 +11,18 @@
       <h:form>
             <p:fieldset legend="Nuevo">
                   <p:panelGrid columns="1">
-                        <p:commandButton value="Ingresar nuevo pais"/>
+                        <p:commandButton value="Ingresar nuevo pais" oncomplete="PF('modal').show()"/>
                   </p:panelGrid>
             </p:fieldset>
       </h:form>
       <p:dialog widgetVar="modal" modal="true" showEffect="clip" resizable="true">
             <p:ajax event="close" listener="#{paisController.limpiar()}"/>
-            
+            <h:form id="formulario">
+                  <p:outputLabel value="Nombre del pais"/>
+                  <p:inputText value="#{paisController.pais.nombrePais}"/>
+                  <p:commandButton value="Guardar" actionListener="#{paisController.crear()}" update="formulario :tabla" oncomplete="PF('modal').hide()" rendered="#{paisController.pais.idPais ==0}" />
+                  <p:commandButton value="Actualizar" actionListener="#{paisController.editar()}" update="formulario :tabla" oncomplete="PF('modal').hide()" rendered="#{paisController.pais.idPais !=0}" />
+            </h:form>
       </p:dialog>
       <h:form id="tabla">
         <p:dataTable value="#{paisController.listaPais}" var="p"  >
@@ -28,13 +33,10 @@
                 <p:outputLabel value="#{p.nombrePais}"/>
             </p:column>
             <p:column>
-                <p:outputLabel value="#{p.nombrePais}"/>
-            </p:column>
-            <p:column>
                   <p:commandButton value="Modificar" actionListener="#{paisController.cargarDatos(p)}" update=":tabla :formulario" oncomplete="PF('modal').show()"/>
             </p:column>
             <p:column>
-                  <p:commandButton value="Eliminar" actionListener="#{paisController.remover()}" update=":tabla"/>
+                  <p:commandButton value="Eliminar" actionListener="#{paisController.remover(p)}" update=":tabla"/>
             </p:column>
         </p:dataTable>
       </h:form>
