@@ -31,37 +31,39 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
     public UserFacade() {
         super(User.class);
     }
-    
+
     @Override
 
-    public User Session(User us){
-        User user=null;
+    public User Session(User us) {
+        User user = null;
         String sql;
         try {
-            sql="select u from User u where u.nombreUsuario=?1 and u.clave=?2";
-            Query query=em.createQuery(sql);
-            
+            sql = "select u from User u where u.nombreUsuario=?1 and u.clave=?2";
+            Query query = em.createQuery(sql);
+
             query.setParameter(1, us.getNombreUsuario());
             query.setParameter(2, us.getClave());
-            List<User> lista=query.getResultList();
-            if(!lista.isEmpty()){
-            user=lista.get(0);
-            } catch (Exception e) {
+            List<User> lista = query.getResultList();
+            if (!lista.isEmpty()) {
+                user = lista.get(0);
+            }
+        } catch (Exception e) {
             throw e;
         }
         return user;
     }
-            
 
-    public User ExisteCorreo(String d){
+
+
+public User ExisteCorreo(String d) {
         User user = null;
         String sql;
         try {
-            Cliente c=new Cliente();
+            Cliente c = new Cliente();
             sql = "SELECT  c FROM Cliente c  Where c.correo=?1";
-            Query query = em.createQuery(sql);            
-            query.setParameter(1, c.getCorreo());       
-            
+            Query query = em.createQuery(sql);
+            query.setParameter(1, c.getCorreo());
+
             List<User> lista = query.getResultList();
             if (!lista.isEmpty()) {
                 user = lista.get(0);
