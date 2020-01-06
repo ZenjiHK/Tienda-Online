@@ -114,7 +114,7 @@ public class EnviarController implements Serializable {
             props.setProperty("mail.smtp.host", "smtp.gmail.com");
             props.setProperty("mail.smtp.starttls.enable", "true");
             props.setProperty("mail.smtp.port", "587");
-            props.setProperty("mail.smtp.user", "pruebadebot8@gmail.com");
+            props.setProperty("mail.smtp.user", "celavieonline@gmail.com");
             props.setProperty("mail.smtp.auth", "true");
 
             // Preparamos la sesion
@@ -122,7 +122,7 @@ public class EnviarController implements Serializable {
 
             // Construimos el mensaje
             MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("pruebadebot8@gmail.com"));
+            message.setFrom(new InternetAddress("celavieonline@gmail.com"));
             message.addRecipient(
                     Message.RecipientType.TO,
                     new InternetAddress(destinatario));
@@ -132,7 +132,7 @@ public class EnviarController implements Serializable {
 
             // Lo enviamos.
             Transport t = session.getTransport("smtp");
-            t.connect("pruebadebot8@gmail.com", "Prueba123");
+            t.connect("celavieonline@gmail.com", "celavie123");
             t.sendMessage(message, message.getAllRecipients());
 
             // Cierre.
