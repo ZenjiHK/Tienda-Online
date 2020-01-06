@@ -211,11 +211,12 @@ public class ProductoController implements Serializable{
    
     public void actualizar(){
          try {
+             /*metodo para actualizar los productos*/
             this.producto.setMarca(marca);
             this.producto.setTalla(talla);
             this.producto.setTipoRopa(tiporopa);
             this.producto.setCategoria(categoria);
-            this.productoEJB.edit(producto); 
+            this.productoEJB.edit(producto);
             this.mensaje = "Producto actualizado exitosamente";
         } catch (Exception e) {
             this.mensaje = "Error, imposible editar";
