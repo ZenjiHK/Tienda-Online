@@ -30,6 +30,7 @@ public class ProductoController implements Serializable{
     private List<Producto> listaproducto;
     private List<Producto> consultaProductos;   
     private String mensaje;
+    private String estado;
     
     @EJB
     private MarcaFacadeLocal marcaEJB;
@@ -52,6 +53,14 @@ public class ProductoController implements Serializable{
     private List<Categoria> listacategoria;
 
     private List<Producto> filtroProducto=new ArrayList<>();
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
     
     public Producto getProducto() {
         return producto;
@@ -63,6 +72,7 @@ public class ProductoController implements Serializable{
 
     public List<Producto> getListaproducto() {
          this.listaproducto = this.productoEJB.findAll();
+         
         return listaproducto;
     }
 
@@ -179,6 +189,7 @@ public class ProductoController implements Serializable{
     public void consultarCategoria(){
         listacategoria = categoriaEJB.findAll();
     }
+    
    
     public void insertar(){
         try {
