@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
 
@@ -32,7 +31,7 @@ public class PaisController implements Serializable{
     }
 
     public List<Pais> getListaPais() {
-        this.listaPais=this.paisEJB.findAll();
+        this.listaPais= this.paisEJB.findAll();
         return listaPais;
     }
 
@@ -42,14 +41,12 @@ public class PaisController implements Serializable{
     
     @PostConstruct
     public void init(){
-        this.pais=new Pais(1);
-        this.listaPais=paisEJB.findAll();
-        this.msg="";
+        limpiar();
     }
     
     public void limpiar(){
         this.pais=new Pais();
-        this.listaPais=paisEJB.findAll();
+        this.listaPais=this.paisEJB.findAll();
         this.msg="";
     }
 
@@ -98,4 +95,12 @@ public class PaisController implements Serializable{
             return null;
         }
     }
+
+      public String getMsg() {
+            return msg;
+      }
+
+      public void setMsg(String msg) {
+            this.msg = msg;
+      }
 }

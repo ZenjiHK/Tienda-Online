@@ -65,6 +65,7 @@ public class ClienteController implements Serializable{
     this.listaCliente = clienteEJB.findAll();
     this.msj="";
     this.cliente.setPais(pais);
+          System.out.println(listaCliente.size());
     }
     
     public void insertar(){

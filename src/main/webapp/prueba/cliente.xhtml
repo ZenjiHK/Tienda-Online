@@ -30,7 +30,7 @@
                     <p:inputText id="txtDireccion" value="#{clienteController.cliente.direccion}" required="true"/>
                     <p:outputLabel for="cmbPais" value="Pais cliente"/>
                     <p:selectOneMenu id="cmbPais" value="#{clienteController.pais.idPais}">     
-                        <f:selectItems value="#{paisController.listaPais}" var="pa" itemLabel="#{pa.nombrePais}" itemValue="#{pa.idPais}"/>
+                          <f:selectItems value="#{paisController.listaPais}" var="pa" itemLabel="#{pa.nombrePais}" itemValue="#{pa.idPais}"/>
                     </p:selectOneMenu>
                         <p:commandButton value="Actualizar" actionListener="#{clienteController.editar()}"
                                          update=":Datos c :msj" oncomplete="PF('cli').hide()"/>
