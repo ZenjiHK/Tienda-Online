@@ -16,7 +16,7 @@ public class DetalleVenta implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id_detalle_venta")
     private int idDetalleVenta;
     
     @Column(name = "cantidad")
