@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Categoria - Tienda en linea</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <p:growl id="msj"/>
+        <h:form >
+            <p:outputLabel value="Ingrese Marca"/>
+            <p:inputText value="#{marcaController.marca.nombreMarca}"/>
+            <p:commandButton value="Enviar" actionListener="#{marcaController.insertar()}" update=":msj :tabla"/>
+        </h:form>
+        <p:separator/>
+        <h:form id="tabla">
+            <p:dataTable  value="#{marcaController.listamarca}" var="c" >
+                <p:column headerText="Código">
+                    <p:outputLabel value="#{c.idMarca}"/>
+                </p:column>
+                <p:column headerText="Marca">
+                    <p:outputLabel value="#{c.nombreMarca}"/>
+                </p:column>
+                <p:column headerText="Modificar">
+                    <p:commandButton value="Modificar" actionListener="#{marcaController.leerid(c)}" update=":nuevo :tabla"
+                                   oncomplete="PF('w').show()"/>
+                </p:column>
+                <p:column headerText="Eliminar" >
+                    <p:commandButton value="Eliminar" actionListener="#{marcaController.eliminar(c)}" 
+                                   update=":tabla :msj" />
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+        <p:dialog id="nuevo" widgetVar="w" header="Datos">
+            <h:form>                
+                <p:inputText type="hidden" value="#{marcaController.marca.idMarca}"/>
+                <p:outputLabel value="Nombre"/>
+                <p:inputText value="#{marcaController.marca.nombreMarca}"/>
+                <p:commandButton value="Modificar" actionListener="#{marcaController.actualizar()}" update=":tabla :msj" oncomplete="PF('w').hide()"/>
+                <p:commandButton value="Cancelar" oncomplete="PF('w').hide()"/>
+            </h:form>
+        </p:dialog>
+        <p:separator/>
+    </h:body>
+</html>

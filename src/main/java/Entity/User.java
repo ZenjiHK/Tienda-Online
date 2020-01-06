@@ -1,13 +1,14 @@
 package Entity;
 
 import java.io.Serializable;
+import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,9 +16,9 @@ import javax.persistence.Table;
 public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_user")
-    private int idUser;
+    @OneToOne
+    @JoinColumn(name = "id_cliente")
+    private Cliente cliente;
     
     @Column(name = "clave")
     private int clave;
@@ -28,25 +29,58 @@ public class User implements Serializable {
     @Column(name = "nombre_usuario")
     private String nombreUsuario;
     
-    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
+  
     @ManyToOne
-    private Cliente cliente;
-    
-    @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")
-    @ManyToOne
+    @JoinColumn(name = "id_rol")
     private Rol rol;
 
     public User() {
     }
 
-    public User(int idUser) {
-        this.idUser = idUser;
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public int getClave() {
+        return clave;
+    }
+
+    public void setClave(int clave) {
+        this.clave = clave;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + this.idUser;
+        hash = 79 * hash + Objects.hashCode(this.cliente);
         return hash;
     }
 
@@ -62,7 +96,7 @@ public class User implements Serializable {
             return false;
         }
         final User other = (User) obj;
-        if (this.idUser != other.idUser) {
+        if (!Objects.equals(this.cliente, other.cliente)) {
             return false;
         }
         return true;
@@ -70,54 +104,8 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" + "idUser=" + idUser + '}';
-    }
-    
-    public int getIdUser() {
-        return idUser;
+        return "User{" + "cliente=" + cliente + '}';
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
-    
-    public int getClave() {
-        return clave;
-    }
-
-    public void setClave(int clave) {
-        this.clave = clave;
-    }
-
-    public boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
-    }
+   
 }
