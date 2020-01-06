@@ -6,9 +6,11 @@
 package EJB;
 
 import Entity.Cliente;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,25 @@ public class ClienteFacade extends AbstractFacade<Cliente> implements ClienteFac
     public ClienteFacade() {
         super(Cliente.class);
     }
+    
+    @Override
+    public Cliente ExisteCorreo(Cliente c){
+        Cliente cliente = null;
+        String sql;
+        try {
+            sql = "SELECT  c FROM Cliente c  WHERE c.correo=?1";
+            Query query = em.createQuery(sql);
+            
+            query.setParameter(1, c.getCorreo());
+                        
+            List<Cliente> lista = query.getResultList();
+            if (!lista.isEmpty()) {
+                cliente = lista.get(0);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return cliente;
+    }   
     
 }
