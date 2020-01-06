@@ -5,6 +5,7 @@
  */
 package EJB;
 
+import Entity.Cliente;
 import Entity.User;
 import java.util.List;
 import javax.ejb.Local;
@@ -30,6 +31,9 @@ public interface UserFacadeLocal {
 
     int count();
     
+
     User Session(User us);
+    public User ExisteCorreo(String d);
+
     
 }

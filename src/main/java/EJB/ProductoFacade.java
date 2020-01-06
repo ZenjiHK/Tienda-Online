@@ -34,4 +34,6 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
         }
         return lista;
     }
+    
+    
 }
