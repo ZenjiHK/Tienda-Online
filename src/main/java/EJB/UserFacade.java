@@ -46,11 +46,13 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
             List<User> lista=query.getResultList();
             if(!lista.isEmpty()){
             user=lista.get(0);
-            } catch (Exception e) {
+            }
+        } catch (Exception e) {
             throw e;
         }
         return user;
     }
+       
             
 
     public User ExisteCorreo(String d){

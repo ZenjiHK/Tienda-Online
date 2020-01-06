@@ -10,10 +10,10 @@
     </h:head>
     <h:body>
         <p:growl id="msj"/>
-        <h:form >
+        <h:form id="entrada" >
             <p:outputLabel value="Ingrese Marca"/>
             <p:inputText value="#{marcaController.marca.nombreMarca}"/>
-            <p:commandButton value="Enviar" actionListener="#{marcaController.insertar()}" update=":msj :tabla"/>
+            <p:commandButton value="Enviar" actionListener="#{marcaController.insertar()}" update=":msj :tabla :entrada"/>
         </h:form>
         <p:separator/>
         <h:form id="tabla">
