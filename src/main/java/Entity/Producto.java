@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 
 @Entity
 @Table(name = "producto")
@@ -25,9 +26,11 @@ public class Producto implements Serializable {
     private String nombreProducto;
 
     @Column(name = "precio_compra")
+    @Min(1)
     private double precioCompra;
 
     @Column(name = "precio_venta")
+    @Min(1)
     private double precioVenta;
 
     @Column(name = "stock")
