@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFacadeLocal {
 
-    @PersistenceContext(unitName = "generador_PU")
+    @PersistenceContext(unitName = "tiendaPU")
     private EntityManager em;
 
     @Override
