@@ -8,28 +8,7 @@
     <h:head>
         <title>Tienda de ropa JSF</title>
     </h:head>
-    <h:body>
-      <p:growl id="mensaje"/>
-      <h:form>
-            <p:fieldset legend="Nueva forma de pago">
-                  <p:panelGrid columns="1">
-                        <p:commandButton value="Abrir formulario" oncomplete="PF('modal').show()"/>
-                  </p:panelGrid>
-            </p:fieldset>   
-      </h:form>
-      <p:dialog widgetVar="modal" modal="true" showEffect="clip" resizable="true">
-      <p:ajax event="close" listener="#{formaPagoController.limpiar()}"/>
-      <h:form id="formulario">
-            <p:panelGrid columns="2">
-                  <p:outputLabel value="Nombre de la forma de pago"/>
-                  <p:inputText value="#{formaPagoController.formapago.nombreFormaPago}"/>
-                  <p:outputLabel/>
-                  <p:commandButton value="Guardar" actionListener="#{formaPagoController.crear()}" update="formulario :tabla :mensaje" oncomplete="PF('modal').hide()" rendered="#{formaPagoController.formapago.idFormaPago==0}"/>
-                  <p:commandButton value="Modificar" actionListener="#{formaPagoController.editar()}" update="formulario :tabla :mensaje" oncomplete="PF('modal').hide()" rendered="#{formaPagoController.formapago.idFormaPago!=0}"/>
-            </p:panelGrid>
-      </h:form>
-      </p:dialog>
-       <h:form id="tabla">    
+    <h:body>                
             <p:fieldset legend="Forma de pago">
                 <p:dataTable value="#{formaPagoController.listapago}" var="fp">
                     <p:column headerText="Id">
@@ -37,16 +16,9 @@
                     </p:column>
                       <p:column headerText="Forma de pago">
                             <h:outputLabel value="#{fp.nombreFormaPago}"/>
-                      </p:column>
-                      <p:column headerText="Modificar">
-                            <p:commandButton value="Modiifcar" actionListener="#{formaPagoController.cargarDatos(fp)}" update=":formulario" oncomplete="PF('modal').show()"/>
-                      </p:column>
-                      <p:column headerText="Eliminar">
-                            <p:commandButton value="Eliminar" actionListener="#{formaPagoController.eliminar()}" update=":formulario :tabla"/>
-                      </p:column>
+                      </p:column>                      
                 </p:dataTable>
-            </p:fieldset>           
-        </h:form>
+            </p:fieldset> 
     </h:body>
 </html>
 
