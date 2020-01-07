@@ -19,16 +19,10 @@
                 <p:inputText value="#{ProductoController.producto.nombreProducto}"/>
                 <p:outputLabel value="Stock"/>
                 <p:inputText value="#{ProductoController.producto.stock}"/>
-                <!--precio venta -->
                 <p:outputLabel value="Precio Venta"/>
                 <p:inputText value="#{ProductoController.producto.precioVenta}"/>
-                <p:message for="@previous"/>
-                <!-- precio compra :) -->
-                <p:outputLabel value="Precio Compra" for="@next"/>            
+                <p:outputLabel value="Precio Compra"/>            
                 <p:inputText value="#{ProductoController.producto.precioCompra}"/>
-                <p:message for="@previous"/>
-                
-                <!-- -->
                 <p:outputLabel value="Seleccione una Marca" for="marca"/>
                 <p:selectOneMenu id="marca" value="#{ProductoController.marca.idMarca}">
 
@@ -116,9 +110,9 @@
                     <p:inputText value="#{ProductoController.producto.nombreProducto}"/>
                     <p:outputLabel value="Stock"/>
                     <p:inputText value="#{ProductoController.producto.stock}"/>
-                    <p:outputLabel value="Precio Venta"/>
+                    <p:outputLabel value="Precio Venta" for="@next"/>
                     <p:inputText value="#{ProductoController.producto.precioVenta}"/>
-                    <p:outputLabel value="Precio Compra"/>
+                    <p:outputLabel value="Precio Compra" for="@next"/>
                     <p:inputText value="#{ProductoController.producto.precioCompra}"/>
                     <p:outputLabel value="Seleccione una    Marca" for="marca"/>
                     <p:selectOneMenu id="marca" value="#{ProductoController.marca.idMarca}">
