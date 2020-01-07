@@ -5,8 +5,7 @@
       xmlns:p="http://primefaces.org/ui" <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <h:body>
-        <h:body>             
+    <h:body>                
             <p:fieldset legend="Forma de pago">
                 <p:dataTable value="#{formaPagoController.listapago}" var="fp">
                     <p:column headerText="Id">
@@ -16,8 +15,7 @@
                             <h:outputLabel value="#{fp.nombreFormaPago}"/>
                       </p:column>                      
                 </p:dataTable>
-            </p:fieldset>             
-    </h:body>
+            </p:fieldset> 
     </h:body>
 </html>
 
