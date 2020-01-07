@@ -19,11 +19,16 @@
                 <p:inputText value="#{ProductoController.producto.nombreProducto}"/>
                 <p:outputLabel value="Stock"/>
                 <p:inputText value="#{ProductoController.producto.stock}"/>
+                <!--precio venta -->
                 <p:outputLabel value="Precio Venta"/>
                 <p:inputText value="#{ProductoController.producto.precioVenta}"/>
-
-                <p:outputLabel value="Precio Compra"/>            
+                <p:message for="@previous"/>
+                <!-- precio compra :) -->
+                <p:outputLabel value="Precio Compra" for="@next"/>            
                 <p:inputText value="#{ProductoController.producto.precioCompra}"/>
+                <p:message for="@previous"/>
+                
+                <!-- -->
                 <p:outputLabel value="Seleccione una Marca" for="marca"/>
                 <p:selectOneMenu id="marca" value="#{ProductoController.marca.idMarca}">
 
@@ -52,7 +57,7 @@
 
                 <p:outputLabel value="Imagen"/>
                 <p:inputText value="#{ProductoController.producto.url}"/>
-                <p:commandButton value="Enviar" actionListener="#{ProductoController.insertar()}" update=":msj :tabla pro :ingreso" oncomplete="PF('n').hide()"/>
+                <p:commandButton value="Enviar" actionListener="#{ProductoController.insertar()}" update=":msj :tabla pro :ingreso" oncomplete="PF('n').hide()"/>            
             </p:panelGrid>    
              
         </h:form>
@@ -62,7 +67,7 @@
         </h:form>
         <p:separator />
         <h:form id="tabla">            
-            <p:dataTable  value="#{ProductoController.listaproducto}" var="ver" emptyMessage="El producto buscado no existe." rows="4" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15">
+            <p:dataTable  value="#{ProductoController.listaproducto}" var="ver" emptyMessage="El producto buscado no existe." rows="4" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" >
              
                 <p:column headerText="nombre">
                     <p:outputLabel value="#{ver.nombreProducto}"/>
