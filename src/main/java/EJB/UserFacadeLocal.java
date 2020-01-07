@@ -29,7 +29,7 @@ public interface UserFacadeLocal {
 
     int count();
     
-    
+    User Sesion(User us);
     
 }
 

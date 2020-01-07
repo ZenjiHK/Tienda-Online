@@ -27,7 +27,6 @@ Entity\User.class
 Entity\Talla.class
 EJB\CategoriaFacade.class
 Entity\Factura.class
-Controller\UserController.class
 EJB\UserFacade.class
 Entity\Pais_.class
 EJB\FacturaFacadeLocal.class
