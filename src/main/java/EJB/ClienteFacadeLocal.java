@@ -30,4 +30,6 @@ public interface ClienteFacadeLocal {
 
     int count();
     
+    public Cliente ExisteCorreo(Cliente cl);
+    
 }

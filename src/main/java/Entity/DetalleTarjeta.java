@@ -3,14 +3,12 @@ package Entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -39,6 +37,9 @@ public class DetalleTarjeta implements Serializable {
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
     @ManyToOne
     private Cliente cliente;
+    
+    @Column(name="estado")
+    private boolean estado=true;
 
     public DetalleTarjeta() {
     }
@@ -116,4 +117,12 @@ public class DetalleTarjeta implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
+      public boolean isEstado() {
+            return estado;
+      }
+
+      public void setEstado(boolean estado) {
+            this.estado = estado;
+      }
 }

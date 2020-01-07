@@ -110,7 +110,18 @@
                   <artifactId>jasperreports</artifactId>
                   <version>6.11.0</version>
             </dependency>
-
+            <!-- https://mvnrepository.com/artifact/org.primefaces.themes/all-themes -->
+            <dependency>
+                  <groupId>org.primefaces.themes</groupId>
+                  <artifactId>all-themes</artifactId>
+                  <version>1.0.10</version>
+            </dependency>
+            <dependency>
+                  <groupId>net.bootsfaces</groupId>
+                  <artifactId>bootsfaces</artifactId>
+                  <version>1.4.2</version>
+                  <scope>compile</scope>
+            </dependency>
       </dependencies>
       <build>
             <plugins>
@@ -125,6 +136,34 @@
                                     <endorseddirs>${endorsed.dir}</endorseddirs>
                               </compilerArguments>
                         </configuration>
+                  </plugin>
+                  <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>2.3</version>
+                        <configuration>
+                              <failOnMissingWebXml>false</failOnMissingWebXml>
+                        </configuration>
+                  </plugin>
+                  <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>2.6</version>
+                        <executions>
+                              <execution>
+                                    <phase>validate</phase>
+                                    <goals>
+                                          <goal>copy</goal>
+                                    </goals>
+                                    <configuration>
+                                          <source>1.7</source>
+                                          <target>1.7</target>
+                                          <compilerArguments>
+                                                <endorseddirs>${endorsed.dir}</endorseddirs>
+                                          </compilerArguments>
+                                    </configuration>
+                              </execution>
+                        </executions>
                   </plugin>
                   <plugin>
                         <groupId>org.apache.maven.plugins</groupId>

@@ -119,6 +119,7 @@ public class UserController {
             this.user.setRol(rol);
             this.userFacade.create(user);
             this.mensaje = "Insertado con éxito";
+            FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
         } catch (Exception e) {
             this.mensaje = "Error: " + e.getMessage();
             e.printStackTrace();
@@ -170,5 +171,23 @@ public class UserController {
         this.listaUser=userFacade.findAll();
         this.listaRol=rolFacade.findAll();
         this.listaCliente=clienteFacade.findAll();
+    }
+    
+    public String login(){
+    User us;
+    String redireccion=null;
+/*
+        try {
+            us=this.userFacade.Sesion(this.user);
+            if(us!=null){
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", us);
+            redireccion="/prueba/user?faces-redirec=true";
+            }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Alerta","Uusuario o clave incorrecta"));
+            }
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage((null), new FacesMessage(FacesMessage.SEVERITY_FATAL,"Aviso","Error"));
+        }*/
+        return redireccion;
     }
 }

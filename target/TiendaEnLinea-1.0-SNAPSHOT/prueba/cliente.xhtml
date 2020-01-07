@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      <h:head>
+            <title>Facelet Title</title>
+      </h:head>
+      <h:body>
+            <p:growl id="msj"/>
+            <p:fieldset legend="Nuevo Cliente">
+                  <h:form>
+                        <p:panelGrid columns="1">
+                              <p:commandButton value="Nuevo" oncomplete="PF('cli').show()"/>
+                        </p:panelGrid>
+                  </h:form>
+            </p:fieldset>   
+            <h:form id="c">
+                  <p:dialog widgetVar="cli" modal="true" showEffect="clip" resizable="false">
+                        <p:ajax event="close" listener="#{clienteController.limpiar()}" update="c"/>
+
+                        <p:panelGrid columns="2">
+                              <p:outputLabel for="txtNombre" value="Nombre cliente"/>
+                              <p:inputText id="txtNombre" value="#{clienteController.cliente.nombreCliente}" required="true"/>
+                              <p:outputLabel for="txtApellido" value="Apellido cliente"/>
+                              <p:inputText id="txtApellido" value="#{clienteController.cliente.apellidoCliente}" required="true"/>
+                              <p:outputLabel for="txtCorreo" value="Correo cliente"/>
+                              <p:inputText id="txtCorreo" value="#{clienteController.cliente.correo}" required="true"/>
+                              <p:outputLabel for="txtDireccion" value="Direccion cliente"/>
+                              <p:inputText id="txtDireccion" value="#{clienteController.cliente.direccion}" required="true"/>
+                              <p:outputLabel for="cmbPais" value="Pais cliente"/>
+                              <p:selectOneMenu id="cmbPais" value="#{clienteController.pais.idPais}">     
+                                    <f:selectItems value="#{paisController.listaPais}" var="pa" itemLabel="#{pa.nombrePais}" itemValue="#{pa.idPais}"/>
+                              </p:selectOneMenu>
+                              <p:commandButton value="Guardar" actionListener="#{clienteController.insertar()}"
+                                               update=":Datos c :msj" oncomplete="PF('cli').hide()" rendered="#{clienteController.cliente.idCliente==0}"/>
+                              <p:commandButton value="Actualizar" actionListener="#{clienteController.editar()}"
+                                               update=":Datos c :msj" oncomplete="PF('cli').hide()" rendered="#{clienteController.cliente.idCliente!=0}"/>
+                        </p:panelGrid>                
+
+                  </p:dialog>
+            </h:form>
+            <h:form id="Datos">    
+                  <p:fieldset legend="Datos Cliente">
+                        <p:dataTable value="#{clienteController.listaCliente}" var="c">
+                              <p:column headerText="Id">
+                                    <h:outputText value="#{c.idCliente}"/>
+                              </p:column>
+                              <p:column headerText="nombre">
+                                    <h:outputText value="#{c.nombreCliente}"/>
+                              </p:column>
+                              <p:column headerText="apellido">
+                                    <h:outputText value="#{c.apellidoCliente}"/>
+                              </p:column>
+                              <p:column headerText="correo">
+                                    <h:outputText value="#{c.correo}"/>
+                              </p:column>
+                              <p:column headerText="direccion">
+                                    <h:outputText value="#{c.direccion}"/>
+                              </p:column>
+                              <p:column headerText="Pais">
+                                    <h:outputText value="#{c.pais.nombrePais}"/>
+                              </p:column>
+                              <p:column headerText="Modificar">
+                                    <p:commandButton value="Editar" actionListener="#{clienteController.cargarCliente(c)}" 
+                                                     update=":c" oncomplete="PF('cli').show()"/>
+                              </p:column>
+                              <p:column headerText="Eliminar">
+                                    <p:commandButton value="Eliminar" actionListener="#{clienteController.eliminar(c)}" 
+                                                     update=":Datos :msj"/>
+                              </p:column>            
+                        </p:dataTable>
+                  </p:fieldset>
+            </h:form>
+            <h:form>
+                  <p:commandButton actionListener="#{reporte.hola()}" value="Mundo"/>
+            </h:form>
+      </h:body>
+</html>

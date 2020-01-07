@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <body>
+        <p:growl id="msj"/>
+        <p:outputLabel value="Producto"/>
+
+        <h:form id="tabla">             
+            <p:dataTable  value="#{productoController.listaproducto}" var="ver" 
+                          emptyMessage="El producto buscado no existe." >
+             
+                <p:column headerText="id" filterBy="#{ver.idProducto}">
+                    <p:outputLabel value="#{ver.idProducto}"/>
+                </p:column>
+                <p:column headerText="nombre" filterBy="#{ver.nombreProducto}" >
+                    <p:outputLabel value="#{ver.nombreProducto}"/>
+                </p:column>
+                <p:column headerText="stock">
+                    <p:outputLabel value="#{ver.stock}"/>
+                </p:column>
+                <p:column headerText="precio de venta" >
+                    <p:outputLabel value="#{ver.precioVenta}"/>
+                </p:column>
+                <p:column headerText="precio de compra">
+                    <p:outputLabel value="#{ver.precioCompra}"/>
+                </p:column>
+                <p:column headerText="Marca" filterBy="#{ver.marca.nombreMarca}"  >
+                    <p:outputLabel value="#{ver.marca.nombreMarca}"/>
+                </p:column>
+                <p:column headerText="Talla" filterBy="#{ver.talla.talla}">
+                    <p:outputLabel value="#{ver.talla.talla}"/>
+                </p:column>
+                <p:column headerText="Tipo de ropa" filterBy="#{ver.tipoRopa.nombreTipoRopa}">
+                    <p:outputLabel value="#{ver.tipoRopa.nombreTipoRopa}"/>
+                </p:column>
+                <p:column headerText="Categoria" filterBy="#{ver.categoria.nombreCategoria}">
+                    <p:outputLabel value="#{ver.categoria.nombreCategoria}"/>
+                </p:column>         
+            </p:dataTable>    
+        </h:form>
+    </body>
+</html>

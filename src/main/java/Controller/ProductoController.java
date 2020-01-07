@@ -17,8 +17,11 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
+import javax.validation.constraints.Min;
 
 @Named(value = "productoController")
 @RequestScoped
@@ -30,6 +33,7 @@ public class ProductoController implements Serializable{
     private List<Producto> listaproducto;
     private List<Producto> consultaProductos;   
     private String mensaje;
+    private String estado;
     
     @EJB
     private MarcaFacadeLocal marcaEJB;
@@ -52,6 +56,14 @@ public class ProductoController implements Serializable{
     private List<Categoria> listacategoria;
 
     private List<Producto> filtroProducto=new ArrayList<>();
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
     
     public Producto getProducto() {
         return producto;
@@ -63,6 +75,7 @@ public class ProductoController implements Serializable{
 
     public List<Producto> getListaproducto() {
          this.listaproducto = this.productoEJB.findAll();
+         
         return listaproducto;
     }
 
@@ -179,6 +192,7 @@ public class ProductoController implements Serializable{
     public void consultarCategoria(){
         listacategoria = categoriaEJB.findAll();
     }
+    
    
     public void insertar(){
         try {
@@ -200,11 +214,12 @@ public class ProductoController implements Serializable{
    
     public void actualizar(){
          try {
+             /*metodo para actualizar los productos*/
             this.producto.setMarca(marca);
             this.producto.setTalla(talla);
             this.producto.setTipoRopa(tiporopa);
             this.producto.setCategoria(categoria);
-            this.productoEJB.edit(producto); 
+            this.productoEJB.edit(producto);
             this.mensaje = "Producto actualizado exitosamente";
         } catch (Exception e) {
             this.mensaje = "Error, imposible editar";
@@ -251,4 +266,5 @@ public class ProductoController implements Serializable{
         this.listacategoria=categoriaEJB.findAll();
         this.listaproducto=productoEJB.findAll();      
     }
+    
 }

@@ -74,12 +74,12 @@ public class reporte implements Serializable{
                   System.out.println("Error " + ex.getMessage());
                   ex.printStackTrace();
             }
-            ctx.responseComplete();*/
+            ctx.responseComplete();
             String realativeWebPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath(jasperPath);
             File file = new File(relativeWebPath);
             JRBeanCollectionDataSource source = new JRBeanCollectionDataSource(dataSource, false);
             jPrint = JasperFillManager.fillReport(file.getPath,params,source);
             HttpServletResponse response = (HttpServletResponse)ctx.getExternalContext().getResponse();
-            
+            */
       }
 }

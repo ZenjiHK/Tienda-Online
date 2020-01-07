@@ -55,7 +55,8 @@ CREATE TABLE detalle_tarjeta(
 		id_detalle_tarjeta int auto_increment primary key,
 		id_cliente int not null,
 		ping int not null,
-		expiracion date not null);
+		expiracion date not null,
+		estado boolean not null);
 
 ALTER TABLE detalle_tarjeta ADD CONSTRAINT FOREIGN KEY fk_tarjeta_cliente(id_cliente) REFERENCES cliente(id_cliente);
 
