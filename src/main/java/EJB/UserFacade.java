@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package EJB;
-
 import Entity.Cliente;
 import Entity.User;
 import java.util.List;
@@ -12,6 +11,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
 
 /**
  *
@@ -30,11 +30,12 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
 
     public UserFacade() {
         super(User.class);
-    }
+    }        
+  
+    
     
     @Override
-
-    public User Session(User us){
+    public User Sesion(User us){
         User user=null;
         String sql;
         try {
