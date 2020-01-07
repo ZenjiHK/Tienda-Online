@@ -12,6 +12,11 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+/**
+ *
+ * @author evelyn.andradeusam
+ */
+
 @Named(value = "detalleTarjetaController")
 @RequestScoped
 public class DetalleTarjetaController implements Serializable {
