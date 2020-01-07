@@ -35,8 +35,7 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
     
     
     @Override
-
-    public User Session(User us){
+    public User Sesion(User us){
         User user=null;
         String sql;
         try {

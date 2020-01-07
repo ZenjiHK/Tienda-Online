@@ -176,8 +176,9 @@ public class UserController {
     public String login(){
     User us;
     String redireccion=null;
-        /*try {
-            us=this.userFacade.Session(this.user);
+/*
+        try {
+            us=this.userFacade.Sesion(this.user);
             if(us!=null){
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", us);
             redireccion="/prueba/user?faces-redirec=true";
