@@ -9,15 +9,8 @@
     </h:head>
     <h:body>
         <p:growl id="msj"/>
-        <h:form id="tar">
-            <p:fieldset legend="Nuevo Dedtalle de tarjeta">
-                <p:panelGrid columns="1">
-                    <p:commandButton value="Nuevo" oncomplete="PF('det').show()"/>
-                </p:panelGrid>
-            </p:fieldset>
-        </h:form>
-        <p:dialog widgetVar="det" modal="true" showEffect="clip" resizable="false">
-            <p:ajax event="close" listener="#{detalleTarjetaController.limpiar()}"/>
+            <p:outputLabel value="Detalle Tarjeta"/>
+                <p:dialog id="ingreso" widgetVar="n" header="Datos">
             <h:form id="d">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="cmbCliente" value="Cliente"/>
@@ -28,13 +21,20 @@
                     <p:inputText id="txtPing" value="#{detalleTarjetaController.detalletarjeta.ping}" required="true"/>
                     <p:outputLabel for="txtExpiracion" value="Fecha de expiracion"/>
                     <p:calendar id="txtExpiracion" value="#{detalleTarjetaController.detalletarjeta.expiracion}" required="true"/>
-                    <p:commandButton value="Guardar" actionListener="#{detalleTarjetaController.insertar()}" rendered="#{detalleTarjetaController.detalletarjeta.idDetalleTarjeta==0}" update=":datos d :msj" oncomplete="PF('det').hide()"/>
-                    <p:commandButton value="Actualizar" actionListener="#{detalleTarjetaController.editar()}" rendered="#{detalleTarjetaController.detalletarjeta.idDetalleTarjeta!=0}" update=":datos d :msj" oncomplete="PF('det').hide()"/>
+                    <p:commandButton value="Guardar" actionListener="#{detalleTarjetaController.insertar()}"
+                                     rendered="#{detalleTarjetaController.detalletarjeta.idDetalleTarjeta ==0}"
+                                     update="tabla d :msj" oncomplete="PF('det').hide()"/>
+                    <p:commandButton value="Actualizar" actionListener="#{detalleTarjetaController.editar()}"
+                                     rendered="#{detalleTarjetaController.detalletarjeta.idDetalleTarjeta !=0}"
+                                     update="tabla d :msj" oncomplete="PF('det').hide()"/>
                 </p:panelGrid>
+               
             </h:form>
-        </p:dialog>
-        <h:form id="datos">
-            <p:fieldset legend="Datos Tarjeta">
+                     </p:dialog>
+            <h:form>
+        <p:commandButton value="Agregar tarjeta" oncomplete="PF('n').show()" update=":tabla "/>
+        </h:form>
+        <h:form id="tabla">
                 <p:dataTable value="#{detalleTarjetaController.listaTarjeta}" var="dt">
                     <p:column headerText="Id">
                         <h:outputText value="#{dt.idDetalleTarjeta}"/>
@@ -57,7 +57,6 @@
                         <p:commandButton value="Eliminar" actionListener="#{detalleTarjetaController.eliminar(dt)}" update=":datos :msj" />
                     </p:column>
                 </p:dataTable>
-            </p:fieldset>
         </h:form>
     </h:body>
 </html>

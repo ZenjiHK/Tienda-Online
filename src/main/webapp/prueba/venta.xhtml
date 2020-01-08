@@ -37,7 +37,7 @@
                                 </p:selectOneMenu>
                                 <p:outputLabel value="Tarjeta"/>
                                 <p:selectOneMenu value="#{ventaController.detalleTarjeta.idDetalleTarjeta}">     
-                                      <f:selectItems value="#{detalleTarjetaController.listaTarjeta}" var="dt" itemLabel="#{dt.ping}" itemValue="#{dt.idDetalleTarjeta}"/>
+                                    <f:selectItems value="#{detalleTarjetaController.listaTarjeta}" var="dt" itemLabel="#{dt.ping}" itemValue="#{dt.idDetalleTarjeta}"/>
                                 </p:selectOneMenu>
                                 <p:outputLabel value="Fecha de compra"/>
                                 <p:calendar value="#{ventaController.venta.fecha}"/>
