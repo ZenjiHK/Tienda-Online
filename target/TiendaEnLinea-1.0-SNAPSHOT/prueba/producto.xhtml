@@ -7,6 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
+        <f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>
     </h:head>
     <body>
         <p:growl id="msj"/>
@@ -59,6 +60,7 @@
            </p:dialog>
         <h:form>
         <p:commandButton value="Agregar producto" oncomplete="PF('n').show()" update=":tabla "/>
+        <p:commandButton value="Cerrar Sesion" actionListener="#{validarSesionController.salir()}"/>
         </h:form>
         <p:separator />
         <h:form id="tabla">            

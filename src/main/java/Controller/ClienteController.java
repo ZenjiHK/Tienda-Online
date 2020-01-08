@@ -8,6 +8,7 @@ package Controller;
 import EJB.ClienteFacadeLocal;
 import Entity.Cliente;
 import Entity.Pais;
+import Entity.User;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -72,7 +73,8 @@ public class ClienteController implements Serializable{
             this.cliente.setPais(pais);
             this.clienteEJB.create(cliente);
             limpiar();
-            this.msj="Cliente Ingresado correctamente";            
+            this.msj="Cliente Ingresado correctamente";
+            FacesContext.getCurrentInstance().getExternalContext().redirect("insertUsuario.xhtml");
         } catch (Exception e) {
             this.msj="Error al ingresar Cliente "+e.getMessage();
             e.printStackTrace();

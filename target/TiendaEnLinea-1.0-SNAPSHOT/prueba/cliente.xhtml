@@ -35,7 +35,7 @@
                     <p:commandButton value="Guardar" actionListener="#{clienteController.insertar()}"  
                                      rendered="#{clienteController.cliente.idCliente==0}"
                                      update=":Datos c :msj" oncomplete="PF('cli').hide()"/>
-                    <p:commandButton value="Actualizar" actionListener="#{clienteController.editar()}" 
+                    <p:commandButton value="Actualizar" actionListener="#{clienteController.editar()} " 
                                      rendered="#{clienteController.cliente.idCliente !=0}"
                                      update=":Datos c :msj" oncomplete="PF('cli').hide()"/>
                     
