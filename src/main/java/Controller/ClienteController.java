@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 import EJB.ClienteFacadeLocal;
@@ -12,17 +7,18 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 
 
 /**
  *
  * @author evelyn.andradeusam
  */
-@Named(value = "clienteController")
+@ManagedBean
 @SessionScoped
 public class ClienteController implements Serializable{
     
@@ -60,7 +56,11 @@ public class ClienteController implements Serializable{
     
     @PostConstruct
     public void init(){
-    limpiar();
+    this.cliente=new Cliente();
+    this.pais=new Pais();
+    this.listaCliente = clienteEJB.findAll();
+    this.msj="";
+    this.cliente.setPais(pais);
     }
     
     public void insertar(){
@@ -84,16 +84,17 @@ public class ClienteController implements Serializable{
     
     public void editar(){
         try {
-            this.cliente.setPais(this.pais);
-            this.clienteEJB.edit(this.cliente);
-            limpiar();
+            this.cliente.setPais(pais);
+            this.clienteEJB.edit(cliente);
+            this.cliente=new Cliente();
+            this.pais=new Pais();
             this.msj="Cliente Actualizado correctamente";            
         } catch (Exception e) {
             this.msj="Error al Actualizar Cliente "+e.getMessage();
             e.printStackTrace();
         }
         FacesMessage mensaje=new FacesMessage(this.msj);
-        FacesContext.getCurrentInstance().addMessage(msj, mensaje);
+        FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
     
     public void limpiar(){
