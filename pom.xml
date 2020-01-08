@@ -98,6 +98,12 @@
             <artifactId>mail</artifactId>
             <version>1.4.7</version>
             <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.activation</groupId>
+                    <artifactId>activation</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>  
         <!-- https://mvnrepository.com/artifact/org.primefaces.themes/bootstrap -->
         <dependency>
