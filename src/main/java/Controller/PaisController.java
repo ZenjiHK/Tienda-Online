@@ -6,14 +6,15 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.inject.Named;
 
 /**
  *
  * @author maynor.menjivarusam
  */
-@ManagedBean
+@Named(value = "paisController")
 @SessionScoped
 public class PaisController implements Serializable{
     @EJB

@@ -8,7 +8,7 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-01-07T16:15:17")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-01-08T13:41:09")
 @StaticMetamodel(DetalleTarjeta.class)
 public class DetalleTarjeta_ { 
 
@@ -17,6 +17,7 @@ public class DetalleTarjeta_ {
     public static volatile ListAttribute<DetalleTarjeta, Venta> lista_ventas;
     public static volatile SingularAttribute<DetalleTarjeta, Integer> ping;
     public static volatile SingularAttribute<DetalleTarjeta, Integer> idDetalleTarjeta;
+    public static volatile SingularAttribute<DetalleTarjeta, Integer> numero_tarjeta;
     public static volatile SingularAttribute<DetalleTarjeta, Date> expiracion;
 
 }

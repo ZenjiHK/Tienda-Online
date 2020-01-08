@@ -37,7 +37,6 @@ Controller\DescuentoController.class
 Controller\ClienteController.class
 EJB\TallaFacade.class
 EJB\FormaPagoFacadeLocal.class
-Controller\MegaMenuView.class
 Controller\DetalleTarjetaController.class
 Entity\Cliente.class
 EJB\CategoriaFacadeLocal.class

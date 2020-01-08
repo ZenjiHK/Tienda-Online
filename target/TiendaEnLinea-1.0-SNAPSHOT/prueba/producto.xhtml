@@ -16,13 +16,18 @@
         <h:form id="pro">
             <p:panelGrid columns="2">
                 <p:outputLabel value="Nombre"/>
-                <p:inputText value="#{ProductoController.producto.nombreProducto}"/>
+                <p:inputText value="#{ProductoController.producto.nombreProducto}"  required="true"/>
                 <p:outputLabel value="Stock"/>
-                <p:inputText value="#{ProductoController.producto.stock}"/>
+                <p:inputText value="#{ProductoController.producto.stock}" required="true"/>
                 <p:outputLabel value="Precio Venta"/>
-                <p:inputText value="#{ProductoController.producto.precioVenta}"/>
-                <p:outputLabel value="Precio Compra"/>            
-                <p:inputText value="#{ProductoController.producto.precioCompra}"/>
+                <p:inputText value="#{ProductoController.producto.precioVenta}" required="true"/>
+                <p:message for="@previous"/>
+                <!-- precio compra :) -->
+                <p:outputLabel value="Precio Compra" for="@next"/>            
+                <p:inputText value="#{ProductoController.producto.precioCompra}" required="true"/>
+                <p:message for="@previous"/>
+                
+                <!-- -->
                 <p:outputLabel value="Seleccione una Marca" for="marca"/>
                 <p:selectOneMenu id="marca" value="#{ProductoController.marca.idMarca}">
 
@@ -50,7 +55,7 @@
                  </p:selectOneMenu>
 
                 <p:outputLabel value="Imagen"/>
-                <p:inputText value="#{ProductoController.producto.url}"/>
+                <p:inputText value="#{ProductoController.producto.url}" required="true"/>
                 <p:commandButton value="Enviar" actionListener="#{ProductoController.insertar()}" update=":msj :tabla pro :ingreso" oncomplete="PF('n').hide()"/>            
             </p:panelGrid>    
              
@@ -110,9 +115,9 @@
                     <p:inputText value="#{ProductoController.producto.nombreProducto}"/>
                     <p:outputLabel value="Stock"/>
                     <p:inputText value="#{ProductoController.producto.stock}"/>
-                    <p:outputLabel value="Precio Venta" for="@next"/>
+                    <p:outputLabel value="Precio Venta"/>
                     <p:inputText value="#{ProductoController.producto.precioVenta}"/>
-                    <p:outputLabel value="Precio Compra" for="@next"/>
+                    <p:outputLabel value="Precio Compra"/>
                     <p:inputText value="#{ProductoController.producto.precioCompra}"/>
                     <p:outputLabel value="Seleccione una    Marca" for="marca"/>
                     <p:selectOneMenu id="marca" value="#{ProductoController.marca.idMarca}">

@@ -176,7 +176,6 @@ public class UserController {
     public String login(){
     User us;
     String redireccion=null;
-/*
         try {
             us=this.userFacade.Sesion(this.user);
             if(us!=null){
@@ -187,7 +186,7 @@ public class UserController {
             }
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage((null), new FacesMessage(FacesMessage.SEVERITY_FATAL,"Aviso","Error"));
-        }*/
+        }
         return redireccion;
     }
 }

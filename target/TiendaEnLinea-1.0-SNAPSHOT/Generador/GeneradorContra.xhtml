@@ -18,7 +18,7 @@
                             <h:outputText value="Correo Electronico:" />
                         </b:column>
                         <b:column medium-screen="4">
-                            <b:inputText placeholder="Correo Electronico" id="correo_electronico" value="#{usuarioController.usuario.correo_electronico}"
+                            <b:inputText placeholder="Correo Electronico" id="correo_electronico" value="#{userController.usuario.correo_electronico}"
                                          ajax="true" autocomplete="false">
                                 <f:facet name="prepend">
                                     <b:icon name="envelope" />
@@ -31,7 +31,7 @@
                             <h:outputText value="Nueva Contraseña:" />
                         </b:column>
                         <b:column medium-screen="4">
-                            <b:inputText placeholder="Contraseña Generica" styleClass="contrasena" value="#{usuarioController.usuario.contrasena}"
+                            <b:inputText placeholder="Contraseña Generica" styleClass="contrasena" value="#{userController.usuario.contrasena}"
                                          ajax="true" autocomplete="false" readonly="true">
                                 <f:facet name="prepend">
                                     <b:iconAwesome name="key" />

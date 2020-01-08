@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>C'e La Vie</title>
+        <link href="../CSS/PaginaPrincipal.css" rel="stylesheet" type="text/css"/>
+        <style>
+            .downwards .dropdown-submenu>.dropdown-menu {
+                position: relative;
+                left: -0;
+            }
+        </style>
+    </h:head>
+    <h:body class="body">
+        
+        
+        <div class="menu">
+            <b:navBar brand-img="../Imagenes/a1 - copia (2).jpg" brandHref="#" inverse="false">
+            <b:flyOutMenu styleClass="dropdown-submenu">
+                  <b:navbarLinks>
+                        <b:dropMenu value="Rebajas">
+                        <b:navLink value="Mujer" href="#"></b:navLink>
+                        <b:navLink value="Hombre" href="#"></b:navLink>
+                        <b:navLink value="Niño" href="#"></b:navLink>
+                        <b:navLink value="Niña" href="#"></b:navLink>
+                    </b:dropMenu>
+                        <b:dropMenu value="Mujer">
+                        <b:navLink value="Nueva Coleccion" href="#"></b:navLink>
+                        <b:navLink value="Prendas" href="#"></b:navLink>
+                        <b:navLink value="Accesorios" href="#"></b:navLink>
+                    </b:dropMenu>
+                        <b:dropMenu value="Hombre">
+                        <b:navLink value="Nueva Coleccion" href="#"></b:navLink>
+                        <b:navLink value="Prendas" href="#"></b:navLink>
+                        <b:navLink value="Sastreria" href="#"></b:navLink>
+                        <b:navLink value="Accesorios" href="#"></b:navLink>
+                    </b:dropMenu>
+                        <b:navLink value="Niña" href="#"></b:navLink>
+                        <b:navLink value="Niño" href="#"></b:navLink>
+                      </b:navbarLinks>
+            </b:flyOutMenu>
+
+            <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
+            <b:navbarLinks pull="right" styleClass="hidden-xs">
+                <b:dropMenu value="Iniciar Sesión"  icon="user">
+                    <h:form>
+                        <b:container fluid="true">
+                            <br></br>
+                            <b:commandButton value="Inicar Sesión" look="info" style="width: 100%" action="Usuario"/>
+                            <br></br>
+                            <br></br>
+                            <p>¿No tienes cuenta? </p>
+                            <b:link value="Registrate" action="RegistroUsuario"/>
+                            <br></br>
+                            <br></br>
+                        </b:container>
+                    </h:form>
+                </b:dropMenu>
+                <b:navLink value="Favoritos" icon="heart" href="#"></b:navLink>
+                <b:navLink value="Bolsa" icon="shopping-cart" href="#"></b:navLink>
+            </b:navbarLinks>
+        </b:navBar>
+        </div>
+        
+        
+        <h:form>
+            <b:carousel id="tiovivo" style="width: 1450px" interval="5500">
+                <b:carouselItem >
+                    <img src="../Imagenes/a3 (2).jpg" alt="Valladolid" style="width: 1500px; height: 600px" />
+                    <b:carouselCaption>
+                        <h2>"C'e La Vie" ¡Bienvenido!</h2>
+                        <p>Somos una tienda en linea de prendas y accesorios para ambos sexos.</p>
+                    </b:carouselCaption>
+                </b:carouselItem>
+                <b:carouselItem caption="Descuento en todo tipo de Blazers">
+                    <img src="../Imagenes/a1 (2).jpg" alt="Valladolid" style="width: 1500px; height: 600px" />
+                </b:carouselItem>
+                <b:carouselItem caption="¡Mantente a la moda!">
+                    <img src="../Imagenes/she_1219_rebajas.jpg" alt="Valladolid" style="width: 1500px; height: 600px" />
+                </b:carouselItem>
+                <b:carouselItem>
+                    <img src="../Imagenes/a2.jpg" alt="Valladolid" style="width: 1500px; height: 600px" />
+                    <b:carouselCaption>
+                        <h2>Para los reyes del hogar</h2>
+                        <p>Ropa para niños y niñas.</p>
+                    </b:carouselCaption>
+                </b:carouselItem>
+                <b:carouselItem caption="Regístrate y recibiras exclusivas ofertas">
+                    <img src="../Imagenes/she_1219_rebajas.jpg" alt="Valladolid" style="width: 1500px; height: 600px" />
+                </b:carouselItem>
+            </b:carousel>
+        </h:form>
+
+        <b:row>
+            <br></br>
+            <br></br>
+            <b:column col-sm="6" col-md="4">
+                <b:thumbnail>
+                    <img src="../Imagenes/67070531_94_D5.jpg" alt="Generic placeholder thumbnail"/>
+                    <f:facet name="caption">
+                        <h3>Camiseta Mensaje Estrellas</h3>
+                        <p>$19.99</p>
+                        <p>
+                            <b:button value="Detalle" style="margin-right: 10px;"/>
+                            <b:button look="info" value="Agregar A Carrito" icon="shopping-cart" style="margin-right: 10px;"/>
+                            <b:button look="danger" icon="heart" />
+                        </p>
+                    </f:facet>
+                </b:thumbnail>
+            </b:column>
+            <b:column col-sm="6" col-md="4">
+                <b:thumbnail>
+                    <img src="../Imagenes/67010518_92-99999999_01.jpg" alt="Generic placeholder thumbnail"/>
+                    <f:facet name="caption">
+                        <h3>Abrigo Y Pantalón Slim Fit</h3>
+                        <p>$219.99</p>
+                        <p>
+                            <b:button value="Detalle" style="margin-right: 10px;"/>
+                            <b:button look="info" value="Agregar A Carrito" icon="shopping-cart" style="margin-right: 10px;"/>
+                            <b:button look="danger" icon="heart" />
+                        </p>
+                    </f:facet>
+                </b:thumbnail>
+            </b:column>
+            <b:column col-sm="6" col-md="4">
+                <b:thumbnail>
+                    <img src="../Imagenes/67040075_99_D6.jpg" alt="Generic placeholder thumbnail"/>
+                    <f:facet name="caption">
+                        <h3>Pantalón Con Abertura Baja</h3>
+                        <p>$45.99</p>
+                        <p>
+                            <b:button value="Detalle" style="margin-right: 10px;"/>
+                            <b:button look="info" value="Agregar A Carrito" icon="shopping-cart" style="margin-right: 10px;"/>
+                            <b:button look="danger" icon="heart" />
+                        </p>
+                    </f:facet>
+                </b:thumbnail>
+            </b:column>
+        </b:row>
+    </h:body>
+</html>
+
