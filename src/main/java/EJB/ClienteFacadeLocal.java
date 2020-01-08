@@ -30,6 +30,8 @@ public interface ClienteFacadeLocal {
 
     int count();
     
-    public Cliente ExisteCorreo(Cliente cl);
+     public int ExisteCorreo(Cliente cl);
+    
+    public String nombreCliente(Cliente c);
     
 }
