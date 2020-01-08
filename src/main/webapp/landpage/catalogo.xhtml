@@ -36,11 +36,11 @@
                 </p:dataGrid>
             </h:form>
             <p:growl id="carro" life="2000"/>
-               <b:column style="padding-left: 1000px" span="3">
-                    <b:button  value="Ver Carrito" icon="shopping-cart" look="success" id="carrito" size="lg"/>
-                </b:column>
-            <p:overlayPanel id="m" hideEffect="fade" for=":carrito" style="width:600px;" dynamic="false">
-                <p:dataTable var="d" value="#{detalleVentaController.list}" scrollable="true" scrollWidth="97%" scrollHeight="150" rows="5" paginator="true">
+            <b:column style="padding-left: 1000px" span="3">
+                <b:button  value="Ver Carrito" icon="shopping-cart" look="success" id="carrito" size="lg"/>
+            </b:column>
+            <p:overlayPanel id="m" hideEffect="fade" for=":carrito" style="width:800px;" dynamic="false">
+                <p:dataTable var="d" style="width: 120%;" value="#{detalleVentaController.list}" scrollable="true" scrollWidth="95%" scrollHeight="150" rows="5" paginator="true">
                     <p:column>
                         <h:graphicImage value="#{d.url}" width="50px;"/>
                     </p:column>
@@ -64,9 +64,11 @@
                     <p:column headerText="Categoria">
                         <h:outputText value="#{d.categoria.nombreCategoria}"/>
                     </p:column>
-                    <p:column headerText="Acción">
-                        <b:button icon="remove" value=""/>
-                    </p:column>
+                     <p:column>
+                            <h:form>
+                                <p:commandButton value="Borrar" icon="times" action="#{detalleVentaController.delete(prod)}"/>
+                            </h:form>
+                        </p:column>
                 </p:dataTable>
                 <h:outputLabel for="total" value="Total:" />
                 <h:outputText value="$#{detalleVentaController.total}" />
