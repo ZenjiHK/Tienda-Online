@@ -22,7 +22,6 @@ EJB\MarcaFacadeLocal.class
 Entity\Venta_.class
 EJB\DescuentoFacade.class
 EJB\RolFacadeLocal.class
-reporte.class
 Entity\Producto_.class
 Controller\FacturaController.class
 Entity\User.class

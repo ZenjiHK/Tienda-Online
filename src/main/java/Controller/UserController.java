@@ -144,7 +144,7 @@ public class UserController {
 
     public void cargarDatos(User u) {
         try {
-            this.cliente.setIdCliente(this.user.getCliente().getIdCliente());
+            this.cliente.setId_cliente(this.user.getCliente().getId_cliente());
             this.rol.setIdRol(this.user.getRol().getIdRol());
             this.user = u;
         } catch (Exception e) {

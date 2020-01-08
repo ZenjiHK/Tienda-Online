@@ -13,6 +13,7 @@
             <p:fieldset legend="Nuevo Cliente">
                 <p:panelGrid columns="1">
                     <p:commandButton value="Nuevo" oncomplete="PF('cli').show()"/>
+                    <p:commandButton value="PDF" actionListener="#{clienteController.PDF()}"/>
                 </p:panelGrid>
             </p:fieldset>   
         </h:form>
@@ -33,10 +34,10 @@
                         <f:selectItems value="#{paisController.listaPais}" var="pa" itemLabel="#{pa.nombrePais}" itemValue="#{pa.idPais}"/>
                     </p:selectOneMenu>
                     <p:commandButton value="Guardar" actionListener="#{clienteController.insertar()}"  
-                                     rendered="#{clienteController.cliente.idCliente==0}"
+                                     rendered="#{clienteController.cliente.id_cliente==0}"
                                      update=":Datos c :msj" oncomplete="PF('cli').hide()"/>
                     <p:commandButton value="Actualizar" actionListener="#{clienteController.editar()}" 
-                                     rendered="#{clienteController.cliente.idCliente !=0}"
+                                     rendered="#{clienteController.cliente.id_cliente !=0}"
                                      update=":Datos c :msj" oncomplete="PF('cli').hide()"/>
                     
                 </p:panelGrid>                
@@ -46,7 +47,7 @@
             <p:fieldset legend="Datos Cliente">
                 <p:dataTable value="#{clienteController.listaCliente}" var="c">
                     <p:column headerText="Id">
-                        <h:outputText value="#{c.idCliente}"/>
+                          <h:outputText value="#{c.id_cliente}"/>
                     </p:column>
                     <p:column headerText="nombre">
                         <h:outputText value="#{c.nombreCliente}"/>

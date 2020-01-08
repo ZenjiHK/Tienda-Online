@@ -21,7 +21,7 @@
                   <p:outputLabel value="Nombre del pais"/>
                   <p:inputText value="#{paisController.pais.nombrePais}"/>
                   <p:commandButton value="Guardar" actionListener="#{paisController.crear()}" update="formulario :tabla" oncomplete="PF('modal').hide()" rendered="#{paisController.pais.idPais ==0}" />
-                  <p:commandButton value="Actualizar" actionListener="#{paisController.editar()}" update="formulario :tabla" oncomplete="PF('modal').hide()" rendered="#{paisController.pais.idPais !=0}" />
+                  <p:commandButton value="Actualizar" actionListener="#{paisController.editar()}" update="formulario :tabla" oncomplete="PF('modal').hide()" rendered="#{paisController.pais.idPais >0}" />
             </h:form>
       </p:dialog>
       <h:form id="tabla">

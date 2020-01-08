@@ -45,7 +45,7 @@ CREATE TABLE cliente(
 		id_cliente int auto_increment primary key,
 		nombre_cliente varchar(50) not null,
 		apellido_cliente varchar(50) not null,
-		correo varchar(50) not null,
+		correo varchar(50) not null unique,
 		direccion varchar(100) not null,
 		id_pais int not null);
 
@@ -66,9 +66,8 @@ CREATE TABLE rol(
 		nombre_rol varchar(50) not null);
 
 CREATE TABLE user(
-		id_user int auto_increment primary key,
+		id_cliente int primary key,
 		nombre_usuario varchar(50) not null,
-		id_cliente int not null,
 		clave int not null,
 		id_rol int not null,
 		estado boolean not null);
