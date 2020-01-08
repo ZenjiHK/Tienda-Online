@@ -21,7 +21,7 @@ public class User implements Serializable {
     private Cliente cliente;
     
     @Column(name = "clave")
-    private int clave;
+    private String clave;
     
     @Column(name = "estado")
     private boolean estado=true;
@@ -45,14 +45,14 @@ public class User implements Serializable {
         this.cliente = cliente;
     }
 
-    public int getClave() {
+    public String getClave() {
         return clave;
     }
 
-    public void setClave(int clave) {
+    public void setClave(String clave) {
         this.clave = clave;
     }
-
+    
     public boolean isEstado() {
         return estado;
     }

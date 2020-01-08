@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        
+    </h:head>
+    <h:body>
+        <h:form id="form">
+            <p:dataGrid value="#{ProductoController.listaproducto}" var="prod" columns="8"  
+                        rows="1"  id="cars" >
+
+                <p:panel header="#{prod.nombreProducto}" style="text-align:center" rendered="#{prod.stock!=0}">
+                    <img src="#{prod.url}" style="width:150px; height:150px"/><br/>
+                    <h:outputText value="Marca: " />
+                    <h:outputText value="#{prod.marca.nombreMarca}" /><br/>
+                    <h:outputText value="Precio:" />
+                    <h:outputText value="#{prod.precioVenta}" />
+                    <p:spacer/><br/>
+                    <p:commandButton value="Comprar"></p:commandButton>
+                </p:panel>
+
+            </p:dataGrid>
+        </h:form>
+
+    </h:body>
+</html>
+

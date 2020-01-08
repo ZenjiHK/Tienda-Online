@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Tienda de Ropa</title>
+        <link href="../Resourse/css/login.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <div class="login">
+            <h:form id="formLogin"> 
+                <p:growl id="mensaje"  showDetail="true" life="3000" />
+
+                <p:panel header="Sistema de reserva de vuelo" widgetVar="dlg" >
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputLabel for="usuario" value="Usuario:" />
+                        <p:inputText id="usuario" value="#{userController.user.nombreUsuario}" placeholder="Usuario" required="true" label="username" requiredMessage="Escriba el usuario por favor" />
+
+                        <h:outputLabel for="password" value="Password:" />
+                        <p:password id="password" value="#{userController.user.clave}" placeholder="Password" required="true" label="password" requiredMessage="Escriba el password por favor" />
+
+                        <f:facet name="footer">
+                            <p:commandButton icon="ui-icon-person" value="Ingresar" update="mensaje" action="#{userController.login()}"/>
+                            <p:button outcome="insertUsuario" value="Nuevo Usuario" icon="pi pi-star" style="margin-left:20px;"/>
+                        </f:facet>  
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+            
+                    
+                       
+                    
+        </div>
+    </h:body>
+</html>
+

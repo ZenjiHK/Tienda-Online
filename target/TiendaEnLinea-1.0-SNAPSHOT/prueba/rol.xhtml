@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <body>
+        <p:growl id="msj"/>
+        <h:form>
+            <p:fieldset legend="Nuevo rol" toggleable="true">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Rol: "/>
+                    <p:inputText value="#{rolController.rol.nombreRol}"/>
+                </p:panelGrid>
+                <p:commandButton value="Insertar" actionListener="#{rolController.insertar()}"
+                                 update=":msj :datos"/>
+            </p:fieldset>
+        </h:form>
+        <h:form id="datos">            
+                <p:dataTable value="#{rolController.listaRol}" var="r">
+                    <p:column headerText="ID">
+                        <h:outputText value="#{r.idRol}"/>
+                    </p:column>
+                    <p:column headerText="Usuario">
+                        <h:outputText value="#{r.nombreRol}"/>
+                    </p:column>
+
+                    <p:column headerText="Editar">
+                        <p:commandButton value="Editar" actionListener="#{rolController.cargarDatos(r)}" update=":nuevo :datos"
+                                         oncomplete="PF('rol').show()"/>
+                    </p:column>
+                    <p:column headerText="Eliminar">
+                        <p:commandButton value="Eliminar" actionListener="#{rolController.eliminar(r)}" update=":nuevo :datos"/>
+                    </p:column>
+                </p:dataTable>         
+        </h:form>
+         <p:dialog id="nuevo" widgetVar="rol" >
+            <h:form>
+                <p:outputLabel value="Código"/>
+                <p:inputText value="#{rolController.rol.idRol}"/>
+                <p:outputLabel value="Nombre"/>
+                <p:inputText value="#{rolController.rol.nombreRol}"/>
+                <p:commandButton value="Modificar" actionListener="#{rolController.editar()}" update=":datos :msj" oncomplete="PF('rol').hide()"/>
+                <p:commandButton value="Cancelar" oncomplete="PF('rol').hide()"/>
+            </h:form>
+        </p:dialog>
+    </body>
+</html>
