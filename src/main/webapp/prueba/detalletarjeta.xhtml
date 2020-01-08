@@ -71,11 +71,6 @@
                     <p:column headerText="Eliminar">
                         <p:commandButton value="Eliminar" actionListener="#{detalleTarjetaController.eliminar(dt)}"
                                          update=":datos :msj" />
-                    <p:column headerText="Modificar">
-                        <p:commandButton value="Editar" actionListener="#{detalleTarjetaController.CargarTarjeta(dt)}" update=":d" oncomplete="PF('det').show()"/>
-                    </p:column>
-                    <p:column headerText="Eliminar">
-                        <p:commandButton value="Eliminar" actionListener="#{detalleTarjetaController.eliminar(dt)}" update=":datos :msj" />
                     </p:column>
                 </p:dataTable>
             </p:fieldset>
