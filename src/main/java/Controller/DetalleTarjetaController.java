@@ -62,7 +62,7 @@ public class DetalleTarjetaController implements Serializable {
             limpiar();
             this.msj = "Detalle de tarjeta ingresado correctamente";
         } catch (Exception e) {
-            this.msj = "Error al ingresar" + e.getMessage();
+           this.msj = "El numero de tarjeta ya esta registrado, favor ingrese uno nuevo";
             e.printStackTrace();
         }
         FacesMessage mensaje = new FacesMessage(this.msj);
