@@ -10,15 +10,19 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+
 
 /**
  *
  * @author evelyn.andradeusam
  */
 
-@Named(value = "detalleTarjetaController")
-@RequestScoped
+
+@ManagedBean
+@SessionScoped
 public class DetalleTarjetaController implements Serializable {
   
     @EJB
