@@ -53,6 +53,7 @@ ALTER TABLE cliente ADD CONSTRAINT FOREIGN KEY fk_cliente_pais(id_pais) REFERENC
 
 CREATE TABLE detalle_tarjeta(
 		id_detalle_tarjeta int auto_increment primary key,
+		numero int not null,
 		id_cliente int not null,
 		ping int not null,
 		expiracion date not null,
@@ -85,7 +86,7 @@ CREATE TABLE venta(
 		id_cliente int not null,
 		id_detalle_tarjeta int not null,
 		fecha date not null,
-		estado boolean not null);
+		estado varchar(15) not null);
 
 ALTER TABLE venta ADD CONSTRAINT FOREIGN KEY fk_venta_cliente(id_cliente) REFERENCES cliente(id_cliente);
 

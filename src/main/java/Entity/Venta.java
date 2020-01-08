@@ -29,7 +29,7 @@ public class Venta implements Serializable {
     private Date fecha;
     
     @Column(name = "estado")
-    private boolean estado;
+    private String estado;
     
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
     @ManyToOne
@@ -87,11 +87,11 @@ public class Venta implements Serializable {
         this.idVenta = idVenta;
     }
     
-    public boolean getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 

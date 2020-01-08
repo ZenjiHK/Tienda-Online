@@ -24,6 +24,9 @@ public class DetalleTarjeta implements Serializable {
     @Column(name = "id_detalle_tarjeta")
     private int idDetalleTarjeta;
     
+    @Column(name="numero")
+    private int numero_tarjeta;
+    
     @Column(name = "expiracion")
     @Temporal(TemporalType.DATE)
     private Date expiracion;
@@ -37,6 +40,9 @@ public class DetalleTarjeta implements Serializable {
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
     @ManyToOne
     private Cliente cliente;
+    
+    @Column(name="estado")
+    private boolean estado=true;
 
     public DetalleTarjeta() {
     }
@@ -114,4 +120,20 @@ public class DetalleTarjeta implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
+      public boolean isEstado() {
+            return estado;
+      }
+
+      public void setEstado(boolean estado) {
+            this.estado = estado;
+      }
+
+      public int getNumero_tarjeta() {
+            return numero_tarjeta;
+      }
+
+      public void setNumero_tarjeta(int numero_tarjeta) {
+            this.numero_tarjeta = numero_tarjeta;
+      }
 }

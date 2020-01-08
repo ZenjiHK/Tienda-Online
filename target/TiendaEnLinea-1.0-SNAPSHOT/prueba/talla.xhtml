@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Talla - Tienda en linea</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <p:growl id="msj"/>
+        <h:form>
+            <p:outputLabel value="Ingrese talla"/>
+            <p:inputText value="#{tallaController.talla.talla}"/>
+            <p:commandButton value="Enviar" actionListener="#{tallaController.insertar()}" update=":msj :tabla"/>
+        </h:form>
+        <h:form id="tabla">
+            <p:dataTable  value="#{tallaController.listaTalla}" var="c" >     
+                <p:column headerText="Código">
+                    <p:outputLabel value="#{c.idTalla}"/>
+                </p:column>
+                <p:column headerText="talla">
+                    <p:outputLabel value="#{c.talla}"/>
+                </p:column>
+                <p:column headerText="Modificar">
+                    <p:commandButton value="Modificar" actionListener="#{tallaController.cargarDatos(c)}" update=":nuevo"
+                                     oncomplete="PF('w').show()"/>
+                </p:column>
+                <p:column headerText="Eliminar" >
+                    <p:commandButton value="Eliminar" actionListener="#{tallaController.eliminar(c)}" update=":tabla :msj"/>                  
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+        <p:dialog id="nuevo" widgetVar="w" header="Datos">
+            <h:form>                
+                <p:inputText type="hidden"  value="#{tallaController.talla.idTalla}"/>
+                <p:outputLabel value="Nombre"/>
+                <p:inputText value="#{tallaController.talla.talla}"/>
+                <p:commandButton value="Modificar" actionListener="#{tallaController.editar()}" update=":tabla :msj"
+                                 oncomplete="PF('w').hide()"/>            
+            </h:form>
+        </p:dialog>
+        <p:separator/>
+    </h:body>
+</html>

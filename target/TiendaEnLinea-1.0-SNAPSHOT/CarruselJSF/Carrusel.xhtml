@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <style>
+            .downwards .dropdown-submenu>.dropdown-menu {
+                position: relative;
+                left: 0;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <b:navBar brand-img="../Imagenes/generatedtext (1).jpg" brandHref="#" inverse="false">
+            <b:flyOutMenu width="50px" styleClass="downwards">
+                  <b:navbarLinks>
+                        <b:dropMenu value="Rebajas">
+                        <b:navLink value="Mujer" href="#"></b:navLink>
+                        <b:navLink value="Hombre" href="#"></b:navLink>
+                        <b:navLink value="Niño" href="#"></b:navLink>
+                        <b:navLink value="Niña" href="#"></b:navLink>
+                    </b:dropMenu>
+                        <b:dropMenu value="Mujer">
+                        <b:navLink value="Nueva Coleccion" href="#"></b:navLink>
+                        <b:navLink value="Prendas" href="#"></b:navLink>
+                        <b:navLink value="Accesorios" href="#"></b:navLink>
+                    </b:dropMenu>
+                        <b:dropMenu value="Hombre">
+                        <b:navLink value="Nueva Coleccion" href="#"></b:navLink>
+                        <b:navLink value="Prendas" href="#"></b:navLink>
+                        <b:navLink value="Sastreria" href="#"></b:navLink>
+                        <b:navLink value="Accesorios" href="#"></b:navLink>
+                    </b:dropMenu>
+                        <b:navLink value="Niña" href="#"></b:navLink>
+                        <b:navLink value="Niño" href="#"></b:navLink>
+                      </b:navbarLinks>
+            </b:flyOutMenu>
+            <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
+            <b:navbarLinks pull="right" styleClass="hidden-xs">
+                <b:navLink value="Iniciar Sesión" icon="user" href="#"></b:navLink>
+                <b:navLink value="Favorito" icon="heart" href="#"></b:navLink>
+                <b:navLink value="Bolsa" icon="shopping-cart" href="#"></b:navLink>
+            </b:navbarLinks>
+        </b:navBar>
+        <h:form>
+            <b:carousel id="tiovivo" style="width: 1500px" interval="2500">
+                <b:carouselItem >
+                    <img src="../Imagenes/she_1219_rebajas.jpg" alt="Valladolid" style="width: 1500px; height: 600px" />
+                    <b:carouselCaption>
+                        <h2>You'll love Valladolid!</h2>
+                        <p>The band reads being Spains' motto in 1492, when Columbus made his discoveries.</p>
+                    </b:carouselCaption>
+                </b:carouselItem>
+                <b:carouselItem caption="Valladolid has a nice central park.">
+                    <img src="../Imagenes/she_1219_rebajas.jpg" alt="Valladolid" style="width: 1500px; height: 600px" />
+                </b:carouselItem>
+                <b:carouselItem caption="Ain't he a beauty?">
+                    <img src="../Imagenes/she_1219_rebajas.jpg" alt="Valladolid" style="width: 1500px; height: 600px" />
+                </b:carouselItem>
+                <b:carouselItem>
+                    <img src="../Imagenes/she_1219_rebajas.jpg" alt="Valladolid" style="width: 1500px; height: 600px" />
+                    <b:carouselCaption>
+                        <h2>Fountains</h2>
+                        <p>In Spain, dry as it is, people love to play with water.</p>
+                    </b:carouselCaption>
+                </b:carouselItem>
+                <b:carouselItem caption="Valladolid - a city with a lot of history">
+                    <img src="../Imagenes/she_1219_rebajas.jpg" alt="Valladolid" style="width: 1500px; height: 600px" />
+                </b:carouselItem>
+            </b:carousel>
+        </h:form>
+        <b:row>
+            <br></br>
+            <br></br>
+            <b:column col-sm="6" col-md="4">
+                <b:thumbnail>
+                    <img src="../Imagenes/67070531_94_D5.jpg" alt="Generic placeholder thumbnail"/>
+                    <f:facet name="caption">
+                        <h3>Camiseta Mensaje Estrellas</h3>
+                        <p>$19.99</p>
+                        <p>
+                        <b:button value="Detalle" />
+                        <b:button look="info" value="Agregar A Carrito" icon="shopping-cart" />
+                        </p>
+                    </f:facet>
+                </b:thumbnail>
+            </b:column>
+            <b:column col-sm="6" col-md="4">
+                <b:thumbnail>
+                    <img src="../Imagenes/67010518_92-99999999_01.jpg" alt="Generic placeholder thumbnail"/>
+                    <f:facet name="caption">
+                        <h3>Abrigo Y Pantalón Slim Fit</h3>
+                        <p>$219.99</p>
+                        <p>
+                        <b:button value="Detalle" />
+                        <b:button look="info" value="Agregar A Carrito" icon="shopping-cart" />
+                        </p>
+                    </f:facet>
+                </b:thumbnail>
+            </b:column>
+            <b:column col-sm="6" col-md="4">
+                <b:thumbnail>
+                    <img src="../Imagenes/67040075_99_D6.jpg" alt="Generic placeholder thumbnail"/>
+                    <f:facet name="caption">
+                        <h3>Pantalón Con Abertura Baja</h3>
+                        <p>$45.99</p>
+                        <p>
+                        <b:button value="Detalle" />
+                        <b:button look="info" value="Agregar A Carrito" icon="shopping-cart" />
+                        </p>
+                    </f:facet>
+                </b:thumbnail>
+            </b:column>
+        </b:row>
+    </h:body>
+</html>
+

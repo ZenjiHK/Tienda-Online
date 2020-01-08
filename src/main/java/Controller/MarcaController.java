@@ -48,7 +48,8 @@ public class MarcaController implements Serializable{
     public void insertar(){
         try {
             marcaEJB.create(marca);
-            this.mensaje = "insertado con exito";          
+            this.mensaje = "insertado con exito";   
+            limpiar();
         } catch (Exception e) {
             this.mensaje = "Error insertando datos";
         }
@@ -90,7 +91,6 @@ public class MarcaController implements Serializable{
     
     public void limpiar(){
         this.marca = new Marca();
-        this.listamarca= marcaEJB.findAll();
-        this.mensaje="";
+        this.listamarca= marcaEJB.findAll();     
     }
 }

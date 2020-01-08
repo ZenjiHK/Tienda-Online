@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package EJB;
-
 import Entity.User;
 import java.util.List;
 import javax.ejb.Local;
@@ -30,4 +29,7 @@ public interface UserFacadeLocal {
 
     int count();
     
+    User Sesion(User us);
+    
 }
+
