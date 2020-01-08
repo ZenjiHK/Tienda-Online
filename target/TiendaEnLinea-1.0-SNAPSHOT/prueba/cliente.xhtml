@@ -29,7 +29,7 @@
                               <p:inputText id="txtCorreo" value="#{clienteController.cliente.correo}" required="true"/>
                               <p:outputLabel for="txtDireccion" value="Direccion cliente"/>
                               <p:inputText id="txtDireccion" value="#{clienteController.cliente.direccion}" required="true"/>
-                              <p:outputLabel for="cmbPais" value="Pais cliente"/>
+                              <p:outputLabel value="Pais cliente"/>
                               <p:selectOneMenu id="cmbPais" value="#{clienteController.pais.idPais}">     
                                     <f:selectItems value="#{paisController.listaPais}" var="pa" itemLabel="#{pa.nombrePais}" itemValue="#{pa.idPais}"/>
                               </p:selectOneMenu>
@@ -74,7 +74,7 @@
                   </p:fieldset>
             </h:form>
             <h:form>
-                  <p:commandButton actionListener="#{reporte.hola()}" value="Mundo"/>
+                  <p:commandButton value="Mundo"/>
             </h:form>
       </h:body>
 </html>

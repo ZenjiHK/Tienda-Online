@@ -11,7 +11,6 @@ C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\EJB\ProductoF
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\Entity\Talla.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\EJB\TipoRopaFacade.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\Entity\Venta.java
-C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\EJB\GeneradorFacade.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\EJB\CategoriaFacadeLocal.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\Entity\Producto.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\Entity\TipoRopa.java
@@ -28,7 +27,6 @@ C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\EJB\MarcaFaca
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\Controller\RolController.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\Entity\DetalleTarjeta.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\Controller\ReporteController.java
-C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\EJB\GeneradorFacadeLocal.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\Entity\Marca.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\EJB\RolFacade.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\EJB\TallaFacadeLocal.java
@@ -48,13 +46,11 @@ C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\Controller\Pr
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\Controller\FacturaController.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\EJB\UserFacadeLocal.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\Controller\MarcaController.java
-C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\Controller\GeneradorController.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\Entity\User.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\Controller\FormaPagoController.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\EJB\DetalleTarjetaFacade.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\reporte.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\Controller\UserController.java
-C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\Entity\Generador.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\Controller\DescuentoController.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\EJB\MarcaFacadeLocal.java
 C:\Users\alex.lemususam\Desktop\prueba\Tienda-Online\src\main\java\EJB\VentaFacadeLocal.java

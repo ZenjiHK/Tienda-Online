@@ -25,7 +25,7 @@ public class DetalleTarjeta implements Serializable {
     private int idDetalleTarjeta;
     
     @Column(name="numero")
-    private int numero_tarjeta;
+    private String numero_tarjeta;
     
     @Column(name = "expiracion")
     @Temporal(TemporalType.DATE)
@@ -129,11 +129,11 @@ public class DetalleTarjeta implements Serializable {
             this.estado = estado;
       }
 
-      public int getNumero_tarjeta() {
+      public String getNumero_tarjeta() {
             return numero_tarjeta;
       }
 
-      public void setNumero_tarjeta(int numero_tarjeta) {
+      public void setNumero_tarjeta(String numero_tarjeta) {
             this.numero_tarjeta = numero_tarjeta;
       }
 }

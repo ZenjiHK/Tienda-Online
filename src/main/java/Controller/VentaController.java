@@ -3,6 +3,7 @@ package Controller;
 import EJB.VentaFacadeLocal;
 import Entity.Cliente;
 import Entity.DetalleTarjeta;
+import Entity.Producto;
 import Entity.Venta;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -24,6 +25,7 @@ public class VentaController implements Serializable {
     private Cliente cliente;
     private DetalleTarjeta detalleTarjeta;
     private String msg;
+    private List<Producto> lista;
 
     
     @PostConstruct
@@ -121,5 +123,16 @@ public class VentaController implements Serializable {
 
     public void setDetalleTarjeta(DetalleTarjeta detalleTarjeta) {
         this.detalleTarjeta = detalleTarjeta;
+    }
+        public void Enviar(List<Producto> l){
+        try {
+            lista = l;
+            msg = "Proceso Realizado";
+        } catch (Exception e) {
+            msg = "Error";
+            e.printStackTrace();
+        }
+        FacesMessage msj = new FacesMessage(msg);
+        FacesContext.getCurrentInstance().addMessage(msg, msj);
     }
 }
