@@ -64,11 +64,11 @@
                     <p:column headerText="Categoria">
                         <h:outputText value="#{d.categoria.nombreCategoria}"/>
                     </p:column>
-                     <p:column>
-                            <h:form>
-                                <p:commandButton value="Borrar" icon="times" action="#{detalleVentaController.delete(prod)}"/>
-                            </h:form>
-                        </p:column>
+                    <p:column>
+                        <h:form>
+                            <p:commandButton value="Borrar" icon="times" action="#{detalleVentaController.delete(prod)}"/>
+                        </h:form>
+                    </p:column>
                 </p:dataTable>
                 <h:outputLabel for="total" value="Total:" />
                 <h:outputText value="$#{detalleVentaController.total}" />
