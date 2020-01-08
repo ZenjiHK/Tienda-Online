@@ -8,20 +8,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-
-/**
- *
- * @author evelyn.andradeusam
- */
-
-
-@ManagedBean
+@Named(value = "detalleTarjetaController")
 @SessionScoped
 public class DetalleTarjetaController implements Serializable {
   
@@ -117,5 +108,4 @@ public class DetalleTarjetaController implements Serializable {
         FacesMessage mensaje = new FacesMessage(this.msj);
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
-
 }

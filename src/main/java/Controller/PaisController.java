@@ -7,13 +7,9 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
+
 import javax.inject.Named;
 
-/**
- *
- * @author maynor.menjivarusam
- */
 @Named(value = "paisController")
 @SessionScoped
 public class PaisController implements Serializable{

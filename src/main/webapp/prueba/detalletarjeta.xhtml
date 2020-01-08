@@ -24,8 +24,7 @@
                     <p:inputMask id="tarjeta" value="#{detalleTarjetaController.detalletarjeta.numero_tarjeta}" mask="9999-9999-9999-9999" required="true"/>
                     <p:outputLabel for="cmbCliente" value="Cliente"/>
                     <p:selectOneMenu id="cmbCliente" value="#{detalleTarjetaController.cliente.idCliente}">
-                        <f:selectItems value="#{clienteController.listaCliente}" var="cli"
-                                       itemLabel="#{cli.nombreCliente} #{cli.apellidoCliente}" itemValue="#{cli.idCliente}"/>
+                        <f:selectItems value="#{clienteController.listaCliente}" var="cli" itemLabel="#{cli.nombreCliente} #{cli.apellidoCliente}" itemValue="#{cli.idCliente}"/>
                     </p:selectOneMenu>
                     <p:outputLabel for="txtPing" value="Ping"/>
                     <p:inputText id="txtPing" value="#{detalleTarjetaController.detalletarjeta.ping}" required="true"/>
@@ -72,6 +71,11 @@
                     <p:column headerText="Eliminar">
                         <p:commandButton value="Eliminar" actionListener="#{detalleTarjetaController.eliminar(dt)}"
                                          update=":datos :msj" />
+                    <p:column headerText="Modificar">
+                        <p:commandButton value="Editar" actionListener="#{detalleTarjetaController.CargarTarjeta(dt)}" update=":d" oncomplete="PF('det').show()"/>
+                    </p:column>
+                    <p:column headerText="Eliminar">
+                        <p:commandButton value="Eliminar" actionListener="#{detalleTarjetaController.eliminar(dt)}" update=":datos :msj" />
                     </p:column>
                 </p:dataTable>
             </p:fieldset>

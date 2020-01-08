@@ -1,6 +1,7 @@
 package Entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -182,4 +183,5 @@ public class Producto implements Serializable {
       public void setUrl(String url) {
             this.url = url;
       }
+
 }

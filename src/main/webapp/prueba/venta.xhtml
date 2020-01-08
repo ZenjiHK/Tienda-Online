@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
@@ -29,7 +29,7 @@
                 <ui:insert name="left">
                     <p:dialog widgetVar="myModal" modal="true" showEffect="clip" resizable="false">
                         <p:ajax event="close" listener="#{clienteController.limpiar()}"/>
-                        <h:form id="c">
+                        <h:form id="v">
                             <p:panelGrid columns="2">
                                 <p:outputLabel value="Cliente"/>
                                 <p:selectOneMenu value="#{ventaController.cliente.idCliente}">     
@@ -48,10 +48,10 @@
                                 </p:selectOneMenu>
                                 <p:commandButton value="Guardar" actionListener="#{ventaController.crear()}"  
                                                  rendered="#{ventaController.venta.idVenta==0}"
-                                                 update=":Datos c :msj" oncomplete="PF('myModal').hide()"/>
+                                                 update=":Datos v :msj" oncomplete="PF('myModal').hide()"/>
                                 <p:commandButton value="Actualizar" actionListener="#{ventaController.editar()}" 
                                                  rendered="#{ventaController.venta.idVenta!=0}"
-                                                 update=":Datos c :msj" oncomplete="PF('myModal').hide()"/>
+                                                 update=":Datos v :msj" oncomplete="PF('myModal').hide()"/>
                             </p:panelGrid>                
                         </h:form>
                     </p:dialog>
@@ -79,11 +79,11 @@
                                         <f:convertDateTime pattern="YYYY-MM-dd"/>
                                     </h:outputText>
                                 </p:column>
-                                <p:column headerText="Estado">
+                                <p:column headerText="Activo">
                                     <h:outputText value="#{v.estado}"/>
                                 </p:column>
                                 <p:column headerText="Modificar">
-                                    <p:commandButton value="Editar" actionListener="#{ventaController.cargarDatos(v)}" update=":c" oncomplete="PF('myModal').show()"/>
+                                    <p:commandButton value="Editar" actionListener="#{ventaController.cargarDatos(v)}" update=":v" oncomplete="PF('myModal').show()"/>
                                 </p:column>
                                 <p:column headerText="Eliminar">
                                     <p:commandButton value="Eliminar" actionListener="#{ventaController.eliminar(v)}" update=":Datos :msj"/>

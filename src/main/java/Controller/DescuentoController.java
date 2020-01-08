@@ -7,12 +7,13 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 
 /**
  *
  * @author jose.cortezusam
  */
-@ManagedBean
+@Named(value = "descuentoController")
 @RequestScoped
 public class DescuentoController {
     

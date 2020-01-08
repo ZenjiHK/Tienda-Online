@@ -16,9 +16,14 @@
                     </p:column>
                       <p:column headerText="Forma de pago">
                             <h:outputLabel value="#{fp.nombreFormaPago}"/>
-                      </p:column>                      
+                      </p:column>
+                      <p:column headerText="Modificar">
+                            <p:commandButton value="Modiifcar" actionListener="#{formaPagoController.cargarDatos(fp)}" update=":formulario" oncomplete="PF('modal').show()"/>
+                      </p:column>
+                      <p:column headerText="Eliminar">
+                            <p:commandButton value="Eliminar" actionListener="#{formaPagoController.eliminar(fp)}" update=":formulario :tabla"/>
+                      </p:column>
                 </p:dataTable>
             </p:fieldset> 
     </h:body>
 </html>
-

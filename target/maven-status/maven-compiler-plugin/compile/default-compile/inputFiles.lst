@@ -47,6 +47,7 @@ C:\Users\jocelyn.pazusam\Documents\GitHub\Tienda-Online\src\main\java\Controller
 C:\Users\jocelyn.pazusam\Documents\GitHub\Tienda-Online\src\main\java\EJB\TipoRopaFacadeLocal.java
 C:\Users\jocelyn.pazusam\Documents\GitHub\Tienda-Online\src\main\java\EJB\VentaFacade.java
 C:\Users\jocelyn.pazusam\Documents\GitHub\Tienda-Online\src\main\java\Controller\TipoRopaController.java
+C:\Users\jocelyn.pazusam\Documents\GitHub\Tienda-Online\src\main\java\reporte.java
 C:\Users\jocelyn.pazusam\Documents\GitHub\Tienda-Online\src\main\java\Entity\Factura.java
 C:\Users\jocelyn.pazusam\Documents\GitHub\Tienda-Online\src\main\java\Entity\Pais.java
 C:\Users\jocelyn.pazusam\Documents\GitHub\Tienda-Online\src\main\java\Controller\FormaPagoController.java
@@ -54,6 +55,7 @@ C:\Users\jocelyn.pazusam\Documents\GitHub\Tienda-Online\src\main\java\Entity\Rol
 C:\Users\jocelyn.pazusam\Documents\GitHub\Tienda-Online\src\main\java\EJB\DescuentoFacadeLocal.java
 C:\Users\jocelyn.pazusam\Documents\GitHub\Tienda-Online\src\main\java\EJB\RolFacadeLocal.java
 C:\Users\jocelyn.pazusam\Documents\GitHub\Tienda-Online\src\main\java\EJB\RolFacade.java
+C:\Users\jocelyn.pazusam\Documents\GitHub\Tienda-Online\src\main\java\Controller\ReporteController.java
 C:\Users\jocelyn.pazusam\Documents\GitHub\Tienda-Online\src\main\java\EJB\ClienteFacadeLocal.java
 C:\Users\jocelyn.pazusam\Documents\GitHub\Tienda-Online\src\main\java\EJB\DetalleTarjetaFacadeLocal.java
 C:\Users\jocelyn.pazusam\Documents\GitHub\Tienda-Online\src\main\java\Controller\FacturaController.java

@@ -7,6 +7,7 @@ Controller\DetalleVentaController.class
 EJB\ClienteFacade.class
 Entity\Pais.class
 Entity\Descuento_.class
+Controller\ReporteController.class
 EJB\ProductoFacade.class
 Entity\Venta.class
 EJB\UserFacadeLocal.class
@@ -21,6 +22,7 @@ EJB\MarcaFacadeLocal.class
 Entity\Venta_.class
 EJB\DescuentoFacade.class
 EJB\RolFacadeLocal.class
+reporte.class
 Entity\Producto_.class
 Controller\FacturaController.class
 Entity\User.class
