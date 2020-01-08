@@ -153,7 +153,6 @@ public class ProductoController implements Serializable{
     }
 
     public List<Producto> getConsultaProductos() {       
-        this.consultaProductos = this.productoEJB.consultaProductos();
         return consultaProductos;
     }
 

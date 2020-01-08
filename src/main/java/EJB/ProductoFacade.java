@@ -23,19 +23,6 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
     public ProductoFacade() {
         super(Producto.class);
     }
-
-    
-    @Override
-    public List<Producto> consultaProductos() {
-
-        List<Producto> lista = new LinkedList<>();
-        try {
-            String sql = "Select p from producto p order by p.id_producto Limit 5";
-            Query query = em.createQuery(sql);  
-        } catch (Exception e) {
-        }
-        return lista;
-    }
     
     /* Metodo que tiene como proposito validar cuantos items existen sobre un producto en
     formulario catalogo de productos */
