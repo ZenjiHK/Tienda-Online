@@ -23,4 +23,6 @@ public interface ProductoFacadeLocal {
     
     List<Producto> consultaProductos();
     
+    boolean stockcero(int idProducto);
+    
 }
