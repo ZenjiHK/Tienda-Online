@@ -31,7 +31,7 @@ public class PaisController implements Serializable{
     }
 
     public List<Pais> getListaPais() {
-        this.listaPais= paisEJB.findAll();
+        this.listaPais=this.paisEJB.findAll();
         return listaPais;
     }
 
@@ -65,7 +65,7 @@ public class PaisController implements Serializable{
     
     public void editar(){
         try{
-            this.paisEJB.edit(pais);
+            paisEJB.edit(pais);
             limpiar();
             msg="Exito";
         }catch(Exception e){
@@ -74,9 +74,9 @@ public class PaisController implements Serializable{
         }
     }
     
-    public void remover(Pais p){
+    public void remover(){
         try{
-            this.paisEJB.remove(p);
+            paisEJB.remove(pais);
             limpiar();
             msg="Exito";
         }catch(Exception e){
@@ -85,14 +85,16 @@ public class PaisController implements Serializable{
         }
     }
     
-    public void cargarDatos(Pais p){
+    public Pais cargarDatos(Object id){
         try{
-              limpiar();
-            this.pais = p;
+            pais = paisEJB.find(id);
+            limpiar();
             msg="Exito";
+            return pais;
         }catch(Exception e){
             this.msg="Error "+e.getMessage();
             e.printStackTrace();
+            return null;
         }
     }
 }
