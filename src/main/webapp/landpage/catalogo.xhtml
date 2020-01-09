@@ -9,6 +9,16 @@
         <title>Tienda de ropa JSF</title>
     </h:head>
 
+<<<<<<< HEAD
+    <h:body>
+        <ui:include src="topnavbar.xhtml"/>
+        <h:panelGrid columns="2" id="panel">
+            <p:panel header="Nombre Usuario" style="font-size: 20px; text-align: center">
+                <img src="../Resourse/img/user.png" height="100" width="100" style="align-content:center"/>
+            </p:panel>
+            <h:form>
+                <p:dataGrid value="#{productoController.listaproducto}" var="prod" columns="3" layout="grid"
+=======
     <body>
 
         <h:form>
@@ -21,6 +31,7 @@
                     </p:panel>
                 </h:outputLabel>
                 <p:dataGrid value="#{ProductoController.listaproducto}" var="prod" columns="3" layout="grid"
+>>>>>>> master
                             rows="6" paginator="true" 
                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} 
                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
@@ -40,10 +51,13 @@
                     <f:facet name="header">
                         Ropa disponible
                     </f:facet>
+<<<<<<< HEAD
+                    <p:panel rendered="#{prod.stock>0 and prod.categoria.idCategoria==1}" header="#{prod.nombreProducto}" style="text-align:center">
+=======
 
                     <p:panel rendered="#{prod.stock>0}" header="#{prod.nombreProducto}" style="text-align:center">
+>>>>>>> master
                         <img src="#{prod.url}" style="width: 25%;height: 25%"/><br/>
-
                         <h:outputText value="#{prod.marca.nombreMarca}"/><br/>
                         <h:outputText value="Talla #{prod.talla.talla}"/><br/>
                         <h:outputText value="$#{prod.precioVenta}"/><br/>

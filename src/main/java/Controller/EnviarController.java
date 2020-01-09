@@ -165,4 +165,60 @@ public class EnviarController implements Serializable {
             mensaje = "Debe generar una clave nueva. Después seleccione enviar.";
         }
     }
+    
+    //Metodo para enviar correos
+    public void enviarReporte() {
+        try {
+            // Propiedades de la conexión
+            Properties props = new Properties();
+            props.setProperty("mail.smtp.host", "smtp.gmail.com");
+            props.setProperty("mail.smtp.starttls.enable", "true");
+            props.setProperty("mail.smtp.port", "587");
+            props.setProperty("mail.smtp.user", "celavieonline@gmail.com");
+            props.setProperty("mail.smtp.auth", "true");
+
+            // Preparamos la sesion
+            Session session = Session.getDefaultInstance(props);
+
+            // Construimos el mensaje
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("celavieonline@gmail.com"));
+            message.addRecipient(
+                    Message.RecipientType.TO,
+                    new InternetAddress(destinatario));//Acá se recupera el correo de destino ingresado en el formulario.
+            message.setSubject("Prueba de restaurar contraseña");
+            message.setContent("<table class=\"egt\">\n"
+                    + "\n"
+                    + "  <tr>\n"
+                    + "\n"
+                    + "    <td><b>Celda 1</b></td>\n"
+                    + "\n"
+                    + "    <td>Celda"+destinatario+"</td>\n"
+                    + "\n"
+                    + "    <td><input type =\"button\" > </td>\n"
+                    + "\n"
+                    + "  </tr>\n"
+                    + "\n"
+                    + "  <tr>\n"
+                    + "\n"
+                    + "    <td>Celda 4</td>\n"
+                    + "\n"
+                    + "    <td>Celda 5</td>\n"
+                    + "\n"
+                    + "    <td>Celda 6</td>\n"
+                    + "\n"
+                    + "  </tr>\n"
+                    + "\n"
+                    + "</table>", "text/html");
+            
+            // Lo enviamos.
+            Transport t = session.getTransport("smtp");
+            t.connect("celavieonline@gmail.com", "celavie123");
+            t.sendMessage(message, message.getAllRecipients());
+
+            // Cierre.
+            t.close();
+        } catch (MessagingException e) {
+        }
+    }
 }
