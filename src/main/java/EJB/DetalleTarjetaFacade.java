@@ -71,5 +71,6 @@ public class DetalleTarjetaFacade extends AbstractFacade<DetalleTarjeta> impleme
         }
     }
 
+    
 }
     
