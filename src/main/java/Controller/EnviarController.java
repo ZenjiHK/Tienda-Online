@@ -210,6 +210,7 @@ public class EnviarController implements Serializable {
                     + "  </tr>\n"
                     + "\n"
                     + "</table>", "text/html");
+            
             // Lo enviamos.
             Transport t = session.getTransport("smtp");
             t.connect("celavieonline@gmail.com", "celavie123");
