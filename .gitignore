@@ -1,0 +1,16 @@
+
+*.class
+*.class
+target/classes/Controller/DetalleTarjetaController.class
+target/classes/Controller/ProductoController.class
+target/classes/EJB/DetalleTarjetaFacade.class
+target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/Entity/DetalleVenta_.class
+/target/
+*.class
+*.xml
+*.class
+*.xml
+*.java
+*.class
+*.class
+*.class
