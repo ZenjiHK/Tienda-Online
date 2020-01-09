@@ -21,17 +21,11 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-<<<<<<< HEAD
+
 @Named(value = "productoController")
 @SessionScoped
 public class ProductoController implements Serializable{
-    
-=======
-@Named(value = "ProductoController")
-@RequestScoped
-public class ProductoController implements Serializable {
 
->>>>>>> master
     @EJB
     private ProductoFacadeLocal productoEJB;
     private Producto producto;
