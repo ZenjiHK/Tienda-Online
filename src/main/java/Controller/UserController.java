@@ -181,9 +181,9 @@ public class UserController {
             if (us != null) {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", us);
                 if (us.getRol().getNombreRol().equalsIgnoreCase("cliente")) {
-                    redireccion = "/prueba/producto?faces-redirect=true";
+                    redireccion = "/admin/producto?faces-redirect=true";
                 } else if (us.getRol().getNombreRol().equalsIgnoreCase("admin")) {
-                    redireccion = "/prueba/user?faces-redirect=true";
+                    redireccion = "/admin/user?faces-redirect=true";
                 }
 
             } else {
