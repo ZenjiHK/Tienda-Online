@@ -31,4 +31,8 @@ public interface DetalleTarjetaFacadeLocal {
     int count();
     
     List<DetalleTarjeta> findByC(int idCliente);   
+    
+    void ocultar(DetalleTarjeta d);
+    
+    List<DetalleTarjeta> listaoculta();
 }
