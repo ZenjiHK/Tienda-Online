@@ -43,7 +43,7 @@
         </p:dialog>
         <h:form id="datos">
             <p:fieldset legend="Datos Tarjeta">
-                <p:dataTable value="#{detalleTarjetaController.listaTarjeta}" var="dt">
+                <p:dataTable value="#{detalleTarjetaController.listaOculta}" var="dt">
                     <p:column headerText="Id">
                         <h:outputText value="#{dt.idDetalleTarjeta}"/>
                     </p:column>
@@ -69,7 +69,7 @@
                                          update=":d" oncomplete="PF('det').show()"/>
                     </p:column>
                     <p:column headerText="Eliminar">
-                        <p:commandButton value="Eliminar" actionListener="#{detalleTarjetaController.eliminar(dt)}"
+                        <p:commandButton value="Eliminar" actionListener="#{detalleTarjetaController.oculto(dt)}"
                                          update=":datos :msj" />
                     </p:column>
                 </p:dataTable>
@@ -77,4 +77,3 @@
         </h:form>
     </h:body>
 </html>
-

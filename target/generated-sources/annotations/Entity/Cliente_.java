@@ -9,12 +9,12 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-01-08T16:44:18")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-01-09T15:31:15")
 @StaticMetamodel(Cliente.class)
 public class Cliente_ { 
 
+    public static volatile SingularAttribute<Cliente, Integer> id_cliente;
     public static volatile ListAttribute<Cliente, Venta> lista_ventas;
-    public static volatile SingularAttribute<Cliente, Integer> idCliente;
     public static volatile SingularAttribute<Cliente, String> nombreCliente;
     public static volatile ListAttribute<Cliente, DetalleTarjeta> lista_detalle_tarjetas;
     public static volatile SingularAttribute<Cliente, String> apellidoCliente;

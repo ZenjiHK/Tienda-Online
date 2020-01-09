@@ -31,8 +31,8 @@ public class ClienteFacade extends AbstractFacade<Cliente> implements ClienteFac
         super(Cliente.class);
     }
     
-    @Override
-    public Cliente ExisteCorreo(Cliente c){
+     @Override
+    public int ExisteCorreo(Cliente c){
         Cliente cliente = null;
         String sql;
         try {
@@ -48,7 +48,26 @@ public class ClienteFacade extends AbstractFacade<Cliente> implements ClienteFac
         } catch (Exception e) {
             throw e;
         }
-        return cliente;
-    }   
+        return cliente.getId_cliente();
+    }       
     
+    @Override
+    public String nombreCliente(Cliente c){
+        Cliente cliente = null;
+        String sql;
+        try {
+            sql = "SELECT  c FROM Cliente c  WHERE c.idCliente=?1";
+            Query query = em.createQuery(sql);
+            
+            query.setParameter(1, c.getId_cliente());
+                        
+            List<Cliente> lista = query.getResultList();
+            if (!lista.isEmpty()) {
+                cliente = lista.get(0);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return cliente.getNombreCliente();
+    }         
 }

@@ -20,7 +20,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-@Named(value = "enviarController")
+@Named(value = "EnviarController")
 @SessionScoped
 public class EnviarController implements Serializable {
 
@@ -30,10 +30,21 @@ public class EnviarController implements Serializable {
     private List<User> listaUser;
     private String mensaje;
 
-     @EJB    
-    private ClienteFacadeLocal clienteFacade;       
+    @EJB
+    private ClienteFacadeLocal clienteFacade;
     private List<Cliente> listaCliente;
-    private Cliente cliente; 
+    private Cliente cliente;
+    //Declaramos la variable que se utilizará    
+    private String destinatario;
+    private String claveGenerada;
+
+    public String getClaveGenerada() {
+        return claveGenerada;
+    }
+
+    public void setClaveGenerada(String claveGenerada) {
+        this.claveGenerada = claveGenerada;
+    }
 
     public List<Cliente> getListaCliente() {
         return listaCliente;
@@ -50,7 +61,7 @@ public class EnviarController implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
+
     public User getUser() {
         return user;
     }
@@ -75,9 +86,6 @@ public class EnviarController implements Serializable {
         this.mensaje = mensaje;
     }
 
-    //Declaramos la variable que se utilizará    
-    private String destinatario;
-
     public String getDestinatario() {
         return destinatario;
     }
@@ -87,57 +95,74 @@ public class EnviarController implements Serializable {
     }
 
     @PostConstruct
-    public void init(){
+    public void init() {
         cliente = new Cliente();
     }
-    
+
     //Metodo para enviar correos
-    public void enviar() {
-        Cliente usCorreo;
-        cliente.setCorreo(destinatario);
+    public void enviar() {       
+        int clienteId;     
+        this.cliente.setCorreo(this.destinatario);//Envio del correo a la clase cliente
+        clienteId = this.clienteFacade.ExisteCorreo(cliente);//Se guarda el id de cliente que retorna el metodo Existe Correo
+        this.cliente.setId_cliente(clienteId);
         try {
-            usCorreo = clienteFacade.ExisteCorreo(cliente);
-            System.out.println(destinatario);
-            if (usCorreo != null) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se ha enviado un correo a la dirección ingresada. Verifique.", "Existe"));                             
+            if (clienteId != 0) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se ha enviado un correo a la dirección ingresada. Verifique.", ""));
             } else {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "El correo ingresado no coincide con ninguna cuenta existente.", "El correo ingresado no coincide con los registrados en esta aplicación."));              
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "El correo ingresado no coincide con ninguna cuenta existente.", ""));
             }
 
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ha ocurrido un error, intente más tarde", "Error"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ha ocurrido un error, intente más tarde", ""));
         }
 
-        try {
-            // Propiedades de la conexión
-            Properties props = new Properties();
-            props.setProperty("mail.smtp.host", "smtp.gmail.com");
-            props.setProperty("mail.smtp.starttls.enable", "true");
-            props.setProperty("mail.smtp.port", "587");
-            props.setProperty("mail.smtp.user", "celavieonline@gmail.com");
-            props.setProperty("mail.smtp.auth", "true");
+        //Validamos si ya existe una contraseña generada para enviar el correo
+        if (!claveGenerada.isEmpty()) {             
+            try {
+                //Obtenemos el nombre del cliente                
+                String nombreCliente = this.clienteFacade.nombreCliente(cliente);
 
-            // Preparamos la sesion
-            Session session = Session.getDefaultInstance(props);
+                // Propiedades de la conexión
+                Properties props = new Properties();
+                props.setProperty("mail.smtp.host", "smtp.gmail.com");
+                props.setProperty("mail.smtp.starttls.enable", "true");
+                props.setProperty("mail.smtp.port", "587");
+                props.setProperty("mail.smtp.user", "celavieonline@gmail.com");
+                props.setProperty("mail.smtp.auth", "true");
 
-            // Construimos el mensaje
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("celavieonline@gmail.com"));
-            message.addRecipient(
-                    Message.RecipientType.TO,
-                    new InternetAddress(destinatario));
-            message.setSubject("Prueba de restaurar contraseña");
-            message.setText(
-                    "Su clave nueva es AHJSGASGHJG.");
+                // Preparamos la sesion
+                Session session = Session.getDefaultInstance(props);
 
-            // Lo enviamos.
-            Transport t = session.getTransport("smtp");
-            t.connect("celavieonline@gmail.com", "celavie123");
-            t.sendMessage(message, message.getAllRecipients());
+                // Construimos el mensaje
+                MimeMessage message = new MimeMessage(session);
+                message.setFrom(new InternetAddress("celavieonline@gmail.com"));
+                message.addRecipient(
+                        Message.RecipientType.TO,
+                        new InternetAddress(destinatario));
+                message.setSubject("Restablecer contraseña");
+                message.setText(
+                        "Hola " + nombreCliente + ",\n"
+                        + "\nRecibimos una solicitud para restablecer tu contraseña. "
+                        + " \n\n Esta es tu nueva clave: " + claveGenerada);
 
-            // Cierre.
-            t.close();
-        } catch (MessagingException e) {
+                // Lo enviamos.
+                Transport t = session.getTransport("smtp");
+                t.connect("celavieonline@gmail.com", "celavie123");
+                t.sendMessage(message, message.getAllRecipients());
+
+                // Cierre.
+                t.close();
+
+                //Actualizar clave
+                User us = new User();
+                us.setCliente(cliente);
+                us.setClave(claveGenerada);
+                userFacade.ActualizarUsuario(us);
+            } catch (MessagingException e) {
+
+            }
+        } else {
+            mensaje = "Debe generar una clave nueva. Después seleccione enviar.";
         }
     }
 }

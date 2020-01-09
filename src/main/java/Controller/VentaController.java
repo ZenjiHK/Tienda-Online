@@ -11,11 +11,12 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 @Named(value = "ventaController")
-@SessionScoped
+@RequestScoped
 public class VentaController implements Serializable {
     
     @EJB
@@ -91,6 +92,13 @@ public class VentaController implements Serializable {
         this.detalleTarjeta = new DetalleTarjeta();
         this.lista_ventas=ventaEJB.findAll();
         this.msg = "";
+    }
+    
+    public void contador(){
+        try {
+            
+        } catch (Exception e) {
+        }
     }
 
     public List<Venta> getLista_ventas() {

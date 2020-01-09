@@ -29,20 +29,20 @@
                 
                 <!-- -->
                 <p:outputLabel value="Seleccione una Marca" for="marca"/>
-                <p:selectOneMenu id="marca" value="#{productoController.marca.idMarca}">
+                <p:selectOneMenu id="marca" value="#{ProductoController.marca.idMarca}">
 
-                    <f:selectItems value="#{marcaController.listamarca}" var="m"/>
+                    <f:selectItems value="#{MarcaController.listamarca}" var="m"/>
 
                     <f:selectItems value="#{marcaController.listamarca}" var="m"
                                    itemLabel="#{m.nombreMarca}" itemValue="#{m.idMarca}"/>
                 </p:selectOneMenu>
                 <p:outputLabel value="Seleccione una talla" for="talla"/>
-                <p:selectOneMenu id="talla" value="#{productoController.talla.idTalla}">
+                <p:selectOneMenu id="talla" value="#{ProductoController.talla.idTalla}">
                     <f:selectItems value="#{tallaController.listaTalla}" var="t"
                                    itemLabel="#{t.talla}" itemValue="#{t.idTalla}"/>
                 </p:selectOneMenu>
                 <p:outputLabel value="Seleccione un tipo de ropa" for="tipo"/>
-                <p:selectOneMenu id="tipo" value="#{productoController.tiporopa.idTipoRopa}">
+                <p:selectOneMenu id="tipo" value="#{ProductoController.tiporopa.idTipoRopa}">
                     <f:selectItems value="#{tipoRopaController.listaTipoRopa}" var="r"
                                    itemLabel="#{r.nombreTipoRopa}" itemValue="#{r.idTipoRopa}"/>
                 </p:selectOneMenu>

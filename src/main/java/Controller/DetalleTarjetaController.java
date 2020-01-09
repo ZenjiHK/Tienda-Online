@@ -12,12 +12,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-
-/**
- *
- * @author evelyn.andradeusam
- */
-
 @Named(value = "detalleTarjetaController")
 @SessionScoped
 public class DetalleTarjetaController implements Serializable {
@@ -25,9 +19,19 @@ public class DetalleTarjetaController implements Serializable {
     @EJB
     private DetalleTarjetaFacadeLocal DetalleTarjetaEJB;
     private List<DetalleTarjeta> listaTarjeta;
+    private List<DetalleTarjeta> listaOculta;
     private DetalleTarjeta detalletarjeta;
     private Cliente cliente;
     String msj;
+
+    public List<DetalleTarjeta> getListaOculta() {
+        this.listaOculta = this.DetalleTarjetaEJB.listaoculta();
+        return listaOculta;
+    }
+
+    public void setListaOculta(List<DetalleTarjeta> listaOculta) {       
+        this.listaOculta = listaOculta;
+    }
 
     public List<DetalleTarjeta> getListaTarjeta() {
         this.listaTarjeta = this.DetalleTarjetaEJB.findAll();
@@ -68,7 +72,7 @@ public class DetalleTarjetaController implements Serializable {
             limpiar();
             this.msj = "Detalle de tarjeta ingresado correctamente";
         } catch (Exception e) {
-            this.msj = "Error al ingresar" + e.getMessage();
+           this.msj = "El numero de tarjeta ya esta registrado, favor ingrese uno nuevo";
             e.printStackTrace();
         }
         FacesMessage mensaje = new FacesMessage(this.msj);
@@ -89,7 +93,7 @@ public class DetalleTarjetaController implements Serializable {
             this.cliente = new Cliente();
             this.msj = "Detalle de tarjeta actualizado correctamente";
         } catch (Exception e) {
-            this.msj = "Error al actualizar" + e.getMessage();
+            this.msj = "El numero de tarjeta ya esta registrado, favor ingrese uno nuevo";
             e.printStackTrace();
         }
         FacesMessage mensaje = new FacesMessage(this.msj);
@@ -114,4 +118,17 @@ public class DetalleTarjetaController implements Serializable {
         FacesMessage mensaje = new FacesMessage(this.msj);
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
+    
+    public void oculto(DetalleTarjeta dta){
+        try{
+        this.DetalleTarjetaEJB.ocultar(dta);
+        this.detalletarjeta = new DetalleTarjeta();
+        this.msj = "Detalle de tarjeta eliminado correctamente";
+        } catch (Exception e) {
+            this.msj = "Error al eliminar" + e.getMessage();
+            e.printStackTrace();
+        }
+        FacesMessage mensaje = new FacesMessage(this.msj);
+        FacesContext.getCurrentInstance().addMessage(null, mensaje);   
+    }  
 }

@@ -30,6 +30,7 @@ public interface UserFacadeLocal {
     int count();
     
     User Sesion(User us);
+    public void ActualizarUsuario(User u);   
     
 }
 

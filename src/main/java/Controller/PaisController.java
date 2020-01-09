@@ -7,13 +7,10 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+
 import javax.inject.Named;
 
-/**
- *
- * @author maynor.menjivarusam
- */
-@Named(value="paisController")
+@Named(value = "paisController")
 @SessionScoped
 public class PaisController implements Serializable{
     @EJB
@@ -21,7 +18,7 @@ public class PaisController implements Serializable{
     private Pais pais;
     private List<Pais> listaPais;
     private String msg;
-//asdasdasdasdas
+    
     public Pais getPais() {
         return pais;
     }
