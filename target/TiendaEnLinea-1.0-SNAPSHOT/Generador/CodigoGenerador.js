@@ -7,6 +7,7 @@ var gene = function () {
         allChar = allChar + all[ran];
     }
     document.getElementsByClassName("contrasena")[0].value = allChar;
+    confirm("Se ha generado una nueva clave.");
 };
 
 
