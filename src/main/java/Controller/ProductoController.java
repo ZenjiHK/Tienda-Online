@@ -21,39 +21,53 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
+<<<<<<< HEAD
 @Named(value = "productoController")
 @SessionScoped
 public class ProductoController implements Serializable{
     
+=======
+@Named(value = "ProductoController")
+@RequestScoped
+public class ProductoController implements Serializable {
+
+>>>>>>> master
     @EJB
     private ProductoFacadeLocal productoEJB;
     private Producto producto;
     private List<Producto> listaproducto;
-    private List<Producto> consultaProductos;   
+    private List<Producto> consultaProductos;
     private String mensaje;
     private String estado;
-    
+    /* Variables para manejar la consulta de condiciones de los items*/
+    /* Aviso es el mensaje que va a imprimir en el UX*/
+    private String aviso;
+    /* variable de tipo booleana para corroborar la eficacia del metodo creado en el Facade */
+    private boolean res;
+
     @EJB
     private MarcaFacadeLocal marcaEJB;
     private Marca marca;
     private List<Marca> listamarca;
-   
+
     @EJB
     private TallaFacadeLocal tallaEJB;
     private Talla talla;
     private List<Talla> listatalla;
-   
+
     @EJB
     private TipoRopaFacadeLocal tiporopaEJB;
     private TipoRopa tiporopa;
     private List<TipoRopa> listatiporopa;
-   
+
     @EJB
     private CategoriaFacadeLocal categoriaEJB;
     private Categoria categoria;
     private List<Categoria> listacategoria;
 
-    private List<Producto> filtroProducto=new ArrayList<>();
+    private List<Producto> filtroProducto = new ArrayList<>();
+
+    private List<Producto> stockcero;
 
     public String getEstado() {
         return estado;
@@ -62,7 +76,7 @@ public class ProductoController implements Serializable{
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
+
     public Producto getProducto() {
         return producto;
     }
@@ -72,8 +86,8 @@ public class ProductoController implements Serializable{
     }
 
     public List<Producto> getListaproducto() {
-         this.listaproducto = this.productoEJB.findAll();
-         
+        this.listaproducto = this.productoEJB.findAll();
+
         return listaproducto;
     }
 
@@ -153,7 +167,8 @@ public class ProductoController implements Serializable{
         this.filtroProducto = filtroProducto;
     }
 
-    public List<Producto> getConsultaProductos() {       
+    public List<Producto> getConsultaProductos() {
+        this.consultaProductos = this.productoEJB.consultaProductos();
         return consultaProductos;
     }
 
@@ -161,37 +176,83 @@ public class ProductoController implements Serializable{
         this.consultaProductos = consultaProductos;
     }
     
+    /* Metodo get y set de la variale string aviso */
+
+    /* get */
+    /* se utiliza toda la entidad producto*/ 
+    public String getAviso(Producto p) {
+        /* Mensajito default vacio que muestra la disponibilidad de los productos*/
+        String stock = "";
+        /* try-catch para verificar que el metodo no va a fallar */
+        try {
+            /* Variable de tipo booleana que almacena el metodo llamado en la variable de tipo EJB 
+            que accede desde el Idproducto, este metodo anteriormente descrito nos indicara si 
+            los items de un producto son menores o iguales a cinco*/
+            res = this.productoEJB.stockcero(p.getIdProducto());
+            /*Si es verdadero colocara un mensajito que diga "agotado" o "fuera de stock" */
+            if (res) {
+                stock = "Fuera de Stock";
+                /* se hace referencia al objeto string aviso */
+                this.aviso = "Fuera de Stock";
+                /* instanciacion de un objeto de tipo Faces para colocar
+                en el UX de primefaces que posee la pagina de catalogo */
+                FacesMessage msj = new FacesMessage(aviso);
+                /* Uso de FacesContext  para agregar un mensaje y almacenarla en aviso */
+                FacesContext.getCurrentInstance().addMessage(aviso, msj);
+            } else {
+                /* En caso de no cumplir la condicion descrita anteriormente, solo nos imprimira en cosola
+                "hay objetos en stock" */
+                System.out.println("hay productos en stock");
+            }
+            /*Un catch que nos indicara si algo salio mal */
+        } catch (Exception e) {
+            /* referenciamos el objeto aviso y capturamos la excepcion para mostrarla en mensaje */
+            this.aviso = "Error" + e.getMessage();
+            /* lo presentamos en la traza de error */
+            e.printStackTrace();
+        }
+        /* referenciamos al objeto aviso y le asignamos la variable stock declarada anteriormente */
+        this.aviso = stock;
+        /* regresamos la variable de tipo string*/
+        return aviso;
+    }
+
+    /* set */
+    public void setAviso(String aviso) {
+        this.aviso = aviso;
+    }
+
     @PostConstruct
-    public void init(){
+    public void init() {
         this.marca = new Marca();
         this.talla = new Talla();
         this.tiporopa = new TipoRopa();
         this.categoria = new Categoria();
         this.producto = new Producto();
-        this.listamarca=marcaEJB.findAll();
-        this.listatalla=tallaEJB.findAll();
-        this.listatiporopa=tiporopaEJB.findAll();
-        this.listacategoria=categoriaEJB.findAll();
-        this.listaproducto=productoEJB.findAll();        
+        this.listamarca = marcaEJB.findAll();
+        this.listatalla = tallaEJB.findAll();
+        this.listatiporopa = tiporopaEJB.findAll();
+        this.listacategoria = categoriaEJB.findAll();
+        this.listaproducto = productoEJB.findAll();
     }
-   
-   public void consultarMarca(){
-       listamarca = marcaEJB.findAll();
-   }
-    public void consultarTalla(){
+
+    public void consultarMarca() {
+        listamarca = marcaEJB.findAll();
+    }
+
+    public void consultarTalla() {
         listatalla = tallaEJB.findAll();
     }
-   
-    public void consultarTipoRopa(){
+
+    public void consultarTipoRopa() {
         listatiporopa = tiporopaEJB.findAll();
     }
-   
-    public void consultarCategoria(){
+
+    public void consultarCategoria() {
         listacategoria = categoriaEJB.findAll();
     }
-    
-   
-    public void insertar(){
+
+    public void insertar() {
         try {
             this.producto.setMarca(marca);
             this.producto.setTalla(talla);
@@ -207,11 +268,10 @@ public class ProductoController implements Serializable{
         FacesMessage msj = new FacesMessage(mensaje);
         FacesContext.getCurrentInstance().addMessage(mensaje, msj);
     }
-   
-   
-    public void actualizar(){
-         try {
-             /*metodo para actualizar los productos*/
+
+    public void actualizar() {
+        try {
+            /*metodo para actualizar los productos*/
             this.producto.setMarca(marca);
             this.producto.setTalla(talla);
             this.producto.setTipoRopa(tiporopa);
@@ -225,8 +285,8 @@ public class ProductoController implements Serializable{
         FacesMessage msj = new FacesMessage(mensaje);
         FacesContext.getCurrentInstance().addMessage(mensaje, msj);
     }
-   
-    public void cargarData(Producto p){
+
+    public void cargarData(Producto p) {
         try {
             this.marca.setIdMarca(p.getMarca().getIdMarca());
             this.talla.setIdTalla(p.getTalla().getIdTalla());
@@ -236,32 +296,32 @@ public class ProductoController implements Serializable{
         } catch (Exception e) {
         }
     }
-   
-    public void eliminar(Producto p){
+
+    public void eliminar(Producto p) {
         try {
-           this.producto.setMarca(marca);
-           this.producto.setTalla(talla);
-           this.producto.setTipoRopa(tiporopa);
-           this.producto.setCategoria(categoria);
-           this.productoEJB.remove(p);
-           this.mensaje = "Producto eliminado";
+            this.producto.setMarca(marca);
+            this.producto.setTalla(talla);
+            this.producto.setTipoRopa(tiporopa);
+            this.producto.setCategoria(categoria);
+            this.productoEJB.remove(p);
+            this.mensaje = "Producto eliminado";
         } catch (Exception e) {
             this.mensaje = "Error" + e.getMessage();
             e.printStackTrace();
         }
     }
 
-    public void limpiar(){
+    public void limpiar() {
         this.marca = new Marca();
         this.talla = new Talla();
         this.tiporopa = new TipoRopa();
         this.categoria = new Categoria();
         this.producto = new Producto();
-        this.listamarca=marcaEJB.findAll();
-        this.listatalla=tallaEJB.findAll();
-        this.listatiporopa=tiporopaEJB.findAll();
-        this.listacategoria=categoriaEJB.findAll();
-        this.listaproducto=productoEJB.findAll();      
+        this.listamarca = marcaEJB.findAll();
+        this.listatalla = tallaEJB.findAll();
+        this.listatiporopa = tiporopaEJB.findAll();
+        this.listacategoria = categoriaEJB.findAll();
+        this.listaproducto = productoEJB.findAll();
     }
-    
+
 }
