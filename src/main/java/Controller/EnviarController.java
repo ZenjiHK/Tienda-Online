@@ -13,6 +13,8 @@ import Entity.Producto;
 import Entity.User;
 import Entity.Venta;
 import java.io.Serializable;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
