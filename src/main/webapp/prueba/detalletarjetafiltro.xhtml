@@ -11,9 +11,9 @@
          <p:outputLabel value="Detalle Tarjeta"/>
          <p:spacer/>
         <h:form id="datos">
-            <p:dataTable value="#{detalleTarjetaController.listaTarjeta}" var="dt" widgetVar="df" class="tarjeta">   
+            <p:dataTable value="#{detalleTarjetaController.listaTarjeta}" var="dt" widgetVar="df">   
                 <p:column headerText="Numero de tarjeta" width="200">
-                    <h:outputText value="#{dt.numero_tarjeta}"/>
+                    <h:outputText value="#{dt.numero_tarjeta}" class="tarjeta"/>
                     </p:column>
                     <p:column headerText="Cliente">
                         <h:outputText value="#{dt.cliente.nombreCliente} #{dt.cliente.apellidoCliente}"/>
@@ -31,16 +31,7 @@
                     </p:column>
                 </p:dataTable>
         </h:form>
-         <script>
-             function ocultacion(){
-             for(var i=0;i<document.getElementsByClassName("tarjeta").length;i++){
-                 var oculto = document.getElementsByClassName("tarjeta")[i].innerHTML.split("-")[3];
-                 var ocultomask = "<strong>xxxx-xxxx-xxxxx-</strong>" + oculto;
-                 document.getElementsByClassName("tarjeta")[i].innerHTML = ocultomask;
-             }   
-            
-         }
-         </script>
+
          
     </h:body>
 </html>
