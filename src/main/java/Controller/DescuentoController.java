@@ -2,17 +2,20 @@ package Controller;
 
 import EJB.DescuentoFacadeLocal;
 import Entity.Descuento;
-import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
+/**
+ *
+ * @author jose.cortezusam
+ */
 @Named(value = "descuentoController")
-@SessionScoped
-public class DescuentoController implements Serializable{
+@RequestScoped
+public class DescuentoController {
     
     @EJB
     private DescuentoFacadeLocal descuentoEJB;
