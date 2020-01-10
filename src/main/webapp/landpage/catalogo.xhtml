@@ -7,7 +7,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:b="http://bootsfaces.net/ui">
     <h:head>
-        <title>Tienda de ropa JSF</title>
+        <title>C'est La Vie - Catalogo de Ropa</title>
     </h:head>
 
     <h:body>
@@ -17,7 +17,7 @@
                 <img src="../Resourse/img/user.png" height="100" width="100" style="align-content: center"/>
             </p:panel>
             <h:form>
-                <p:dataGrid value="#{ProductoController.listaproducto}" var="prod" columns="3" layout="grid"
+                <p:dataGrid value="#{productoController.listaproducto}" var="prod" columns="3" layout="grid"
                             rows="6" paginator="true"
                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">

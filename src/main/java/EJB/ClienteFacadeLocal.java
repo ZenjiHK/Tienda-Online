@@ -29,9 +29,11 @@ public interface ClienteFacadeLocal {
     List<Cliente> findRange(int[] range);
 
     int count();
-    
-     public int ExisteCorreo(Cliente cl);
-    
+
+    public int ExisteCorreo(Cliente cl);
+
     public String nombreCliente(Cliente c);
-    
+
+    public List<Cliente> bucarCliente(int id);
+
 }
