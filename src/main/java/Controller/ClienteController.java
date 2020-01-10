@@ -140,5 +140,5 @@ public class ClienteController implements Serializable{
         }
         FacesMessage mensaje=new FacesMessage(this.msj);
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
-    }   
+    }  
 }
