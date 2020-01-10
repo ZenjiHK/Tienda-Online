@@ -6,19 +6,74 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>C'est La vie - Lista de ropa</title>
-        
+
     </h:head>
     <h:body>
-        <p:dataTable value="#{productoController.listaproducto}" var="prod" rows="12" paginator="true"
+        <p:dataTable value="#{productoController.listaproducto}" var="prod" rows="3" paginator="true"
                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
                      {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-            <p:panelGrid columns="3" style="width: 100%">
+
+            <p:column>
                 <p:panel header="#{prod.nombreProducto}" style="text-align: center">
-                    <p:graphicImage name="#{prod.url}" width="150" height="150"/>
-                    <h:outputText value="#{prod.marca.nombreMarca}"/>
+                    <p:panelGrid columns="2">
+                        <h:outputLabel>
+                            <img src="#{prod.url}" style="width: 150px; height: 150px"/><br/>
+                            <h:outputText value="#{prod.marca.nombreMarca}"/>
+                        </h:outputLabel>
+                        <h:outputLabel>
+                            <h:outputText value="Talla #{prod.talla.talla}"/><br/>
+                            <h:outputText value="$#{prod.precioVenta}"/><br/>
+                            <h:outputText value="#{ProductoController.getAviso(prod)}" style="color: #ff0000"/><br/>
+                            <p:commandButton value="Agregar al carrito"/>
+                        </h:outputLabel>
+                    </p:panelGrid>
                 </p:panel>
-            </p:panelGrid>
+            </p:column>
+            <p:column>
+                <p:panel header="#{prod.nombreProducto}" style="text-align: center">
+                    <p:panelGrid columns="2">
+                        <h:outputLabel>
+                            <img src="#{prod.url}" style="width: 150px; height: 150px"/><br/>
+                            <h:outputText value="#{prod.marca.nombreMarca}"/>
+                        </h:outputLabel>
+                        <h:outputLabel>
+                            <h:outputText value="Talla #{prod.talla.talla}"/><br/>
+                            <h:outputText value="$#{prod.precioVenta}"/><br/>
+                            <h:outputText value="#{ProductoController.getAviso(prod)}" style="color: #ff0000"/><br/>
+                            <p:commandButton value="Agregar al carrito"/>
+                        </h:outputLabel>
+                    </p:panelGrid>
+                </p:panel>
+            </p:column>
+            <p:column>
+                <p:panel header="#{prod.nombreProducto}" style="text-align: center">
+                    <p:panelGrid columns="2">
+                        <h:outputLabel>
+                            <img src="#{prod.url}" style="width: 150px; height: 150px"/><br/>
+                            <h:outputText value="#{prod.marca.nombreMarca}"/>
+                        </h:outputLabel>
+                        <h:outputLabel>
+                            <h:outputText value="Talla #{prod.talla.talla}"/><br/>
+                            <h:outputText value="$#{prod.precioVenta}"/><br/>
+                            <h:outputText value="#{ProductoController.getAviso(prod)}" style="color: #ff0000"/><br/>
+                            <p:commandButton value="Agregar al carrito"/>
+                        </h:outputLabel>
+                    </p:panelGrid>
+                </p:panel>
+            </p:column>
         </p:dataTable>
+
+        <p:dataView value="#{productoController.listaproducto}" var="prod" rows="12" paginator="true"
+                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+                    {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+            <p:dataViewGridItem >
+                <p:panel header="#{prod.nombreProducto}"  style="text-align: center">
+
+                </p:panel>
+            </p:dataViewGridItem>
+        </p:dataView>
+
+
     </h:body>
 </html>
 
