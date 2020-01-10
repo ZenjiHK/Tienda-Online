@@ -1,5 +1,7 @@
 package EJB;
 
+/* By Michelle */
+
 import Entity.Producto;
 import java.util.LinkedList;
 import java.util.List;
