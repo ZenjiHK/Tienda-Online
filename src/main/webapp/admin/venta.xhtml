@@ -7,24 +7,24 @@
       xmlns:p="http://primefaces.org/ui">
       <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
+
         <title>Administrador - Ventas</title>
     </h:head>
     <h:body>
+        <center>
+         <p:outputLabel value="Registro de Ventas" style="font-size: 500%;"/>
+        </center>
         <div id="top">
             <ui:insert name="top">
             <p:growl id="msj"/>
             <h:form>
-                <p:fieldset legend="Nueva venta">
-                    <p:panelGrid columns="1">
-                        <p:commandButton value="Abrir modal" oncomplete="PF('myModal').show()"/>
-                    </p:panelGrid>
-                </p:fieldset>   
+            <p:commandButton value="Ingresar Cliente" oncomplete="PF('myModal').show()"/>
             </h:form>
             </ui:insert>
         </div>
         <div>
+            
+            <p:separator />
             <div id="left">
                 <ui:insert name="left">
                     <p:dialog widgetVar="myModal" modal="true" showEffect="clip" resizable="false">
@@ -60,7 +60,6 @@
             <div id="content" class="left_content">
                 <ui:insert name="content">
                     <h:form id="Datos">    
-                        <p:fieldset legend="Datos Cliente">
                             <p:dataTable value="#{ventaController.lista_ventas}" var="v">
                                 <p:column headerText="Id">
                                     <h:outputText value="#{v.idVenta}"/>
@@ -89,13 +88,9 @@
                                     <p:commandButton value="Eliminar" actionListener="#{ventaController.eliminar(v)}" update=":Datos :msj"/>
                                 </p:column>            
                             </p:dataTable>
-                        </p:fieldset>
                     </h:form>
                 </ui:insert>
             </div>
-        </div>
-        <div id="bottom">
-            <ui:insert name="bottom">El salvador 2019</ui:insert>
         </div>
     </h:body>
 </html>

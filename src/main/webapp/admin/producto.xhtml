@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Administracion - Producto</title>
+        <title>Facelet Title</title>
     </h:head>
     <body>
         <p:growl id="msj"/>
@@ -16,46 +16,37 @@
         <h:form id="pro">
             <p:panelGrid columns="2">
                 <p:outputLabel value="Nombre"/>
-                <p:inputText value="#{ProductoController.producto.nombreProducto}"  required="true"/>
+                <p:inputText value="#{ProductoController.producto.nombreProducto}"/>
                 <p:outputLabel value="Stock"/>
-                <p:inputText value="#{ProductoController.producto.stock}" required="true"/>
+                <p:inputText value="#{ProductoController.producto.stock}"/>
                 <p:outputLabel value="Precio Venta"/>
-                <p:inputText value="#{ProductoController.producto.precioVenta}" required="true"/>
-                <p:message for="@previous"/>
-                <!-- precio compra :) -->
-                <p:outputLabel value="Precio Compra" for="@next"/>            
-                <p:inputText value="#{ProductoController.producto.precioCompra}" required="true"/>
-                <p:message for="@previous"/>
-                
-                <!-- -->
+                <p:inputText value="#{ProductoController.producto.precioVenta}"/>
+                <p:outputLabel value="Precio Compra"/>            
+                <p:inputText value="#{ProductoController.producto.precioCompra}"/>
                 <p:outputLabel value="Seleccione una Marca" for="marca"/>
                 <p:selectOneMenu id="marca" value="#{ProductoController.marca.idMarca}">
 
-                    <f:selectItems value="#{MarcaController.listamarca}" var="m"/>
-
-                    <f:selectItems value="#{marcaController.listamarca}" var="m"
+                    <f:selectItems value="#{MarcaController.listamarca}" var="m"
                                    itemLabel="#{m.nombreMarca}" itemValue="#{m.idMarca}"/>
                 </p:selectOneMenu>
                 <p:outputLabel value="Seleccione una talla" for="talla"/>
                 <p:selectOneMenu id="talla" value="#{ProductoController.talla.idTalla}">
-                    <f:selectItems value="#{tallaController.listaTalla}" var="t"
+                    <f:selectItems value="#{TallaController.listaTalla}" var="t"
                                    itemLabel="#{t.talla}" itemValue="#{t.idTalla}"/>
                 </p:selectOneMenu>
                 <p:outputLabel value="Seleccione un tipo de ropa" for="tipo"/>
-                <p:selectOneMenu id="tipo" value="#{ProductoController.tiporopa.idTipoRopa}">
+                <p:selectOneMenu id="tipo" value="#{productoController.tiporopa.idTipoRopa}">
                     <f:selectItems value="#{tipoRopaController.listaTipoRopa}" var="r"
                                    itemLabel="#{r.nombreTipoRopa}" itemValue="#{r.idTipoRopa}"/>
                 </p:selectOneMenu>
                 <p:outputLabel value="Seleccione una categoria" for="categoria"/>
-
-
                 <p:selectOneMenu id="categoria" value="#{ProductoController.categoria.idCategoria}">
-                    <f:selectItems value="#{categoriaController.listaCategoria}" var="c"
+                    <f:selectItems value="#{CategoriaController.listaCategoria}" var="c"
                                    itemLabel="#{c.nombreCategoria}" itemValue="#{c.idCategoria}"/>
                  </p:selectOneMenu>
 
                 <p:outputLabel value="Imagen"/>
-                <p:inputText value="#{ProductoController.producto.url}" required="true"/>
+                <p:inputText value="#{ProductoController.producto.url}"/>
                 <p:commandButton value="Enviar" actionListener="#{ProductoController.insertar()}" update=":msj :tabla pro :ingreso" oncomplete="PF('n').hide()"/>            
             </p:panelGrid>    
              
@@ -66,7 +57,7 @@
         </h:form>
         <p:separator />
         <h:form id="tabla">            
-            <p:dataTable  value="#{ProductoController.listaproducto}" var="ver" emptyMessage="El producto buscado no existe." rows="4" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" >
+            <p:dataTable  value="#{productoController.listaproducto}" var="ver" emptyMessage="El producto buscado no existe." rows="4" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" >
              
                 <p:column headerText="nombre">
                     <p:outputLabel value="#{ver.nombreProducto}"/>
@@ -115,28 +106,28 @@
                     <p:inputText value="#{ProductoController.producto.nombreProducto}"/>
                     <p:outputLabel value="Stock"/>
                     <p:inputText value="#{ProductoController.producto.stock}"/>
-                    <p:outputLabel value="Precio Venta"/>
+                    <p:outputLabel value="Precio Venta" for="@next"/>
                     <p:inputText value="#{ProductoController.producto.precioVenta}"/>
-                    <p:outputLabel value="Precio Compra"/>
+                    <p:outputLabel value="Precio Compra" for="@next"/>
                     <p:inputText value="#{ProductoController.producto.precioCompra}"/>
                     <p:outputLabel value="Seleccione una    Marca" for="marca"/>
                     <p:selectOneMenu id="marca" value="#{ProductoController.marca.idMarca}">
-                        <f:selectItems value="#{marcaController.listamarca}" var="m"
+                        <f:selectItems value="#{MarcaController.listamarca}" var="m"
                                        itemLabel="#{m.nombreMarca}" itemValue="#{m.idMarca}"/>
                     </p:selectOneMenu>
                     <p:outputLabel value="Seleccione una talla" for="talla"/>
                     <p:selectOneMenu id="talla" value="#{ProductoController.talla.idTalla}">
-                        <f:selectItems value="#{tallaController.listaTalla}" var="t"
+                        <f:selectItems value="#{TallaController.listaTalla}" var="t"
                                        itemLabel="#{t.talla}" itemValue="#{t.idTalla}"/>
                     </p:selectOneMenu>
                     <p:outputLabel value="Seleccione un tipo de ropa" for="tipo"/>
-                    <p:selectOneMenu id="tipo" value="#{ProductoController.tiporopa.idTipoRopa}">
+                    <p:selectOneMenu id="tipo" value="#{productoController.tiporopa.idTipoRopa}">
                         <f:selectItems value="#{tipoRopaController.listaTipoRopa}" var="r"
                                        itemLabel="#{r.nombreTipoRopa}" itemValue="#{r.idTipoRopa}"/>
                     </p:selectOneMenu>
                     <p:outputLabel value="Seleccione una categoria" for="categoria"/>
                     <p:selectOneMenu id="categoria" value="#{ProductoController.categoria.idCategoria}">
-                        <f:selectItems value="#{categoriaController.listaCategoria}" var="c"
+                        <f:selectItems value="#{CategoriaController.listaCategoria}" var="c"
                                        itemLabel="#{c.nombreCategoria}" itemValue="#{c.idCategoria}"/>
                     </p:selectOneMenu>
                     <p:outputLabel value="Imagen"/>

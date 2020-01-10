@@ -6,16 +6,33 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Administrador - Cliente</title>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
     </h:head>
     <h:body>
-        <p:growl id="msj"/>
-        <h:form>
-            <p:fieldset legend="Nuevo Cliente">
-                <p:panelGrid columns="1">
-                    <p:commandButton value="Nuevo" oncomplete="PF('cli').show()"/>
-                </p:panelGrid>
-            </p:fieldset>   
+        <center>
+         <p:outputLabel value="Clientes" style="font-size: 500%;"/>
+        </center>
+        <h:form>  
+            <p:menubar>
+                <p:menuitem value="Categoria" url="categoria.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Cliente" url="cliente.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Detalle de Tarjeta" url="detalletarjetafiltro.xhtml" icon="pi pi-angle-double-right" />
+                <p:menuitem value="Factura" url="factura.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Forma de Pago" url="formapago.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Marca" url="marca.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Pais" url="pais.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Producto" url="producto.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Rol" url="rol.xhtml" icon="pi pi-angle-double-right" />
+                <p:menuitem value="Talla" url="talla.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Tipo de Ropa" url="tipoRopa.xhtml" icon="pi pi-angle-double-left"  />
+                <p:menuitem value="Ventas Realizadas" url="venta.xhtml" icon="pi pi-angle-double-left" />
+            </p:menubar>
         </h:form>
+        <br/>
+        <p:growl id="msj"/>
+        <p:commandButton value="Agregar Cliente" oncomplete="PF('cli').show()"/>
+        <br/><br/>
         <p:dialog widgetVar="cli" modal="true" showEffect="clip" resizable="false">
             <p:ajax event="close" listener="#{clienteController.limpiar()}" update=":c"/>
             <h:form id="c">
@@ -43,7 +60,6 @@
             </h:form>
         </p:dialog>
        <h:form id="Datos">    
-            <p:fieldset legend="Datos Cliente">
                 <p:dataTable value="#{clienteController.listaCliente}" var="c">
                     <p:column headerText="Id">
                         <h:outputText value="#{c.idCliente}"/>
@@ -72,7 +88,6 @@
                                          update=":Datos :msj"/>
                     </p:column>            
                 </p:dataTable>
-            </p:fieldset>
         </h:form>
     </h:body>
 </html>
