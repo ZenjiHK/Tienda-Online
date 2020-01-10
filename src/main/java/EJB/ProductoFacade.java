@@ -78,5 +78,45 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
         }
     } 
     
+    @Override
+    public String nombreProducto(Producto p){
+        Producto producto = null;
+        String sql;
+        try {
+            sql = "SELECT  p FROM Producto p  WHERE p.idProducto=?1";
+            Query query = em.createQuery(sql);
+            
+            query.setParameter(1, p.getIdProducto());
+                        
+            List<Producto> lista = query.getResultList();
+            if (!lista.isEmpty()) {
+                producto = lista.get(0);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return producto.getNombreProducto();
+    } 
+    
+      @Override
+    public Double precioVenta(Producto po){
+        Producto producto = null;
+        String sql;
+        try {
+            sql = "SELECT  p FROM Producto p  WHERE p.idProducto=?1";
+            Query query = em.createQuery(sql);
+            
+            query.setParameter(1, po.getIdProducto());
+                        
+            List<Producto> lista = query.getResultList();
+            if (!lista.isEmpty()) {
+                producto = lista.get(0);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return producto.getPrecioVenta();
+    } 
+    
     
 }
