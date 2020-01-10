@@ -27,6 +27,8 @@ public interface PaisFacadeLocal {
     List<Pais> findAll();
 
     List<Pais> findRange(int[] range);
+    
+   
 
     int count();
     
