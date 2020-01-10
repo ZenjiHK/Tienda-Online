@@ -11,9 +11,9 @@
          <p:outputLabel value="Detalle Tarjeta"/>
          <p:spacer/>
         <h:form id="datos">
-            <p:dataTable value="#{detalleTarjetaController.listaTarjeta}" var="dt" widgetVar="df">   
+            <p:dataTable value="#{detalleTarjetaController.listaCifrado}" var="dt" widgetVar="df">   
                 <p:column headerText="Numero de tarjeta" width="200">
-                    <h:outputText value="#{dt.numero_tarjeta}" class="tarjeta"/>
+                    <p:inputMask value="#{dt.numero_tarjeta}" mask="xxxx-xxxx-xxxx-xxxx-9999" style="border:none;"/>
                     </p:column>
                     <p:column headerText="Cliente">
                         <h:outputText value="#{dt.cliente.nombreCliente} #{dt.cliente.apellidoCliente}"/>

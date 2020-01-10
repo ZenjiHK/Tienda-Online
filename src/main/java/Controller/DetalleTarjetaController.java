@@ -20,9 +20,19 @@ public class DetalleTarjetaController implements Serializable {
     private DetalleTarjetaFacadeLocal DetalleTarjetaEJB;
     private List<DetalleTarjeta> listaTarjeta;
     private List<DetalleTarjeta> listaOculta;
+    private List<DetalleTarjeta> listaCifrado;
     private DetalleTarjeta detalletarjeta;
     private Cliente cliente;
     String msj;
+
+    public List<DetalleTarjeta> getListaCifrado() {
+        this.listaCifrado = this.DetalleTarjetaEJB.findAll();
+        return listaCifrado;
+    }
+
+    public void setListaCifrado(List<DetalleTarjeta> listaCifrado) {
+        this.listaCifrado = listaCifrado;
+    }
 
     public List<DetalleTarjeta> getListaOculta() {
         this.listaOculta = this.DetalleTarjetaEJB.listaoculta();
@@ -132,6 +142,7 @@ public class DetalleTarjetaController implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
         
     }
+    
     
    
 }
