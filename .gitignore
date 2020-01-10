@@ -518,3 +518,7 @@ target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/Entity/Venta_.class
 !/src/main/webapp/admin/formapago.xhtml
 !/src/main/webapp/admin/pais.xhtml
 !/src/main/webapp/admin/marca.xhtml
+target/classes/EJB/ProductoFacade.class
+target/TiendaEnLinea-1.0-SNAPSHOT/landpage/catalogo.xhtml
+target/TiendaEnLinea-1.0-SNAPSHOT/landpage/topnavbar.xhtml
+target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/EJB/ProductoFacade.class
