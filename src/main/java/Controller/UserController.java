@@ -119,9 +119,9 @@ public class UserController {
             this.user.setRol(rol);
             this.userFacade.create(user);
             this.mensaje = "Insertado con éxito";
-            FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("Usuario.xhtml");
         } catch (Exception e) {
-            this.mensaje = "Error: " + e.getMessage();
+            this.mensaje = "Error Este Cliente ya posee un Usuario asignado";
             e.printStackTrace();
         }
         FacesMessage msj = new FacesMessage(mensaje);
