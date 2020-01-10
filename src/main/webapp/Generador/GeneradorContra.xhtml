@@ -47,6 +47,12 @@
                             </b:column>
                         </b:row>
                     </b:row>
+                      <b:row>
+                            <b:column span="2">
+                                <b:commandButton value="Enviar Reporte" actionListener="#{EnviarController.enviarReporte()}"  
+                                                 look="success" style="width: 100%" update=" :mensaje"  />
+                            </b:column>
+                        </b:row>
                 </b:panel>
             </b:container>
         </h:form>
