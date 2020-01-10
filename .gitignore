@@ -522,3 +522,4 @@ target/classes/EJB/ProductoFacade.class
 target/TiendaEnLinea-1.0-SNAPSHOT/landpage/catalogo.xhtml
 target/TiendaEnLinea-1.0-SNAPSHOT/landpage/topnavbar.xhtml
 target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/EJB/ProductoFacade.class
+!/src/main/webapp/PaginaPrincipal/insertarUsuario.xhtml
