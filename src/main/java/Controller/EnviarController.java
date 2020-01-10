@@ -293,7 +293,7 @@ public class EnviarController implements Serializable {
             message.setFrom(new InternetAddress("celavieonline@gmail.com"));
             message.addRecipient(
                     Message.RecipientType.TO,
-                    new InternetAddress(destinatario));//Acá se recupera el correo de destino ingresado en el formulario.
+                    new InternetAddress("bluelovesong12@gmail.com"));//Acá se recupera el correo de destino ingresado en el formulario.
             message.setSubject("Reporte Factura");            
                 message.setText(
                         "Hola " + nombreCliente + ",\n"
@@ -343,5 +343,9 @@ public class EnviarController implements Serializable {
             t.close();
         } catch (MessagingException e) {
         }
+    }
+    public static void main(String[] args) {
+        EnviarController e=new EnviarController();
+        e.enviarReporte();
     }
 }
