@@ -6,9 +6,11 @@
 package EJB;
 
 import Entity.DetalleVenta;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,25 @@ public class DetalleVentaFacade extends AbstractFacade<DetalleVenta> implements 
     public DetalleVentaFacade() {
         super(DetalleVenta.class);
     }
+    
+    @Override
+    public int cantidad(DetalleVenta dv){
+        DetalleVenta detalleventa = null;
+        String sql;
+        try {
+            sql = "SELECT  dv FROM DetalleVenta dv  WHERE dv.idDetalleVenta=?1";
+            Query query = em.createQuery(sql);
+            
+            query.setParameter(1, dv.getIdDetalleVenta());
+                        
+            List<DetalleVenta> lista = query.getResultList();
+            if (!lista.isEmpty()) {
+                detalleventa = lista.get(0);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return detalleventa.getCantidad();
+    } 
     
 }

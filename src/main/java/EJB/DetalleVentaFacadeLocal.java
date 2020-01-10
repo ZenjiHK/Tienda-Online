@@ -30,4 +30,6 @@ public interface DetalleVentaFacadeLocal {
 
     int count();
     
+    public int cantidad(DetalleVenta dv);
+    
 }

@@ -6,9 +6,11 @@
 package EJB;
 
 import Entity.Venta;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,25 @@ public class VentaFacade extends AbstractFacade<Venta> implements VentaFacadeLoc
     public VentaFacade() {
         super(Venta.class);
     }
+    
+     @Override
+    public int idVenta(Venta v){
+        Venta venta = null;
+        String sql;
+        try {
+            sql = "SELECT  v FROM Venta v  WHERE v.idVenta=?1";
+            Query query = em.createQuery(sql);
+            
+            query.setParameter(1, v.getIdVenta());
+                        
+            List<Venta> lista = query.getResultList();
+            if (!lista.isEmpty()) {
+                venta = lista.get(0);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return venta.getIdVenta();
+    } 
     
 }

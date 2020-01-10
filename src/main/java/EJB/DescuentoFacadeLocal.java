@@ -29,5 +29,6 @@ public interface DescuentoFacadeLocal {
     List<Descuento> findRange(int[] range);
 
     int count();
+    public double descuento(Descuento d);
     
 }

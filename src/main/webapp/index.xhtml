@@ -10,51 +10,106 @@
         <title>Tienda de ropa JSF</title>
     </h:head>
     <h:body>
-        <p:accordionPanel>
-        <p:tab title="Godfather Part I">
-            <h:panelGrid columns="2" cellpadding="10">
-                <p:graphicImage name="Imagenes/categoria.png" />
-                <h:outputText
-                    value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding. 
-                    His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
-                    Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect, 
-                    but given to ruthless violence whenever anything stands against the good of the family." />
-            </h:panelGrid>
-        </p:tab>
-        <p:tab title="Godfather Part II">
-            <h:panelGrid columns="2" cellpadding="10">
-                <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
-                <h:outputText value="Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film, The_Godfather, parallels the young Vito Corleone's rise with his son Michael's spiritual fall, deepening The_Godfather's depiction of the dark side of the American dream. 
-                In the early 1900s, the child Vito flees his Sicilian village for America after the local Mafia kills his family. Vito struggles to make a living, legally or illegally, for his wife and growing brood in Little Italy, 
-                killing the local Black Hand Fanucci after he demands his customary cut of the tyro's business. With Fanucci gone, Vito's communal stature grows." />
-            </h:panelGrid>
-        </p:tab>
-        <p:tab title="Godfather Part III">
-            <h:panelGrid columns="2" cellpadding="10">
-                <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
-                <h:outputText value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family. 
-                    Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate." />
-            </h:panelGrid>
-        </p:tab>
-    </p:accordionPanel>
-        Hello from Facelets
+        <p:dialog header="Instrucciones de usuario" widgetVar="pasos" modal="true" showEffect="clip" 
+                  resizable="false" width="650">
+            <h:outputLabel style="font-weight: normal">
+                <p:panelGrid columns="1">
+                    <h:outputLabel style="font-size: 20px;align-content: center">
+                        ¡Bienvenido Administrador! <br/>
+                    </h:outputLabel >
+                    <h:outputLabel style="font-size: 15px">
+                        En esta página tendrás acceso a todos los módulos esenciales acerca de tu tienda online. Déjame explicarte paso a paso
+                        como funciona.<br/>
+                        <br/>Cada módulo representa un componente o un pilar esencial de una tienda de ropa. Para que una tienda online
+                        sea funcional, necesita ciertos componentes básicos que deben suplir la necesidad de esta. 
+                        <br/><br/>Al ser una tienda de ropa, tenemos el Módulo de Ropa, el Módulo de Usuario (los clientes son muy valiosos e
+                        importantes si queremos vender un producto, por lo que hay un módulo solamente para ellos) y por último pero no
+                        menos importante, el Módulo de ventas.<br/><br/>
+                        Si quieres dirigirte a cada uno de estos módulos, verás que en la columna situada justo al lado encontrarás algunas
+                        viñetas que podrás desplegar. Cada una de estas viñetas está identificada con un nombre (el cual corresponde al
+                        nombre de un módulo de los anteriormente descritos), y dentro de ellas encontrarás más información detallada donde
+                        se describe su contenido, y además, contiene botones que te rediriguirán a la página que deseas ver.<br/><br/>
+                        Como dato extra, algunas de estas páginas te permitirán realizar tantos mantenimientos como desees y veas útiles.
+                        Cada registro de estas páginas que tengan este privilegio tendrán botones llamados "Modificar" o "Eliminar". Sin
+                        embargo, no serás capaz de alterar la información del usuario por motivos de transparencia, privacidad y auditoría.
+                    </h:outputLabel>
+                </p:panelGrid>
+            </h:outputLabel>
+        </p:dialog>
+        <p:panelGrid columns="2">
+            <p:outputPanel style="align-content: center">
+                Panel de navegación para administrador.<br/><br/>
+                <p:commandButton value="Ver instrucciones de uso" onclick="PF('pasos').show()"/>
+            </p:outputPanel>
+            <p:outputPanel>
+                <p:accordionPanel>
+                    <p:tab title="Módulo de Ropa">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <h:outputLabel>
+                                En el módulo de ropa, el administrador podrá acceder a las diversas áreas principales que la componen.
+                                Entre estas áreas, tenemos la de tallas, marcas, categorías, tipos de ropa y finalmente los productos
+                                registrados en la base de datos.<br/><br/>
+                                Para acceder al área de interes, de click a cualquiera de los botones para ser rediriguido de forma
+                                automática e instantánea.<br/><br/>
+                                <p:panel id="primero" header="Índice de direcciones">
+                                    <p:panelGrid columns="2">
+                                        • Ver todas las categorías <p:linkButton outcome="admin/categoria" value="Tallas de ropa"/>
+                                        • Ver todas las marcas <p:linkButton outcome="admin/marca" value="Marcas de ropa"/>
+                                        • Ver toda la ropa en stock <p:linkButton outcome="admin/producto" value="Toda la ropa"/>
+                                        • Ver todas las tallas <p:linkButton outcome="admin/talla" value="Tallas de ropa"/>
+                                        • Ver todos los tipos de ropa <p:linkButton outcome="admin/tipoRopa" value="Tipos de ropa"/>
+                                    </p:panelGrid>
+                                </p:panel>
+                            </h:outputLabel>
+                            <p:commandLink />
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="Módulo de Usuario">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <h:outputLabel>
+                                En el módulo de usuario, el administrador podrá acceder a las diversas áreas principales que la componen.
+                                Entre estas áreas, tenemos la de clientes registrados, los usuarios que pueden ingresar al sistema
+                                y los roles que están disponibles para el registro de usuarios. Además, hay una página de países donde
+                                hay un listado completo de todos ellos, más esta información no se puede editar ni borrar.<br/><br/>
+                                Para acceder al área de interes, de click a cualquiera de los botones para ser rediriguido de forma
+                                automática e instantánea.<br/><br/>
+                                <p:panel id="segundo" header="Índice de direcciones">
+                                    <p:panelGrid columns="2">
+                                        • Ver todos los clientes <p:linkButton outcome="admin/cliente" value="Datos de Clientes"/>
+                                        • Ver las tarjetas registradas <p:linkButton outcome="admin/detalletarjeta" value="Detalles de tarjetas"/>
+                                        • Ver todos los países <p:linkButton outcome="admin/pais" value="Listado de países"/>
+                                        • Ver todos los roles <p:linkButton outcome="admin/rol" value="Roles para usuarios"/>
+                                        • Ver usuarios registrados <p:linkButton outcome="admin/user" value="Usuarios registrados"/>
+                                    </p:panelGrid>
+                                </p:panel>
+                            </h:outputLabel>
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="Módulo de venta">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <h:outputLabel>
+                                En el módulo de venta, el administrador podrá ver el detalle de venta de todos los productos que se han
+                                vendido, las ventas realizadas por ciertos clientes y la tarjeta usada para pagar y por último ver todas
+                                las formas de pago.<br/><br/>
+                                Para acceder al área de interes, de click a cualquiera de los botones para ser rediriguido de forma
+                                automática e instantánea.<br/><br/>
+                                <p:panel id="tercero" header="Índice de direcciones">
+                                    <p:panelGrid columns="2">
+                                        • Ver todas las formas de pago <p:linkButton outcome="admin/formapago" value="Formas de pago"/>
+                                        • Ver todas las ventas realizadas <p:linkButton outcome="admin/venta" value="Listado de ventas"/>
+                                    </p:panelGrid>
+                                </p:panel>
+                            </h:outputLabel>
+                        </h:panelGrid>
+                    </p:tab>
+                </p:accordionPanel>
+            </p:outputPanel>
+        </p:panelGrid>
         <br />
         <h:link outcome="landpage/catalogo" value="Ver catálogo de ropa"/><br/>
-        <h:link outcome="prueba/categoria" value="Ir a categorías"/><br/>
-        <h:link outcome="prueba/cliente" value="Ir a clientes"/><br />
-        <h:link outcome="prueba/detalletarjeta" value="Ir a tarjetas"/><br />
-        <h:link outcome="prueba/formapago" value="Ir a formas de pago"/><br />
-        <h:link outcome="prueba/marca" value="Ir a marcas"/><br />
-        <h:link outcome="prueba/pais" value="Ir a paises"/><br />
-        <h:link outcome="prueba/producto" value="Ir a productos"/><br />
-        <h:link outcome="prueba/rol" value="Ir a roles"/><br />
-        <h:link outcome="prueba/talla" value="Ir a tallas"/><br />
-        <h:link outcome="prueba/tipoRopa" value="Ir a tipos de ropa"/><br />
-        <h:link outcome="prueba/user" value="Ir a usuarios"/><br />
-        <h:link outcome="prueba/venta" value="Ir a ventas"/><br />
         <h:link outcome="Generador/GeneradorContra" value="Prueba Generador de contraseñas"/><br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
         <br />
     </h:body>
 </html>
+
 
