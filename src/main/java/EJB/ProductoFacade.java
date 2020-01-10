@@ -26,14 +26,20 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
 
     
     @Override
-    public List<Producto> consultaProductos() {
-
+    public List<Producto> filtroProductosCategoria(String cat){
         List<Producto> lista = new LinkedList<>();
+        String sql;
         try {
-            String sql = "Select p from producto p order by p.id_producto Limit 5";
-            Query query = em.createQuery(sql);  
+            sql = "SELECT p FROM Producto p WHERE p.";
+            Query query = em.createQuery(sql);
+            
+            query.setParameter(1, cat);         
+            
+            lista = query.getResultList();
+           
         } catch (Exception e) {
-        }
+            throw e;
+        } 
         return lista;
     }
     

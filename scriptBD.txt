@@ -69,7 +69,7 @@ CREATE TABLE user(
 		id_user int auto_increment primary key,
 		nombre_usuario varchar(50) not null,
 		id_cliente int not null,
-		clave int not null,
+		clave varchar(20) not null,
 		id_rol int not null,
 		estado boolean not null);
 
@@ -119,3 +119,4 @@ CREATE TABLE factura(
 ALTER TABLE factura ADD CONSTRAINT FOREIGN KEY fk_factura_venta(id_venta) REFERENCES venta(id_venta);
 
 ALTER TABLE factura ADD CONSTRAINT FOREIGN KEY fk_factura_pago(id_forma_pago) REFERENCES forma_pago(id_forma_pago);
+

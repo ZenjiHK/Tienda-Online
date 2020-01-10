@@ -16,13 +16,15 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-@Named(value = "ProductoController")
-@RequestScoped
-public class ProductoController implements Serializable {
+
+@Named(value = "productoController")
+@SessionScoped
+public class ProductoController implements Serializable{
 
     @EJB
     private ProductoFacadeLocal productoEJB;
@@ -159,7 +161,7 @@ public class ProductoController implements Serializable {
     }
 
     public List<Producto> getConsultaProductos() {
-        this.consultaProductos = this.productoEJB.consultaProductos();
+        this.consultaProductos = this.productoEJB.filtroProductosCategoria(estado);
         return consultaProductos;
     }
 

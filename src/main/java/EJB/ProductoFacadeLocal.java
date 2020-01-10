@@ -20,9 +20,9 @@ public interface ProductoFacadeLocal {
     List<Producto> findRange(int[] range);
 
     int count();
-    
-    List<Producto> consultaProductos();
-    
+
+    List<Producto> filtroProductosCategoria(String cat);
+
     boolean stockcero(int idProducto);
-    
+
 }
