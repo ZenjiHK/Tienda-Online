@@ -12,7 +12,7 @@
         <p:spacer/>
         <h:form id="datos">
             <p:dataTable value="#{detalleTarjetaController.listaCifrado}" var="dt" widgetVar="df">   
-                <p:column headerText="Numero de tarjeta" width="200">
+                <p:column headerText="Numero de tarjeta" width="250">
                     <p:inputMask value="#{dt.numero_tarjeta}" mask="xxxx-xxxx-xxxx-xxxx-9999" style="border:none;" readonly="true"/>
                 </p:column>
                 <p:column headerText="Cliente">
