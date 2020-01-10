@@ -30,7 +30,7 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
         List<Producto> lista = new LinkedList<>();
         String sql;
         try {
-            sql = "SELECT u FROM Usuario u WHERE u.usuario = ?1 and  u.clave = ?2";
+            sql = "SELECT p FROM Producto p WHERE p.";
             Query query = em.createQuery(sql);
             
             query.setParameter(1, cat);         

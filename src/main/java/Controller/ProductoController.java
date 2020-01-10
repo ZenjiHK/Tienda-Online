@@ -162,7 +162,7 @@ public class ProductoController implements Serializable{
     }
 
     public List<Producto> getConsultaProductos() {
-        this.consultaProductos = this.productoEJB.consultaProductos();
+        this.consultaProductos = this.productoEJB.filtroProductosCategoria(estado);
         return consultaProductos;
     }
 
