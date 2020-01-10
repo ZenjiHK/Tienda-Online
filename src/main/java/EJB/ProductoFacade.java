@@ -26,20 +26,8 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
 
     
     @Override
-    public List<Producto> filtroProductosCategoria() {
-
-        List<Producto> lista = new LinkedList<>();
-        try {
-            String sql = "SELEC p from Producto p order by p.id_producto Limit 5";
-            Query query = em.createQuery(sql);  
-        } catch (Exception e) {
-        }
-        return lista;
-    }
-    
-    @Override
     public List<Producto> filtroProductosCategoria(String cat){
-        Usuario user = null;
+        List<Producto> lista = new LinkedList<>();
         String sql;
         try {
             sql = "SELECT u FROM Usuario u WHERE u.usuario = ?1 and  u.clave = ?2";
@@ -47,14 +35,12 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
             
             query.setParameter(1, cat);         
             
-            List<Producto> lista = query.getResultList();
-            if (!lista.isEmpty()) {
-                user = lista.get(0);
-            }
+            lista = query.getResultList();
+           
         } catch (Exception e) {
             throw e;
         } 
-        return user;
+        return lista;
     }
     
     /* Metodo que tiene como proposito validar cuantos items existen sobre un producto en
