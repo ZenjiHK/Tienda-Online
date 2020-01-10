@@ -8,14 +8,13 @@ package Controller;
 import EJB.ClienteFacadeLocal;
 import Entity.Cliente;
 import Entity.Pais;
-import Entity.User;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 
@@ -24,19 +23,38 @@ import javax.faces.context.FacesContext;
  * @author evelyn.andradeusam
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class ClienteController implements Serializable{
     
     @EJB    
     private ClienteFacadeLocal clienteEJB;       
-    private List<Cliente> listaCliente;
+    private List<Cliente> listaCliente,lista2;
     private Cliente cliente; 
     private Pais pais;
     String msj;
 
+    public List<Cliente> getLista2() {
+        try {
+            this.lista2=clienteEJB.findAll();
+        } catch (Exception e) {
+            return null;
+        }
+        return lista2;
+    }
+
+    public void setLista2(List<Cliente> lista2) {
+        this.lista2 = lista2;
+    }
+    
+
     public List<Cliente> getListaCliente() {
-        this.listaCliente= this.clienteEJB.findAll();
-        return listaCliente;
+        try {
+             int idUs =(int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idUser");
+             this.listaCliente=clienteEJB.bucarCliente(idUs);
+             return listaCliente;
+         } catch (Exception e) {
+             return null;
+         }
     }
 
     public void setListaCliente(List<Cliente> listaCliente) {

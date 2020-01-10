@@ -61,6 +61,7 @@
         <h:form>
         <p:commandButton value="Agregar producto" oncomplete="PF('n').show()" update=":tabla "/>
         <p:commandButton value="Cerrar Sesion" actionListener="#{validarSesionController.salir()}"/>
+        <p:button outcome="datosCliente" value="datos personales" icon="pi pi-star" style="margin-left:20px;"/>
         </h:form>
         <p:separator />
         <h:form id="tabla">            

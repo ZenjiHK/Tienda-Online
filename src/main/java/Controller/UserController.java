@@ -186,7 +186,9 @@ public class UserController {
                 } else if (us.getRol().getNombreRol().equalsIgnoreCase("admin")) {
                     redireccion = "/prueba/user?faces-redirect=true";
                 }
-
+                int idUser = us.getCliente().getIdCliente();
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idUser", idUser);
+                System.out.println("ID Cliente " + idUser);
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Uusuario o clave incorrecta"));
             }

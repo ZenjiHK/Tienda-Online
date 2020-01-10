@@ -32,4 +32,6 @@ public interface ClienteFacadeLocal {
     
     public Cliente ExisteCorreo(Cliente cl);
     
+    public List<Cliente> bucarCliente(int id);
+    
 }

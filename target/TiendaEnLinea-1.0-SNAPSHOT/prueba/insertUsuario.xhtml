@@ -21,7 +21,7 @@
                          <p:password id="pss1" value="#{userController.user.clave}"  label="clave2" required="true" feedback="false"/>
                         <p:outputLabel value="Cliente"/>
                         <p:selectOneMenu value="#{userController.cliente.idCliente}">
-                            <f:selectItems value="#{clienteController.listaCliente}" var="c" itemLabel="#{c.nombreCliente} #{c.apellidoCliente}" itemValue="#{c.idCliente}"/>
+                            <f:selectItems value="#{clienteController.lista2}" var="c" itemLabel="#{c.nombreCliente} #{c.apellidoCliente}" itemValue="#{c.idCliente}"/>
                         </p:selectOneMenu>
                         <p:commandButton value="Guardar" actionListener="#{userController.insertar()}" />
                     </h:panelGrid>

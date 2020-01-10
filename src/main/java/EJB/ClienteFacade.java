@@ -51,4 +51,19 @@ public class ClienteFacade extends AbstractFacade<Cliente> implements ClienteFac
         return cliente;
     }   
     
+    @Override
+    public List<Cliente> bucarCliente(int id){
+        String sql="";
+        try {
+            sql="SELECT c FROM Cliente c where c.idCliente = ?1";
+            Query query = em.createQuery(sql);
+            query.setParameter(1, id);
+            List<Cliente> lista=query.getResultList();
+            return lista;
+        } catch (Exception e) {
+            System.out.println("nulo");
+            return null;
+        }
+    
+    }
 }

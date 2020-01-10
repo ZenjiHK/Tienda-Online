@@ -42,9 +42,9 @@
                 </p:panelGrid>                
             </h:form>
         </p:dialog>
-       <h:form id="Datos">    
+       <h:form id="Datos">
             <p:fieldset legend="Datos Cliente">
-                <p:dataTable value="#{clienteController.listaCliente}" var="c">
+                <p:dataTable value="#{clienteController.cliente}" var="c">
                     <p:column headerText="Id">
                         <h:outputText value="#{c.idCliente}"/>
                     </p:column>
