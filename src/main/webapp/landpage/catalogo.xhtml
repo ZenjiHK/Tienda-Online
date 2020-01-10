@@ -52,7 +52,26 @@
                     </p:panel>
                 </p:dataGrid>
 
-            </h:panelGrid>
-        </h:form>
-    </body>
+                    <p:column headerText="Categoria">
+                        <h:outputText value="#{d.categoria.nombreCategoria}"/>
+                    </p:column>
+                    <p:column>
+                        <h:form>
+                            <p:commandButton value="Borrar" icon="times" action="#{detalleVentaController.delete(prod)}"/>
+                        </h:form>
+                    </p:column>
+                </p:dataTable>
+                <h:outputLabel for="total" value="Total:" />
+                <h:outputText value="$#{detalleVentaController.total}" />
+                <br>
+                    <h:outputLabel for="contador" value="Prendas:"/>
+                    <h:outputText value="#{detalleVentaController.contador}"/>
+                </br>
+                <h:form>
+                    <p:commandButton value="Compra realizada" style="margin-right: 20px;"/>
+                    <f:param name="Envio" value="#{ventaController.Enviar(lista)}"/>
+                </h:form>
+            </p:overlayPanel>
+        </h:panelGrid> 
+    </h:body>
 </html>
