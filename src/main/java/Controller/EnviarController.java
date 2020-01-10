@@ -261,22 +261,24 @@ public class EnviarController implements Serializable {
         }
     }
     
-   //Metodo para enviar correos
+    //Metodo para enviar correos
     public void enviarReporte() {
         try {
-            String nombreCliente = this.clienteFacade.nombreCliente(cliente);
-            String nombreProducto = this.productoFacade.nombreProducto(producto);
-            double precioVenta = this.productoFacade.precioVenta(producto);
-            int cantidad = this.detalleFacade.cantidad(detalle);
-            int idVenta = this.ventaFacade.idVenta(venta);
-            double descuento = this.descuentoFacade.descuento(this.descuento);
-            
-            double Subtotal=((precioVenta*cantidad)-(descuento*(precioVenta*cantidad)));
-            
-            double Total=0.0;
-            
-            
-            
+            List<DetalleVenta> listt = new LinkedList<>();
+            listt = detalleFacade.factura(1);
+            int idDetalleVenata = 0;
+            Date fecha = listt.get(0).getVenta().getFecha();
+            String nombreCliente = listt.get(0).getVenta().getCliente().getNombreCliente();
+            String nombreProducto = listt.get(0).getProducto().getNombreProducto();
+            double precioVenta = listt.get(0).getProducto().getPrecioVenta();
+            int cantidad = listt.get(0).getCantidad();
+            int idVenta = listt.get(0).getVenta().getIdVenta();
+            double descuento1 = listt.get(0).getDescuento().getDescuento();
+
+            double Subtotal = ((precioVenta * cantidad) - (descuento1 * (precioVenta * cantidad)));
+
+            double Total = ((precioVenta * cantidad) - (descuento1 * precioVenta * cantidad));
+
             // Propiedades de la conexión
             Properties props = new Properties();
             props.setProperty("mail.smtp.host", "smtp.gmail.com");
@@ -293,13 +295,13 @@ public class EnviarController implements Serializable {
             message.setFrom(new InternetAddress("celavieonline@gmail.com"));
             message.addRecipient(
                     Message.RecipientType.TO,
-                    new InternetAddress("bluelovesong12@gmail.com"));//Acá se recupera el correo de destino ingresado en el formulario.
-            message.setSubject("Reporte Factura");            
-                message.setText(
-                        "Hola " + nombreCliente + ",\n"
-                        + "\n Hemos Recibido tu pedido. "
-                        + " \n\n Este es tu detalle de Compra C'E La Vie"
-                        + " \n Gracias por preferirnos");
+                    new InternetAddress(destinatario));//Acá se recupera el correo de destino ingresado en el formulario.
+            message.setSubject("Reporte Factura");
+            message.setText("\n Fecha: " + fecha + ",\n"
+                    +"\n Hola " + nombreCliente + ",\n"
+                    + "\n Hemos Recibido tu pedido. "
+                    + " \n\n Este es tu detalle de Compra C'E La Vie"
+                    + " \n Gracias por preferirnos");
             message.setContent("<table class=\"egt\">\n"
                     + "\n"
                     + "<thead>"
@@ -325,9 +327,9 @@ public class EnviarController implements Serializable {
                     + "\n"
                     + "    <td>" + precioVenta + "</td>\n"
                     + "\n"
-                    + "    <td>" + descuento + "</td>\n"
-                    + "\n"        
-                    + "    <td>" +Subtotal+ "</td>\n"
+                    + "    <td>" + descuento1 + "</td>\n"
+                    + "\n"
+                    + "    <td>" + Subtotal + "</td>\n"
                     + "\n"
                     + "  </tr>\n"
                     + "</tbody>"
