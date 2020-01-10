@@ -11,23 +11,28 @@
          <p:outputLabel value="Detalle Tarjeta"/>
          <p:spacer/>
         <h:form id="datos">
-            <p:dataTable value="#{detalleTarjetaController.listaTarjeta}" var="dt">
+            <p:dataTable value="#{detalleTarjetaController.listaTarjeta}" var="dt" widgetVar="df">   
                 <p:column headerText="Numero de tarjeta" width="200">
-                        <h:outputText value="#{dt.numero_tarjeta}"/>
+                    <h:outputText value="#{dt.numero_tarjeta}" class="tarjeta"/>
                     </p:column>
                     <p:column headerText="Cliente">
                         <h:outputText value="#{dt.cliente.nombreCliente} #{dt.cliente.apellidoCliente}"/>
                     </p:column>
-                    <p:column headerText="Ping">
-                        <h:outputText value="#{dt.ping}"/>
-                    </p:column>
-                    <p:column headerText="Fecha de Expiracion">
-                        <h:outputText value="#{dt.expiracion}">
-                            <f:convertDateTime pattern="dd-MM-YYYY"/>
-                        </h:outputText>
+                <p:column headerText="Estado de Tarjeta" filterBy="#{dt.estado}">
+                    <f:facet name="filter">
+                       <p:selectOneButton onchange="PF('df').filter()" styleClass="custom-filter">
+                    <f:converter converterId="javax.faces.Boolean" />
+                     <f:selectItem itemLabel="Todos" itemValue="" />
+                    <f:selectItem itemLabel="Activo" itemValue="true" />
+                    <f:selectItem itemLabel="Inactivo" itemValue="false" />
+                    </p:selectOneButton>
+                </f:facet>
+                    <h:outputText value="#{dt.estado ? 'Activo': 'Inactivo'}" />
                     </p:column>
                 </p:dataTable>
         </h:form>
+
+         
     </h:body>
 </html>
 

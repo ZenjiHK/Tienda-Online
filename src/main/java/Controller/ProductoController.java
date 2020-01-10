@@ -61,7 +61,6 @@ public class ProductoController implements Serializable{
 
     private List<Producto> filtroProducto = new ArrayList<>();
 
-    private List<Producto> stockcero;
 
     public String getEstado() {
         return estado;
