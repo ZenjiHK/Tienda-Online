@@ -31,7 +31,7 @@ public class ProductoController implements Serializable{
     private List<Producto> listaproducto;
     private List<Producto> consultaProductos;
     private String mensaje;
-    private String estado;
+    private String estado;  
     /* Variables para manejar la consulta de condiciones de los items*/
     /* Aviso es el mensaje que va a imprimir en el UX*/
     private String aviso;
