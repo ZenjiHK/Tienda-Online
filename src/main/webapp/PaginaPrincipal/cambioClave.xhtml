@@ -13,7 +13,7 @@
                 <p:panel header="Cambiar contraseña" widgetVar="dlg">
                     <h:panelGrid columns="2">
                         <p:outputLabel value="Id Usuario"/>
-                        <p:inputText value="#{userController.user.i}" required="true"/>
+                        <p:inputText value="#{clienteController.cliente.idCliente}" required="true"/>
                         <p:outputLabel for="pss" value="Contraseña nueva:"/>
                         <p:password id="pss" value="#{userController.user.clave}" match="pss1" label="clave" required="true"/>
                          <p:outputLabel for="pss1" value="Confirme su contraseña: "/>
