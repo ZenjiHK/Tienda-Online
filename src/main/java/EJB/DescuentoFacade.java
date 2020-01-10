@@ -29,4 +29,24 @@ public class DescuentoFacade extends AbstractFacade<Descuento> implements Descue
         super(Descuento.class);
     }
     
+      @Override
+    public double descuento(Descuento d){
+          Descuento descuento = null;
+        String sql;
+        try {
+            sql = "SELECT  d FROM Descuento d  WHERE d.idDescuento=?1";
+            Query query = em.createQuery(sql);
+            
+            query.setParameter(1, d.getIdDescuento());
+                        
+            List<Descuento> lista = query.getResultList();
+            if (!lista.isEmpty()) {
+                descuento = lista.get(0);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return descuento.getDescuento();
+    } 
+    
 }
