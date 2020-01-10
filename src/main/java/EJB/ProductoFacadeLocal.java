@@ -21,7 +21,7 @@ public interface ProductoFacadeLocal {
 
     int count();
     
-    List<Producto> consultaProductos();
+    List<Producto> filtroProductosCategoria();
     
     boolean stockcero(int idProducto);
     

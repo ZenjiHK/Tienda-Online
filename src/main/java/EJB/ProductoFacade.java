@@ -26,7 +26,7 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
 
     
     @Override
-    public List<Producto> consultaProductos() {
+    public List<Producto> filtroProductosCategoria() {
 
         List<Producto> lista = new LinkedList<>();
         try {

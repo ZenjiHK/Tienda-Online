@@ -43,7 +43,7 @@
         </p:dialog>
         <h:form id="datos">
             <p:fieldset legend="Datos Tarjeta">
-                <p:dataTable value="#{detalleTarjetaController.listaTarjeta}" var="dt">
+                <p:dataTable value="#{detalleTarjetaController.listaOculta}" var="dt">
                     <p:column headerText="Id">
                         <h:outputText value="#{dt.idDetalleTarjeta}"/>
                     </p:column>
@@ -61,15 +61,12 @@
                             <f:convertDateTime pattern="dd-MM-YYYY"/>
                         </h:outputText>
                     </p:column>
-                    <p:column headerText="Estado">
-                        <h:outputText value="#{dt.estado}"/>
-                    </p:column>
                     <p:column headerText="Modificar">
                         <p:commandButton value="Editar" actionListener="#{detalleTarjetaController.CargarTarjeta(dt)}"
                                          update=":d" oncomplete="PF('det').show()"/>
                     </p:column>
                     <p:column headerText="Eliminar">
-                        <p:commandButton value="Eliminar" actionListener="#{detalleTarjetaController.eliminar(dt)}"
+                        <p:commandButton value="Eliminar" actionListener="#{detalleTarjetaController.oculto(dt)}"
                                          update=":datos :msj" />
                     </p:column>
                 </p:dataTable>

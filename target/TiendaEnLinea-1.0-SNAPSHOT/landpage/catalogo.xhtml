@@ -4,8 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Tienda de ropa JSF</title>
     </h:head>
@@ -18,56 +17,62 @@
             </p:panel>
             <h:form>
                 <p:dataGrid value="#{productoController.listaproducto}" var="prod" columns="3" layout="grid"
+
+    <body>
+
+        <h:form>
+            <ui:include src="topnavbar.xhtml"/>
+            <h:panelGrid columns="2">
+                <h:outputLabel>
+                    <p:panel header="Nombre Usuario" style="font-size: 20px; text-align: center">
+                        <img src="../Resourse/img/user.png" height="100" width="100" style="align-content:center"/>
+
+                    </p:panel>
+                </h:outputLabel>
+                <p:dataGrid value="#{ProductoController.listaproducto}" var="prod" columns="3" layout="grid"
+
                             rows="6" paginator="true" 
                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} 
                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                    <!-- Datagrid cumple una función similar a Datatable: mostrar los datos contenidos en una lista. Sin embargo, Datagrid da opciones
+                    extras de personalización que pueden ser bastante útiles en cuanto a mejorar la interfaz de usuario. Nos permite dividir la 
+                    información dentro de ella en columnas, y a su vez en filas(tomar en cuenta de que cada "objeto" o cada registro de la BD, 
+                    conforma una fila nueva), organizando toda esta información a través de un componente que se llama "paginator", cuya función, en
+                    resumen, es crear esos famosos "pies de página", y crear bloques en los que se divide la información en base a las columnas y las
+                    filas (en caso de haber sido definidas previamente).
+                    
+                    PaginatorTemplate es una opción en la cual se agregan los diferentes botones que debe tener la paginación.
+                    Entre ellos, muestra la página actual (1 of x), botón/link para ir a la página 1, botón para ir a la página
+                    anterior, un botón para todas las páginas en total, botón para la página siguiente y botón para ir a la 
+                    página final.
+                    -->
                     <f:facet name="header">
                         Ropa disponible
                     </f:facet>
+
                     <p:panel rendered="#{prod.stock>0 and prod.categoria.idCategoria==1}" header="#{prod.nombreProducto}" style="text-align:center">
+
+
+                    <p:panel rendered="#{prod.stock>0}" header="#{prod.nombreProducto}" style="text-align:center">
+
                         <img src="#{prod.url}" style="width: 25%;height: 25%"/><br/>
                         <h:outputText value="#{prod.marca.nombreMarca}"/><br/>
-                        <h:outputText value="#{prod.stock} productos disponibles"/><br/>
                         <h:outputText value="Talla #{prod.talla.talla}"/><br/>
                         <h:outputText value="$#{prod.precioVenta}"/><br/>
-                        <p:commandButton value="Añadir al carrito" update=":carro :m" action="#{detalleVentaController.añadir(prod)}" style="margin-right: 20px;"/>
+                        <h:outputText value="#{ProductoController.getAviso(prod)}" style="color: #ff0000"/><br/>
+                        <p:commandButton value="Agregar al carrito"/>
                     </p:panel>
                 </p:dataGrid>
-            </h:form>
-            <p:growl id="carro" life="2000"/>
-            <b:column style="padding-left: 1000px" span="3">
-                <b:button  value="Ver Carrito" icon="shopping-cart" look="success" id="carrito" size="lg"/>
-            </b:column>
-            <p:overlayPanel id="m" hideEffect="fade" for=":carrito" style="width:800px;" dynamic="false">
-                <p:dataTable var="d" style="width: 120%;" value="#{detalleVentaController.list}" scrollable="true" scrollWidth="95%" scrollHeight="150" rows="5" paginator="true">
-                    <p:column>
-                        <h:graphicImage value="#{d.url}" width="50px;"/>
-                    </p:column>
-                    <p:column headerText="Nombre">
-                        <h:outputText value="#{d.nombreProducto}" />
-                    </p:column>
-                    <p:column headerText="Marca">
-                        <h:outputText value="#{d.marca.nombreMarca}"/>
-                    </p:column>
-                    <p:column headerText="Precio Venta">
-                        <h:outputText value="#{d.precioVenta}" />
-                    </p:column>
-                    <p:column headerText="Talla">
-                        <h:outputText value="#{d.talla.talla}" />
-                    </p:column>
-
-                    <p:column headerText="Tipo de Ropa">
-                        <h:outputText value="#{d.tipoRopa.nombreTipoRopa}" />
-                    </p:column>
 
                     <p:column headerText="Categoria">
                         <h:outputText value="#{d.categoria.nombreCategoria}"/>
                     </p:column>
-                     <p:column>
-                            <h:form>
-                                <p:commandButton value="Borrar" icon="times" action="#{detalleVentaController.delete(prod)}"/>
-                            </h:form>
-                        </p:column>
+                    <p:column>
+                        <h:form>
+                            <p:commandButton value="Borrar" icon="times" action="#{detalleVentaController.delete(prod)}"/>
+                        </h:form>
+                    </p:column>
                 </p:dataTable>
                 <h:outputLabel for="total" value="Total:" />
                 <h:outputText value="$#{detalleVentaController.total}" />
