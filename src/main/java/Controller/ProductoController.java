@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -59,7 +58,9 @@ public class ProductoController implements Serializable{
     private Categoria categoria;
     private List<Categoria> listacategoria;
 
-    private List<Producto> filtroProducto = new ArrayList<>();
+    //Filtros para el menú
+    private List<Producto> filtroProductosCategoria = new ArrayList<>();
+    
 
 
     public String getEstado() {
@@ -152,12 +153,12 @@ public class ProductoController implements Serializable{
         this.listacategoria = listacategoria;
     }
 
-    public List<Producto> getFiltroProducto() {
-        return filtroProducto;
+    public List<Producto> getFiltroProductosCategoria() {
+        return filtroProductosCategoria;
     }
 
-    public void setFiltroProducto(List<Producto> filtroProducto) {
-        this.filtroProducto = filtroProducto;
+    public void setFiltroProductosCategoria(List<Producto> filtroProductosCategoria) {
+        this.filtroProductosCategoria = filtroProductosCategoria;
     }
 
     public List<Producto> getConsultaProductos() {

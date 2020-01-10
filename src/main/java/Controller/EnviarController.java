@@ -344,8 +344,5 @@ public class EnviarController implements Serializable {
         } catch (MessagingException e) {
         }
     }
-    public static void main(String[] args) {
-        EnviarController e=new EnviarController();
-        e.enviarReporte();
-    }
+   
 }
