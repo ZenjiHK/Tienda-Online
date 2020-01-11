@@ -260,6 +260,7 @@ public class EnviarController implements Serializable {
             mensaje = "Debe generar una clave nueva. Después seleccione enviar.";
         }
     }
+
     //Metodo para enviar correos
     public void enviarReporte() {
         try {
@@ -349,5 +350,5 @@ public class EnviarController implements Serializable {
         } catch (MessagingException e) {
         }
     }
-   
+
 }
