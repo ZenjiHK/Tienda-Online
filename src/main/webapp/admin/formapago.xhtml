@@ -6,24 +6,38 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Tienda de ropa JSF</title>
+        <title>Administracion - Forma de Pago</title>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
     </h:head>
-    <h:body>                
-            <p:fieldset legend="Forma de pago">
-                <p:dataTable value="#{formaPagoController.listapago}" var="fp">
+    <h:body>  
+         <center>
+            <p:outputLabel value="Forma de Pago" style="font-size: 500%;"/>
+        </center>
+        <h:form>  
+            <p:menubar>
+                <p:menuitem value="Categoria" url="categoria.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Cliente" url="cliente.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Detalle de Tarjeta" url="detalletarjetafiltro.xhtml" icon="pi pi-angle-double-right" />
+                <p:menuitem value="Factura" url="factura.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Forma de Pago" url="formapago.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Marca" url="marca.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Pais" url="pais.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Producto" url="producto.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Rol" url="rol.xhtml" icon="pi pi-angle-double-right" />
+                <p:menuitem value="Talla" url="talla.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Tipo de Ropa" url="tipoRopa.xhtml" icon="pi pi-angle-double-left"  />
+                <p:menuitem value="Ventas Realizadas" url="venta.xhtml" icon="pi pi-angle-double-left" />
+            </p:menubar>
+        </h:form>
+        <br/>
+                <p:dataTable value="#{formaPagoController.listapago}" var="fp" id="tabla">
                     <p:column headerText="Id">
                         <h:outputText value="#{fp.idFormaPago}"/>
                     </p:column>
                       <p:column headerText="Forma de pago">
                             <h:outputLabel value="#{fp.nombreFormaPago}"/>
                       </p:column>
-                      <p:column headerText="Modificar">
-                            <p:commandButton value="Modiifcar" actionListener="#{formaPagoController.cargarDatos(fp)}" update=":formulario" oncomplete="PF('modal').show()"/>
-                      </p:column>
-                      <p:column headerText="Eliminar">
-                            <p:commandButton value="Eliminar" actionListener="#{formaPagoController.eliminar(fp)}" update=":formulario :tabla"/>
-                      </p:column>
                 </p:dataTable>
-            </p:fieldset> 
     </h:body>
 </html>
