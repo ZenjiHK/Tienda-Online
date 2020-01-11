@@ -12,7 +12,7 @@
 
     <h:body>
         <ui:include src="topnavbar.xhtml"/>
-        <p:panelGrid columns="2" id="panel">
+        <h:panelGrid columns="2" id="panel">
             <p:panel header="Nombre Usuario" style="font-size: 20px; text-align: center">
                 <img src="../Resourse/img/user.png" height="100" width="100" style="align-content: center"/>
             </p:panel>
@@ -29,7 +29,7 @@
                         <h:outputText value="#{prod.marca.nombreMarca}"/><br/>
                         <h:outputText value="#{prod.stock} productos disponibles"/><br/>
                         <h:outputText value="Talla #{prod.talla.talla}"/><br/>
-                        <h:outputText value="Precio: $#{prod.precioVenta}"/><br/>
+                        <h:outputText value="${prod.precioVenta}"/><br/>
                         <p:commandButton value="Añadir al carrito" update=":carro :m" action="#{detalleVentaController.añadir(prod)}" style="margin-right: 20px;"/>
                     </p:panel>
                 </p:dataGrid>
@@ -84,6 +84,6 @@
                     <p:commandButton value="Vaciar carrito" update=":m" action="#{detalleVentaController.deleteAll(d)}" style="margin-left: 50px;"/>
                 </h:form>
             </p:overlayPanel>
-        </p:panelGrid>
+        </h:panelGrid>
     </h:body>
 </html>

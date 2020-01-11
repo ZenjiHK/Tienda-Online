@@ -119,9 +119,9 @@ public class UserController {
             this.user.setRol(rol);
             this.userFacade.create(user);
             this.mensaje = "Insertado con éxito";
-            FacesContext.getCurrentInstance().getExternalContext().redirect("Usuario.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
         } catch (Exception e) {
-            this.mensaje = "Error Este Cliente ya posee un Usuario asignado";
+            this.mensaje = "Error: " + e.getMessage();
             e.printStackTrace();
         }
         FacesMessage msj = new FacesMessage(mensaje);
@@ -182,9 +182,9 @@ public class UserController {
             if (us != null) {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", us);
                 if (us.getRol().getNombreRol().equalsIgnoreCase("cliente")) {
-                    redireccion = "/admin/producto?faces-redirect=true";
+                    redireccion = "/prueba/producto?faces-redirect=true";
                 } else if (us.getRol().getNombreRol().equalsIgnoreCase("admin")) {
-                    redireccion = "/admin/user?faces-redirect=true";
+                    redireccion = "/prueba/user?faces-redirect=true";
                 }
                 int idUser = us.getCliente().getIdCliente();
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idUser", idUser);
