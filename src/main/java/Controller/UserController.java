@@ -23,6 +23,8 @@ public class UserController {
     private User user;
     private List<User> listaUser;
     private String mensaje;
+    private boolean res;
+    private String verde;
 
     @EJB
     private RolFacadeLocal rolFacade;
@@ -193,5 +195,28 @@ public class UserController {
             FacesContext.getCurrentInstance().addMessage((null), new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error"));
         }
         return redireccion;
+    }
+ 
+    public void pagarconPaypal() {
+        String acceso = "";
+        try {
+            res = this.userFacade.pagarconmipaypal(this.user);
+            if(res){
+                acceso = "Papypal escogido correctamente";
+                this.verde = "Paypal escogido correctamente";
+                FacesMessage msj = new FacesMessage(verde);
+                FacesContext.getCurrentInstance().addMessage(verde, msj);              
+            }
+            else {
+            acceso = "Error, Paypal incorrecto";
+            this.verde = "Error, Paypal incorrector";
+            FacesMessage msj = new FacesMessage(verde);
+            FacesContext.getCurrentInstance().addMessage(verde, msj);
+            }
+        } catch (Exception e) {       
+             this.verde = "Error" + e.getMessage();
+            /* lo presentamos en la traza de error */        
+        }
+
     }
 }
