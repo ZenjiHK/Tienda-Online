@@ -15,12 +15,13 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Named(value = "clienteController")
 @SessionScoped
@@ -63,7 +64,7 @@ public class ClienteController implements Serializable {
       @PostConstruct
       public void init() {
             limpiar();
-            JRBeanCollectionDataSource source = new JRBeanCollectionDataSource(listaCliente);
+            JRDataSource source = new JREmptyDataSource();
             String path = "C:\\Users\\alex.lemususam\\Desktop\\Reporte\\reporte.jasper";
             try {
                   jPrint = JasperFillManager.fillReport(path, new HashMap(), source);
@@ -75,8 +76,8 @@ public class ClienteController implements Serializable {
       
       public void PDF(){
             init();
-            HttpServletResponse httpServletResponse = (HttpServletResponse)FacesContext.getCurrentInstance().getExternalContext();
-            httpServletResponse.addHeader("Content-disposition", "attachment; filename=reporte.pdf");
+            HttpServletResponse httpServletResponse = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext();
+            FacesContext.getCurrentInstance().getExternalContext().addResponseHeader("Content-disposition", "attachment; filename=reporte.pdf");
             ServletOutputStream servletOutputStream;
             try {
                   servletOutputStream = httpServletResponse.getOutputStream();
