@@ -112,7 +112,7 @@ public class UserController {
         }
     }
 
-    public void insertar() {
+     public void insertarUsuario() {
         try {
             this.user.setEstado(true);
             this.user.setCliente(cliente);
@@ -122,6 +122,21 @@ public class UserController {
             FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
         } catch (Exception e) {
             this.mensaje = "Error: " + e.getMessage();
+            e.printStackTrace();
+        }
+        FacesMessage msj = new FacesMessage(mensaje);
+        FacesContext.getCurrentInstance().addMessage(null, msj);
+    }
+     
+    public void insertar() {
+        try {
+            this.user.setEstado(true);
+            this.user.setCliente(cliente);
+            this.user.setRol(rol);
+            this.userFacade.create(user);
+            this.mensaje = "Insertado con éxito";
+        } catch (Exception e) {
+            this.mensaje = "Error Este Cliente ya posee un Usuario asignado";
             e.printStackTrace();
         }
         FacesMessage msj = new FacesMessage(mensaje);

@@ -70,14 +70,28 @@ public class ClienteController implements Serializable {
         this.msj = "";
         this.cliente.setPais(pais);
     }
-
-    public void insertar() {
+    
+    public void insertarCliente() {
         try {
             this.cliente.setPais(pais);
             this.clienteEJB.create(cliente);
             limpiar();
             this.msj = "Cliente Ingresado correctamente";
             FacesContext.getCurrentInstance().getExternalContext().redirect("insertUsuario.xhtml");
+        } catch (Exception e) {
+            this.msj = "Error al ingresar Cliente " + e.getMessage();
+            e.printStackTrace();
+        }
+        FacesMessage mensaje = new FacesMessage(this.msj);
+        FacesContext.getCurrentInstance().addMessage(null, mensaje);
+    }
+    
+    public void insertar() {
+        try {
+            this.cliente.setPais(pais);
+            this.clienteEJB.create(cliente);
+            limpiar();
+            this.msj = "Cliente Ingresado correctamente";            
         } catch (Exception e) {
             this.msj = "Error al ingresar Cliente " + e.getMessage();
             e.printStackTrace();
