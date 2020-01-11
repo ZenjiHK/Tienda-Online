@@ -7,7 +7,7 @@ package Controller;
 
 /**
  *
- * @author Prechuz
+ * @author evelyn andrade
  */
 import EJB.ClienteFacadeLocal;
 import EJB.DescuentoFacadeLocal;
