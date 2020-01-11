@@ -7,13 +7,20 @@
         <title>Recuperar contraseña</title>
     </h:head>
     <h:body>
-        <h:form>
-            <h:panelGrid columns="2">                      
-                <p:outputLabel value="Correo"/>
-                <p:inputText value="#{EnviarController.destinatario}"/>         
-                <p:commandButton value="Enviar" actionListener="#{EnviarController.enviar()}"/>             
-        </h:panelGrid>
+
+        <h:form>             
+            <p:panel header="Cambio de contraseña" widgetVar="p">  
+                <h:panelGrid columns="2">
+               
+                    <p:outputLabel for="clave" value="Nueva contraseña:"/>
+                    <p:password id="clave" value="#{userController.user.clave}" match="clave1" required="true"/>  
+                    <p:outputLabel for="clave1" value="Confirme la contraseña:"/>
+                    <p:password id="clave1" value="#{userController.user.clave}" required="true" feedback="false" validatorMessage="Las contraseñas deben coincidir"/>  
+                    <p:commandButton value="Enviar" actionListener="#{userController.cambioClave()}"/>   
+                </h:panelGrid>
+            </p:panel>
         </h:form>
+        <p:growl id="messages" showDetail="true" /> 
     </h:body>
 </html>
 
