@@ -233,17 +233,23 @@ public class UserController implements Serializable{
         return redireccion;
     }
 
-    public void cambioClave() {        
+    public void cambioClave() {     
+        System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+        if(this.clave1==null||this.clave2==null){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "No puede dejar ningun campo vacío.", ""));
+        }
         if (this.clave1.equals(this.clave2)) {
             int idCliente = 1;//Valor quemado. Se cambiará por el id recuperado de la sesión.
-
+            System.out.println("AXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             //Actualizar clave
             this.cliente.setIdCliente(idCliente);
             user.setCliente(cliente);
             user.setClave(this.clave1);
+            System.out.println("CASI ACTUALI<OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
             userFacade.ActualizarUsuario(user);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se ha actualizado su contraseña.", ""));
         } else {
+            System.out.println("NOOOOOOOOOOOOOOOOOOOO SIRVE");
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Las contraseñas deben coincidir.", ""));
         }
     }
