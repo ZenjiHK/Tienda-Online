@@ -264,7 +264,7 @@ public class EnviarController implements Serializable {
         }
     }
     
-    //Metodo para enviar correos
+    //Metodo para enviar Reporte por correo
     public void enviarReporte() {
         try {
             System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAAAAAAAAAA");
@@ -303,13 +303,13 @@ public class EnviarController implements Serializable {
             message.addRecipient(
                     Message.RecipientType.TO,
                     new InternetAddress(destinatario));//Acá se recupera el correo de destino ingresado en el formulario.
-            message.setSubject("Reporte Factura");
-            message.setText("\n Fecha: " + fecha + ",\n"
+            message.setSubject("Reporte Factura");            
+            message.setContent(Fecha: " + fecha + ",\n"
                     +"\n Hola " + nombreCliente + ",\n"
                     + "\n Hemos Recibido tu pedido. "
                     + " \n\n Este es tu detalle de Compra C'E La Vie"
-                    + " \n Gracias por preferirnos");
-            message.setContent("<table class=\"egt\">\n"
+                    + " \n Gracias por preferirnos"
+                    + " \n "<table class=\"egt\">\n"
                     + "\n"
                     + "<thead>"
                     + "<tr>"

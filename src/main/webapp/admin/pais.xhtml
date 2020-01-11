@@ -32,12 +32,6 @@
             <p:column headerText="Nombre">
                 <p:outputLabel value="#{p.nombrePais}"/>
             </p:column>
-            <p:column>
-                  <p:commandButton value="Modificar" actionListener="#{paisController.cargarDatos(p)}" update=":tabla :formulario" oncomplete="PF('modal').show()"/>
-            </p:column>
-            <p:column>
-                  <p:commandButton value="Eliminar" actionListener="#{paisController.remover(p)}" update=":tabla"/>
-            </p:column>
         </p:dataTable>
       </h:form>
     </h:body>
