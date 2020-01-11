@@ -14,7 +14,7 @@
     </h:head>
     <h:body>
         <center>
-            <p:outputLabel value="Categoria" style="font-size: 500%;"/>
+            <p:outputLabel value="Factura" style="font-size: 500%;"/>
         </center>
         <h:form>  
             <p:menubar>
@@ -35,11 +35,7 @@
         <br/>
                 <p:growl id="mensaje"/>
                 <h:form>
-                    <p:fieldset legend="Nueva factura">
-                        <p:panelGrid columns="1">
-                            <p:commandButton value="Abrir modal" oncomplete="PF('modal').show()"/>
-                        </p:panelGrid>
-                    </p:fieldset>   
+                 <p:commandButton value="Ingresar Factura" oncomplete="PF('modal').show()"/>
                 </h:form>
                     <p:dialog widgetVar="modal" modal="true" showEffect="clip" resizable="false">
                         <p:ajax event="close" listener="#{facturaController.limpiar()}"/>
@@ -58,9 +54,8 @@
                             </p:panelGrid>  
                         </h:form>
                     </p:dialog>
-            
+                         <br/>
                         <h:form id="Datos">    
-                              <p:fieldset legend="Facturas">
                                     <p:dataTable value="#{facturaController.lista_facturas}" var="fa">
                                       <p:column headerText="Id">
                                             <h:outputText value="#{fa.idFactura}"/>
@@ -92,7 +87,6 @@
                                             <p:commandButton value="Eliminar" actionListener="#{facturaController.eliminar(fa)}" update=":Datos :mensaje"/>
                                       </p:column>            
                                   </p:dataTable>
-                              </p:fieldset>
                           </h:form>
         </h:body>
 </html>

@@ -6,19 +6,38 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Administracion - Rol</title>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
     </h:head>
     <body>
+        <center>
+            <p:outputLabel value="Rol" style="font-size: 500%;"/>
+        </center>
+        <h:form>  
+            <p:menubar>
+                <p:menuitem value="Categoria" url="categoria.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Cliente" url="cliente.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Detalle de Tarjeta" url="detalletarjetafiltro.xhtml" icon="pi pi-angle-double-right" />
+                <p:menuitem value="Factura" url="factura.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Forma de Pago" url="formapago.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Marca" url="marca.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Pais" url="pais.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Producto" url="producto.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Rol" url="rol.xhtml" icon="pi pi-angle-double-right" />
+                <p:menuitem value="Talla" url="talla.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Tipo de Ropa" url="tipoRopa.xhtml" icon="pi pi-angle-double-left"  />
+                <p:menuitem value="Ventas Realizadas" url="venta.xhtml" icon="pi pi-angle-double-left" />
+            </p:menubar>
+        </h:form>
+        <br/>
         <p:growl id="msj"/>
         <h:form>
-            <p:fieldset legend="Nuevo rol" toggleable="true">
-                <p:panelGrid columns="2">
                     <p:outputLabel value="Rol: "/>
                     <p:inputText value="#{rolController.rol.nombreRol}"/>
-                </p:panelGrid>
                 <p:commandButton value="Insertar" actionListener="#{rolController.insertar()}"
                                  update=":msj :datos"/>
-            </p:fieldset>
         </h:form>
+                <br/>
         <h:form id="datos">            
                 <p:dataTable value="#{rolController.listaRol}" var="r">
                     <p:column headerText="ID">

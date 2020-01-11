@@ -31,8 +31,10 @@
         </h:form>
         <br/>
         <p:growl id="msj"/>
+        <h:form>
         <p:commandButton value="Agregar Cliente" oncomplete="PF('cli').show()"/>
-        <br/><br/>
+        </h:form>
+        <br/>
         <p:dialog widgetVar="cli" modal="true" showEffect="clip" resizable="false">
             <p:ajax event="close" listener="#{clienteController.limpiar()}" update=":c"/>
             <h:form id="c">
