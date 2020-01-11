@@ -14,10 +14,10 @@
         <ui:include src="topnavbar.xhtml"/>
         <h:panelGrid columns="2" id="panel">
             <p:panel header="Nombre Usuario" style="font-size: 20px; text-align: center">
-            <img src="../Resourse/img/user.png" height="100" width="100" style="align-content: center"/>
+                <img src="../Resourse/img/user.png" height="100" width="100" style="align-content: center"/>
             </p:panel>
             <h:form>
-                <p:dataGrid value="#{productoController.listaproducto}" var="prod" columns="3" layout="grid"
+                <p:dataGrid value="#{ProductoController.listaproducto}" var="prod" columns="3" layout="grid"
                             rows="6" paginator="true"
                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
@@ -34,50 +34,54 @@
                     </p:panel>
                 </p:dataGrid>
             </h:form>
-                        <p:growl id="carro" life="2000"/>
+            <p:growl id="carro" life="2000"/>
             <b:column style="padding-left: 1000px" span="3">
                 <b:button  value="Ver Carrito" icon="shopping-cart" look="success" id="carrito" size="lg"/>
             </b:column>
-            <p:overlayPanel id="m" hideEffect="fade" for=":carrito" style="width:800px;" dynamic="false">
-                <p:dataTable var="d" style="width: 120%;" value="#{detalleVentaController.list}" scrollable="true" scrollWidth="95%" scrollHeight="150" rows="5" paginator="true">
-                    <p:column>
-                        <h:graphicImage value="#{d.url}" width="50px;"/>
-                    </p:column>
-                    <p:column headerText="Nombre">
-                        <h:outputText value="#{d.nombreProducto}" />
-                    </p:column>
-                    <p:column headerText="Marca">
-                        <h:outputText value="#{d.marca.nombreMarca}"/>
-                    </p:column>
-                    <p:column headerText="Precio Venta">
-                        <h:outputText value="#{d.precioVenta}" />
-                    </p:column>
-                    <p:column headerText="Talla">
-                        <h:outputText value="#{d.talla.talla}" />
-                    </p:column>
+            <p:overlayPanel  hideEffect="fade" for=":carrito" style="width:800px;" dynamic="false">
+                <h:form id="m">
+                    <p:dataTable var="d" style="width: 120%;" value="#{detalleVentaController.list}" scrollable="true" scrollWidth="95%" scrollHeight="150" rows="5" paginator="true">
+                        <p:column>
+                            <h:graphicImage value="#{d.url}" width="50px;"/>
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{d.nombreProducto}" />
+                        </p:column>
+                        <p:column headerText="Marca">
+                            <h:outputText value="#{d.marca.nombreMarca}"/>
+                        </p:column>
+                        <p:column headerText="Precio Venta">
+                            <h:outputText value="#{d.precioVenta}" />
+                        </p:column>
+                        <p:column headerText="Talla">
+                            <h:outputText value="#{d.talla.talla}" />
+                        </p:column>
 
-                    <p:column headerText="Tipo de Ropa">
-                        <h:outputText value="#{d.tipoRopa.nombreTipoRopa}" />
-                    </p:column>
+                        <p:column headerText="Tipo de Ropa">
+                            <h:outputText value="#{d.tipoRopa.nombreTipoRopa}" />
+                        </p:column>
 
-                    <p:column headerText="Categoria">
-                        <h:outputText value="#{d.categoria.nombreCategoria}"/>
-                    </p:column>
-                     <p:column>
+                        <p:column headerText="Categoria">
+                            <h:outputText value="#{d.categoria.nombreCategoria}"/>
+                        </p:column>
+                        <p:column>
                             <h:form>
-                                <b:commandButton value="Borrar" icon="times" action="#{detalleVentaController.delete(prod)}"/>
+                                <b:commandButton value="Borrar" update="m"  icon="times" action="#{detalleVentaController.delete(d)}"/>
                             </h:form>
                         </p:column>
-                </p:dataTable>
-                <h:outputLabel for="total" value="Total:" />
-                <h:outputText id="total" value="$#{detalleVentaController.total}" />
-                <br>
-                    <h:outputLabel for="contador" value="Prendas:"/>
-                    <h:outputText id="contador" value="#{detalleVentaController.contador}"/>
-                </br>
+                    </p:dataTable>
+
+                    <h:outputLabel for="total" value="Total:" />
+                    <h:outputText id="total" value="$#{detalleVentaController.total}" />
+                    <br>
+                        <h:outputLabel for="contador" value="Prendas:"/>
+                        <h:outputText id="contador" value="#{detalleVentaController.contador}"/>
+                    </br>
+                </h:form>
                 <h:form>
                     <p:commandButton value="Compra realizada" style="margin-right: 20px;"/>
                     <f:param name="Envio" value="#{ventaController.Enviar(lista)}"/>
+                    <p:commandButton value="Vaciar carrito" update=":m" action="#{detalleVentaController.deleteAll(d)}" style="margin-left: 50px;"/>
                 </h:form>
             </p:overlayPanel>
         </h:panelGrid>

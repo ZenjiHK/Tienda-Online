@@ -13,6 +13,9 @@ import Entity.Producto;
 import Entity.User;
 import Entity.Venta;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -45,7 +48,7 @@ public class EnviarController implements Serializable {
     //Declaramos la variable que se utilizará    
     private String destinatario;
     private String claveGenerada;
-    
+
     @EJB
     private ProductoFacadeLocal productoFacade;
     private List<Producto> listaproducto;
@@ -60,12 +63,11 @@ public class EnviarController implements Serializable {
     private VentaFacadeLocal ventaFacade;
     private List<Venta> listaventa;
     private Venta venta;
-    
+
     @EJB
     private DescuentoFacadeLocal descuentoFacade;
     private List<Descuento> listadescuento;
     private Descuento descuento;
-
 
     public String getClaveGenerada() {
         return claveGenerada;
@@ -186,8 +188,6 @@ public class EnviarController implements Serializable {
     public void setDescuento(Descuento descuento) {
         this.descuento = descuento;
     }
-    
-    
 
     @PostConstruct
     public void init() {
@@ -195,8 +195,8 @@ public class EnviarController implements Serializable {
     }
 
     //Metodo para enviar correos
-    public void enviar() {       
-        int clienteId;     
+    public void enviar() {
+        int clienteId;
         this.cliente.setCorreo(this.destinatario);//Envio del correo a la clase cliente
         clienteId = this.clienteFacade.ExisteCorreo(cliente);//Se guarda el id de cliente que retorna el metodo Existe Correo
         this.cliente.setIdCliente(clienteId);
@@ -212,7 +212,7 @@ public class EnviarController implements Serializable {
         }
 
         //Validamos si ya existe una contraseña generada para enviar el correo
-        if (!claveGenerada.isEmpty()) {             
+        if (!claveGenerada.isEmpty()) {
             try {
                 //Obtenemos el nombre del cliente                
                 String nombreCliente = this.clienteFacade.nombreCliente(cliente);
@@ -260,23 +260,28 @@ public class EnviarController implements Serializable {
             mensaje = "Debe generar una clave nueva. Después seleccione enviar.";
         }
     }
-    
-   //Metodo para enviar correos
+
+    //Metodo para enviar correos
     public void enviarReporte() {
         try {
-            String nombreCliente = this.clienteFacade.nombreCliente(cliente);
-            String nombreProducto = this.productoFacade.nombreProducto(producto);
-            double precioVenta = this.productoFacade.precioVenta(producto);
-            int cantidad = this.detalleFacade.cantidad(detalle);
-            int idVenta = this.ventaFacade.idVenta(venta);
-            double descuento = this.descuentoFacade.descuento(this.descuento);
-            
-            double Subtotal=((precioVenta*cantidad)-(descuento*(precioVenta*cantidad)));
-            
-            double Total=0.0;
-            
-            
-            
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAAAAAAAAAA");
+                    
+            List<DetalleVenta> listt;
+            listt = detalleFacade.factura(1);
+            System.out.println("AJJAEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+            int idDetalleVenta = 0;
+            Date fecha = listt.get(0).getVenta().getFecha();
+            String nombreCliente = listt.get(0).getVenta().getCliente().getNombreCliente();
+            String nombreProducto = listt.get(0).getProducto().getNombreProducto();
+            double precioVenta = listt.get(0).getProducto().getPrecioVenta();
+            int cantidad = listt.get(0).getCantidad();
+            int idVenta = listt.get(0).getVenta().getIdVenta();
+            double descuento1 = listt.get(0).getDescuento().getDescuento();
+
+            double Subtotal = ((precioVenta * cantidad) - (descuento1 * (precioVenta * cantidad)));
+
+            double Total = ((precioVenta * cantidad) - (descuento1 * precioVenta * cantidad));
+
             // Propiedades de la conexión
             Properties props = new Properties();
             props.setProperty("mail.smtp.host", "smtp.gmail.com");
@@ -291,15 +296,16 @@ public class EnviarController implements Serializable {
             // Construimos el mensaje
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress("celavieonline@gmail.com"));
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!DESTINATARIO:"+destinatario);
             message.addRecipient(
                     Message.RecipientType.TO,
                     new InternetAddress(destinatario));//Acá se recupera el correo de destino ingresado en el formulario.
-            message.setSubject("Reporte Factura");            
-                message.setText(
-                        "Hola " + nombreCliente + ",\n"
-                        + "\n Hemos Recibido tu pedido. "
-                        + " \n\n Este es tu detalle de Compra C'E La Vie"
-                        + " \n Gracias por preferirnos");
+            message.setSubject("Reporte Factura");
+            message.setText("\n Fecha: " + fecha + ",\n"
+                    +"\n Hola " + nombreCliente + ",\n"
+                    + "\n Hemos Recibido tu pedido. "
+                    + " \n\n Este es tu detalle de Compra C'E La Vie"
+                    + " \n Gracias por preferirnos");
             message.setContent("<table class=\"egt\">\n"
                     + "\n"
                     + "<thead>"
@@ -325,9 +331,9 @@ public class EnviarController implements Serializable {
                     + "\n"
                     + "    <td>" + precioVenta + "</td>\n"
                     + "\n"
-                    + "    <td>" + descuento + "</td>\n"
-                    + "\n"        
-                    + "    <td>" +Subtotal+ "</td>\n"
+                    + "    <td>" + descuento1 + "</td>\n"
+                    + "\n"
+                    + "    <td>" + Subtotal + "</td>\n"
                     + "\n"
                     + "  </tr>\n"
                     + "</tbody>"
@@ -344,4 +350,5 @@ public class EnviarController implements Serializable {
         } catch (MessagingException e) {
         }
     }
+
 }

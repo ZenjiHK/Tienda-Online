@@ -39,7 +39,7 @@ public class UserController {
             this.listaUser = this.userFacade.findAll();
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Error en ListaUser: "+e.getMessage());
+            System.out.println("Error en ListaUser: " + e.getMessage());
         }
         return listaUser;
     }
@@ -87,15 +87,15 @@ public class UserController {
     public void setListaCliente(List<Cliente> listaCliente) {
         this.listaCliente = listaCliente;
     }
-    
+
     @PostConstruct
     public void init() {
         this.user = new User();
         this.rol = new Rol();
         this.cliente = new Cliente();
-        this.listaUser=userFacade.findAll();
-        this.listaRol=rolFacade.findAll();
-        this.listaCliente=clienteFacade.findAll();
+        this.listaUser = userFacade.findAll();
+        this.listaRol = rolFacade.findAll();
+        this.listaCliente = clienteFacade.findAll();
     }
 
     public void consultarRol() {
@@ -150,6 +150,7 @@ public class UserController {
         } catch (Exception e) {
         }
     }
+
     public void eliminar(User u) {
         try {
             this.user.setCliente(cliente);
@@ -163,17 +164,17 @@ public class UserController {
         FacesMessage msj = new FacesMessage(mensaje);
         FacesContext.getCurrentInstance().addMessage(null, msj);
     }
-    
+
     public void limpiar() {
         this.user = new User();
         this.rol = new Rol();
         this.cliente = new Cliente();
-        this.listaUser=userFacade.findAll();
-        this.listaRol=rolFacade.findAll();
-        this.listaCliente=clienteFacade.findAll();
+        this.listaUser = userFacade.findAll();
+        this.listaRol = rolFacade.findAll();
+        this.listaCliente = clienteFacade.findAll();
     }
-    
- public String login() {
+
+    public String login() {
         User us;
         String redireccion = "";
         try {
@@ -185,7 +186,8 @@ public class UserController {
                 } else if (us.getRol().getNombreRol().equalsIgnoreCase("admin")) {
                     redireccion = "/prueba/user?faces-redirect=true";
                 }
-
+                int idUser = us.getCliente().getIdCliente();
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idUser", idUser);
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Uusuario o clave incorrecta"));
             }
