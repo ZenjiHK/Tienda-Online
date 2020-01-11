@@ -522,6 +522,9 @@ target/classes/EJB/ProductoFacade.class
 target/TiendaEnLinea-1.0-SNAPSHOT/landpage/catalogo.xhtml
 target/TiendaEnLinea-1.0-SNAPSHOT/landpage/topnavbar.xhtml
 target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/EJB/ProductoFacade.class
+
+!/src/main/webapp/PaginaPrincipal/insertarUsuario.xhtml
+
 target/classes/Controller/DetalleTarjetaController.class
 target/classes/Controller/EnviarController.class
 target/classes/Controller/ProductoController.class
@@ -640,3 +643,4 @@ target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/Entity/User.class
 target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/Entity/User_.class
 target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/Entity/Venta.class
 target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/Entity/Venta_.class
+
