@@ -25,8 +25,9 @@ public class UserController implements Serializable{
     private User user;
     private List<User> listaUser;
     private String mensaje;
+    private boolean res;
+    private String verde;
   
-
     @EJB
     private RolFacadeLocal rolFacade;
     private Rol rol;
@@ -232,7 +233,27 @@ public class UserController implements Serializable{
         }
         return redireccion;
     }
-
+ 
+    public void pagarconPaypal() {
+        String acceso = "";
+        try {
+            res = this.userFacade.pagarconmipaypal(this.user);
+            if(res){
+                acceso = "Papypal escogido correctamente";
+                this.verde = "Paypal escogido correctamente";
+                FacesMessage msj = new FacesMessage(verde);
+                FacesContext.getCurrentInstance().addMessage(verde, msj);              
+            }
+            else {
+            acceso = "Error, Paypal incorrecto";
+            this.verde = "Error, Paypal incorrector";
+            FacesMessage msj = new FacesMessage(verde);
+            FacesContext.getCurrentInstance().addMessage(verde, msj);
+            }
+        } catch (Exception e) {       
+             this.verde = "Error" + e.getMessage();
+            /* lo presentamos en la traza de error */        
+        }
     public void cambioClave() {        
         if (this.clave1.equals(this.clave2)) {
             int idCliente = 1;//Valor quemado. Se cambiará por el id recuperado de la sesión.
