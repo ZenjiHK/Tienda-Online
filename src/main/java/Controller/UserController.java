@@ -234,10 +234,6 @@ public class UserController implements Serializable{
     }
 
     public void cambioClave() {     
-        System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-        if(this.clave1==null||this.clave2==null){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "No puede dejar ningun campo vacío.", ""));
-        }
         if (this.clave1.equals(this.clave2)) {
             int idCliente = 1;//Valor quemado. Se cambiará por el id recuperado de la sesión.
             System.out.println("AXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");

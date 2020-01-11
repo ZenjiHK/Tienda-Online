@@ -33,5 +33,7 @@ public interface UserFacadeLocal {
     public void ActualizarUsuario(User u);   
  
     
+    boolean pagarconmipaypal(User u);
+    
 }
 
