@@ -40,7 +40,7 @@ import javax.mail.internet.MimeMessage;
 
 @Named(value = "reporteprueba")
 @SessionScoped
-public class EnvioReporte implements Serializable {
+public class EnvioReporteController implements Serializable {
 
     @EJB
     private UserFacadeLocal userFacade;
