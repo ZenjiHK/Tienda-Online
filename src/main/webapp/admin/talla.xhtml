@@ -6,15 +6,38 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Administracion - Talla</title>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
+        <center>
+            <p:outputLabel value="Talla" style="font-size: 500%;"/>
+        </center>
+        <h:form>  
+            <p:menubar>
+                <p:menuitem value="Categoria" url="categoria.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Cliente" url="cliente.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Detalle de Tarjeta" url="detalletarjetafiltro.xhtml" icon="pi pi-angle-double-right" />
+                <p:menuitem value="Factura" url="factura.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Forma de Pago" url="formapago.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Marca" url="marca.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Pais" url="pais.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Producto" url="producto.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Rol" url="rol.xhtml" icon="pi pi-angle-double-right" />
+                <p:menuitem value="Talla" url="talla.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Tipo de Ropa" url="tipoRopa.xhtml" icon="pi pi-angle-double-left"  />
+                <p:menuitem value="Ventas Realizadas" url="venta.xhtml" icon="pi pi-angle-double-left" />
+            </p:menubar>
+        </h:form>
+        <br/>
         <p:growl id="msj"/>
         <h:form>
             <p:outputLabel value="Ingrese talla"/>
             <p:inputText value="#{tallaController.talla.talla}"/>
             <p:commandButton value="Enviar" actionListener="#{tallaController.insertar()}" update=":msj :tabla"/>
         </h:form>
+        <br />
         <h:form id="tabla">
             <p:dataTable  value="#{tallaController.listaTalla}" var="t" >     
                 <p:column headerText="Código">
