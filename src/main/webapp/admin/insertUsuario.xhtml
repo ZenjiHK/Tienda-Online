@@ -22,9 +22,9 @@
                                      validatorMessage="password 1 should match password 2"/>
                         <p:outputLabel value="Cliente"/>
                         <p:selectOneMenu value="#{userController.cliente.idCliente}">
-                            <f:selectItems value="#{clienteController.listaCliente}" var="c" itemLabel="#{c.nombreCliente} #{c.apellidoCliente}" itemValue="#{c.idCliente}"/>
+                            <f:selectItems value="#{clienteController.lista2}" var="c" itemLabel="#{c.nombreCliente} #{c.apellidoCliente}" itemValue="#{c.idCliente}"/>
                         </p:selectOneMenu>
-                        <p:commandButton value="Guardar" actionListener="#{userController.insertar()}" />
+                        <p:commandButton value="Guardar" actionListener="#{userController.insertarUsuario()}" />
                     </h:panelGrid>
                 </p:panel>
             </h:form>
