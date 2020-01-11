@@ -6,17 +6,19 @@ import EJB.UserFacadeLocal;
 import Entity.Cliente;
 import Entity.Rol;
 import Entity.User;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 @Named(value = "userController")
-@RequestScoped
-public class UserController {
+@SessionScoped
+public class UserController implements Serializable{
 
     @EJB
     private UserFacadeLocal userFacade;
@@ -131,7 +133,7 @@ public class UserController {
         }
     }
 
-    public void insertar() {
+     public void insertarUsuario() {
         try {
             this.user.setEstado(true);
             this.user.setCliente(cliente);
@@ -141,6 +143,21 @@ public class UserController {
             FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
         } catch (Exception e) {
             this.mensaje = "Error: " + e.getMessage();
+            e.printStackTrace();
+        }
+        FacesMessage msj = new FacesMessage(mensaje);
+        FacesContext.getCurrentInstance().addMessage(null, msj);
+    }
+     
+    public void insertar() {
+        try {
+            this.user.setEstado(true);
+            this.user.setCliente(cliente);
+            this.user.setRol(rol);
+            this.userFacade.create(user);
+            this.mensaje = "Insertado con éxito";
+        } catch (Exception e) {
+            this.mensaje = "Error Este Cliente ya posee un Usuario asignado";
             e.printStackTrace();
         }
         FacesMessage msj = new FacesMessage(mensaje);
