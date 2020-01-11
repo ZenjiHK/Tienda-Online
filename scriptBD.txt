@@ -69,7 +69,7 @@ CREATE TABLE user(
 		id_user int auto_increment primary key,
 		nombre_usuario varchar(50) not null,
 		id_cliente int not null,
-		clave int not null,
+		clave varchar(20) not null,
 		id_rol int not null,
 		estado boolean not null);
 
