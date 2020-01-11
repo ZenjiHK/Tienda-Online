@@ -85,5 +85,4 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
             return valor;
         }
     }
-
 }

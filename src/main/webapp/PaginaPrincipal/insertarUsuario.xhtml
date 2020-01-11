@@ -2,12 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Registro</title>
         <link href="../resources/css/Registro.css" rel="stylesheet" type="text/css"/>
     </h:head>
-    <h:body class="bodyRe">
+    <h:body class="bodyRe"> 
         <b:navBar brand-img="../resources/Imagenes/a1 - copia (2).jpg" brandHref="#" inverse="false">
             <b:flyOutMenu styleClass="dropdown-submenu">
                   <b:navbarLinks>
@@ -39,8 +41,9 @@
                 <b:navLink value="Bolsa" icon="shopping-cart" href="#"></b:navLink>
             </b:navbarLinks>
         </b:navBar>
-        
+
         <div class="registro">
+            <p:messages id="messages" showDetail="true"  /> 
             <h:form>
                 <br></br>
                 <b:container fluid="true">
@@ -59,37 +62,42 @@
                         <b:row>
                             <br></br>
                             <b:column>
-                                <h:outputText value="¿Cómo quieres que nos dirijamos a ti?" />
-                                <b:inputText placeholder="Nombre*" ajax="true" autocomplete="false"/>
-                                <b:inputText placeholder="Apellido*" ajax="true" autocomplete="false"/>
+                                <h:outputText value="Establesca un nombre de usario para loguearse" />
+                                <b:inputText placeholder="Nombre Usuario*" value="#{userController.user.nombreUsuario}" required="true"/>
                             </b:column>
                         </b:row>
                         <b:row>
                             <br></br>
                             <b:column>
-                                <h:outputText value="Introduce un e-mail y contraseña para acceder a tu cuenta" />
-                                <b:inputText placeholder="E-mail*" ajax="true" autocomplete="false"/>
-                                <b:inputText placeholder="Contraseña*" ajax="true" autocomplete="false"/>
+                                <h:outputText value="Cree su contraseña" />
+                                <p:password style="width: 100%" id="pss" value="#{userController.user.clave}" match="pss1" label="clave" required="true"/><br/><br/>
+                                <h:outputText value="introduzca la nueva contraseña nuevamente" />
+                                <p:password style="width: 100%" id="pss1" value="#{userController.user.clave}"  label="clave2" required="true" feedback="false"/>
                             </b:column>
                         </b:row>
                         <b:row>
                             <br></br>
                             <b:column>
-                                <h:outputText value="Introduce tu direccion correcta para que tus entregas sean mucho mas rápidas" />
-                                <b:inputText placeholder="Direccion*" ajax="true" autocomplete="false"/>
-                                <b:inputText placeholder="País*" ajax="true" autocomplete="false"/>
+                                <h:outputText value="seleccione el cliente a asignar el usuario creado" />
+                                <p:selectOneMenu style="width: 100%" value="#{userController.cliente.idCliente}">
+                                    <f:selectItem itemLabel="Cliente" itemValue=""  />
+                                    <f:selectItems value="#{clienteController.lista2}" var="c" itemLabel="#{c.nombreCliente} #{c.apellidoCliente}" itemValue="#{c.idCliente}"/>
+                                </p:selectOneMenu>
                             </b:column>
                         </b:row>
+                        <br></br>
                         <b:row>
                             <b:column>
-                                <b:commandButton value="Siguiente Paso" look="info" style="width: 100%" actionListener="#{clienteController.insertarCliente()}"/>
+                                <b:commandButton value="Regístrarme" look="info" style="width: 100%" actionListener="#{userController.insertarUsuario()}"/>
                             </b:column>
                         </b:row>
                     </b:panel>
+                    
                 </b:container>
             </h:form>
+          
         </div>
-        
+         
     </h:body>
 </html>
 
