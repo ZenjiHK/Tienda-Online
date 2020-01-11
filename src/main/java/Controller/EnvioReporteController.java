@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package reporte;
+package Controller;
 
 /**
  *
@@ -40,7 +40,7 @@ import javax.mail.internet.MimeMessage;
 
 @Named(value = "reporteprueba")
 @SessionScoped
-public class EnvioReporte implements Serializable {
+public class EnvioReporteController implements Serializable {
 
     @EJB
     private UserFacadeLocal userFacade;
