@@ -13,6 +13,7 @@ import Entity.Producto;
 import Entity.User;
 import Entity.Venta;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -212,7 +213,7 @@ public class EnviarController implements Serializable {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ha ocurrido un error, intente más tarde", ""));
         }
-
+        
         //Validamos si ya existe una contraseña generada para enviar el correo
         if (!claveGenerada.isEmpty()) {             
             try {
@@ -266,9 +267,12 @@ public class EnviarController implements Serializable {
     //Metodo para enviar Reporte por correo
     public void enviarReporte() {
         try {
-            List<DetalleVenta> listt = new LinkedList<>();
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAAAAAAAAAA");
+                    
+            List<DetalleVenta> listt;
             listt = detalleFacade.factura(1);
-            int idDetalleVenata = 0;
+            System.out.println("AJJAEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+            int idDetalleVenta = 0;
             Date fecha = listt.get(0).getVenta().getFecha();
             String nombreCliente = listt.get(0).getVenta().getCliente().getNombreCliente();
             String nombreProducto = listt.get(0).getProducto().getNombreProducto();
@@ -295,6 +299,7 @@ public class EnviarController implements Serializable {
             // Construimos el mensaje
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress("celavieonline@gmail.com"));
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!DESTINATARIO:"+destinatario);
             message.addRecipient(
                     Message.RecipientType.TO,
                     new InternetAddress(destinatario));//Acá se recupera el correo de destino ingresado en el formulario.
