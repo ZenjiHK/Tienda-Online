@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package reporte;
+package Controller;
 
 /**
  *
- * @author Prechuz
+ * @author evelyn andrade
  */
 import EJB.ClienteFacadeLocal;
 import EJB.DescuentoFacadeLocal;
