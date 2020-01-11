@@ -25,9 +25,8 @@ public class UserController implements Serializable{
     private User user;
     private List<User> listaUser;
     private String mensaje;
-    private boolean res;
-    private String verde;
   
+
     @EJB
     private RolFacadeLocal rolFacade;
     private Rol rol;
@@ -219,9 +218,9 @@ public class UserController implements Serializable{
             if (us != null) {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", us);
                 if (us.getRol().getNombreRol().equalsIgnoreCase("cliente")) {
-                    redireccion = "/admin/producto?faces-redirect=true";
+                    redireccion = "/prueba/producto?faces-redirect=true";
                 } else if (us.getRol().getNombreRol().equalsIgnoreCase("admin")) {
-                    redireccion = "/admin/user?faces-redirect=true";
+                    redireccion = "/prueba/user?faces-redirect=true";
                 }
                 int idUser = us.getCliente().getIdCliente();
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idUser", idUser);
@@ -233,38 +232,20 @@ public class UserController implements Serializable{
         }
         return redireccion;
     }
- 
-    public void pagarconPaypal() {
-        String acceso = "";
-        try {
-            res = this.userFacade.pagarconmipaypal(this.user);
-            if(res){
-                acceso = "Papypal escogido correctamente";
-                this.verde = "Paypal escogido correctamente";
-                FacesMessage msj = new FacesMessage(verde);
-                FacesContext.getCurrentInstance().addMessage(verde, msj);              
-            }
-            else {
-            acceso = "Error, Paypal incorrecto";
-            this.verde = "Error, Paypal incorrector";
-            FacesMessage msj = new FacesMessage(verde);
-            FacesContext.getCurrentInstance().addMessage(verde, msj);
-            }
-        } catch (Exception e) {       
-             this.verde = "Error" + e.getMessage();
-            /* lo presentamos en la traza de error */        
-        }
-    public void cambioClave() {        
+
+    public void cambioClave() {     
         if (this.clave1.equals(this.clave2)) {
             int idCliente = 1;//Valor quemado. Se cambiará por el id recuperado de la sesión.
-
+            System.out.println("AXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             //Actualizar clave
             this.cliente.setIdCliente(idCliente);
             user.setCliente(cliente);
             user.setClave(this.clave1);
+            System.out.println("CASI ACTUALI<OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
             userFacade.ActualizarUsuario(user);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se ha actualizado su contraseña.", ""));
         } else {
+            System.out.println("NOOOOOOOOOOOOOOOOOOOO SIRVE");
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Las contraseñas deben coincidir.", ""));
         }
     }
