@@ -48,7 +48,7 @@ public class EnviarController implements Serializable {
     //Declaramos la variable que se utilizará    
     private String destinatario;
     private String claveGenerada;
-    
+
     @EJB
     private ProductoFacadeLocal productoFacade;
     private List<Producto> listaproducto;
@@ -63,12 +63,11 @@ public class EnviarController implements Serializable {
     private VentaFacadeLocal ventaFacade;
     private List<Venta> listaventa;
     private Venta venta;
-    
+
     @EJB
     private DescuentoFacadeLocal descuentoFacade;
     private List<Descuento> listadescuento;
     private Descuento descuento;
-
 
     public String getClaveGenerada() {
         return claveGenerada;
@@ -189,8 +188,6 @@ public class EnviarController implements Serializable {
     public void setDescuento(Descuento descuento) {
         this.descuento = descuento;
     }
-    
-    
 
     @PostConstruct
     public void init() {
@@ -198,8 +195,8 @@ public class EnviarController implements Serializable {
     }
 
     //Metodo para enviar correos
-    public void enviar() {       
-        int clienteId;     
+    public void enviar() {
+        int clienteId;
         this.cliente.setCorreo(this.destinatario);//Envio del correo a la clase cliente
         clienteId = this.clienteFacade.ExisteCorreo(cliente);//Se guarda el id de cliente que retorna el metodo Existe Correo
         this.cliente.setIdCliente(clienteId);
@@ -213,9 +210,9 @@ public class EnviarController implements Serializable {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ha ocurrido un error, intente más tarde", ""));
         }
-        
+
         //Validamos si ya existe una contraseña generada para enviar el correo
-        if (!claveGenerada.isEmpty()) {             
+        if (!claveGenerada.isEmpty()) {
             try {
                 //Obtenemos el nombre del cliente                
                 String nombreCliente = this.clienteFacade.nombreCliente(cliente);
@@ -263,7 +260,6 @@ public class EnviarController implements Serializable {
             mensaje = "Debe generar una clave nueva. Después seleccione enviar.";
         }
     }
-    
     //Metodo para enviar correos
     public void enviarReporte() {
         try {
