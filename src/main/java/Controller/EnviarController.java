@@ -48,7 +48,7 @@ public class EnviarController implements Serializable {
     //Declaramos la variable que se utilizará    
     private String destinatario;
     private String claveGenerada;
-    
+
     @EJB
     private ProductoFacadeLocal productoFacade;
     private List<Producto> listaproducto;
@@ -63,12 +63,11 @@ public class EnviarController implements Serializable {
     private VentaFacadeLocal ventaFacade;
     private List<Venta> listaventa;
     private Venta venta;
-    
+
     @EJB
     private DescuentoFacadeLocal descuentoFacade;
     private List<Descuento> listadescuento;
     private Descuento descuento;
-
 
     public String getClaveGenerada() {
         return claveGenerada;
@@ -189,8 +188,6 @@ public class EnviarController implements Serializable {
     public void setDescuento(Descuento descuento) {
         this.descuento = descuento;
     }
-    
-    
 
     @PostConstruct
     public void init() {
@@ -198,8 +195,8 @@ public class EnviarController implements Serializable {
     }
 
     //Metodo para enviar correos
-    public void enviar() {       
-        int clienteId;     
+    public void enviar() {
+        int clienteId;
         this.cliente.setCorreo(this.destinatario);//Envio del correo a la clase cliente
         clienteId = this.clienteFacade.ExisteCorreo(cliente);//Se guarda el id de cliente que retorna el metodo Existe Correo
         this.cliente.setIdCliente(clienteId);
@@ -213,9 +210,9 @@ public class EnviarController implements Serializable {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ha ocurrido un error, intente más tarde", ""));
         }
-        
+
         //Validamos si ya existe una contraseña generada para enviar el correo
-        if (!claveGenerada.isEmpty()) {             
+        if (!claveGenerada.isEmpty()) {
             try {
                 //Obtenemos el nombre del cliente                
                 String nombreCliente = this.clienteFacade.nombreCliente(cliente);
@@ -263,95 +260,6 @@ public class EnviarController implements Serializable {
             mensaje = "Debe generar una clave nueva. Después seleccione enviar.";
         }
     }
-    
+
     //Metodo para enviar Reporte por correo
-    public void enviarReporte() {
-        try {
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAAAAAAAAAA");
-                    
-            List<DetalleVenta> listt;
-            listt = detalleFacade.factura(1);
-            System.out.println("AJJAEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-            int idDetalleVenta = 0;
-            Date fecha = listt.get(0).getVenta().getFecha();
-            String nombreCliente = listt.get(0).getVenta().getCliente().getNombreCliente();
-            String nombreProducto = listt.get(0).getProducto().getNombreProducto();
-            double precioVenta = listt.get(0).getProducto().getPrecioVenta();
-            int cantidad = listt.get(0).getCantidad();
-            int idVenta = listt.get(0).getVenta().getIdVenta();
-            double descuento1 = listt.get(0).getDescuento().getDescuento();
-
-            double Subtotal = ((precioVenta * cantidad) - (descuento1 * (precioVenta * cantidad)));
-
-            double Total = ((precioVenta * cantidad) - (descuento1 * precioVenta * cantidad));
-
-            // Propiedades de la conexión
-            Properties props = new Properties();
-            props.setProperty("mail.smtp.host", "smtp.gmail.com");
-            props.setProperty("mail.smtp.starttls.enable", "true");
-            props.setProperty("mail.smtp.port", "587");
-            props.setProperty("mail.smtp.user", "celavieonline@gmail.com");
-            props.setProperty("mail.smtp.auth", "true");
-
-            // Preparamos la sesion
-            Session session = Session.getDefaultInstance(props);
-
-            // Construimos el mensaje
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("celavieonline@gmail.com"));
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!DESTINATARIO:"+destinatario);
-            message.addRecipient(
-                    Message.RecipientType.TO,
-                    new InternetAddress(destinatario));//Acá se recupera el correo de destino ingresado en el formulario.
-            message.setSubject("Reporte Factura");            
-            message.setContent(Fecha: " + fecha + ",\n"
-                    +"\n Hola " + nombreCliente + ",\n"
-                    + "\n Hemos Recibido tu pedido. "
-                    + " \n\n Este es tu detalle de Compra C'E La Vie"
-                    + " \n Gracias por preferirnos"
-                    + " \n "<table class=\"egt\">\n"
-                    + "\n"
-                    + "<thead>"
-                    + "<tr>"
-                    + "<th>codigo</th>"
-                    + "<th>Producto</th>"
-                    + "<th>Precio Unitario</th>"
-                    + "<th>Cantidad</th>"
-                    + "<th>Descuento</th>"
-                    + "<th>Sub-Total</th>"
-                    + "</tr>"
-                    + "</thead>"
-                    + "<tbody>"
-                    + "<tr>\n"
-                    + "\n"
-                    + "    <td><b>" + idVenta + "</b></td>\n"
-                    + "\n"
-                    + "    <td>" + nombreProducto + "</td>\n"
-                    + "\n"
-                    + "    <td>" + precioVenta + "</td>\n"
-                    + "\n"
-                    + "    <td>" + cantidad + "</td>\n"
-                    + "\n"
-                    + "    <td>" + precioVenta + "</td>\n"
-                    + "\n"
-                    + "    <td>" + descuento1 + "</td>\n"
-                    + "\n"
-                    + "    <td>" + Subtotal + "</td>\n"
-                    + "\n"
-                    + "  </tr>\n"
-                    + "</tbody>"
-                    + "\n"
-                    + "</table>", "text/html");
-
-            // Lo enviamos.
-            Transport t = session.getTransport("smtp");
-            t.connect("celavieonline@gmail.com", "celavie123");
-            t.sendMessage(message, message.getAllRecipients());
-
-            // Cierre.
-            t.close();
-        } catch (MessagingException e) {
-        }
-    }
-   
 }
