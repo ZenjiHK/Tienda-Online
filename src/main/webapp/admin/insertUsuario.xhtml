@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Administracion - Insercion de Usuario</title>
+        <link href="../Resourse/css/login.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <div class="login">
+            <h:form>
+                <p:panel header=" Ingrese los datos del usuario" widgetVar="dlg">
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Usuario"/>
+                        <p:inputText value="#{userController.user.nombreUsuario}" required="true"/>
+                        <p:outputLabel for="pss" value="Clave"/>
+                        <p:password id="pss" value="#{userController.user.clave}" match="pss1" label="clave" required="true"/>
+                         <p:outputLabel for="pss1" value="ingrese nueva mente la clave"/>
+                         <p:password id="pss1" value="#{userController.user.clave}"  label="clave2" required="true" feedback="false"
+                                     validatorMessage="password 1 should match password 2"/>
+                        <p:outputLabel value="Cliente"/>
+                        <p:selectOneMenu value="#{userController.cliente.idCliente}">
+                            <f:selectItems value="#{clienteController.lista2}" var="c" itemLabel="#{c.nombreCliente} #{c.apellidoCliente}" itemValue="#{c.idCliente}"/>
+                        </p:selectOneMenu>
+                        <p:commandButton value="Guardar" actionListener="#{userController.insertarUsuario()}" />
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+            <p:messages id="messages" showDetail="true" /> 
+        </div>
+    </h:body>
+</html>

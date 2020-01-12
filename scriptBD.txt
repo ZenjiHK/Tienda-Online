@@ -119,3 +119,4 @@ CREATE TABLE factura(
 ALTER TABLE factura ADD CONSTRAINT FOREIGN KEY fk_factura_venta(id_venta) REFERENCES venta(id_venta);
 
 ALTER TABLE factura ADD CONSTRAINT FOREIGN KEY fk_factura_pago(id_forma_pago) REFERENCES forma_pago(id_forma_pago);
+

@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Administracion - Factura</title>
+    </h:head>
+    <h:body>
+        <center>
+            <p:outputLabel value="Factura" style="font-size: 500%;"/>
+        </center>
+        <h:form>  
+            <p:menubar>
+                <p:menuitem value="Categoria" url="categoria.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Cliente" url="cliente.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Detalle de Tarjeta" url="detalletarjetafiltro.xhtml" icon="pi pi-angle-double-right" />
+                <p:menuitem value="Factura" url="factura.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Forma de Pago" url="formapago.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Marca" url="marca.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Pais" url="pais.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Producto" url="producto.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Rol" url="rol.xhtml" icon="pi pi-angle-double-right" />
+                <p:menuitem value="Talla" url="talla.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Tipo de Ropa" url="tipoRopa.xhtml" icon="pi pi-angle-double-left"  />
+                <p:menuitem value="Ventas Realizadas" url="venta.xhtml" icon="pi pi-angle-double-left" />
+            </p:menubar>
+        </h:form>
+        <br/>
+                <p:growl id="mensaje"/>
+                <h:form>
+                 <p:commandButton value="Ingresar Factura" oncomplete="PF('modal').show()"/>
+                </h:form>
+                    <p:dialog widgetVar="modal" modal="true" showEffect="clip" resizable="false">
+                        <p:ajax event="close" listener="#{facturaController.limpiar()}"/>
+                        <h:form id="f">
+                            <p:panelGrid columns="2">
+                                <p:outputLabel value="Venta realizada"/>
+                                <p:selectOneMenu value="#{facturaController.venta.idVenta}" label="#{facturaController.factura.venta.cliente.nombreCliente} | #{facturaController.factura.venta.fecha} | #{facturaController.factura.venta.detalleTarjeta.ping}">     
+                                      <f:selectItems value="#{ventaController.lista_ventas}" var="venta" itemLabel="#{venta.cliente.nombreCliente} | #{venta.fecha} | #{venta.detalleTarjeta.ping}" itemValue="#{venta.idVenta}"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Forma de pago"/>
+                                <p:selectOneMenu value="#{facturaController.formaPago.idFormaPago}">     
+                                    <f:selectItems value="#{formaPagoController.listapago}" var="forma" itemLabel="#{forma.nombreFormaPago}" itemValue="#{forma.idFormaPago}"/>
+                                </p:selectOneMenu>
+                                <p:commandButton value="Guardar" actionListener="#{facturaController.crear()}" rendered="#{facturaController.factura.idFactura==0}" update=":Datos f :mensaje" oncomplete="PF('modal').hide()"/>
+                                <p:commandButton value="Actualizar" actionListener="#{facturaController.editar()}" rendered="#{facturaController.factura.idFactura!=0}" update=":Datos f :mensaje" oncomplete="PF('modal').hide()"/>
+                            </p:panelGrid>  
+                        </h:form>
+                    </p:dialog>
+                         <br/>
+                        <h:form id="Datos">    
+                                    <p:dataTable value="#{facturaController.lista_facturas}" var="fa">
+                                      <p:column headerText="Id">
+                                            <h:outputText value="#{fa.idFactura}"/>
+                                      </p:column>
+                                      <p:column headerText="Nombre del cliente">
+                                            <h:outputText value="#{fa.venta.cliente.nombreCliente}"/>
+                                      </p:column>
+                                      <p:column headerText="Apellido del cliente">
+                                            <h:outputText value="#{fa.venta.cliente.apellidoCliente}"/>
+                                      </p:column>
+                                      <p:column headerText="Correo electronico">
+                                            <h:outputText value="#{fa.venta.cliente.correo}"/>
+                                      </p:column>
+                                      <p:column headerText="Metodo de pago">
+                                            <h:outputText value="#{fa.formaPago.nombreFormaPago}"/>
+                                      </p:column>
+                                      <p:column headerText="Numero de tarjeta">
+                                            <h:outputText value="#{fa.venta.detalleTarjeta.ping}"/>
+                                      </p:column>
+                                      <p:column headerText="Fecha">
+                                            <h:outputText value="#{fa.venta.fecha}">
+                                              <f:convertDateTime pattern="YYYY-MM-dd"/>
+                                          </h:outputText>
+                                      </p:column>
+                                      <p:column headerText="Modificar">
+                                            <p:commandButton value="Editar" actionListener="#{facturaController.cargarDatos(fa)}" update=":f" oncomplete="PF('modal').show()"/>
+                                      </p:column>
+                                      <p:column headerText="Eliminar">
+                                            <p:commandButton value="Eliminar" actionListener="#{facturaController.eliminar(fa)}" update=":Datos :mensaje"/>
+                                      </p:column>            
+                                  </p:dataTable>
+                          </h:form>
+        </h:body>
+</html>

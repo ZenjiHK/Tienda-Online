@@ -19,9 +19,29 @@ public class DetalleTarjetaController implements Serializable {
     @EJB
     private DetalleTarjetaFacadeLocal DetalleTarjetaEJB;
     private List<DetalleTarjeta> listaTarjeta;
+    private List<DetalleTarjeta> listaOculta;
+    private List<DetalleTarjeta> listaCifrado;
     private DetalleTarjeta detalletarjeta;
     private Cliente cliente;
     String msj;
+
+    public List<DetalleTarjeta> getListaCifrado() {
+        this.listaCifrado = this.DetalleTarjetaEJB.findAll();
+        return listaCifrado;
+    }
+
+    public void setListaCifrado(List<DetalleTarjeta> listaCifrado) {
+        this.listaCifrado = listaCifrado;
+    }
+
+    public List<DetalleTarjeta> getListaOculta() {
+        this.listaOculta = this.DetalleTarjetaEJB.listaoculta();
+        return listaOculta;
+    }
+
+    public void setListaOculta(List<DetalleTarjeta> listaOculta) {       
+        this.listaOculta = listaOculta;
+    }
 
     public List<DetalleTarjeta> getListaTarjeta() {
         this.listaTarjeta = this.DetalleTarjetaEJB.findAll();
@@ -108,4 +128,21 @@ public class DetalleTarjetaController implements Serializable {
         FacesMessage mensaje = new FacesMessage(this.msj);
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
+    
+    public void oculto(DetalleTarjeta dta){
+        try{
+        this.DetalleTarjetaEJB.ocultar(dta);
+        this.detalletarjeta = new DetalleTarjeta();
+        this.msj = "Detalle de tarjeta eliminado correctamente";
+        } catch (Exception e) {
+            this.msj = "Error al eliminar" + e.getMessage();
+            e.printStackTrace();
+        }
+        FacesMessage mensaje = new FacesMessage(this.msj);
+        FacesContext.getCurrentInstance().addMessage(null, mensaje);
+        
+    }
+    
+    
+   
 }

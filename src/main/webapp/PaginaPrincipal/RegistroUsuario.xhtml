@@ -5,10 +5,10 @@
       xmlns:b="http://bootsfaces.net/ui">
     <h:head>
         <title>Registro</title>
-        <link href="../CSS/Registro.css" rel="stylesheet" type="text/css"/>
+        <link href="../resources/css/Registro.css" rel="stylesheet" type="text/css"/>
     </h:head>
     <h:body class="bodyRe">
-        <b:navBar brand-img="../Imagenes/a1 - copia (2).jpg" brandHref="#" inverse="false">
+        <b:navBar brand-img="../resources/Imagenes/a1 - copia (2).jpg" brandHref="#" inverse="false">
             <b:flyOutMenu styleClass="dropdown-submenu">
                   <b:navbarLinks>
                         <b:dropMenu value="Rebajas">
@@ -44,9 +44,9 @@
             <h:form>
                 <br></br>
                 <b:container fluid="true">
-                    <b:panel title="Resgístrate" look="info">
+                    <b:panel title="Regístrate" look="info">
                         <b:row>
-                            <img src="../Imagenes/a1 - copia.jpg" alt=""/>
+                            <img src="../resources/Imagenes/a1 - copia.jpg" alt=""/>
                             <h:form>
                                 <b:column class="caracteres">
                                     <br></br>
@@ -82,7 +82,7 @@
                         </b:row>
                         <b:row>
                             <b:column>
-                                <b:commandButton value="Regístrarme" look="info" style="width: 100%" />
+                                <b:commandButton value="Siguiente Paso" look="info" style="width: 100%" actionListener="#{clienteController.insertarCliente()}"/>
                             </b:column>
                         </b:row>
                     </b:panel>

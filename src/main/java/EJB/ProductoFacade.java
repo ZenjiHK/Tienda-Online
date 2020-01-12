@@ -1,5 +1,7 @@
 package EJB;
 
+/* By Michelle */
+
 import Entity.Producto;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,6 +24,25 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
 
     public ProductoFacade() {
         super(Producto.class);
+    }
+
+    
+    @Override
+    public List<Producto> filtroProductosCategoria(String cat){
+        List<Producto> lista = new LinkedList<>();
+        String sql;
+        try {
+            sql = "SELECT p FROM Producto p WHERE p.categoria.idCategoria";
+            Query query = em.createQuery(sql);
+            
+            query.setParameter(1, cat);         
+            
+            lista = query.getResultList();
+           
+        } catch (Exception e) {
+            throw e;
+        } 
+        return lista;
     }
     
     /* Metodo que tiene como proposito validar cuantos items existen sobre un producto en
@@ -57,6 +78,46 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
             System.out.println("Causa: "+e);
             return valor;
         }
+    } 
+    
+    @Override
+    public String nombreProducto(Producto p){
+        Producto producto = null;
+        String sql;
+        try {
+            sql = "SELECT  p FROM Producto p  WHERE p.idProducto=?1";
+            Query query = em.createQuery(sql);
+            
+            query.setParameter(1, p.getIdProducto());
+                        
+            List<Producto> lista = query.getResultList();
+            if (!lista.isEmpty()) {
+                producto = lista.get(0);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return producto.getNombreProducto();
+    } 
+    
+      @Override
+    public Double precioVenta(Producto po){
+        Producto producto = null;
+        String sql;
+        try {
+            sql = "SELECT  p FROM Producto p  WHERE p.idProducto=?1";
+            Query query = em.createQuery(sql);
+            
+            query.setParameter(1, po.getIdProducto());
+                        
+            List<Producto> lista = query.getResultList();
+            if (!lista.isEmpty()) {
+                producto = lista.get(0);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return producto.getPrecioVenta();
     } 
     
     

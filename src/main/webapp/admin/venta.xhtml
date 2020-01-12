@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Administrador - Ventas</title>
+    </h:head>
+    <h:body>
+        <center>
+         <p:outputLabel value="Registro de Ventas" style="font-size: 500%;"/>
+        </center>
+                <h:form>  
+            <p:menubar>
+                <p:menuitem value="Categoria" url="categoria.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Cliente" url="cliente.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Detalle de Tarjeta" url="detalletarjetafiltro.xhtml" icon="pi pi-angle-double-right" />
+                <p:menuitem value="Factura" url="factura.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Forma de Pago" url="formapago.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Marca" url="marca.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Pais" url="pais.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Producto" url="producto.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Rol" url="rol.xhtml" icon="pi pi-angle-double-right" />
+                <p:menuitem value="Talla" url="talla.xhtml" icon="pi pi-angle-double-left" />
+                <p:menuitem value="Tipo de Ropa" url="tipoRopa.xhtml" icon="pi pi-angle-double-left"  />
+                <p:menuitem value="Ventas Realizadas" url="venta.xhtml" icon="pi pi-angle-double-left" />
+            </p:menubar>
+        </h:form>
+        <br/>
+            <p:growl id="msj"/>
+            <h:form>
+            <p:commandButton value="Ingresar Cliente" oncomplete="PF('myModal').show()"/>
+            </h:form>
+                    <p:dialog widgetVar="myModal" modal="true" showEffect="clip" resizable="false">
+                        <p:ajax event="close" listener="#{clienteController.limpiar()}"/>
+                        <h:form id="v">
+                            <p:panelGrid columns="2">
+                                <p:outputLabel value="Cliente"/>
+                                <p:selectOneMenu value="#{ventaController.cliente.idCliente}">     
+                                    <f:selectItems value="#{clienteController.listaCliente}" var="c" itemLabel="#{c.nombreCliente}" itemValue="#{c.idCliente}"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Tarjeta"/>
+                                <p:selectOneMenu value="#{ventaController.detalleTarjeta.idDetalleTarjeta}">     
+                                    <f:selectItems value="#{detalleTarjetaController.listaTarjeta}" var="dt" itemLabel="#{dt.ping}" itemValue="#{dt.idDetalleTarjeta}"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Fecha de compra"/>
+                                <p:calendar value="#{ventaController.venta.fecha}"/>
+                                <p:outputLabel value="Estado"/>
+                                <p:selectOneMenu value="#{ventaController.venta.estado}">     
+                                    <f:selectItem itemValue="false" itemLabel="Inactivo"/>
+                                    <f:selectItem itemValue="true" itemLabel="Activo"/>
+                                </p:selectOneMenu>
+                                <p:commandButton value="Guardar" actionListener="#{ventaController.crear()}"  
+                                                 rendered="#{ventaController.venta.idVenta==0}"
+                                                 update=":Datos v :msj" oncomplete="PF('myModal').hide()"/>
+                                <p:commandButton value="Actualizar" actionListener="#{ventaController.editar()}" 
+                                                 rendered="#{ventaController.venta.idVenta!=0}"
+                                                 update=":Datos v :msj" oncomplete="PF('myModal').hide()"/>
+                            </p:panelGrid>                
+                        </h:form>
+                    </p:dialog>
+             <br/>
+                    <h:form id="Datos">    
+                            <p:dataTable value="#{ventaController.lista_ventas}" var="v">
+                                <p:column headerText="Id">
+                                    <h:outputText value="#{v.idVenta}"/>
+                                </p:column>
+                                <p:column headerText="nombre">
+                                    <h:outputText value="#{v.cliente.nombreCliente}"/>
+                                </p:column>
+                                <p:column headerText="apellido">
+                                    <h:outputText value="#{v.cliente.apellidoCliente}"/>
+                                </p:column>
+                                <p:column headerText="Tarjeta">
+                                    <h:outputText value="#{v.detalleTarjeta.ping}"/>
+                                </p:column>
+                                <p:column headerText="Fecha">
+                                    <h:outputText value="#{v.fecha}">
+                                        <f:convertDateTime pattern="YYYY-MM-dd"/>
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Activo">
+                                    <h:outputText value="#{v.estado}"/>
+                                </p:column>
+                                <p:column headerText="Modificar">
+                                    <p:commandButton value="Editar" actionListener="#{ventaController.cargarDatos(v)}" update=":v" oncomplete="PF('myModal').show()"/>
+                                </p:column>
+                                <p:column headerText="Eliminar">
+                                    <p:commandButton value="Eliminar" actionListener="#{ventaController.eliminar(v)}" update=":Datos :msj"/>
+                                </p:column>            
+                            </p:dataTable>
+                    </h:form>
+    </h:body>
+</html>

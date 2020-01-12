@@ -66,4 +66,23 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
 
         }
     }
+    
+    @Override
+    public boolean pagarconmipaypal(User u){
+        boolean valor = false;
+        try {
+            Query q = em.createQuery("SELECT u FROM User u WHERE u.nombreUsuario=?1 and u.clave=?2");
+            q.setParameter(1, u.getNombreUsuario());
+            q.setParameter(2, u.getClave());
+            List<User> lista = q.getResultList();
+            if (!lista.isEmpty()) {
+                valor = true;
+            }
+            return valor;
+        } catch (Exception e) {
+            System.out.println("**Imposible ejecutar**");
+            System.out.println("Causa: " + e);
+            return valor;
+        }
+    }
 }
