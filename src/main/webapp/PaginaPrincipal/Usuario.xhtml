@@ -49,8 +49,7 @@
                         <b:row>
                             <b:column>
                                 <h:outputText value="Nombre De Usuario:" />
-                                <b:inputText placeholder="Nombre De Usuario" id="Usuario" value=""
-                                             ajax="true" autocomplete="false">
+                                <b:inputText id="usuario" value="#{userController.user.nombreUsuario}" placeholder="Usuario" required="true" label="username" requiredMessage="Escriba el usuario por favor">
                                     <f:facet name="prepend">
                                         <b:icon name="user" />
                                     </f:facet>
@@ -60,8 +59,7 @@
                         <b:row>
                             <b:column>
                                 <h:outputText value="Contraseña:" />
-                                <b:inputSecret placeholder="Contraseña" id="contrasena" value=""
-                                               ajax="true" autocomplete="false">
+                                <b:inputSecret id="password" value="#{userController.user.clave}" placeholder="Contraseña" required="true" label="password" requiredMessage="Escriba el password por favor">
                                     <f:facet name="prepend">
                                         <b:iconAwesome name="key" /> 
                                     </f:facet>
@@ -70,11 +68,11 @@
                         </b:row>
                         <b:row>
                             <b:column>
-                                <b:commandButton value="Ingresar" onclick="ajax:loginBean.login()" update="@form" look="info"
+                                <b:commandButton value="Ingresar" action="#{userController.login()}" update="@form" look="info"
                                                  style="width:100%" />
                                 <br></br>
                                 <br></br>
-                                <b:commandButton value="Olvide Mi Contraseña" onclick="ajax:loginBean.forgotPassword()" update="@form"
+                                <b:commandButton value="Olvide Mi Contraseña" action="Generador/GeneradorContra"
                                                  look="danger" style="width:100%" />
                             </b:column>
                         </b:row>
@@ -83,7 +81,7 @@
                             <h:form>
                                 <b:column>
                                     <p>¿Aún no tienes cuenta? </p>
-                                    <b:link value="Registrate" outcome="PaginaPrincipal/RegistroUsuario"/>
+                                    <b:link value="Registrate" outcome="RegistroUsuario"/>
                                 </b:column>
                             </h:form>
                         </b:row>

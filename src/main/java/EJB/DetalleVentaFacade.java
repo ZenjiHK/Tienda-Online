@@ -57,6 +57,17 @@ public class DetalleVentaFacade extends AbstractFacade<DetalleVenta> implements 
         }
 
     }
+    
+        public List<DetalleVenta> detalleFactura(int venta) {
+        
+            String jpql = "Select dv from DetalleVenta dv where dv.venta.idVenta =:varVenta";
+            Query query = em.createQuery(jpql);
+            query.setParameter("varVenta", venta);
+            
+            return query.getResultList();
+      
+            
+    }
 
     
 }
