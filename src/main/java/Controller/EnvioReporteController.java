@@ -168,14 +168,16 @@ public class EnvioReporteController implements Serializable {
     //Metodo para enviar correos
     public void enviarReporte() {
         try {
-            Date fecha = venta.getFecha();
-            String nombreCliente = cliente.getNombreCliente();
-            String nombreProducto = producto.getNombreProducto();
+            int idventa=3;
+            this.detalleFacade.detalleFactura(idventa);
+            String fecha = "hoy";
+            String nombreCliente = "Amanda";
+           /* String nombreProducto = producto.getNombreProducto();
             double precioVenta = producto.getPrecioVenta();
             int cantidad = detalle.getCantidad();
             int idVenta = venta.getIdVenta();
             double descuento1 = descuento.getDescuento();
-            double Subtotal = ((precioVenta * cantidad) - (descuento1 * (precioVenta * cantidad)));
+            double Subtotal = ((precioVenta * cantidad) - (descuento1 * (precioVenta * cantidad)));*/
 
             
             // Propiedades de la conexión
@@ -194,7 +196,7 @@ public class EnvioReporteController implements Serializable {
             message.setFrom(new InternetAddress("celavieonline@gmail.com"));
             message.addRecipient(
                     Message.RecipientType.TO,
-                    new InternetAddress(destinatario));//Acá se recupera el correo de destino ingresado en el formulario.
+                    new InternetAddress("bluelovesong12@gmail.com"));//Acá se recupera el correo de destino ingresado en el formulario.
             message.setSubject("Reporte Factura");            
             message.setContent(
                     "fecha: " + fecha + ",\n"
@@ -217,19 +219,7 @@ public class EnvioReporteController implements Serializable {
                     + "<tbody>"
                     + "<tr>\n"
                     + "\n"
-                    + "    <td><b>" + idVenta + "</b></td>\n"
-                    + "\n"
-                    + "    <td>" + nombreProducto + "</td>\n"
-                    + "\n"
-                    + "    <td>" + precioVenta + "</td>\n"
-                    + "\n"
-                    + "    <td>" + cantidad + "</td>\n"
-                    + "\n"
-                    + "    <td>" + precioVenta + "</td>\n"
-                    + "\n"
-                    + "    <td>" + descuento1 + "</td>\n"
-                    + "\n"        
-                    + "    <td>" +Subtotal+ "</td>\n"
+      
                     + "\n"
                     + "  </tr>\n"
                     + "</tbody>"
@@ -242,7 +232,9 @@ public class EnvioReporteController implements Serializable {
             t.sendMessage(message, message.getAllRecipients());
             // Cierre.
             t.close();
+              FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se ha enviado un correo a la dirección ingresada. Verifique.", ""));
         } catch (MessagingException e) {
         }
     }
+   
 }
