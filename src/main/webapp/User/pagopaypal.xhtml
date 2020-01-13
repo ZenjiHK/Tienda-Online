@@ -9,6 +9,7 @@
         <title>Inicie sesión en su cuenta Paypal</title>
         <link href="../resources/css/paypal.css" rel="stylesheet" type="text/css"/>
         <link rel="icon" href="../resources/Imagenes/favicon.ico"/>
+        <f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>
     </h:head>
    <h:body class="body">
         <div class="login">
