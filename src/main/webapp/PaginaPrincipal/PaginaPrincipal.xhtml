@@ -41,16 +41,9 @@
                         <b:container fluid="true" style="align-content: center;text-align: center">
                             <h:form>
                                 <img src="../resources/Imagenes/icon.jpg" style="width: 100%"/>
-                                <p:dataTable value="#{userController.listaUser}" var="lc" >
-                                    <p:column style="width: 210%">
-                                        <h:outputText value="#{lc.nombreUsuario}"/><br/><br/>
-                                        <h:outputText value="#{lc.cliente.nombreCliente} #{lc.cliente.apellidoCliente}"/><br/><br/>
-                                        <h:outputText value="#{lc.cliente.pais.nombrePais}"/><br/>
-                                        <p:separator/>
-                                        <b:commandButton value="Editar perfil" look="info" action="#{validarSesionController.redireccion()}" style="width: 100%"/><br/><br/>
-                                        <b:commandButton value="Cerrar sesión"  actionListener="#{validarSesionController.salir()}" look="info" style="width: 100%"/>
-                                    </p:column>
-                                </p:dataTable>
+                                <p:separator/>
+                                <b:commandButton value="Editar perfil" look="info" action="#{validarSesionController.redireccion()}" style="width: 100%"/><br/><br/>
+                                <b:commandButton value="Cerrar sesión"  actionListener="#{validarSesionController.salir()}" look="info" style="width: 100%"/>
                             </h:form>
                         </b:container>
                     </b:dropMenu>
