@@ -27,7 +27,7 @@
                     <p:inputMask id="tarjeta" value="#{detalleTarjetaController.detalletarjeta.numero_tarjeta}" mask="9999-9999-9999-9999" required="true"/>
                     <p:outputLabel for="cmbCliente" value="Cliente"/>
                     <p:selectOneMenu id="cmbCliente" value="#{detalleTarjetaController.cliente.idCliente}">
-                        <f:selectItems value="#{clienteController.lista2}" var="cli" itemLabel="#{cli.nombreCliente} #{cli.apellidoCliente}" itemValue="#{cli.idCliente}"/>
+                        <f:selectItems value="#{clienteController.listaCliente}" var="cli" itemLabel="#{cli.nombreCliente} #{cli.apellidoCliente}" itemValue="#{cli.idCliente}"/>
                     </p:selectOneMenu>
                     <p:outputLabel for="txtPing" value="Ping"/>
                     <p:inputText id="txtPing" value="#{detalleTarjetaController.detalletarjeta.ping}" required="true"/>
@@ -35,10 +35,6 @@
                     <p:calendar id="txtExpiracion" value="#{detalleTarjetaController.detalletarjeta.expiracion}" required="true"/>
                     <p:outputLabel for="txtEstado" value="Estado"/>
                     <p:inputText id="txtEstado" value="#{detalleTarjetaController.detalletarjeta.estado}" required="true"/>
-                       <p:outputLabel for="cmbPago" value="Forma de pago"/>
-                    <p:selectOneMenu id="cmbPago" value="#{detalleTarjetaController.formapago.idFormaPago}">
-                        <f:selectItems value="#{formaPagoController.listapago}" var="p" itemLabel="#{p.nombreFormaPago}" itemValue="#{p.idFormaPago}"/>
-                    </p:selectOneMenu>
                     <p:commandButton value="Guardar" actionListener="#{detalleTarjetaController.insertar()}"
                                      rendered="#{detalleTarjetaController.detalletarjeta.idDetalleTarjeta ==0}"
                                      update=":datos d :msj" oncomplete="PF('det').hide()"/>
@@ -68,13 +64,9 @@
                             <f:convertDateTime pattern="dd-MM-YYYY"/>
                         </h:outputText>
                     </p:column>
-                      <p:column headerText="Forma pago">
-                       <h:outputText value="#{dt.formapago.nombreFormaPago}">                           
-                        </h:outputText>
-                    </p:column>
                     <p:column headerText="Modificar">
                         <p:commandButton value="Editar" actionListener="#{detalleTarjetaController.CargarTarjeta(dt)}"
-                                         update=":datos" oncomplete="PF('det').show()"/>
+                                         update=":d" oncomplete="PF('det').show()"/>
                     </p:column>
                     <p:column headerText="Eliminar">
                         <p:commandButton value="Eliminar" actionListener="#{detalleTarjetaController.oculto(dt)}"
@@ -85,4 +77,5 @@
         </h:form>
     </h:body>
 </html>
+
 

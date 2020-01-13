@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -9,6 +9,11 @@
         <!-- Utilice este modulo para poder desarrollar la ocultacion de las 
         tarjetas de credito que se implementara en el modulo de usuario 
         no debe debe de editar solo "eliminar" o agregar tarjeta-->
+        <title>Registrar tarjeta</title>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>
     </h:head>
     <h:body>
         <p:growl id="msj"/>
@@ -35,10 +40,6 @@
                     <p:calendar id="txtExpiracion" value="#{detalleTarjetaController.detalletarjeta.expiracion}" required="true"/>
                     <p:outputLabel for="txtEstado" value="Estado"/>
                     <p:inputText id="txtEstado" value="#{detalleTarjetaController.detalletarjeta.estado}" required="true"/>
-                       <p:outputLabel for="cmbPago" value="Forma de pago"/>
-                    <p:selectOneMenu id="cmbPago" value="#{detalleTarjetaController.formapago.idFormaPago}">
-                        <f:selectItems value="#{formaPagoController.listapago}" var="p" itemLabel="#{p.nombreFormaPago}" itemValue="#{p.idFormaPago}"/>
-                    </p:selectOneMenu>
                     <p:commandButton value="Guardar" actionListener="#{detalleTarjetaController.insertar()}"
                                      rendered="#{detalleTarjetaController.detalletarjeta.idDetalleTarjeta ==0}"
                                      update=":datos d :msj" oncomplete="PF('det').hide()"/>
@@ -66,10 +67,6 @@
                     <p:column headerText="Fecha de Expiracion">
                         <h:outputText value="#{dt.expiracion}">
                             <f:convertDateTime pattern="dd-MM-YYYY"/>
-                        </h:outputText>
-                    </p:column>
-                      <p:column headerText="Forma pago">
-                       <h:outputText value="#{dt.formapago.nombreFormaPago}">                           
                         </h:outputText>
                     </p:column>
                     <p:column headerText="Modificar">
