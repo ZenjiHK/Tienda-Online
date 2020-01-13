@@ -3,6 +3,7 @@ package Controller;
 import EJB.DetalleTarjetaFacadeLocal;
 import Entity.Cliente;
 import Entity.DetalleTarjeta;
+import Entity.FormaPago;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
