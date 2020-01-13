@@ -25,26 +25,6 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
     public ProductoFacade() {
         super(Producto.class);
     }
-
-    
-    @Override
-    public List<Producto> filtroProductosCategoria(String cat){
-        List<Producto> lista = new LinkedList<>();
-        String sql;
-        try {
-            sql = "SELECT p FROM Producto p WHERE p.categoria.idCategoria";
-            Query query = em.createQuery(sql);
-            
-            query.setParameter(1, cat);         
-            
-            lista = query.getResultList();
-           
-        } catch (Exception e) {
-            throw e;
-        } 
-        return lista;
-    }
-    
     /* Metodo que tiene como proposito validar cuantos items existen sobre un producto en
     formulario catalogo de productos */
     /* Override por que posee metodos abstractos declarados en el Facade Local */
@@ -120,5 +100,19 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
         return producto.getPrecioVenta();
     } 
     
+    
+    //Métodos para obtener las listas que irán en las diferentes opciones del catalogo
+    @Override
+     public List<Producto> filtroProductosCategoria(String tipoRopa, String cat) {
+        String jpql = "SELECT p FROM Producto p TipoRopa tp Categoria cat WHERE tp.idTipoRopa=:varTipoRopa and cat.idCategoria=:varCategoria";
+        Query query = em.createQuery(jpql);
+        query.setParameter("varTipoRopa", tipoRopa); 
+        query.setParameter("varCategoria", cat);
+        List<Producto> resu= query.getResultList();
+        for (Producto lista : resu) {            
+            System.out.println("Tipo : " + lista.getNombreProducto());
+        }
+        return resu;
+    }
     
 }

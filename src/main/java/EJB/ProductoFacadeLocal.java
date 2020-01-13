@@ -21,7 +21,7 @@ public interface ProductoFacadeLocal {
 
     int count();
 
-    List<Producto> filtroProductosCategoria(String cat);
+    List<Producto> filtroProductosCategoria(String tipoRopa, String cat);
 
     boolean stockcero(int idProducto);
     

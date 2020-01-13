@@ -28,10 +28,10 @@ public class ProductoController implements Serializable{
     @EJB
     private ProductoFacadeLocal productoEJB;
     private Producto producto;
-    private List<Producto> listaproducto;
-    private List<Producto> consultaProductos;
+    private List<Producto> listaproducto;  
     private String mensaje;
     private String estado;  
+    //Listas para mostrar las diferentes opciones del catalogo 
     /* Variables para manejar la consulta de condiciones de los items*/
     /* Aviso es el mensaje que va a imprimir en el UX*/
     private String aviso;
@@ -59,10 +59,25 @@ public class ProductoController implements Serializable{
     private List<Categoria> listacategoria;
 
     //Filtros para el menú
-    private List<Producto> filtroProductosCategoria = new ArrayList<>();
-    
+    private List<Producto> filtroProductos;
+    String tipoRopa;    
 
+    public List<Producto> getFiltroProductos() {
+        return filtroProductos;
+    }
 
+    public void setFiltroProductos(List<Producto> filtroProductos) {
+        this.filtroProductos = filtroProductos;
+    }
+
+    public String getTipoRopa() {
+        return tipoRopa;
+    }
+
+    public void setTipoRopa(String tipoRopa) {
+        this.tipoRopa = tipoRopa;
+    }
+   
     public String getEstado() {
         return estado;
     }
@@ -153,23 +168,6 @@ public class ProductoController implements Serializable{
         this.listacategoria = listacategoria;
     }
 
-    public List<Producto> getFiltroProductosCategoria() {
-        return filtroProductosCategoria;
-    }
-
-    public void setFiltroProductosCategoria(List<Producto> filtroProductosCategoria) {
-        this.filtroProductosCategoria = filtroProductosCategoria;
-    }
-
-    public List<Producto> getConsultaProductos() {
-        this.consultaProductos = this.productoEJB.filtroProductosCategoria(estado);
-        return consultaProductos;
-    }
-
-    public void setConsultaProductos(List<Producto> consultaProductos) {
-        this.consultaProductos = consultaProductos;
-    }
-    
     /* Metodo get y set de la variale string aviso */
 
     /* get */
@@ -318,4 +316,5 @@ public class ProductoController implements Serializable{
         this.listaproducto = productoEJB.findAll();
     }
 
+  
 }
