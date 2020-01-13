@@ -385,8 +385,7 @@ CREATE TABLE venta(
 		id_cliente int not null,
 		id_detalle_tarjeta int not null,
 		fecha date not null,
-		estado varchar(15) not null,
-        total double not null);
+		estado varchar(15) not null);
         
 
 ALTER TABLE venta ADD CONSTRAINT FOREIGN KEY fk_venta_cliente(id_cliente) REFERENCES cliente(id_cliente);
@@ -403,7 +402,8 @@ CREATE TABLE detalle_venta(
 		id_producto int not null,
 		cantidad int not null,
 		id_descuento int not null,
-		id_venta int not null);
+		id_venta int not null,
+        total double not null);
         
 ALTER TABLE detalle_venta ADD CONSTRAINT FOREIGN KEY fk_detalle_producto(id_producto) REFERENCES producto(id_producto);
 
