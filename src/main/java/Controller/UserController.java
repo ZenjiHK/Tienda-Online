@@ -235,7 +235,7 @@ public class UserController implements Serializable{
 
     public void cambioClave() {     
         if (this.clave1.equals(this.clave2)) {
-            int idCliente = 1;//Valor quemado. Se cambiará por el id recuperado de la sesión.         
+            int idCliente = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idUser");//Valor quemado. Se cambiará por el id recuperado de la sesión.         
             //Actualizar clave
             this.cliente.setIdCliente(idCliente);
             user.setCliente(cliente);
