@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Registrar tarjeta</title>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <p:growl id="msj"/>
+        <p:ajax event="close" listener="#{detalleTarjetaController.limpiar()}" update=":d"/>
+        <h:form id="d">
+            <p:panelGrid columns="2">
+                <p:outputLabel for="tarjeta" value="Numero de tarjeta "/>
+                <p:inputMask id="tarjeta" value="#{detalleTarjetaController.detalletarjeta.numero_tarjeta}" mask="9999-9999-9999-9999" required="true"/>
+                <outputLabel for="cliente" value="Cliente"/>
+                <h:outputText value="#{dt.cliente.nombreCliente} #{dt.cliente.apellidoCliente}"/>
+                <p:outputLabel for="txtPing" value="Ping"/>
+            </p:panelGrid>
+        </h:form>
+    </h:body>
+</html>
