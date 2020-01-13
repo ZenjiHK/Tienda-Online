@@ -24,9 +24,10 @@
                 margin-bottom: 10px
             }
         </style>
+        <f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>
     </h:head>
     <h:body class="body">
-
+        <p:growl id="msj"/>
 
         <div class="menu">
             <b:navBar brand-img="../resources/Imagenes/a1 - copia (2).jpg" brandHref="../PaginaPrincipal/PaginaPrincipal.xhtml" inverse="false">
@@ -56,7 +57,7 @@
                                 <h:outputText value="País" />
                                 <p:separator/>
                                 <b:commandButton value="Editar perfil" look="info" style="width: 100%"/><br/><br/>
-                                <b:commandButton value="Cerrar sesión" look="info" style="width: 100%"/>
+                                <b:commandButton value="Cerrar sesión" actionListener="#{validarSesionController.salir()}" look="info" style="width: 100%"/>
                             </h:form>
                         </b:container>
                     </b:dropMenu>
@@ -65,8 +66,9 @@
                 </b:navbarLinks>
             </b:navBar>
         </div>
-        <h:form class="margin">
-            <p:panelGrid columns="2" style="width: 100%;text-align: center">
+        <p:panelGrid columns="2" style="width: 100%;text-align: center">
+            <h:form class="margin">
+
                 <h:outputLabel>
                     <p:panel header="DATOS PERSONALES" style="font-size: 22px">
                         <img src="../resources/Imagenes/icon.jpg" width="150px"/><br/>
@@ -74,37 +76,73 @@
                         <h:outputText value="Correo: " style="font-size: 18px"/><br/>
                         <h:outputText value="Dirección: " style="font-size: 18px"/><br/>
                         <h:outputText value="País: " style="font-size: 18px"/><br/>
-                        <b:commandButton value="Ver tarjetas registradas" style="font-size: 18px" class="buttons" look="info"/><br/>
+                        <b:commandButton value="Ver tarjetas registradas" actionListener="#{validarSesionController.redireccionTargetas()}" style="font-size: 18px" class="buttons" look="info"/><br/>
                         <b:commandButton value="Editar información personal" style="font-size: 18px" class="buttons" look="info"/><br/>
                         <b:commandButton value="Editar información de usuario" style="font-size: 18px" class="buttons" look="info"/>
                     </p:panel>
                 </h:outputLabel>
                 <h:outputLabel>
-                    <p:panel header="COMPRAS REALIZADAS" style="font-size: 22px" >
-                        <p:dataTable style="font-size: 15px" rows="3" paginator="true"
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
-                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-                            <p:column headerText="N# Factura">
-                                
-                            </p:column>
-                            <p:column headerText="Información del comprador">
-                                
-                            </p:column>
-                            <p:column headerText="Tarjeta">
-                                
-                            </p:column>
-                            <p:column headerText="Fecha de compra">
-                                
-                            </p:column>
-                            <p:column headerText="Estado">
-                                
-                            </p:column>
-                        </p:dataTable>
+                    <p:panel header="DATOS PERSONALES" style="font-size: 22px" >                        
+                        <h:form id="Datos">
+
+                            <p:dataTable value="#{clienteController.listaCliente}" var="lc">
+                                <p:column headerText="Id">
+                                    <h:outputText value="#{lc.idCliente}"/>
+                                </p:column>
+                                <p:column headerText="nombre">
+                                    <h:outputText value="#{lc.nombreCliente}"/>
+                                </p:column>
+                                <p:column headerText="apellido">
+                                    <h:outputText value="#{lc.apellidoCliente}"/>
+                                </p:column>
+                                <p:column headerText="correo">
+                                    <h:outputText value="#{lc.correo}"/>
+                                </p:column>
+                                <p:column headerText="direccion">
+                                    <h:outputText value="#{lc.direccion}"/>
+                                </p:column>
+                                <p:column headerText="Pais">
+                                    <h:outputText value="#{lc.pais.nombrePais}"/>
+                                </p:column>
+                                <p:column headerText="modificar datos">
+                                    <p:commandButton value="Modificar Datos personales" actionListener="#{clienteController.cargarCliente(lc)}" 
+                                                     update=":c" oncomplete="PF('cli').show()"/>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+
+                        <p:dialog widgetVar="cli" modal="true" showEffect="clip" resizable="false">
+                            <h:form id="c">
+                                <h:panelGrid columns="2">
+                                    <p:outputLabel for="txtNombre" value="Nombre Clinete"/>
+                                    <p:inputText id="txtNombre" value="#{clienteController.cliente.nombreCliente}" required="true"/>
+                                    <p:outputLabel for="txtApellido" value="Apellido cliente"/>
+                                    <p:inputText id="txtApellido" value="#{clienteController.cliente.apellidoCliente}" required="true"/>
+                                    <p:outputLabel for="email" value="Correo cliente"/>
+                                    <p:inputText id="email" value="#{clienteController.cliente.correo}" required="true" requiredMessage="Ingrese su Email correctamente"
+                                                 validatorMessage="Formato Incorrecto de Correo ">
+                                        <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                    </p:inputText>
+                                    <p:watermark for="email" value="carlos@gmail.com"/>
+                                    <p:message for="email"/>
+                                    <p:outputLabel for="txtDireccion" value="Direccion cliente"/>
+                                    <p:inputText id="txtDireccion" value="#{clienteController.cliente.direccion}" required="true" >
+                                        <f:validateLength minimum="10"/>
+                                    </p:inputText>
+                                    <p:outputLabel for="cmbPais" value="Pais cliente"/>
+                                    <p:selectOneMenu id="cmbPais" value="#{clienteController.pais.idPais}">     
+                                        <f:selectItems value="#{paisController.listaPais}" var="pa" itemLabel="#{pa.nombrePais}" itemValue="#{pa.idPais}"/>
+                                    </p:selectOneMenu>
+                                    <p:commandButton value="Actualizar" actionListener="#{clienteController.editar()}"
+                                                     update=":Datos c :msj" oncomplete="PF('cli').hide()"/>
+                                </h:panelGrid>
+                            </h:form>
+                        </p:dialog>
+
                     </p:panel>
                 </h:outputLabel>
-            </p:panelGrid>
-        </h:form>
-
+            </h:form>
+        </p:panelGrid>
     </h:body>
 </html>
 
