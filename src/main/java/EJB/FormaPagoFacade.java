@@ -6,6 +6,7 @@
 package EJB;
 
 import Entity.FormaPago;
+import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -34,15 +35,19 @@ public class FormaPagoFacade extends AbstractFacade<FormaPago> implements FormaP
     
     @Override
     public FormaPago escogerPago(FormaPago f){
-        FormaPago formapago = null;
+        FormaPago formapago = new FormaPago();
         String sql;
         try {
-            sql = "SELECT fp FROM FormaPago fp WHERE fp.idFormaPago=?1";
+            sql = "SELECT f FROM FormaPago f WHERE f.idFormaPago=?1";
             Query query = em.createQuery(sql);           
-            query.setParameter(1, f.getIdFormaPago());                       
-            List<FormaPago> lista = query.getResultList();
+            query.setParameter(1, f.getIdFormaPago()); 
+            System.out.println(f.getIdFormaPago());
+            List<FormaPago> lista = new LinkedList<>();
+                   lista = query.getResultList();
+            System.out.println(lista);
             if (!lista.isEmpty()) {
-                System.out.println(query);
+                System.out.println(lista);
+                formapago = lista.get(0);
             }
         } catch (QueryException e) {
             System.out.println("**Imposible ejecutar**");

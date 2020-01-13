@@ -6,18 +6,19 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Administracion - Detalle Tarjeta</title>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
         <!-- Utilice este modulo para poder desarrollar la ocultacion de las 
         tarjetas de credito que se implementara en el modulo de usuario 
         no debe debe de editar solo "eliminar" o agregar tarjeta-->
     </h:head>
     <h:body>
+        <center>
+         <p:outputLabel value="Mis Tarjetas de credito" style="font-size: 300%;"/>
+        </center>
         <p:growl id="msj"/>
         <h:form id="tar">
-            <p:fieldset legend="Nuevo Detalle de tarjeta">
-                <p:panelGrid columns="1">
-                    <p:commandButton value="Nuevo" oncomplete="PF('det').show()"/>
-                </p:panelGrid>
-            </p:fieldset>
+        <p:commandButton value="Agregar Tarjeta" oncomplete="PF('det').show()"/>
         </h:form>
         <p:dialog widgetVar="det" modal="true" showEffect="clip" resizable="false">
             <p:ajax event="close" listener="#{detalleTarjetaController.limpiar()}" update=":d"/>
@@ -27,7 +28,7 @@
                     <p:inputMask id="tarjeta" value="#{detalleTarjetaController.detalletarjeta.numero_tarjeta}" mask="9999-9999-9999-9999" required="true"/>
                     <p:outputLabel for="cmbCliente" value="Cliente"/>
                     <p:selectOneMenu id="cmbCliente" value="#{detalleTarjetaController.cliente.idCliente}">
-                        <f:selectItems value="#{clienteController.listaCliente}" var="cli" itemLabel="#{cli.nombreCliente} #{cli.apellidoCliente}" itemValue="#{cli.idCliente}"/>
+                        <f:selectItems value="#{clienteController.lista2}" var="cli" itemLabel="#{cli.nombreCliente} #{cli.apellidoCliente}" itemValue="#{cli.idCliente}"/>
                     </p:selectOneMenu>
                     <p:outputLabel for="txtPing" value="Ping"/>
                     <p:inputText id="txtPing" value="#{detalleTarjetaController.detalletarjeta.ping}" required="true"/>
@@ -35,6 +36,11 @@
                     <p:calendar id="txtExpiracion" value="#{detalleTarjetaController.detalletarjeta.expiracion}" required="true"/>
                     <p:outputLabel for="txtEstado" value="Estado"/>
                     <p:inputText id="txtEstado" value="#{detalleTarjetaController.detalletarjeta.estado}" required="true"/>
+                    <p:outputLabel value="Seleccione un método de pago" for="formapago"/>
+                   <p:selectOneMenu id="formapago" value="#{formaPagoController.formapago.idFormaPago}">
+                        <f:selectItems value="#{formaPagoController.listapago}" var="f"
+                                       itemLabel="#{f.nombreFormaPago}" itemValue="#{f.idFormaPago}"/>
+                </p:selectOneMenu>
                     <p:commandButton value="Guardar" actionListener="#{detalleTarjetaController.insertar()}"
                                      rendered="#{detalleTarjetaController.detalletarjeta.idDetalleTarjeta ==0}"
                                      update=":datos d :msj" oncomplete="PF('det').hide()"/>
@@ -44,36 +50,31 @@
                 </p:panelGrid>
             </h:form>
         </p:dialog>
-        <h:form id="datos">
-            <p:fieldset legend="Datos Tarjeta">
+        <br/>
+        <h:form id="datos">            
                 <p:dataTable value="#{detalleTarjetaController.listaOculta}" var="dt">
                     <p:column headerText="Id">
                         <h:outputText value="#{dt.idDetalleTarjeta}"/>
                     </p:column>
                     <p:column headerText="Numero de tarjeta" width="200" >
-                        <h:outputText value="#{dt.numero_tarjeta}"/>
+                       <p:inputMask value="#{dt.numero_tarjeta}" mask="xxxx-xxxx-xxxx-xxxx-9999" style="border:none;" readonly="true"/>
                     </p:column>
                     <p:column headerText="Cliente">
                         <h:outputText value="#{dt.cliente.nombreCliente} #{dt.cliente.apellidoCliente}"/>
                     </p:column>
                     <p:column headerText="Ping">
-                        <h:outputText value="#{dt.ping}"/>
+                        <p:inputMask value="#{dt.ping}" mask="xxx" style="border:none;" readonly="true"/>
                     </p:column>
                     <p:column headerText="Fecha de Expiracion">
                         <h:outputText value="#{dt.expiracion}">
                             <f:convertDateTime pattern="dd-MM-YYYY"/>
                         </h:outputText>
                     </p:column>
-                    <p:column headerText="Modificar">
-                        <p:commandButton value="Editar" actionListener="#{detalleTarjetaController.CargarTarjeta(dt)}"
-                                         update=":d" oncomplete="PF('det').show()"/>
-                    </p:column>
                     <p:column headerText="Eliminar">
                         <p:commandButton value="Eliminar" actionListener="#{detalleTarjetaController.oculto(dt)}"
                                          update=":datos :msj" />
                     </p:column>
                 </p:dataTable>
-            </p:fieldset>
         </h:form>
     </h:body>
 </html>
