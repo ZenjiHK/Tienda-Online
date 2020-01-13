@@ -69,7 +69,6 @@ public class DetalleVentaController implements Serializable {
               ventaEJB.create(venta);
               for(int a=0; a<list.size(); a++){
                   detalleVenta.setIdProducto(list.get(a));
-                  detalleVenta.setTotal(list.get(a).getPrecioVenta()*detalleVenta.getCantidad());
                   detalleVenta.setVenta(venta);
                   detalleVentaEJB.create(detalleVenta);
               }
