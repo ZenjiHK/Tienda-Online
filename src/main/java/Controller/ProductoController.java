@@ -59,25 +59,7 @@ public class ProductoController implements Serializable{
     private List<Categoria> listacategoria;
 
     //Filtros para el menú
-    private List<Producto> filtroProductos;
-    String tipoRopa;    
-
-    public List<Producto> getFiltroProductos() {
-        return filtroProductos;
-    }
-
-    public void setFiltroProductos(List<Producto> filtroProductos) {
-        this.filtroProductos = filtroProductos;
-    }
-
-    public String getTipoRopa() {
-        return tipoRopa;
-    }
-
-    public void setTipoRopa(String tipoRopa) {
-        this.tipoRopa = tipoRopa;
-    }
-   
+  
     public String getEstado() {
         return estado;
     }
@@ -315,6 +297,4 @@ public class ProductoController implements Serializable{
         this.listacategoria = categoriaEJB.findAll();
         this.listaproducto = productoEJB.findAll();
     }
-
-  
 }
