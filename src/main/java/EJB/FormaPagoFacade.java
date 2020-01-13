@@ -33,23 +33,21 @@ public class FormaPagoFacade extends AbstractFacade<FormaPago> implements FormaP
     }
     
     @Override
-    public boolean escogerPago(int formp){
-        boolean formap = false;
+    public FormaPago escogerPago(FormaPago f){
+        FormaPago formapago = null;
         String sql;
         try {
-            sql = "SELECT  fp FROM FormaPago fp WHERE fp.idFormaPago=?1 AND fp.NombreFormaPago = 'paypal'";
+            sql = "SELECT fp FROM FormaPago fp WHERE fp.idFormaPago=?1";
             Query query = em.createQuery(sql);           
-            query.setParameter(1, formp);                       
+            query.setParameter(1, f.getIdFormaPago());                       
             List<FormaPago> lista = query.getResultList();
             if (!lista.isEmpty()) {
-                formap =  true;  
             }
-            return formap;
         } catch (QueryException e) {
             System.out.println("**Imposible ejecutar**");
             System.out.println("Causa: "+e);
-            return formap;
         }
+        return formapago;
         }
     
 }
