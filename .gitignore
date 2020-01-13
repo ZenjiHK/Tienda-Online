@@ -644,3 +644,6 @@ target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/Entity/User_.class
 target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/Entity/Venta.class
 target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/Entity/Venta_.class
 
+!/src/main/java/Controller/ValidarSesionController.java
+!/src/main/webapp/PaginaPrincipal/ErrorSesion.xhtml
+!/src/main/java/Controller/ValidarSesionControler.java
