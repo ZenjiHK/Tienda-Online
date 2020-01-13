@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>C'est La Vie</title>
         <link href="../resources/css/PaginaPrincipal.css" rel="stylesheet" type="text/css"/>
@@ -15,34 +16,47 @@
         </style>
     </h:head>
     <h:body class="body">
-        
-        
+
+
         <div class="menu">
             <b:navBar brand-img="../resources/Imagenes/a1 - copia (2).jpg" brandHref="PaginaPrincipal.xhtml" inverse="false">
-            
-            <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
-            <b:navbarLinks pull="right" styleClass="hidden-xs">
-                <b:dropMenu value="Iniciar Sesión"  icon="user">
-                    <h:form>
-                        <b:container fluid="true">
-                            <br></br>
-                            <b:commandButton value="Iniciar Sesión" look="info" style="width: 100%" action="Usuario"/>
-                            <br></br>
-                            <br></br>
-                            <p>¿No tienes cuenta? </p>
-                            <b:link value="Registrate" outcome="RegistroUsuario"/>
-                            <br></br>
-                            <br></br>
+
+                <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
+                <b:navbarLinks pull="right" styleClass="hidden-xs">
+                    <b:dropMenu value="Iniciar Sesión"  icon="user">
+                        <h:form>
+                            <b:container fluid="true">
+                                <br></br>
+                                <b:commandButton value="Iniciar Sesión" look="info" style="width: 100%" action="Usuario"/>
+                                <br></br>
+                                <br></br>
+                                <p>¿No tienes cuenta? </p>
+                                <b:link value="Registrate" outcome="RegistroUsuario"/>
+                                <br></br>
+                                <br></br>
+                            </b:container>
+                        </h:form>
+                    </b:dropMenu>
+                    <b:dropMenu value="Usuario logeado" icon="user">
+                        <b:container fluid="true" style="align-content: center;text-align: center">
+                            <h:form>
+                                <h:outputText value="Nombre de usuario"/>
+                                <img src="../resources/Imagenes/icon.jpg" style="width: 100%"/>
+                                <h:outputText value="Nombre del cliente" /><br/>
+                                <h:outputText value="País" />
+                                <p:separator/>
+                                <b:commandButton value="Editar perfil" look="info" action="../User/perfilUsuario" style="width: 100%"/><br/><br/>
+                                <b:commandButton value="Cerrar sesión" look="info" style="width: 100%"/>
+                            </h:form>
                         </b:container>
-                    </h:form>
-                </b:dropMenu>
-                <b:navLink value="Favoritos" icon="heart" href="#"></b:navLink>
-                <b:navLink value="Bolsa" icon="shopping-cart" href="#"></b:navLink>
-            </b:navbarLinks>
-        </b:navBar>
+                    </b:dropMenu>
+                    <b:navLink value="Favoritos" icon="heart" href="#"></b:navLink>
+                    <b:navLink value="Bolsa" icon="shopping-cart" href="#"></b:navLink>
+                </b:navbarLinks>
+            </b:navBar>
         </div>
-        
-        
+
+
         <h:form>
             <b:carousel id="tiovivo" style="width: 1450px" interval="5500">
                 <b:carouselItem >

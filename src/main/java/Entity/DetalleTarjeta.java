@@ -43,6 +43,10 @@ public class DetalleTarjeta implements Serializable {
     
     @Column(name="estado")
     private boolean estado=true;
+    
+    @JoinColumn(name = "id_forma_pago", referencedColumnName = "id_forma_pago")
+    @ManyToOne
+    private FormaPago formapago;
 
     public DetalleTarjeta() {
     }
@@ -136,4 +140,12 @@ public class DetalleTarjeta implements Serializable {
       public void setNumero_tarjeta(String numero_tarjeta) {
             this.numero_tarjeta = numero_tarjeta;
       }
+    
+      public FormaPago getFormapago() {
+        return formapago;
+    }
+
+    public void setFormapago(FormaPago formapago) {
+        this.formapago = formapago;
+    }
 }

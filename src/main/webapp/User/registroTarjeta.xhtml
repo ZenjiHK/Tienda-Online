@@ -9,6 +9,11 @@ version='1.0' encoding='UTF-8' ?>
         <!-- Utilice este modulo para poder desarrollar la ocultacion de las 
         tarjetas de credito que se implementara en el modulo de usuario 
         no debe debe de editar solo "eliminar" o agregar tarjeta-->
+        <title>Registrar tarjeta</title>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>
     </h:head>
     <h:body>
         <p:growl id="msj"/>
