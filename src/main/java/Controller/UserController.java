@@ -140,7 +140,7 @@ public class UserController implements Serializable{
             this.user.setRol(rol);
             this.userFacade.create(user);
             this.mensaje = "Insertado con éxito";
-            FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("Usuario.xhtml");
         } catch (Exception e) {
             this.mensaje = "Error: " + e.getMessage();
             e.printStackTrace();
