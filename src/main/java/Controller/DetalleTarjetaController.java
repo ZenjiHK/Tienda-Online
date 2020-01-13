@@ -3,6 +3,7 @@ package Controller;
 import EJB.DetalleTarjetaFacadeLocal;
 import Entity.Cliente;
 import Entity.DetalleTarjeta;
+import Entity.FormaPago;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -23,7 +24,9 @@ public class DetalleTarjetaController implements Serializable {
     private List<DetalleTarjeta> listaCifrado;
     private DetalleTarjeta detalletarjeta;
     private Cliente cliente;
+    private FormaPago formapago;
     String msj;
+    
 
     public List<DetalleTarjeta> getListaCifrado() {
         this.listaCifrado = this.DetalleTarjetaEJB.findAll();
@@ -67,6 +70,15 @@ public class DetalleTarjetaController implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+  
+    public FormaPago getFormapago() {
+        return formapago;
+    }
+
+    public void setFormapago(FormaPago formapago) {
+        this.formapago = formapago;
+    }
+    
 
     @PostConstruct
     public void init() {
