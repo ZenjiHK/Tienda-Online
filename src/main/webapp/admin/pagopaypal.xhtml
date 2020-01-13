@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Inicie sesión en su cuenta Paypal</title>
+        <link href="../resources/css/paypal.css" rel="stylesheet" type="text/css"/>
+        <link rel="icon" href="../resources/Imagenes/favicon.ico"/>
+    </h:head>
+   <h:body class="body">
+        <div class="login">
+            
+            <p:panelGrid columns="1">
+     <h:outputLabel>		
+            <h:form id="loginForm">
+                
+                <br></br>
+               
+                <b:container fluid="true">
+                    <b:panel look="light">
+                        <b:row>
+                            <center>
+                                <img src="../resources/Imagenes/paypal_logo.png" alt=""/>
+                            </center> 
+                        </b:row>
+                        <br/>
+                        <b:row>
+                            <b:column>
+                                <b:inputText id="usuario"  value="#{userController.user.nombreUsuario}" placeholder="Correo electrónico" required="true" requiredMessage="Correo electrónico o número de celular">
+                                </b:inputText>
+                            </b:column>
+                        </b:row>
+                        <b:row>
+                            <b:column>
+                                <b:inputSecret id="password" value="#{userController.user.clave}" placeholder="Ingrese su contraseña" required="true"  requiredMessage="Ingrese su contraseña">
+                                </b:inputSecret>
+                            </b:column>
+                        </b:row>
+                        <b:row>
+                            <b:column>
+                                <b:commandButton value="Iniciar Sesión" action="#{userController.loginPaypal()}" update="@form" look="info"
+                                                 style="width:100%; background-color:#0070ba; color:#ffffff;" />
+                                <br></br>
+                            </b:column>
+                        </b:row>
+                        <b:row>
+                            <br></br>
+                            <h:form>                                
+                                <b:column>  
+                                    <center>
+                                        <b:link value="¿Tiene problemas iniciando sesión?" outcome="PaginaPrincipal/RegistroUsuario" style="color:#0070ba;"/>
+                                    </center>
+                                </b:column>
+                            </h:form>
+                        </b:row>
+                        <br></br>
+                        <b:row>
+                            <center>                                
+                           <span style="color:#A9A9A9">o</span>                            
+                           </center>
+                        </b:row>
+                        <br></br>
+                        <b:row>
+                            <b:column>
+                                <b:commandButton value="Registrarse"  update="@form" look="info"
+                                                 style="width:100%; background-color:#E1E7EB; color:#000000;" /> 
+                                              
+                                <br></br>
+                            </b:column>
+                        </b:row>
+                    </b:panel>
+                </b:container>
+                
+            </h:form>
+         </h:outputLabel>
+</p:panelGrid>
+                
+        </div>
+    </h:body>
+</html>
+

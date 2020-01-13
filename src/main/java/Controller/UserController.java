@@ -6,23 +6,26 @@ import EJB.UserFacadeLocal;
 import Entity.Cliente;
 import Entity.Rol;
 import Entity.User;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 @Named(value = "userController")
-@RequestScoped
-public class UserController {
+@SessionScoped
+public class UserController implements Serializable{
 
     @EJB
     private UserFacadeLocal userFacade;
     private User user;
     private List<User> listaUser;
     private String mensaje;
+  
 
     @EJB
     private RolFacadeLocal rolFacade;
@@ -33,6 +36,24 @@ public class UserController {
     private ClienteFacadeLocal clienteFacade;
     private Cliente cliente;
     private List<Cliente> listaCliente;
+    private String clave1;
+    private String clave2;
+
+    public String getClave1() {
+        return clave1;
+    }
+
+    public void setClave1(String clave1) {
+        this.clave1 = clave1;
+    }
+
+    public String getClave2() {
+        return clave2;
+    }
+
+    public void setClave2(String clave2) {
+        this.clave2 = clave2;
+    }
 
     public List<User> getListaUser() {
         try {
@@ -197,9 +218,46 @@ public class UserController {
             if (us != null) {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", us);
                 if (us.getRol().getNombreRol().equalsIgnoreCase("cliente")) {
-                    redireccion = "/prueba/producto?faces-redirect=true";
+                    redireccion = "/admin/producto?faces-redirect=true";
                 } else if (us.getRol().getNombreRol().equalsIgnoreCase("admin")) {
-                    redireccion = "/prueba/user?faces-redirect=true";
+                    redireccion = "/admin/user?faces-redirect=true";
+                }
+                int idUser = us.getCliente().getIdCliente();
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idUser", idUser);
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Uusuario o clave incorrecta"));
+            }
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage((null), new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error"));
+        }
+        return redireccion;
+    }
+
+    public void cambioClave() {     
+        if (this.clave1.equals(this.clave2)) {
+            int idCliente = 1;//Valor quemado. Se cambiará por el id recuperado de la sesión.         
+            //Actualizar clave
+            this.cliente.setIdCliente(idCliente);
+            user.setCliente(cliente);
+            user.setClave(this.clave1);      
+            userFacade.ActualizarUsuario(user);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se ha actualizado su contraseña.", ""));
+        } else {           
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Las contraseñas deben coincidir.", ""));
+        }
+    }
+    
+    public String loginPaypal() {
+        User us;
+        String redireccion = "";
+        try {
+            us = this.userFacade.Sesion(this.user);
+            if (us != null) {
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", us);
+                if (us.getRol().getNombreRol().equalsIgnoreCase("cliente")) {
+                    redireccion = "/admin/producto?faces-redirect=true";
+                } else if (us.getRol().getNombreRol().equalsIgnoreCase("admin")) {
+                    redireccion = "/admin/user?faces-redirect=true";
                 }
                 int idUser = us.getCliente().getIdCliente();
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idUser", idUser);

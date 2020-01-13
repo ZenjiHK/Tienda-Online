@@ -17,20 +17,20 @@
             </p:fieldset>
         </h:form>
         <p:dialog widgetVar="registro" header="Ingresar usuario" showEffect="clip" resizable="true">
-            <p:ajax event="close" listener="#{UserController.limpiar()}" update="r"/>
+            <p:ajax event="close" listener="#{userController.limpiar()}" update="r"/>
             <h:form id="r">
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Cliente"/>
 
                     <p:selectOneMenu value="#{userController.cliente.idCliente}">
-                        <f:selectItems value="#{clienteController.listaCliente}" var="c"
+                        <f:selectItems value="#{clienteController.lista2}" var="c"
                                        itemLabel="#{c.nombreCliente} #{c.apellidoCliente}" itemValue="#{c.idCliente}"/>
                     </p:selectOneMenu>
                     <p:outputLabel value="Usuario"/>
                     <p:inputText value="#{userController.user.nombreUsuario}"/>
 
                     <p:outputLabel value="Contraseña"/>
-                    <p:inputText value="#{UserController.user.clave}"/>
+                    <p:inputText value="#{userController.user.clave}"/>
                     
                     <p:outputLabel value="Rol"/>
 
@@ -39,7 +39,7 @@
 
                                        itemLabel="#{r.nombreRol}" itemValue="#{r.idRol}"/>
                     </p:selectOneMenu>
-                    <p:commandButton value="Insertar" actionListener="#{UserController.insertar()}" 
+                    <p:commandButton value="Insertar" actionListener="#{userController.insertar()}" 
                                      oncomplete="PF('registro').hide()" update=":datos :msj :r"
                                      rendered="#{userController.user.cliente == 0}"/>
                     <p:commandButton value="Editar" actionListener="#{userController.editar()}" 

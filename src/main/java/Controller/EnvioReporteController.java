@@ -38,7 +38,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-@Named(value = "reporteprueba")
+@Named(value = "envioReporteController")
 @SessionScoped
 public class EnvioReporteController implements Serializable {
 

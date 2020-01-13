@@ -31,6 +31,7 @@ public interface UserFacadeLocal {
     
     User Sesion(User us);
     public void ActualizarUsuario(User u);   
+ 
     
 }
 

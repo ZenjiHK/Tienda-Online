@@ -30,4 +30,6 @@ public interface FormaPagoFacadeLocal {
 
     int count();
     
+    boolean escogerPago(int formp);
+    
 }
