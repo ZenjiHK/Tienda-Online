@@ -6,9 +6,12 @@
 package EJB;
 
 import Entity.FormaPago;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import org.eclipse.persistence.exceptions.QueryException;
 
 /**
  *
@@ -28,5 +31,25 @@ public class FormaPagoFacade extends AbstractFacade<FormaPago> implements FormaP
     public FormaPagoFacade() {
         super(FormaPago.class);
     }
+    
+    @Override
+    public boolean escogerPago(int formp){
+        boolean formap = false;
+        String sql;
+        try {
+            sql = "SELECT  fp FROM FormaPago fp WHERE fp.idFormaPago=?1 AND fp.NombreFormaPago = 'paypal'";
+            Query query = em.createQuery(sql);           
+            query.setParameter(1, formp);                       
+            List<FormaPago> lista = query.getResultList();
+            if (!lista.isEmpty()) {
+                formap =  true;  
+            }
+            return formap;
+        } catch (QueryException e) {
+            System.out.println("**Imposible ejecutar**");
+            System.out.println("Causa: "+e);
+            return formap;
+        }
+        }
     
 }
