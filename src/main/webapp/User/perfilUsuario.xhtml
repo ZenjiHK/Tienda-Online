@@ -70,45 +70,50 @@
             <h:form class="margin">
 
                 <h:outputLabel>
-                    <p:panel header="DATOS PERSONALES" style="font-size: 22px">
-                        <img src="../resources/Imagenes/icon.jpg" width="150px"/><br/>
-                        <h:outputText value="Nombre: " style="font-size: 18px"/><br/>
-                        <h:outputText value="Correo: " style="font-size: 18px"/><br/>
-                        <h:outputText value="Dirección: " style="font-size: 18px"/><br/>
-                        <h:outputText value="País: " style="font-size: 18px"/><br/>
-                        <b:commandButton value="Ver tarjetas registradas" actionListener="#{validarSesionController.redireccionTargetas()}" style="font-size: 18px" class="buttons" look="info"/><br/>
-                        <b:commandButton value="Editar información personal" style="font-size: 18px" class="buttons" look="info"/><br/>
-                        <b:commandButton value="Editar información de usuario" style="font-size: 18px" class="buttons" look="info"/>
-                    </p:panel>
+                    <h:form id="Datos">
+                        <p:dataTable value="#{clienteController.listaCliente}" var="lc">
+                            <p:panel header="DATOS PERSONALES" style="font-size: 22px">
+                                <img src="../resources/Imagenes/icon.jpg" width="150px"/><br/>
+                                <h:outputText value="Nombre: #{lc.nombreCliente} #{lc.apellidoCliente}" style="font-size: 18px"/><br/>
+                                <h:outputText value="Correo: #{lc.correo}" style="font-size: 18px"/><br/>
+                                <h:outputText value="Dirección: #{lc.direccion}" style="font-size: 18px"/><br/>
+                                <h:outputText value="País: #{lc.pais.nombrePais}" style="font-size: 18px"/><br/>
+                                <b:commandButton value="Ver tarjetas registradas" actionListener="#{validarSesionController.redireccionTargetas()}" style="font-size: 18px" class="buttons" look="info"/><br/>
+                                <b:commandButton value="Editar información personal" style="font-size: 18px" class="buttons" look="info"
+                                                 actionListener="#{clienteController.cargarCliente(lc)}" update=":c" oncomplete="PF('cli').show()"/><br/>
+                                <b:commandButton value="Editar información de usuario" style="font-size: 18px" class="buttons" look="info"/>
+                            </p:panel>
+                        </p:dataTable>
+                    </h:form>
                 </h:outputLabel>
                 <h:outputLabel>
                     <p:panel header="DATOS PERSONALES" style="font-size: 22px" >                        
                         <h:form id="Datos">
 
-                            <p:dataTable value="#{clienteController.listaCliente}" var="lc">
-                                <p:column headerText="Id">
-                                    <h:outputText value="#{lc.idCliente}"/>
-                                </p:column>
-                                <p:column headerText="nombre">
-                                    <h:outputText value="#{lc.nombreCliente}"/>
-                                </p:column>
-                                <p:column headerText="apellido">
-                                    <h:outputText value="#{lc.apellidoCliente}"/>
-                                </p:column>
-                                <p:column headerText="correo">
-                                    <h:outputText value="#{lc.correo}"/>
-                                </p:column>
-                                <p:column headerText="direccion">
-                                    <h:outputText value="#{lc.direccion}"/>
-                                </p:column>
-                                <p:column headerText="Pais">
-                                    <h:outputText value="#{lc.pais.nombrePais}"/>
-                                </p:column>
-                                <p:column headerText="modificar datos">
-                                    <p:commandButton value="Modificar Datos personales" actionListener="#{clienteController.cargarCliente(lc)}" 
-                                                     update=":c" oncomplete="PF('cli').show()"/>
-                                </p:column>
-                            </p:dataTable>
+
+                            <p:column headerText="Id">
+                                <h:outputText value="#{lc.idCliente}"/>
+                            </p:column>
+                            <p:column headerText="nombre">
+                                <h:outputText value="#{lc.nombreCliente}"/>
+                            </p:column>
+                            <p:column headerText="apellido">
+                                <h:outputText value="#{lc.apellidoCliente}"/>
+                            </p:column>
+                            <p:column headerText="correo">
+                                <h:outputText value="#{lc.correo}"/>
+                            </p:column>
+                            <p:column headerText="direccion">
+                                <h:outputText value="#{lc.direccion}"/>
+                            </p:column>
+                            <p:column headerText="Pais">
+                                <h:outputText value="#{lc.pais.nombrePais}"/>
+                            </p:column>
+                            <p:column headerText="modificar datos">
+                                <p:commandButton value="Modificar Datos personales" actionListener="#{clienteController.cargarCliente(lc)}" 
+                                                 update=":c" oncomplete="PF('cli').show()"/>
+                            </p:column>
+
                         </h:form>
 
                         <p:dialog widgetVar="cli" modal="true" showEffect="clip" resizable="false">

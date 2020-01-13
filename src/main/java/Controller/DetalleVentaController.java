@@ -292,7 +292,6 @@ public class DetalleVentaController implements Serializable {
                 this.dt.setIdDetalleVenta(a);
                 this.dt.setIdProducto(this.list.get(0));
                 this.dt.setCantidad(1);
-                this.dt.setTotal(this.dt.getProducto().getPrecioVenta() * this.dt.getCantidad());
                 this.dt.setDescuento(this.d);
                 this.dt.setVenta(this.v);
 
