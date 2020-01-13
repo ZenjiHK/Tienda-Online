@@ -216,7 +216,7 @@ public class EnvioReporteController implements Serializable {
             message.addRecipient(
                     Message.RecipientType.TO,
                     new InternetAddress("moran_andrade@hotmail.com"));
-            message.setSubject("Restablecer contraseña");
+            message.setSubject("Detalle de factura");
             message.setContent(
                     "fecha: " + this.detalle.getVenta().getFecha() + ",\n"
                     + "\n Hola " + this.detalle.getVenta().getCliente().getNombreCliente() + ",\n"
