@@ -717,3 +717,4 @@ target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/EJB/DescuentoFacade.class
 !/src/main/webapp/User/misTarjetas.xhtml
 !/src/main/webapp/User/pagopaypal.xhtml
 !/src/main/webapp/User/metodoPago.xhtml
+!/src/main/webapp/admin/navbar.xhtml
