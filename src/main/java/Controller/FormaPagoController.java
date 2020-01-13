@@ -108,4 +108,25 @@ public class FormaPagoController implements Serializable{
         FacesMessage mensaje = new FacesMessage(this.msg);
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
+    
+        public String escogerPago() {
+        FormaPago fp;
+        String redireccion = "";
+        try {
+                fp = this.formaPagoEJB.escogerPago(this.formapago);
+                if (fp != null) {
+                if (fp.getNombreFormaPago().equals("debito")) {
+                    redireccion = "/admin/producto?faces-redirect=true";
+                } else if (fp.getNombreFormaPago().equals("credito")) {
+                    redireccion = "/admin/user?faces-redirect=true";
+                }
+                else if (fp.getNombreFormaPago().equals("paypal")) {
+                    redireccion = "/user/pagopaypal?faces-redirect=true";
+                }
+            } 
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage((null), new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error"));
+        }
+        return redireccion;
+    }
 }
