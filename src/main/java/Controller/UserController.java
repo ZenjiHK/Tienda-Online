@@ -258,7 +258,7 @@ public class UserController implements Serializable{
                     redireccion = "/PaginaPrincipal/PaginaPrincipal?faces-redirect=true";
 
                 } else if (us.getRol().getNombreRol().equalsIgnoreCase("admin")) {
-                    redireccion = "/admin/user?faces-redirect=true";
+                    redireccion = "/index?faces-redirect=true";
                 }
                 int idUser = us.getCliente().getIdCliente();
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idUser", idUser);
