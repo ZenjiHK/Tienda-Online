@@ -713,3 +713,7 @@ target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/EJB/CategoriaFacadeLocal.class
 target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/EJB/ClienteFacade.class
 target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/EJB/ClienteFacadeLocal.class
 target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/EJB/DescuentoFacade.class
+!/src/main/webapp/User/registroTarjeta.xhtml
+!/src/main/webapp/User/misTarjetas.xhtml
+!/src/main/webapp/User/pagopaypal.xhtml
+!/src/main/webapp/User/metodoPago.xhtml
