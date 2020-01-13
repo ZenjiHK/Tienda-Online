@@ -26,6 +26,7 @@ public class DetalleTarjetaController implements Serializable {
     private Cliente cliente;
     private FormaPago formapago;
     String msj;
+    
 
     public List<DetalleTarjeta> getListaCifrado() {
         this.listaCifrado = this.DetalleTarjetaEJB.findAll();
