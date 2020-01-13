@@ -235,17 +235,14 @@ public class UserController implements Serializable{
 
     public void cambioClave() {     
         if (this.clave1.equals(this.clave2)) {
-            int idCliente = 1;//Valor quemado. Se cambiará por el id recuperado de la sesión.
-            System.out.println("AXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            int idCliente = 1;//Valor quemado. Se cambiará por el id recuperado de la sesión.         
             //Actualizar clave
             this.cliente.setIdCliente(idCliente);
             user.setCliente(cliente);
-            user.setClave(this.clave1);
-            System.out.println("CASI ACTUALI<OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            user.setClave(this.clave1);      
             userFacade.ActualizarUsuario(user);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se ha actualizado su contraseña.", ""));
-        } else {
-            System.out.println("NOOOOOOOOOOOOOOOOOOOO SIRVE");
+        } else {           
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Las contraseñas deben coincidir.", ""));
         }
     }
@@ -259,6 +256,7 @@ public class UserController implements Serializable{
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", us);
                 if (us.getRol().getNombreRol().equalsIgnoreCase("cliente")) {
                     redireccion = "/PaginaPrincipal/PaginaPrincipal?faces-redirect=true";
+
                 } else if (us.getRol().getNombreRol().equalsIgnoreCase("admin")) {
                     redireccion = "/admin/user?faces-redirect=true";
                 }

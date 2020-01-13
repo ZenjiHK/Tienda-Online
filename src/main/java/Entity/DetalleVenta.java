@@ -21,10 +21,7 @@ public class DetalleVenta implements Serializable {
     
     @Column(name = "cantidad")
     private int cantidad;
-    
-    @Column(name = "total")
-    private double total;
-    
+        
     @JoinColumn(name = "id_descuento", referencedColumnName = "id_descuento")
     @ManyToOne
     private Descuento descuento;
@@ -89,15 +86,7 @@ public class DetalleVenta implements Serializable {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
+    
     public Descuento getDescuento() {
         return descuento;
     }

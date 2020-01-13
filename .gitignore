@@ -642,6 +642,11 @@ target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/Entity/TipoRopa_.class
 target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/Entity/User.class
 target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/Entity/User_.class
 target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/Entity/Venta.class
+
+
+!/src/main/java/Controller/ValidarSesionController.java
+!/src/main/webapp/PaginaPrincipal/ErrorSesion.xhtml
+!/src/main/java/Controller/ValidarSesionControler.java
 target/classes/Controller/DetalleTarjetaController.class
 target/classes/Controller/EnviarController.class
 target/classes/Controller/ProductoController.class
