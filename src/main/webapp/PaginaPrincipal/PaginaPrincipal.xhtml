@@ -45,8 +45,9 @@
                                 <h:outputText value="Nombre del cliente" /><br/>
                                 <h:outputText value="País" />
                                 <p:separator/>
-                                <b:commandButton value="Editar perfil" look="info" style="width: 100%"/><br/><br/>
-                                <b:commandButton value="Cerrar sesión" actionListener="#{validarSesionController.salir()}" look="info" style="width: 100%"/>
+                                <b:commandButton value="Editar perfil" look="info" action="../User/perfilUsuario" style="width: 100%"/><br/><br/>
+                                <b:commandButton value="Cerrar sesión"  actionListener="#{validarSesionController.salir()}" look="info" style="width: 100%"/>
+
                             </h:form>
                         </b:container>
                     </b:dropMenu>
