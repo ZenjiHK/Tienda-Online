@@ -18,11 +18,7 @@ public class Factura implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_factura")
     private int idFactura;
-    
-    @JoinColumn(name = "id_forma_pago", referencedColumnName = "id_forma_pago")
-    @ManyToOne
-    private FormaPago formaPago;
-    
+        
     @JoinColumn(name = "id_venta", referencedColumnName = "id_venta")
     @ManyToOne
     private Venta venta;
@@ -70,14 +66,6 @@ public class Factura implements Serializable {
 
     public void setIdFactura(int idFactura) {
         this.idFactura = idFactura;
-    }
-
-    public FormaPago getFormaPago() {
-        return formaPago;
-    }
-
-    public void setFormaPago(FormaPago formaPago) {
-        this.formaPago = formaPago;
     }
 
     public Venta getVenta() {

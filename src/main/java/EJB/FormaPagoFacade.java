@@ -42,6 +42,7 @@ public class FormaPagoFacade extends AbstractFacade<FormaPago> implements FormaP
             query.setParameter(1, f.getIdFormaPago());                       
             List<FormaPago> lista = query.getResultList();
             if (!lista.isEmpty()) {
+                System.out.println(query);
             }
         } catch (QueryException e) {
             System.out.println("**Imposible ejecutar**");

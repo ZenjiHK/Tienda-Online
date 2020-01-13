@@ -30,10 +30,6 @@
                                 <p:selectOneMenu value="#{facturaController.venta.idVenta}" label="#{facturaController.factura.venta.cliente.nombreCliente} | #{facturaController.factura.venta.fecha} | #{facturaController.factura.venta.detalleTarjeta.ping}">     
                                       <f:selectItems value="#{ventaController.lista_ventas}" var="venta" itemLabel="#{venta.cliente.nombreCliente} | #{venta.fecha} | #{venta.detalleTarjeta.ping}" itemValue="#{venta.idVenta}"/>
                                 </p:selectOneMenu>
-                                <p:outputLabel value="Forma de pago"/>
-                                <p:selectOneMenu value="#{facturaController.formaPago.idFormaPago}">     
-                                    <f:selectItems value="#{formaPagoController.listapago}" var="forma" itemLabel="#{forma.nombreFormaPago}" itemValue="#{forma.idFormaPago}"/>
-                                </p:selectOneMenu>
                                 <p:commandButton value="Guardar" actionListener="#{facturaController.crear()}" rendered="#{facturaController.factura.idFactura==0}" update=":Datos f :mensaje" oncomplete="PF('modal').hide()"/>
                                 <p:commandButton value="Actualizar" actionListener="#{facturaController.editar()}" rendered="#{facturaController.factura.idFactura!=0}" update=":Datos f :mensaje" oncomplete="PF('modal').hide()"/>
                             </p:panelGrid>  
@@ -55,7 +51,7 @@
                                             <h:outputText value="#{fa.venta.cliente.correo}"/>
                                       </p:column>
                                       <p:column headerText="Metodo de pago">
-                                            <h:outputText value="#{fa.formaPago.nombreFormaPago}"/>
+                                          <h:outputText value="#{fa.venta.detalleTarjeta.formapago.idFormaPago}"/>
                                       </p:column>
                                       <p:column headerText="Numero de tarjeta">
                                             <h:outputText value="#{fa.venta.detalleTarjeta.ping}"/>
