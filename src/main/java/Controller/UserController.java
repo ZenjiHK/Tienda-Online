@@ -249,4 +249,27 @@ public class UserController implements Serializable{
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Las contraseñas deben coincidir.", ""));
         }
     }
+    
+    public String loginPaypal() {
+        User us;
+        String redireccion = "";
+        try {
+            us = this.userFacade.Sesion(this.user);
+            if (us != null) {
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", us);
+                if (us.getRol().getNombreRol().equalsIgnoreCase("cliente")) {
+                    redireccion = "/prueba/producto?faces-redirect=true";
+                } else if (us.getRol().getNombreRol().equalsIgnoreCase("admin")) {
+                    redireccion = "/prueba/user?faces-redirect=true";
+                }
+                int idUser = us.getCliente().getIdCliente();
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idUser", idUser);
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Uusuario o clave incorrecta"));
+            }
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage((null), new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error"));
+        }
+        return redireccion;
+    }
 }
