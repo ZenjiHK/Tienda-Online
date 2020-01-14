@@ -174,20 +174,43 @@ public class EnvioReporteController implements Serializable {
         descuento = new Descuento();
 
     }
-/*
+
     //Metodo para enviar correos
     public void enviarReporte() {
         try {
-            int idventa = 3;
+            int idventa = 1;
             this.listaDetalle = this.detalleFacade.detalleFactura(idventa);
             Double cont = 0.0;
+            
+              //Metodo para enviar correos
+    public void enviarReporte() {
+        try {
+            int idventa = 1;
+            this.listaDetalle = this.detalleFacade.detalleFactura(idventa);
+            Double cont = 0.0;
+            
+            
             for (DetalleVenta nombre : this.listaDetalle) {
                 this.detalle = nombre;
                 double subtotal = 0.00;
                 subtotal = ((this.detalle.getProducto().getPrecioVenta() * this.detalle.getCantidad()) - (this.detalle.getDescuento().getDescuento() * (this.detalle.getProducto().getPrecioVenta() * this.detalle.getCantidad())));
                 cont += subtotal;
                 this.tabla = "<table border='2' style=\"width: 100%\" class=\"table-active table-bordered table-borderless table-dark\" >";
-                this.tabla = this.tabla + "<tr align='center'>"
+                this.tabla = this.tabla
+                        + "<tr align='center'>"
+                        + "<br></br>"
+                        + "Fecha: " + this.detalle.getVenta().getFecha()
+                        + "<br></br>"
+                        + "Nombre: " + this.detalle.getVenta().getCliente().getNombreCliente() + this.detalle.getVenta().getCliente().getApellidoCliente()
+                        + "<br></br>"
+                        + "Correo: " + this.detalle.getVenta().getCliente().getCorreo()
+                        + "<br></br>"
+                        + "Pais: " + this.detalle.getVenta().getCliente().getPais().getNombrePais()
+                        + "<br></br>"
+                        + "Direccion de envio: " + this.detalle.getVenta().getCliente().getDireccion()
+                        + "<br></br>"
+                        + "</tr>"
+                        + "<tr align='center'>"                       
                         + "<td>Código: " + this.detalle.getVenta().getIdVenta() + "</td>"
                         + "<td>Producto: " + this.detalle.getProducto().getNombreProducto() + "</td>"
                         + "<td>Precio Unitario: " + this.detalle.getProducto().getPrecioVenta() + "</td>"
@@ -196,8 +219,10 @@ public class EnvioReporteController implements Serializable {
                         + "<td>Sub-Total: " + subtotal + "</td>"
                         + "</tr>";
                 this.tabla = this.tabla + "</table>";
-                System.out.println("ajajajaja" + this.detalle.getProducto().getNombreProducto());
+               
             }
+
+
 
             // Propiedades de la conexión
             Properties props = new Properties();
@@ -218,12 +243,11 @@ public class EnvioReporteController implements Serializable {
                     new InternetAddress("moran_andrade@hotmail.com"));
             message.setSubject("Detalle de factura");
             message.setContent(
-                    "fecha: " + this.detalle.getVenta().getFecha() + ",\n"
-                    + "\n Hola " + this.detalle.getVenta().getCliente().getNombreCliente() + ",\n"
-                    + "\n Hemos Recibido tu pedido. "
-                    + " \n\n Este es tudetal detalle de Compra C'E La Vie"
+                    "\n Hemos Recibido tu pedido. "
+                    + " \n\n Este es tu detalle de Compra C'E La Vie"
                     + " \n Gracias por preferirnos"
-                    + this.tabla,
+                    + this.tabla
+                    +bodytabla,
                     "text/html");
 
             // Lo enviamos.
@@ -235,5 +259,5 @@ public class EnvioReporteController implements Serializable {
 
         } catch (MessagingException e) {
         }
-    }*/
+    }
 }
