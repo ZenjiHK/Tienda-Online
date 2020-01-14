@@ -31,8 +31,8 @@ public class DetalleVentaFacade extends AbstractFacade<DetalleVenta> implements 
     public DetalleVentaFacade() {
         super(DetalleVenta.class);
     }
-
-    @Override
+    
+ @Override
     public List<DetalleVenta> factura(int iddventa) {
         String sql;
         List<DetalleVenta> lista = new LinkedList<>();
@@ -57,16 +57,17 @@ public class DetalleVentaFacade extends AbstractFacade<DetalleVenta> implements 
         }
 
     }
-
-    @Override
-    public List<DetalleVenta> detalleFactura(int venta) {
-        String jpql = "Select dv from DetalleVenta dv where dv.venta.idVenta =:varVenta";
-        Query query = em.createQuery(jpql);
-        query.setParameter("varVenta", venta);
-        List<DetalleVenta> resu= query.getResultList();
-        for (DetalleVenta nombre : resu) {            
-            System.out.println("Nombre: " + nombre.getProducto().getNombreProducto());
-        }
-        return resu;
+    
+        public List<DetalleVenta> detalleFactura(int venta) {
+        
+            String jpql = "Select dv from DetalleVenta dv where dv.venta.idVenta =:varVenta";
+            Query query = em.createQuery(jpql);
+            query.setParameter("varVenta", venta);
+            
+            return query.getResultList();
+      
+            
     }
+
+    
 }

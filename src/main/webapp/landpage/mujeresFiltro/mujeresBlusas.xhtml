@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>C'est La Vie - Catalogo de Ropa</title>
+
+    </h:head>
+    <h:body>
+        <ui:include src="../topnavbar.xhtml"/>
+        <p:panelGrid columns="2">
+            <h:outputLabel>
+                Filtros
+            </h:outputLabel>
+            <h:form>
+                <p:dataTable value="#{productoController.listaproducto}" var="prod" rows="3" paginator="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+                    <p:column>                    
+                        <p:panel  rendered="#{prod.stock>0 and prod.tipoRopa.idTipoRopa=='1'}" header="#{prod.nombreProducto}" style="text-align: center">
+                            <p:panelGrid columns="2">
+                                <h:outputLabel>
+                                    <img src="#{prod.url}" style="width: 150px; height: 150px"/><br/>
+                                    <h:outputText value="#{prod.marca.nombreMarca}"/>
+                                </h:outputLabel>
+                                <h:outputLabel>
+                                    <h:outputText value="Talla #{prod.talla.talla}"/><br/>
+                                    <h:outputText value="$#{prod.precioVenta}"/><br/>
+                                    <h:outputText value="#{ProductoController.getAviso(prod)}" style="color: #ff0000"/><br/>
+                                    <p:commandButton value="Añadir al carrito"  action="#{detalleVentaController.añadir(prod)}" style="margin-right: 20px;"/>
+                                </h:outputLabel>
+                            </p:panelGrid>
+                        </p:panel>
+                    </p:column>
+                    <p:column>
+                        <p:panel rendered="#{prod.stock>0 and prod.tipoRopa.idTipoRopa=='1'}" header="#{prod.nombreProducto}" style="text-align: center">
+                            <p:panelGrid columns="2">
+                                <h:outputLabel>
+                                    <img src="#{prod.url}" style="width: 150px; height: 150px"/><br/>
+                                    <h:outputText value="#{prod.marca.nombreMarca}"/>
+                                </h:outputLabel>
+                                <h:outputLabel>
+                                    <h:outputText value="Talla #{prod.talla.talla}"/><br/>
+                                    <h:outputText value="$#{prod.precioVenta}"/><br/>
+                                    <h:outputText value="#{ProductoController.getAviso(prod)}" style="color: #ff0000"/><br/>
+                                    <p:commandButton value="Añadir al carrito"  action="#{detalleVentaController.añadir(prod)}" style="margin-right: 20px;"/>
+                                </h:outputLabel>
+                            </p:panelGrid>
+                        </p:panel>
+                    </p:column>
+                    <p:column>
+                        <p:panel rendered="#{prod.stock>0 and prod.tipoRopa.idTipoRopa=='1'}" header="#{prod.nombreProducto}" style="text-align: center">
+                            <p:panelGrid columns="2">
+                                <h:outputLabel>
+                                    <img src="#{prod.url}" style="width: 150px; height: 150px"/><br/>
+                                    <h:outputText value="#{prod.marca.nombreMarca}"/>
+                                </h:outputLabel>
+                                <h:outputLabel>
+                                    <h:outputText value="#{prod.marca.nombreMarca}"/><br/>
+                                    <h:outputText value="Talla #{prod.talla.talla}"/><br/>
+                                    <h:outputText value="$#{prod.precioVenta}"/><br/>
+                                    <h:outputText value="#{productoController.getAviso(prod)}" style="color: #ff0000"/><br/>
+                                    <p:commandButton value="Añadir al carrito"  action="#{detalleVentaController.añadir(prod)}" style="margin-right: 20px;"/>
+                                </h:outputLabel>
+                            </p:panelGrid>
+                        </p:panel>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:panelGrid>
+    </h:body>
+</html>

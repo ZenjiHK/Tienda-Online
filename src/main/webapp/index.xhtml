@@ -1,114 +1,54 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Intrucciones de Uso- C'est La Vie</title>
+        <title>C'est La Vie</title>
+        <link href="../resources/css/PaginaPrincipal.css" rel="stylesheet" type="text/css"/>
+        <link href="../resources/css/Login.css" rel="stylesheet" type="text/css"/>
+        <style>
+
+            .margin{
+                margin-top: 10%;
+                margin-bottom: 25%;
+                margin-right: 25%;
+                margin-left: 30%
+            }
+            .buttons{
+                width: 100%;
+                margin-bottom: 10px
+            }
+
+            .titulo{
+                font-size: 30px;
+            }
+
+        </style>
     </h:head>
-    <h:body>
-        <p:dialog header="Instrucciones de usuario" widgetVar="pasos" modal="true" showEffect="clip" 
-                  resizable="false" width="650">
-            <h:outputLabel style="font-weight: normal">
-                <p:panelGrid columns="1">
-                    <h:outputLabel style="font-size: 20px;align-content: center">
-                        ¡Bienvenido Administrador! <br/>
-                    </h:outputLabel >
-                    <h:outputLabel style="font-size: 15px">
-                        En esta página tendrás acceso a todos los módulos esenciales acerca de tu tienda online. Déjame explicarte paso a paso
-                        como funciona.<br/>
-                        <br/>Cada módulo representa un componente o un pilar esencial de una tienda de ropa. Para que una tienda online
-                        sea funcional, necesita ciertos componentes básicos que deben suplir la necesidad de esta. 
-                        <br/><br/>Al ser una tienda de ropa, tenemos el Módulo de Ropa, el Módulo de Usuario (los clientes son muy valiosos e
-                        importantes si queremos vender un producto, por lo que hay un módulo solamente para ellos) y por último pero no
-                        menos importante, el Módulo de ventas.<br/><br/>
-                        Si quieres dirigirte a cada uno de estos módulos, verás que en la columna situada justo al lado encontrarás algunas
-                        viñetas que podrás desplegar. Cada una de estas viñetas está identificada con un nombre (el cual corresponde al
-                        nombre de un módulo de los anteriormente descritos), y dentro de ellas encontrarás más información detallada donde
-                        se describe su contenido, y además, contiene botones que te rediriguirán a la página que deseas ver.<br/><br/>
-                        Como dato extra, algunas de estas páginas te permitirán realizar tantos mantenimientos como desees y veas útiles.
-                        Cada registro de estas páginas que tengan este privilegio tendrán botones llamados "Modificar" o "Eliminar". Sin
-                        embargo, no serás capaz de alterar la información del usuario por motivos de transparencia, privacidad y auditoría.
-                    </h:outputLabel>
-                </p:panelGrid>
-            </h:outputLabel>
-        </p:dialog>
-        <p:panelGrid columns="2">
-            <p:outputPanel style="align-content: center">
-                Panel de navegación para administrador.<br/><br/>
-                <p:commandButton value="Ver instrucciones de uso" onclick="PF('pasos').show()"/>
-            </p:outputPanel>
-            <p:outputPanel>
-                <p:accordionPanel>
-                    <p:tab title="Módulo de Ropa">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <h:outputLabel>
-                                En el módulo de ropa, el administrador podrá acceder a las diversas áreas principales que la componen.
-                                Entre estas áreas, tenemos la de tallas, marcas, categorías, tipos de ropa y finalmente los productos
-                                registrados en la base de datos.<br/><br/>
-                                Para acceder al área de interes, de click a cualquiera de los botones para ser rediriguido de forma
-                                automática e instantánea.<br/><br/>
-                                <p:panel id="primero" header="Índice de direcciones">
-                                    <p:panelGrid columns="2">
-                                        • Ver todas las categorías <p:linkButton outcome="admin/categoria" value="Categorías de ropa"/>
-                                        • Ver todas las marcas <p:linkButton outcome="admin/marca" value="Marcas de ropa"/>
-                                        • Ver toda la ropa en stock <p:linkButton outcome="admin/producto" value="Toda la ropa"/>
-                                        • Ver todas las tallas <p:linkButton outcome="admin/talla" value="Tallas de ropa"/>
-                                        • Ver todos los tipos de ropa <p:linkButton outcome="admin/tipoRopa" value="Tipos de ropa"/>
-                                    </p:panelGrid>
-                                </p:panel>
-                            </h:outputLabel>
-                            <p:commandLink />
-                        </h:panelGrid>
-                    </p:tab>
-                    <p:tab title="Módulo de Usuario">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <h:outputLabel>
-                                En el módulo de usuario, el administrador podrá acceder a las diversas áreas principales que la componen.
-                                Entre estas áreas, tenemos la de clientes registrados, los usuarios que pueden ingresar al sistema
-                                y los roles que están disponibles para el registro de usuarios. Además, hay una página de países donde
-                                hay un listado completo de todos ellos, más esta información no se puede editar ni borrar.<br/><br/>
-                                Para acceder al área de interes, de click a cualquiera de los botones para ser rediriguido de forma
-                                automática e instantánea.<br/><br/>
-                                <p:panel id="segundo" header="Índice de direcciones">
-                                    <p:panelGrid columns="2">
-                                        • Ver todos los clientes <p:linkButton outcome="admin/cliente" value="Datos de Clientes"/>
-                                        • Ver las tarjetas registradas <p:linkButton outcome="admin/detalletarjeta" value="Detalles de tarjetas"/>
-                                        • Ver todos los países <p:linkButton outcome="admin/pais" value="Listado de países"/>
-                                        • Ver todos los roles <p:linkButton outcome="admin/rol" value="Roles para usuarios"/>
-                                        • Ver usuarios registrados <p:linkButton outcome="admin/user" value="Usuarios registrados"/>
-                                    </p:panelGrid>
-                                </p:panel>
-                            </h:outputLabel>
-                        </h:panelGrid>
-                    </p:tab>
-                    <p:tab title="Módulo de venta">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <h:outputLabel>
-                                En el módulo de venta, el administrador podrá ver el detalle de venta de todos los productos que se han
-                                vendido, las ventas realizadas por ciertos clientes y la tarjeta usada para pagar y por último ver todas
-                                las formas de pago.<br/><br/>
-                                Para acceder al área de interes, de click a cualquiera de los botones para ser rediriguido de forma
-                                automática e instantánea.<br/><br/>
-                                <p:panel id="tercero" header="Índice de direcciones">
-                                    <p:panelGrid columns="2">
-                                        • Ver todas las formas de pago <p:linkButton outcome="admin/formapago" value="Formas de pago"/>
-                                        • Ver todas las ventas realizadas <p:linkButton outcome="admin/venta" value="Listado de ventas"/>
-                                    </p:panelGrid>
-                                </p:panel>
-                            </h:outputLabel>
-                        </h:panelGrid>
-                    </p:tab>
-                </p:accordionPanel>
-            </p:outputPanel>
-        </p:panelGrid>
-        <br />
-        <h:link outcome="landpage/catalogo" value="Ver catálogo de ropa"/><br/>
-        <h:link outcome="Generador/GeneradorContra" value="Prueba Generador de contraseñas"/><br />
-        <br />
+    <h:body class="body" style="background-image: url('resources/Imagenes/fondo3.jpg')">
+        <div class="login margin" style="border-radius: 25px">
+            <h:form id="loginForm" >
+                <p:growl id="mensaje"  showDetail="true" life="3000" />
+                <br></br>
+                <b:container fluid="true">
+
+                    <p:panelGrid columns="1" >
+                        <h:outputLabel style="text-align: center">
+                            <b:panel title="¡Bienvenido a C'e la vie!" look="info" titleClass="titulo" style="font-size: 20px">
+                                <h:outputText value="¿Qué deseas hacer a continuación?" style="font-size: 25px"/><br/><br/>
+                                <b:commandButton value="Ir a Página Principal" action="PaginaPrincipal/PaginaPrincipal.xhtml" look="info" style="width: 100%" /><br/><br/>
+                                <b:commandButton value="Registrarme" action="PaginaPrincipal/RegistroUsuario.xhtml" look="info" style="width: 100%"/><br/><br/>
+                                <b:commandButton value="Iniciar Sesión" action="PaginaPrincipal/Usuario.xhtml" look="info" style="width: 100%"/>
+                            </b:panel>
+                        </h:outputLabel>
+                    </p:panelGrid>
+                </b:container>
+            </h:form>
+        </div>
     </h:body>
 </html>
 

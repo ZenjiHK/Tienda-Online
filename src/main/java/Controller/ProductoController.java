@@ -30,7 +30,7 @@ public class ProductoController implements Serializable {
     private List<Producto> listaproducto;
     private String mensaje;
     private String estado;
-    //Listas para mostrar las diferentes opciones del catalogo 
+    //Listas para mostrar las diferentes opciones del catalogo
     /* Variables para manejar la consulta de condiciones de los items*/
  /* Aviso es el mensaje que va a imprimir en el UX*/
     private String aviso;
@@ -250,7 +250,7 @@ public class ProductoController implements Serializable {
     }
 
 
-    
+   
     public String getEstado() {
         return estado;
     }
@@ -350,8 +350,8 @@ public class ProductoController implements Serializable {
         String stock = "";
         /* try-catch para verificar que el metodo no va a fallar */
         try {
-            /* Variable de tipo booleana que almacena el metodo llamado en la variable de tipo EJB 
-            que accede desde el Idproducto, este metodo anteriormente descrito nos indicara si 
+            /* Variable de tipo booleana que almacena el metodo llamado en la variable de tipo EJB
+            que accede desde el Idproducto, este metodo anteriormente descrito nos indicara si
             los items de un producto son menores o iguales a cinco*/
             res = this.productoEJB.stockcero(p.getIdProducto());
             /*Si es verdadero colocara un mensajito que diga "agotado" o "fuera de stock" */
