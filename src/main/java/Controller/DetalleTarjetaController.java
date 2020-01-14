@@ -91,13 +91,6 @@ public class DetalleTarjetaController implements Serializable {
         this.cliente = cliente;
     }
   
-    public FormaPago getFormapago() {
-        return formapago;
-    }
-
-    public void setFormapago(FormaPago formapago) {
-        this.formapago = formapago;
-    }
     
 
     @PostConstruct
