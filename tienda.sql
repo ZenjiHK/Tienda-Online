@@ -21,11 +21,9 @@ CREATE TABLE tipo_ropa(
 		id_ropa int auto_increment primary key,
 		nombre_ropa varchar(50) not null);
         
- INSERT INTO `tipo_ropa` VALUES (1,'Blusa'),(2,'Top'),(3,'Pantalon para mujer'),(4,'Falda'),(5,'Vestido'),
- (6,'Short para mujer'),(7,'Camisa sport'),(8,'Camisa casual'),(9,'Camisa formal'),
- (10,'Pantalon jeans para hombre'),(11,'Pantalon de vestir'),(12,'Short para hombre'),(13,'Cinturon'),
- (14,'Pañuelo'),(15,'Reloj'),(16,'Camisa infantil unisex'),(17,'Blusa infantil'),(18,'Pijama infantil'),
- (19,'Pantalón infantil unisex'),(20,'Short infantil unisex'),(21,'Falda infantil');
+INSERT INTO `tipo_ropa` (nombre_ropa) VALUES ('Blusas'),('Top'),('Pantalon'),('Falda'),
+('Vestido'),('Camisas Sport'),('Camisas casuales'),('Camisas formales'),
+('Jeans'),('Pantalon de vestir'),('Short'),('Camisas'),('Pijama');
 
 select * from tipo_ropa;
 
@@ -33,7 +31,7 @@ CREATE TABLE categoria(
 		id_categoria int auto_increment primary key,
 		nombre_categoria varchar(50) not null);
         
-insert into categoria(nombre_categoria)values('Hombre'),('Mujer'),('Niño'),('Accesorio');
+insert into categoria(nombre_categoria)values('Hombre'),('Mujer'),('Niño');
 
 CREATE TABLE producto(
 		id_producto int auto_increment primary key,
