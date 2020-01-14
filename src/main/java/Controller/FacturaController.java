@@ -34,7 +34,6 @@ public class FacturaController implements Serializable {
     public void crear(){
         try{
               this.factura.setVenta(venta);
-              this.factura.setFormaPago(formaPago);
             this.facturaEJB.create(factura);
             limpiar();
             this.msg = "Exito";
@@ -49,7 +48,6 @@ public class FacturaController implements Serializable {
     public void editar(){
         try{
             this.factura.setVenta(venta);
-            this.factura.setFormaPago(formaPago);
             this.facturaEJB.edit(factura);
             limpiar();
             this.msg = "Exito";
@@ -94,7 +92,6 @@ public class FacturaController implements Serializable {
         this.formaPago = new FormaPago();
         this.msg = "";
         this.factura.setVenta(venta);
-        this.factura.setFormaPago(formaPago);
     }
 
     public List<Factura> getLista_facturas() {

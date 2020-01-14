@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,9 +20,6 @@ public class FormaPago implements Serializable {
 
     @Column(name = "nombre_forma_pago")
     private String nombreFormaPago;
-    
-    @OneToMany(targetEntity=Factura.class,mappedBy="formaPago")
-    private List<Factura> lista_facturas;
 
     public FormaPago() {
     }
@@ -78,11 +74,4 @@ public class FormaPago implements Serializable {
         this.nombreFormaPago = nombreFormaPago;
     }
 
-    public List<Factura> getLista_facturas() {
-        return lista_facturas;
-    }
-
-    public void setLista_facturas(List<Factura> lista_facturas) {
-        this.lista_facturas = lista_facturas;
-    }
 }

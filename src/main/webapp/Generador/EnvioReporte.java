@@ -1,4 +1,3 @@
-
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -8,7 +7,9 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-       Debe Logearse para ver este contenido
-       <p:button outcome="login" value="Ir a Loguearse" icon="pi pi-star" style="margin-left:20px;"/>
+        <p:inputText value="#{ClienteController.Cliente.nombreCliente}"/>
+        <h:form>
+            <h:commandButton value="Enviar Reporte al correo" actionListener="#{envioReporteController.enviarReporte()}"/>
+        </h:form>        
     </h:body>
 </html>
