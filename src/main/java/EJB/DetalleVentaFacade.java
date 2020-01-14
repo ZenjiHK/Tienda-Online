@@ -6,6 +6,7 @@
 package EJB;
 
 import Entity.DetalleVenta;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -16,6 +17,7 @@ import javax.persistence.Query;
 /**
  *
  * @author maynor.menjivarusam
+ * @author evelyn.andradeusam
  */
 @Stateless
 public class DetalleVentaFacade extends AbstractFacade<DetalleVenta> implements DetalleVentaFacadeLocal {
@@ -31,43 +33,18 @@ public class DetalleVentaFacade extends AbstractFacade<DetalleVenta> implements 
     public DetalleVentaFacade() {
         super(DetalleVenta.class);
     }
-    
- @Override
-    public List<DetalleVenta> factura(int iddventa) {
-        String sql;
-        List<DetalleVenta> lista = new LinkedList<>();
-        try {
-            sql = "Select v.idVenta,p.nombreProducto,p.precioVenta,dv.cantidad,d.descuento,((p.precio_venta*dv.cantidad))-(d.descuento*(p.precio_venta*dv.cantidad))sub_total from DetalleVenta dv join dv.Venta v join  v.Cliente c join dv.Producto p join dv.Descuento  where idDetalleVenta=?";
-            Query query = em.createQuery("Select "
-                    + "u "
-                    + "from "
-                    + "DetalleVenta u "
-                    + "inner join Venta as v "
-                    + "inner join Cliente as c "
-                    + "inner join Producto as p "
-                    + "inner join Descuento as d "
-                    + "where "
-                    + "idDetalleVenta= ?1 ");
 
-            query.setParameter(1, iddventa);
-            lista = query.getResultList();
-            return lista;
-        } catch (Exception e) {
-            return lista;
-        }
+    @Override
+    public List<DetalleVenta> detalleFactura(int venta) {
+
+        String jpql = "Select dv from DetalleVenta dv where dv.venta.idVenta =:varVenta";
+        Query query = em.createQuery(jpql);
+        query.setParameter("varVenta", venta);
+
+        return query.getResultList();
 
     }
-    
-        public List<DetalleVenta> detalleFactura(int venta) {
-        
-            String jpql = "Select dv from DetalleVenta dv where dv.venta.idVenta =:varVenta";
-            Query query = em.createQuery(jpql);
-            query.setParameter("varVenta", venta);
-            
-            return query.getResultList();
-      
-            
-    }
 
-    
+  
+
 }
