@@ -9,6 +9,7 @@
         <title>Metodo de pago</title>
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
+         <f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>
     </h:head>
     <h:body>
         <p:growl id="msj"/>
