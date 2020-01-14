@@ -5,7 +5,9 @@
  */
 package EJB;
 
+import Entity.Cliente;
 import Entity.DetalleVenta;
+import Entity.Venta;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -42,9 +44,40 @@ public class DetalleVentaFacade extends AbstractFacade<DetalleVenta> implements 
         query.setParameter("varVenta", venta);
 
         return query.getResultList();
-
     }
 
-  
+   @Override
+    public String obtenerCorreo(Cliente c) {
+        Cliente cliente = null;       
+        try {
+            //sql = "SELECT  c FROM Cliente c  WHERE c.correo=?1";
+            Query query = em.createQuery("SELECT c FROM Cliente c  WHERE c.idCliente=?1");
+            query.setParameter(1, c.getIdCliente());
 
+            List<Cliente> lista = query.getResultList();
+            if (!lista.isEmpty()) {
+                cliente = lista.get(0);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return cliente.getCorreo();    
+    }
+    
+    public int ultimaVenta(int idCliente) { 
+        Venta venta=null;
+        try {
+            //sql = "SELECT  c FROM Cliente c  WHERE c.correo=?1";
+            Query query = em.createQuery("SELECT  c FROM Venta c  WHERE c.cliente.idCliente=?1 ORDER by c.idVenta DESC ");
+            query.setParameter(1, idCliente);
+            List<Venta> lista = query.getResultList();
+            if (!lista.isEmpty()) {
+                venta = lista.get(0);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return venta.getIdVenta();
+    }
+    
 }

@@ -178,12 +178,11 @@ public class EnvioReporteController implements Serializable {
     //Metodo para enviar correos
     public void enviarReporte() {
         try {
-            int clienteId;
-            this.cliente.setCorreo(this.destinatario);//Envio del correo a la clase cliente
-            clienteId = this.clienteFacade.ExisteCorreo(cliente);//Se guarda el id de cliente que retorna el metodo Existe Correo
-            this.cliente.setIdCliente(clienteId);
+            int idCliente = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idUser");
+            this.cliente.setIdCliente(idCliente);
+            String correo=this.detalleFacade.obtenerCorreo(cliente);//Recuperamos el correo                     
             double total = 0;
-            int idventa = getVenta().getIdVenta();
+            int idventa = this.detalleFacade.ultimaVenta(idCliente);
             this.listaDetalle = this.detalleFacade.detalleFactura(idventa);
             Double cont = 0.0;
 
@@ -215,8 +214,7 @@ public class EnvioReporteController implements Serializable {
                         + detalle.getCantidad() + "</td>"
                         + "<td>Descuento: " + this.detalle.getDescuento().getDescuento() + "</td>"
                         + "<td>Sub-Total: " + subtotal + "</td>"
-                        + "</tr>";
-                System.out.println("ajajajajaja" + this.detalle.getProducto().getNombreProducto());
+                        + "</tr>";                
             }
             this.tabla += "</tbody></table><h1 style='color:crimson;'>Total: $" + total + "</h1>";
 
