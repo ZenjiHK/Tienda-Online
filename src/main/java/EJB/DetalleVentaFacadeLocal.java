@@ -5,6 +5,7 @@
  */
 package EJB;
 
+import Entity.Cliente;
 import Entity.DetalleVenta;
 import java.util.List;
 import javax.ejb.Local;
@@ -32,5 +33,7 @@ public interface DetalleVentaFacadeLocal {
     int count();
     
    public List<DetalleVenta> detalleFactura(int venta);
+   String obtenerCorreo(Cliente c);
+    int ultimaVenta(int idCliente) ;
     
 }
