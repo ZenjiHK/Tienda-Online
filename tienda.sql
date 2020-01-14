@@ -391,6 +391,8 @@ CREATE TABLE venta(
 		fecha date not null,
 		estado varchar(15) not null);
         
+insert into venta( id_cliente,id_detalle_tarjeta,fecha,estado)
+values(1,1,'2019-10-10','En camino');
 
 ALTER TABLE venta ADD CONSTRAINT FOREIGN KEY fk_venta_cliente(id_cliente) REFERENCES cliente(id_cliente);
 
@@ -400,6 +402,8 @@ ALTER TABLE venta ADD CONSTRAINT FOREIGN KEY fk_venta_tarjeta(id_detalle_tarjeta
 CREATE TABLE descuento(
 		id_descuento int auto_increment primary key,
 		descuento double(8,2) not null);
+        
+        insert into descuento(descuento)values(0.2);
 
 CREATE TABLE detalle_venta(
 		id_detalle_venta int auto_increment primary key,
