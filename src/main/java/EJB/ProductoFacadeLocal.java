@@ -21,13 +21,12 @@ public interface ProductoFacadeLocal {
 
     int count();
 
-    List<Producto> filtroProductosCategoria(String tipoRopa, String cat);
+    List<Producto> filtroProductosCategoria(String cat);
 
     boolean stockcero(int idProducto);
-
-    public String nombreProducto(Producto p);
-
+    
+        public String nombreProducto(Producto p);
+    
     public Double precioVenta(Producto po);
 
-     List<Producto> filtroCategoria(String cat);
 }

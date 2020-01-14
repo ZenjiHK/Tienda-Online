@@ -12,10 +12,14 @@
 
     <h:body>
         <ui:include src="topnavbar.xhtml"/>
-        <h:panelGrid columns="2" id="panel">    
+        <h:panelGrid columns="2" id="panel">
+            <p:panel header="Nombre Usuario" style="font-size: 20px; text-align: center">
+                <img src="../Resourse/img/user.png" height="100" width="100" style="align-content: center"/>
+            </p:panel>
             <h:form>
                 <p:dataGrid value="#{productoController.listaproducto}" var="prod" columns="3" layout="grid"
-                            rows="6" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+                            rows="6" paginator="true"
+                            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
                     <f:facet name="header">
                         Ropa disponible

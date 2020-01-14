@@ -55,6 +55,17 @@ public class DetalleTarjeta implements Serializable {
         this.idDetalleTarjeta = id;
     }
 
+    public DetalleTarjeta(int idDetalleTarjeta, String numero_tarjeta, Date expiracion, List<Venta> lista_ventas, Cliente cliente, FormaPago formapago) {
+        this.idDetalleTarjeta = idDetalleTarjeta;
+        this.numero_tarjeta = numero_tarjeta;
+        this.expiracion = expiracion;
+        this.lista_ventas = lista_ventas;
+        this.cliente = cliente;
+        this.formapago = formapago;
+    }
+    
+    
+
     @Override
     public int hashCode() {
         int hash = 3;
