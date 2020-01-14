@@ -4,7 +4,8 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>C'est La Vie</title>
         <link href="../resources/css/PaginaPrincipal.css" rel="stylesheet" type="text/css"/>
@@ -16,14 +17,12 @@
         </style>
     </h:head>
     <h:body class="body">
-
-
         <div class="menu">
             <b:navBar brand-img="../resources/Imagenes/a1 - copia (2).jpg" brandHref="PaginaPrincipal.xhtml" inverse="false">
 
                 <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
                 <b:navbarLinks pull="right" styleClass="hidden-xs">
-                    <b:dropMenu value="Iniciar Sesión"  icon="user">
+                    <b:dropMenu value="Iniciar Sesión" icon="user">
                         <h:form>
                             <b:container fluid="true">
                                 <br></br>
@@ -37,7 +36,7 @@
                             </b:container>
                         </h:form>
                     </b:dropMenu>
-                    <b:dropMenu value="Usuario logeado" icon="user" style="height: 35%">
+                    <b:dropMenu value="Usuario logeado"  icon="user" style="height: 35%" rendered="#{facesContext.getCurrentInstance().getExternalContext().getSessionMap()!=null}">
                         <b:container fluid="true" style="align-content: center;text-align: center">
                             <h:form>
                                 <img src="../resources/Imagenes/icon.jpg" style="width: 100%"/>
@@ -52,8 +51,6 @@
                 </b:navbarLinks>
             </b:navBar>
         </div>
-
-
         <h:form>
             <b:carousel id="tiovivo" style="width: 1450px" interval="5500">
                 <b:carouselItem >
@@ -119,6 +116,14 @@
                 </b:thumbnail>
             </b:column>
         </b:row>
+        <script>
+            $(document).ready(function () {
+                if (document.getElementById('menucillo')) {
+                    var cont = document.getElementById('menucillo').value;       
+                    alert(cont);
+                }
+            });
+        </script>
     </h:body>
 </html>
 

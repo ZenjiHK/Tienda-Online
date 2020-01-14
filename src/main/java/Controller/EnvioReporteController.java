@@ -174,7 +174,7 @@ public class EnvioReporteController implements Serializable {
         descuento = new Descuento();
 
     }
-
+/*
     //Metodo para enviar correos
     public void enviarReporte() {
         try {
@@ -235,5 +235,5 @@ public class EnvioReporteController implements Serializable {
 
         } catch (MessagingException e) {
         }
-    }
+    }*/
 }

@@ -10,10 +10,6 @@
         <title>C'est La Vie</title>
         <link href="../resources/css/PaginaPrincipal.css" rel="stylesheet" type="text/css"/>
         <style>
-            .downwards .dropdown-submenu>.dropdown-menu {
-                position: relative;
-                left: -0;
-            }
             .margin{
                 margin-top: 50px;
                 margin-bottom: 100px;
@@ -25,42 +21,13 @@
                 margin-bottom: 10px
             }
         </style>
-        <f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>
+        <!--<f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>-->
     </h:head>
     <h:body class="body">
         <p:growl id="msj"/>
         <div class="menu">
             <b:navBar brand-img="../resources/Imagenes/a1 - copia (2).jpg" brandHref="../PaginaPrincipal/PaginaPrincipal.xhtml" inverse="false">
 
-                <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
-                <b:navbarLinks pull="right" styleClass="hidden-xs">
-                    <b:dropMenu value="Iniciar Sesión"  icon="user">
-                        <h:form>
-                            <b:container fluid="true">
-                                <br></br>
-                                <b:commandButton value="Iniciar Sesión" look="info" style="width: 100%" action="Usuario"/>
-                                <br></br>
-                                <br></br>
-                                <p>¿No tienes cuenta? </p>
-                                <b:link value="Registrate" outcome="RegistroUsuario"/>
-                                <br></br>
-                                <br></br>
-                            </b:container>
-                        </h:form>
-                    </b:dropMenu>
-                    <b:dropMenu value="Usuario logeado"  icon="user" style="height: 35%" >
-                        <b:container fluid="true" style="align-content: center;text-align: center">
-                            <h:form>
-                                <img src="../resources/Imagenes/icon.jpg" style="width: 100%"/>
-                                <p:separator/>
-                                <b:commandButton value="Editar perfil" look="info" action="#{validarSesionController.redireccion()}" style="width: 100%"/><br/><br/>
-                                <b:commandButton value="Cerrar sesión"  actionListener="#{validarSesionController.salir()}" look="info" style="width: 100%"/>
-                            </h:form>
-                        </b:container>
-                    </b:dropMenu>
-                    <b:navLink value="Favoritos" icon="heart" href="#"></b:navLink>
-                    <b:navLink value="Bolsa" icon="shopping-cart" href="#"></b:navLink>
-                </b:navbarLinks>
             </b:navBar>
         </div>
         <p:panelGrid columns="2" style="width: 100%;text-align: center">
@@ -68,21 +35,9 @@
 
                 <h:outputLabel>
                     <h:form id="Datos">
-                        <p:panel header="DATOS PERSONALES" >
+                        <p:panel header="DATOS DE COMPRA" >
                             <img src="../resources/Imagenes/icon.jpg" width="150px"/><br/>
-                            <p:dataTable value="#{clienteController.listaCliente}" var="lc">
-                                <p:column headerText="Información Personal" style="font-size: 20px">
-                                    <h:outputText value="Nombre: #{lc.nombreCliente} #{lc.apellidoCliente}" style="font-size: 16px"/><br/>
-                                    <h:outputText value="Correo: #{lc.correo}" style="font-size: 16px"/><br/>
-                                    <h:outputText value="Dirección: #{lc.direccion}" style="font-size: 16px"/><br/>
-                                    <h:outputText value="País: #{lc.pais.nombrePais}" style="font-size: 16px"/><br/>
-                                    <b:commandButton value="Ver tarjetas registradas" actionListener="#{validarSesionController.redireccionTargetas()}" style="font-size: 18px" class="buttons" look="info"/><br/>
-                                    <b:commandButton value="Editar información personal" style="font-size: 18px" class="buttons" look="info"
-                                                     actionListener="#{clienteController.cargarCliente(lc)}" update="" oncomplete="PF('cli').show()"/><br/>
-                                    <b:commandButton value="Editar información de usuario" style="font-size: 18px" class="buttons" look="info"/>
-                                    <b:commandButton value="Dar de baja" look="danger" style="font-size: 18px" class="buttons"/>
-                                </p:column>
-                            </p:dataTable>
+                            
                         </p:panel>
                     </h:form>
 
@@ -149,4 +104,3 @@
         </p:panelGrid>
     </h:body>
 </html>
-

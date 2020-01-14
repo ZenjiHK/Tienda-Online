@@ -1,16 +1,54 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Intrucciones de Uso- C'est La Vie</title>
+        <title>C'est La Vie</title>
+        <link href="../resources/css/PaginaPrincipal.css" rel="stylesheet" type="text/css"/>
+        <link href="../resources/css/Login.css" rel="stylesheet" type="text/css"/>
+        <style>
+
+            .margin{
+                margin-top: 10%;
+                margin-bottom: 25%;
+                margin-right: 25%;
+                margin-left: 30%
+            }
+            .buttons{
+                width: 100%;
+                margin-bottom: 10px
+            }
+
+            .titulo{
+                font-size: 30px;
+            }
+
+        </style>
     </h:head>
-    <h:body>
-        
+    <h:body class="body" style="background-image: url('resources/Imagenes/fondo3.jpg')">
+        <div class="login margin" style="border-radius: 25px">
+            <h:form id="loginForm" >
+                <p:growl id="mensaje"  showDetail="true" life="3000" />
+                <br></br>
+                <b:container fluid="true">
+
+                    <p:panelGrid columns="1" >
+                        <h:outputLabel style="text-align: center">
+                            <b:panel title="¡Bienvenido a C'e la vie!" look="info" titleClass="titulo" style="font-size: 20px">
+                                <h:outputText value="¿Qué deseas hacer a continuación?" style="font-size: 25px"/><br/><br/>
+                                <b:commandButton value="Ir a Página Principal" action="PaginaPrincipal/PaginaPrincipal.xhtml" look="info" style="width: 100%" /><br/><br/>
+                                <b:commandButton value="Registrarme" action="PaginaPrincipal/RegistroUsuario.xhtml" look="info" style="width: 100%"/><br/><br/>
+                                <b:commandButton value="Iniciar Sesión" action="PaginaPrincipal/Usuario.xhtml" look="info" style="width: 100%"/>
+                            </b:panel>
+                        </h:outputLabel>
+                    </p:panelGrid>
+                </b:container>
+            </h:form>
+        </div>
     </h:body>
 </html>
 

@@ -8,15 +8,12 @@ package Controller;
 
 import Entity.User;
 import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 
-/**
- *
- * @author maynor.menjivarusam
- */
-@ManagedBean
+@Named (value = "validarSesionController")
 @SessionScoped
 public class ValidarSesionController implements Serializable{
     String redirect="";
@@ -26,6 +23,14 @@ public class ValidarSesionController implements Serializable{
             if (dato == null) {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("./../PaginaPrincipal/Usuario.xhtml");
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void index() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("./../PaginaPrincipal/PaginaPrincipal.xhtml");
         } catch (Exception e) {
             e.printStackTrace();
         }

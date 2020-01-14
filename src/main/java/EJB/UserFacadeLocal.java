@@ -29,6 +29,7 @@ public interface UserFacadeLocal {
 
     int count();
     
+    void ocultar(User u);
     User Sesion(User us);
     public void ActualizarUsuario(User u);   
  
