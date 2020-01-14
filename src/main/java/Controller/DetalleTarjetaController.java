@@ -90,9 +90,7 @@ public class DetalleTarjetaController implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-  
     
-
     @PostConstruct
     public void init() {
         this.detalletarjeta = new DetalleTarjeta();

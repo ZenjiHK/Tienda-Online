@@ -30,7 +30,7 @@ public class ValidarSesionController implements Serializable{
     
     public void index() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("./../PaginaPrincipal/PaginaPrincipal.xhtml");
+            User dato = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
         } catch (Exception e) {
             e.printStackTrace();
         }
