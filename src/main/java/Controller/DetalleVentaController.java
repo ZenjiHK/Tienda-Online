@@ -278,7 +278,7 @@ public class DetalleVentaController implements Serializable {
     public void Enviar1() {
         try {
             for (int a = 0; a < this.list.size(); a++) {
-
+                
                 this.d = new Descuento();
                 this.v = this.ventasFacadeLocal.findAll().get(0);
                 this.d.setIdDescuento(1);
