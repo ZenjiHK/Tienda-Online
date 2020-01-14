@@ -2,36 +2,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Registro</title>
         <link href="../resources/css/Registro.css" rel="stylesheet" type="text/css"/>
     </h:head>
     <h:body class="bodyRe">
-        <b:navBar brand-img="../resources/Imagenes/a1 - copia (2).jpg" brandHref="#" inverse="false">
-            <b:flyOutMenu styleClass="dropdown-submenu">
-                  <b:navbarLinks>
-                        <b:dropMenu value="Rebajas">
-                        <b:navLink value="Mujer" href="#"></b:navLink>
-                        <b:navLink value="Hombre" href="#"></b:navLink>
-                        <b:navLink value="Niño" href="#"></b:navLink>
-                        <b:navLink value="Niña" href="#"></b:navLink>
-                    </b:dropMenu>
-                        <b:dropMenu value="Mujer">
-                        <b:navLink value="Nueva Coleccion" href="#"></b:navLink>
-                        <b:navLink value="Prendas" href="#"></b:navLink>
-                        <b:navLink value="Accesorios" href="#"></b:navLink>
-                    </b:dropMenu>
-                        <b:dropMenu value="Hombre">
-                        <b:navLink value="Nueva Coleccion" href="#"></b:navLink>
-                        <b:navLink value="Prendas" href="#"></b:navLink>
-                        <b:navLink value="Sastreria" href="#"></b:navLink>
-                        <b:navLink value="Accesorios" href="#"></b:navLink>
-                    </b:dropMenu>
-                        <b:navLink value="Niña" href="#"></b:navLink>
-                        <b:navLink value="Niño" href="#"></b:navLink>
-                      </b:navbarLinks>
-            </b:flyOutMenu>
+        <p:growl id="msj"/>
+        <b:navBar brand-img="../resources/Imagenes/a1 - copia (2).jpg" brandHref="../PaginaPrincipal/PaginaPrincipal.xhtml" inverse="false">
+           
 
             <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
             <b:navbarLinks pull="right" styleClass="hidden-xs">
@@ -39,7 +20,7 @@
                 <b:navLink value="Bolsa" icon="shopping-cart" href="#"></b:navLink>
             </b:navbarLinks>
         </b:navBar>
-        
+
         <div class="registro">
             <h:form>
                 <br></br>
@@ -60,26 +41,36 @@
                             <br></br>
                             <b:column>
                                 <h:outputText value="¿Cómo quieres que nos dirijamos a ti?" />
-                                <b:inputText placeholder="Nombre*" ajax="true" autocomplete="false"/>
-                                <b:inputText placeholder="Apellido*" ajax="true" autocomplete="false"/>
+                                <b:inputText placeholder="Nombre*" value="#{clienteController.cliente.nombreCliente}" required="true" autocomplete="false"/>
+                                <b:inputText placeholder="Apellido*" value="#{clienteController.cliente.apellidoCliente}" required="true" ajax="true" autocomplete="false"/>
                             </b:column>
                         </b:row>
                         <b:row>
                             <br></br>
                             <b:column>
-                                <h:outputText value="Introduce un e-mail y contraseña para acceder a tu cuenta" />
-                                <b:inputText placeholder="E-mail*" ajax="true" autocomplete="false"/>
-                                <b:inputText placeholder="Contraseña*" ajax="true" autocomplete="false"/>
+                                <h:outputText value="Introduce un e-mail " />
+                                <b:inputText placeholder="E-mail*" autocomplete="false" id="email" value="#{clienteController.cliente.correo}" required="true" requiredMessage="Ingrese su Email correctamente"
+                                             validatorMessage="Formato Incorrecto de Correo ">
+                                    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                </b:inputText>
+                                <p:watermark for="email" value="carlos@gmail.com"/>
+                                <p:message for="email"/>
                             </b:column>
                         </b:row>
                         <b:row>
                             <br></br>
                             <b:column>
                                 <h:outputText value="Introduce tu direccion correcta para que tus entregas sean mucho mas rápidas" />
-                                <b:inputText placeholder="Direccion*" ajax="true" autocomplete="false"/>
-                                <b:inputText placeholder="País*" ajax="true" autocomplete="false"/>
+                                <b:inputText placeholder="Direccion*" autocomplete="false" id="txtDireccion" value="#{clienteController.cliente.direccion}" required="true" >
+                                    <f:validateLength minimum="10"/>
+                                </b:inputText>
+                                <h:outputLabel for="cmbPais" value="Pais cliente"/><br/>
+                                <p:selectOneMenu style="width: 100%" id="cmbPais" value="#{clienteController.pais.idPais}">     
+                                    <f:selectItems value="#{paisController.listaPais}" var="pa" itemLabel="#{pa.nombrePais}" itemValue="#{pa.idPais}"/>
+                                </p:selectOneMenu>
                             </b:column>
                         </b:row>
+                        <br/>
                         <b:row>
                             <b:column>
                                 <b:commandButton value="Siguiente Paso" look="info" style="width: 100%" actionListener="#{clienteController.insertarCliente()}"/>
@@ -89,7 +80,7 @@
                 </b:container>
             </h:form>
         </div>
-        
+
     </h:body>
 </html>
 

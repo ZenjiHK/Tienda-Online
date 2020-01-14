@@ -140,7 +140,7 @@ public class UserController implements Serializable{
             this.user.setRol(rol);
             this.userFacade.create(user);
             this.mensaje = "Insertado con éxito";
-            FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("Usuario.xhtml");
         } catch (Exception e) {
             this.mensaje = "Error: " + e.getMessage();
             e.printStackTrace();
@@ -220,7 +220,7 @@ public class UserController implements Serializable{
                 if (us.getRol().getNombreRol().equalsIgnoreCase("cliente")) {
                     redireccion = "/PaginaPrincipal/PaginaPrincipal?faces-redirect=true";
                 } else if (us.getRol().getNombreRol().equalsIgnoreCase("admin")) {
-                    redireccion = "/admin/user?faces-redirect=true";
+                    redireccion = "/admin/indexAdmin?faces-redirect=true";
                 }
                 int idUser = us.getCliente().getIdCliente();
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idUser", idUser);
@@ -235,7 +235,7 @@ public class UserController implements Serializable{
 
     public void cambioClave() {     
         if (this.clave1.equals(this.clave2)) {
-            int idCliente = 1;//Valor quemado. Se cambiará por el id recuperado de la sesión.         
+            int idCliente = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idUser");//Valor quemado. Se cambiará por el id recuperado de la sesión.         
             //Actualizar clave
             this.cliente.setIdCliente(idCliente);
             user.setCliente(cliente);
@@ -258,7 +258,7 @@ public class UserController implements Serializable{
                     redireccion = "/PaginaPrincipal/PaginaPrincipal?faces-redirect=true";
 
                 } else if (us.getRol().getNombreRol().equalsIgnoreCase("admin")) {
-                    redireccion = "/admin/user?faces-redirect=true";
+                    redireccion = "/index?faces-redirect=true";
                 }
                 int idUser = us.getCliente().getIdCliente();
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idUser", idUser);
@@ -269,5 +269,19 @@ public class UserController implements Serializable{
             FacesContext.getCurrentInstance().addMessage((null), new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error"));
         }
         return redireccion;
+    }
+    
+    public void oculto(User u){
+        try{
+        this.userFacade.ocultar(u);
+        this.user = new User();
+        this.mensaje = "Detalle de tarjeta eliminado correctamente";
+        } catch (Exception e) {
+            this.mensaje = "Error al eliminar" + e.getMessage();
+            e.printStackTrace();
+        }
+        FacesMessage mensaje = new FacesMessage(this.mensaje);
+        FacesContext.getCurrentInstance().addMessage(null, mensaje);
+        
     }
 }
