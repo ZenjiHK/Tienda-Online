@@ -215,8 +215,7 @@ public class EnvioReporteController implements Serializable {
                         + detalle.getCantidad() + "</td>"
                         + "<td>Descuento: " + this.detalle.getDescuento().getDescuento() + "</td>"
                         + "<td>Sub-Total: " + subtotal + "</td>"
-                        + "</tr>";
-                System.out.println("ajajajajaja" + this.detalle.getProducto().getNombreProducto());
+                        + "</tr>";                
             }
             this.tabla += "</tbody></table><h1 style='color:crimson;'>Total: $" + total + "</h1>";
 
