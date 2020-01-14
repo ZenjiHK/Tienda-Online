@@ -35,7 +35,10 @@ public class DetalleVentaController implements Serializable {
     private Descuento d;
     private Venta v;
     private DetalleVenta dt;
+    private Producto p;
     private List<DetalleVenta> vendidos;
+    
+    
 
     @EJB
     private ClienteFacadeLocal clientesFacadeLocal;
@@ -111,9 +114,24 @@ public class DetalleVentaController implements Serializable {
 
     public void insertar() {
         try {
+            this.detalleVenta.setIdProducto(this.p);
+            this.detalleVenta.setVenta(v);
+            this.detalleVentaEJB.create(detalleVenta);
+            limpiar();
+            this.msg = "Detalle de venta ingresado correctamente";
             /* detalleVentaEJB.create(detalleVenta);*/
         } catch (Exception e) {
+            this.msg = "Error";
         }
+         FacesMessage mensaje = new FacesMessage(this.msg);
+        FacesContext.getCurrentInstance().addMessage(null, mensaje);
+    }
+    public void limpiar(){
+    this.detalleVenta = new DetalleVenta();
+    this.p = new Producto();
+    this.v = new Venta();
+    this.detalleVenta.setIdProducto(this.p);
+    this.detalleVenta.setVenta(v);
     }
 
     public void listar() {
@@ -136,27 +154,6 @@ public class DetalleVentaController implements Serializable {
         } catch (Exception e) {
         }
     }
-
-    /*
-    public void guardar_lista() {
-        Iterator<Producto> listado = list.iterator();
-        for (int i = 0; i < list.size(); i++) {
-            Producto p = new Producto();
-            p = list.get(i);
-            DetalleVenta dt = new DetalleVenta();
-            dt.setIdDetalleVenta(0);
-            dt.setCantidad(1);
-            dt.setIdProducto(p);
-            dt.setTotal(p.getPrecioVenta());
-
-            try {
-                this.detalleVentaEJB.create(detalleVenta);
-            } catch (Exception e) {
-                System.out.println("Error al guardar lista");
-            }
-        }
-    }
-     */
     public void eliminar(DetalleVenta dv) {
         try {
             this.detalleVenta = dv;
@@ -198,7 +195,7 @@ public class DetalleVentaController implements Serializable {
     /*Método para borrar la lista de los detalles de la venta*/
     public void borrar(DetalleVenta d) {
         try {
-            this.detalleVentaEJB.remove(d);
+            this.vendidos.remove(d);
             msg = "Producto eliminado";
         } catch (Exception e) {
             this.msg = "Error";
@@ -284,7 +281,7 @@ public class DetalleVentaController implements Serializable {
             for (int a = 0; a < this.list.size(); a++) {
 
                 this.d = new Descuento();
-                this.v = this.ventasFacadeLocal .findAll().get(0);
+                this.v = this.ventasFacadeLocal.findAll().get(0);
                 this.d.setIdDescuento(1);
                 this.d.setDescuento(0);
                 this.v.setCliente(this.clientesFacadeLocal.findAll().get(0));
@@ -292,11 +289,12 @@ public class DetalleVentaController implements Serializable {
                 this.dt.setIdDetalleVenta(a);
                 this.dt.setIdProducto(this.list.get(0));
                 this.dt.setCantidad(1);
+                this.dt.setTotal(this.dt.getProducto().getPrecioVenta() * this.dt.getCantidad());
                 this.dt.setDescuento(this.d);
                 this.dt.setVenta(this.v);
 
                 this.vendidos.add(this.dt);
-              
+
                 ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
                 externalContext.redirect("http://localhost:16786/Tienda-Online/faces/admin/detalleventa.xhtml");
             }
@@ -308,4 +306,5 @@ public class DetalleVentaController implements Serializable {
         FacesContext.getCurrentInstance().addMessage(msg, msj);
 
     }
+
 }
