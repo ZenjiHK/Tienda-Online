@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+     >
+    <h:head>
+        <title>C'est La Vie</title>
+        <link href="../resources/css/PaginaPrincipal.css" rel="stylesheet" type="text/css"/>
+        <style>
+            .downwards .dropdown-submenu>.dropdown-menu {
+                position: relative;
+                left: -0;
+            }
+            .margin{
+                margin-top: 50px;
+                margin-bottom: 100px;
+                margin-right: 150px;
+                margin-left: 80px;
+            }
+            .buttons{
+                width: 100%;
+                margin-bottom: 10px
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="menu">
+            <b:navBar brand-img="../resources/Imagenes/a1 - copia (2).jpg" brandHref="PaginaPrincipal.xhtml" inverse="false">
+
+                <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
+                <b:navbarLinks pull="right" styleClass="hidden-xs">
+                    <b:dropMenu value="Iniciar Sesión" icon="user" styleClass="btnOcultarOPCUser">
+                        <h:form>
+                            <b:container fluid="true">
+                                <br></br>
+                                <b:commandButton value="Iniciar Sesión" look="info" style="width: 100%" action="Usuario"/>
+                                <br></br>
+                                <br></br>
+                                <p>¿No tienes cuenta? </p>
+                                <b:link value="Registrate" outcome="RegistroUsuario"/>
+                                <br></br>
+                                <br></br>
+                            </b:container>
+                        </h:form>
+                    </b:dropMenu>
+                    <b:dropMenu value="Usuario logeado"  icon="user" style="height: 35%" rendered="#{facesContext.getCurrentInstance().getExternalContext().getSessionMap()!=null}" styleClass="btnVerOPCUser">
+                        <b:container fluid="true" style="align-content: center;text-align: center">
+                            <h:form>
+                                <img src="../resources/Imagenes/icon.jpg" style="width: 100%"/>
+                                <p:separator/>
+                                <b:commandButton value="Editar perfil" look="info" action="#{validarSesionController.redireccion()}" style="width: 100%"/><br/><br/>
+                                <b:commandButton value="Cerrar sesión"  actionListener="#{validarSesionController.salir()}" look="info" style="width: 100%"/>
+                            </h:form>
+                        </b:container>
+                    </b:dropMenu>
+                    <b:navLink value="Favoritos" icon="heart" href="#"></b:navLink>
+                    <b:navLink value="Bolsa" icon="shopping-cart" href="#"></b:navLink>
+                </b:navbarLinks>
+            </b:navBar>
+        </div>
+    </h:body>
+</html>
