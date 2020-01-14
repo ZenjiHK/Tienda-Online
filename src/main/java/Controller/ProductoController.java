@@ -20,20 +20,19 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-
 @Named(value = "productoController")
 @SessionScoped
-public class ProductoController implements Serializable{
+public class ProductoController implements Serializable {
 
     @EJB
     private ProductoFacadeLocal productoEJB;
     private Producto producto;
-    private List<Producto> listaproducto;  
+    private List<Producto> listaproducto;
     private String mensaje;
-    private String estado;  
+    private String estado;
     //Listas para mostrar las diferentes opciones del catalogo 
     /* Variables para manejar la consulta de condiciones de los items*/
-    /* Aviso es el mensaje que va a imprimir en el UX*/
+ /* Aviso es el mensaje que va a imprimir en el UX*/
     private String aviso;
     /* variable de tipo booleana para corroborar la eficacia del metodo creado en el Facade */
     private boolean res;
@@ -74,8 +73,10 @@ public class ProductoController implements Serializable{
     private List<Producto> listaNinoPijama;
     private List<Producto> listaNinoPantalon;
     private List<Producto> listaNinoShort;
-     private List<Producto> listaNinaFaldas;
-    
+    private List<Producto> listaNinaFaldas;
+    private List<Producto> listaMujer;
+    private List<Producto> listaHombre;
+    private List<Producto> listaInfantil;
 
     public List<Producto> getListaMujeresBlusas() {
         this.listaMujeresBlusas = this.productoEJB.filtroProductosCategoria("Blusas", "Mujer");
@@ -87,7 +88,7 @@ public class ProductoController implements Serializable{
     }
 
     public List<Producto> getListaMujeresTop() {
-         this.listaMujeresTop = this.productoEJB.filtroProductosCategoria("Top", "Mujer");
+        this.listaMujeresTop = this.productoEJB.filtroProductosCategoria("Top", "Mujer");
         return listaMujeresTop;
     }
 
@@ -150,7 +151,7 @@ public class ProductoController implements Serializable{
     }
 
     public List<Producto> getListaHombreJeans() {
-         this.listaHombreJeans = this.productoEJB.filtroProductosCategoria("Jeans", "Hombre");
+        this.listaHombreJeans = this.productoEJB.filtroProductosCategoria("Jeans", "Hombre");
         return listaHombreJeans;
     }
 
@@ -213,14 +214,43 @@ public class ProductoController implements Serializable{
     }
 
     public List<Producto> getListaNinaFaldas() {
-         this.listaNinaFaldas = this.productoEJB.filtroProductosCategoria("Faldas", "Infantil");
+        this.listaNinaFaldas = this.productoEJB.filtroProductosCategoria("Faldas", "Infantil");
         return listaNinaFaldas;
     }
 
     public void setListaNinaFaldas(List<Producto> listaNinaFaldas) {
         this.listaNinaFaldas = listaNinaFaldas;
     }
-  
+
+    public List<Producto> getListaMujer() {
+        this.listaMujer = this.productoEJB.filtroCategoria("Mujer");
+        return listaMujer;
+    }
+
+    public void setListaMujer(List<Producto> listaMujer) {
+        this.listaMujer = listaMujer;
+    }
+
+    public List<Producto> getListaHombre() {
+        this.listaHombre = this.productoEJB.filtroCategoria("Hombre");
+        return listaHombre;
+    }
+
+    public void setListaHombre(List<Producto> listaHombre) {
+        this.listaHombre = listaHombre;
+    }
+
+    public List<Producto> getListaInfantil() {
+        this.listaInfantil = this.productoEJB.filtroCategoria("Infantil");
+        return listaInfantil;
+    }
+
+    public void setListaInfantil(List<Producto> listaInfantil) {
+        this.listaInfantil = listaInfantil;
+    }
+
+
+    
     public String getEstado() {
         return estado;
     }
@@ -313,8 +343,8 @@ public class ProductoController implements Serializable{
 
     /* Metodo get y set de la variale string aviso */
 
-    /* get */
-    /* se utiliza toda la entidad producto*/ 
+ /* get */
+ /* se utiliza toda la entidad producto*/
     public String getAviso(Producto p) {
         /* Mensajito default vacio que muestra la disponibilidad de los productos*/
         String stock = "";

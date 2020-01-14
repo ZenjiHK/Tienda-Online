@@ -13,9 +13,18 @@
     <h:body>
         <ui:include src="topnavbar.xhtml"/>
         <h:panelGrid columns="2" id="panel">
-       
+            <h:outputLabel>
+                <h:form>     
+                    Seleccione categoria:<br></br>
+                    <p:linkButton value="Camisas" outcome="ninosCamisas.xhtml" style="width: 100%"></p:linkButton><br></br>
+                    <p:linkButton value="Pijama" outcome="ninosPijama.xhtml" style="width: 100%"></p:linkButton><br></br>
+                    <p:linkButton value="Pantalones" outcome="ninosPantalones.xhtml" style="width: 100%"></p:linkButton><br></br>
+                    <p:linkButton value="Shorts" outcome="ninosShorts.xhtml" style="width: 100%"></p:linkButton><br></br>           
+                    <p:linkButton value="Faldas" outcome="ninosFaldas.xhtml" style="width: 100%"></p:linkButton><br></br>
+                </h:form>
+            </h:outputLabel>
             <h:form>
-                <p:dataGrid value="#{productoController.listaproducto}" var="prod" columns="3" layout="grid"
+                <p:dataGrid value="#{productoController.listaInfantil}" var="prod" columns="3" layout="grid"
                             rows="6" paginator="true"
                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">

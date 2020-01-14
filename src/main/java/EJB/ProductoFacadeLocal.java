@@ -29,4 +29,5 @@ public interface ProductoFacadeLocal {
 
     public Double precioVenta(Producto po);
 
+     List<Producto> filtroCategoria(String cat);
 }

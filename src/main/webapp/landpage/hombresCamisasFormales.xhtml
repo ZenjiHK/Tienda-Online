@@ -13,7 +13,16 @@
         <ui:include src="topnavbar.xhtml"/>
         <p:panelGrid columns="2">
             <h:outputLabel>
-                Filtros
+                <h:form>     
+                    Seleccione categoria:<br></br>
+                    <p:linkButton value="Camisas sport" outcome="hombresCamisasSport.xhtml" style="width: 100%"></p:linkButton><br></br>
+                    <p:linkButton value="Camisas casuales" outcome="hombresCamisasCasuales.xhtml" style="width: 100%"></p:linkButton><br></br>
+                    <p:linkButton value="Camisas formales" outcome="hombresCamisasFormales.xhtml" style="width: 100%"></p:linkButton><br></br>
+                    <p:linkButton value="Pantalones jeans" outcome="hombresJeans.xhtml" style="width: 100%"></p:linkButton><br></br>
+                    <p:linkButton value="Pantalón de vestir" outcome="hombresPantalonVestir.xhtml" style="width: 100%"></p:linkButton><br></br>
+                    <p:linkButton value="Short" outcome="hombresShort.xhtml" style="width: 100%" ></p:linkButton><br></br>
+                </h:form>
+
             </h:outputLabel>
             <h:form>
                 <p:dataTable value="#{productoController.listaHombreFormales}" var="prod" rows="3" paginator="true"

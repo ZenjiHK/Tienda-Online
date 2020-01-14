@@ -12,10 +12,21 @@
 
     <h:body>
         <ui:include src="topnavbar.xhtml"/>
-        <h:panelGrid columns="2" id="panel">
-       
+        <h:panelGrid columns="2" id="panel" style="text-align: center">
+            <h:outputLabel>
+                <h:form>     
+                    Seleccione categoria:<br></br><br/>
+                    <p:linkButton value="Camisas sport" outcome="hombresCamisasSport.xhtml" style="width: 100%"></p:linkButton><br></br><br/>
+                    <p:linkButton value="Camisas casuales" outcome="hombresCamisasCasuales.xhtml" style="width: 100%"></p:linkButton><br></br><br/>
+                    <p:linkButton value="Camisas formales" outcome="hombresCamisasFormales.xhtml" style="width: 100%" ></p:linkButton><br></br><br/>
+                    <p:linkButton value="Pantalones jeans" outcome="hombresJeans.xhtml" style="width: 100%"></p:linkButton><br></br><br/>
+                    <p:linkButton value="Pantalón de vestir" outcome="hombresPantalonVestir.xhtml" ></p:linkButton><br></br><br/>
+                    <p:linkButton value="Short" outcome="hombresShort.xhtml" style="width: 100%;"></p:linkButton><br></br>
+                </h:form>
+
+            </h:outputLabel>
             <h:form>
-                <p:dataGrid value="#{productoController.listaproducto}" var="prod" columns="3" layout="grid"
+                <p:dataGrid value="#{productoController.listaHombre}" var="prod" columns="3" layout="grid"
                             rows="6" paginator="true"
                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">

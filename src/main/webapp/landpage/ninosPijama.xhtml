@@ -12,8 +12,15 @@
     <h:body>
         <ui:include src="topnavbar.xhtml"/>
         <p:panelGrid columns="2">
-            <h:outputLabel>
-                Filtros
+             <h:outputLabel>
+                <h:form>     
+                    Seleccione categoria:<br></br>
+                    <p:linkButton value="Camisas" outcome="ninosCamisas.xhtml" style="width: 100%"></p:linkButton><br></br>
+                    <p:linkButton value="Pijama" outcome="ninosPijama.xhtml" style="width: 100%"></p:linkButton><br></br>
+                    <p:linkButton value="Pantalones" outcome="ninosPantalones.xhtml" style="width: 100%"></p:linkButton><br></br>
+                    <p:linkButton value="Shorts" outcome="ninosShorts.xhtml" style="width: 100%"></p:linkButton><br></br>           
+                    <p:linkButton value="Faldas" outcome="ninosFaldas.xhtml" style="width: 100%"></p:linkButton><br></br>
+                </h:form>
             </h:outputLabel>
             <h:form>
                 <p:dataTable value="#{productoController.listaNinoPijama}" var="prod" rows="3" paginator="true"

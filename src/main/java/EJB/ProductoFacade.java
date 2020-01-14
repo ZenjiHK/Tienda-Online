@@ -104,8 +104,7 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
     //Métodos para obtener las listas que irán en las diferentes opciones del catalogo
     @Override
      public List<Producto> filtroProductosCategoria(String tipoRopa, String cat) {
-        Query query = em.createQuery("SELECT p FROM Producto p WHERE p.tipoRopa.nombreTipoRopa = ?1 and p.categoria.nombreCategoria = ?2");
-        System.out.println("aeeeeeeeeeeeeeeeeeeee");
+        Query query = em.createQuery("SELECT p FROM Producto p WHERE p.tipoRopa.nombreTipoRopa = ?1 and p.categoria.nombreCategoria = ?2");   
         query.setParameter(1, tipoRopa); 
         query.setParameter(2, cat);
         List<Producto> resu= query.getResultList();
@@ -114,5 +113,16 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
         }
         return resu;
     }
-    
+     //Métodos para obtener las listas que irán en las diferentes opciones del catalogo
+    @Override
+     public List<Producto> filtroCategoria(String cat) {
+        Query query = em.createQuery("SELECT p FROM Producto p WHERE p.categoria.nombreCategoria =:cat");     
+        query.setParameter("cat", cat);
+        List<Producto> resu= query.getResultList();
+        for (Producto lista : resu) {            
+            System.out.println("Tipo : " + lista.getNombreProducto());
+        }
+        return resu;
+    }
+     
 }
