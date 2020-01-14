@@ -13,7 +13,8 @@
         <ui:include src="topnavbar.xhtml"/>
         <p:panelGrid columns="2">
             <h:outputLabel>
-                <h:form>     
+                <h:form>   
+                    
                     Seleccione categoria:<br></br>
                     <p:linkButton value="Camisas sport" outcome="hombresCamisasSport.xhtml" style="width: 100%"></p:linkButton><br></br>
                     <p:linkButton value="Camisas casuales" outcome="hombresCamisasCasuales.xhtml" style="width: 100%"></p:linkButton><br></br>
@@ -26,8 +27,7 @@
             </h:outputLabel>
             <h:form>
                 <p:dataTable value="#{productoController.listaHombreCasual}" var="prod" rows="3" paginator="true"
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
-                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+                       paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
                     <p:column>                    
                         <p:panel  rendered="#{prod.stock>0}" header="#{prod.nombreProducto}" style="text-align: center">
                             <p:panelGrid columns="2">
