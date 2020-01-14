@@ -121,7 +121,7 @@ public class FormaPagoController implements Serializable {
                 } else if (fp.getIdFormaPago() == 2) {
                     redireccion = "http://localhost:8080/Tienda-Online/faces/admin/user.xhtml";
                 } else if (fp.getIdFormaPago() == 3) {
-                    redireccion = "http://localhost:8080/Tienda-Online/faces/User/pagopaypal.xhtml";
+                    redireccion = "http://localhost:8080/Tienda-Online/faces/admin/pagopaypal.xhtml";
                 }
             }
             ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
