@@ -25,7 +25,18 @@
                         <p:panelGrid columns="2">
                             <h:outputLabel style="width: 30%">
                                 <h:graphicImage value="#{dv.producto.url}"  width="75px;"/>
+                                <br></br>
+                                <br></br>
+                                 <h:outputText value="Cantidad: #{dv.cantidad}"/>
+                                 <br></br>
+                                 <br></br>
+                                  <h:outputText value="Precio $:#{dv.producto.precioVenta}" />
+                                 <br></br>
+                                <br></br>
+                                <h:outputText value="Descuento: #{dv.descuento.descuento}"/>
+                                <br></br>
                             </h:outputLabel>
+                           
                             <h:outputLabel>
                                 <h:outputText value="Cliente: #{dv.venta.cliente.nombreCliente} #{dv.venta.cliente.apellidoCliente}" style="font-size: 20px"/> <br/><br/>
                                 <h:outputText value="Fecha y hora de compra: "/>
@@ -34,9 +45,13 @@
                                 </h:outputText>
                                 <br></br>
                                 <br></br>
-                                <h:outputText value="Precio $:#{dv.producto.precioVenta}" style="font-size: 15px;"/>
+                                <h:outputText value="Correo: #{dv.venta.cliente.correo}"/>
+                                 <br></br>
                                 <br></br>
+                                <h:outputText value="Direccion de envio: #{dv.venta.cliente.direccion}"/>
+                                 <br></br>
                                 <br></br>
+                                
                                 <p:commandButton value="Borrar" update="a" icon="times" action="#{detalleVentaController.borrar(dv)}" style="font-size: 15px"/>
                             </h:outputLabel>                        
                         </p:panelGrid>
