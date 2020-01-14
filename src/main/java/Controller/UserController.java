@@ -38,6 +38,16 @@ public class UserController implements Serializable{
     private List<Cliente> listaCliente;
     private String clave1;
     private String clave2;
+    
+    private int kevin;
+
+    public int getKevin() {
+        return kevin;
+    }
+
+    public void setKevin(int kevin) {
+        this.kevin = kevin;
+    }
 
     public String getClave1() {
         return clave1;
@@ -218,6 +228,7 @@ public class UserController implements Serializable{
             if (us != null) {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", us);
                 if (us.getRol().getNombreRol().equalsIgnoreCase("cliente")) {
+                    this.kevin = 1;
                     redireccion = "/PaginaPrincipal/PaginaPrincipal?faces-redirect=true";
                 } else if (us.getRol().getNombreRol().equalsIgnoreCase("admin")) {
                     redireccion = "/admin/indexAdmin?faces-redirect=true";

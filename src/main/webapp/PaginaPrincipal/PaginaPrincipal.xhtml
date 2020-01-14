@@ -15,14 +15,16 @@
                 left: -0;
             }
         </style>
+        <f:event type="preRenderView" listener="#{validarSesionController.index()}"/>
     </h:head>
     <h:body class="body">
+        <div id="usuarioLogeadoDIV">#{userController.kevin}</div>
         <div class="menu">
             <b:navBar brand-img="../resources/Imagenes/a1 - copia (2).jpg" brandHref="PaginaPrincipal.xhtml" inverse="false">
 
                 <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
                 <b:navbarLinks pull="right" styleClass="hidden-xs">
-                    <b:dropMenu value="Iniciar Sesión" icon="user">
+                    <b:dropMenu value="Iniciar Sesión" icon="user" styleClass="btnOcultarOPCUser">
                         <h:form>
                             <b:container fluid="true">
                                 <br></br>
@@ -36,7 +38,7 @@
                             </b:container>
                         </h:form>
                     </b:dropMenu>
-                    <b:dropMenu value="Usuario logeado"  icon="user" style="height: 35%" rendered="#{facesContext.getCurrentInstance().getExternalContext().getSessionMap()!=null}">
+                    <b:dropMenu value="Usuario logeado"  icon="user" style="height: 35%" rendered="#{facesContext.getCurrentInstance().getExternalContext().getSessionMap()!=null}" styleClass="btnVerOPCUser">
                         <b:container fluid="true" style="align-content: center;text-align: center">
                             <h:form>
                                 <img src="../resources/Imagenes/icon.jpg" style="width: 100%"/>
@@ -117,12 +119,12 @@
             </b:column>
         </b:row>
         <script>
-            $(document).ready(function () {
-                if (document.getElementById('menucillo')) {
-                    var cont = document.getElementById('menucillo').value;       
-                    alert(cont);
+            setTimeout(function(){
+                let kevin = document.getElementById("usuarioLogeadoDIV");
+                if (kevin.innerHTML === "0") {
+                    document.getElementsByClassName("btnVerOPCUser")[0].style.display = "none";
                 }
-            });
+            }, 500);
         </script>
     </h:body>
 </html>
