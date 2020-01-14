@@ -76,7 +76,7 @@
                                         <h:outputText value="Correo: #{lc.correo}" style="font-size: 16px"/><br/>
                                         <h:outputText value="Dirección: #{lc.direccion}" style="font-size: 16px"/><br/>
                                         <h:outputText value="País: #{lc.pais.nombrePais}" style="font-size: 16px"/><br/>
-                                        <b:commandButton value="Ver tarjetas registradas" actionListener="#{validarSesionController.redireccionTargetas()}" style="font-size: 18px" class="buttons" look="info"/><br/>
+                                        <b:commandButton value="Ver tarjetas registradas" action="#{validarSesionController.redireccionTargetas()}" style="font-size: 18px" class="buttons" look="info"/><br/>
                                         <b:commandButton value="Editar información personal" style="font-size: 18px" class="buttons" look="info"
                                                          actionListener="#{clienteController.cargarCliente(lc)}" update=":c" oncomplete="PF('cli').show()"/><br/>
                                         <b:commandButton value="Editar información de usuario" style="font-size: 18px" class="buttons" look="info"/>
