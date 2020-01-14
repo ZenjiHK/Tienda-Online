@@ -1,7 +1,6 @@
 package Controller;
 
 import EJB.ClienteFacadeLocal;
-import EJB.DescuentoFacadeLocal;
 import EJB.DetalleVentaFacadeLocal;
 import EJB.VentaFacadeLocal;
 import Entity.Descuento;
@@ -36,17 +35,13 @@ public class DetalleVentaController implements Serializable {
     private Descuento d;
     private Venta v;
     private DetalleVenta dt;
-    private List<DetalleVenta> vendidos;
     private Producto p;
+    private List<DetalleVenta> vendidos;
 
     @EJB
     private ClienteFacadeLocal clientesFacadeLocal;
     @EJB
     private VentaFacadeLocal ventasFacadeLocal;
-    @EJB
-    private DescuentoFacadeLocal descuentoFacade;
-    
-    
 
     public DetalleVenta getDt() {
         return dt;
@@ -105,15 +100,6 @@ public class DetalleVentaController implements Serializable {
         this.lista = lista;
     }
 
-    public Producto getP() {
-        return p;
-    }
-
-    public void setP(Producto p) {
-        this.p = p;
-    }
-    
-
     @PostConstruct
     public void init() {
         detalleVenta = new DetalleVenta();
@@ -122,19 +108,17 @@ public class DetalleVentaController implements Serializable {
         dt = new DetalleVenta();
         list = new LinkedList<>();
         vendidos = new LinkedList<>();
-        p= new Producto();
     }
+
+    /*
     public void insertar() {
         try {
-            this.detalleVenta.setIdProducto(this.p);                      
+            this.detalleVenta.setIdProducto(this.p);
             this.detalleVenta.setVenta(v);
-            this.detalleVenta.setCantidad(contador);
-            this.p.setPrecioVenta(total);  
-            this.detalleVenta.setDescuento(d);
             this.detalleVentaEJB.create(detalleVenta);
             limpiar();
             this.msg = "Detalle de venta ingresado correctamente";
-            /* detalleVentaEJB.create(detalleVenta);*/
+            /* detalleVentaEJB.create(detalleVenta);
         } catch (Exception e) {
             this.msg = "Error";
         }
@@ -148,7 +132,7 @@ public class DetalleVentaController implements Serializable {
     this.detalleVenta.setIdProducto(this.p);
     this.detalleVenta.setVenta(v);
     }
-
+     */
     public void listar() {
         try {
             lista = detalleVentaEJB.findAll();
@@ -170,7 +154,6 @@ public class DetalleVentaController implements Serializable {
         }
     }
 
-  
     public void eliminar(DetalleVenta dv) {
         try {
             this.detalleVenta = dv;
@@ -212,7 +195,7 @@ public class DetalleVentaController implements Serializable {
     /*Método para borrar la lista de los detalles de la venta*/
     public void borrar(DetalleVenta d) {
         try {
-            this.detalleVentaEJB.remove(d);
+            this.vendidos.remove(d);
             msg = "Producto eliminado";
         } catch (Exception e) {
             this.msg = "Error";
@@ -298,29 +281,25 @@ public class DetalleVentaController implements Serializable {
             for (int a = 0; a < this.list.size(); a++) {
 
                 this.d = new Descuento();
-                this.v = this.ventasFacadeLocal .findAll().get(0);
+                this.v = this.ventasFacadeLocal.findAll().get(0);
                 this.d.setIdDescuento(1);
-                this.d.setDescuento(this.descuentoFacade.descuento(d));
+                this.d.setDescuento(0);
                 this.v.setCliente(this.clientesFacadeLocal.findAll().get(0));
                 this.dt = new DetalleVenta();
                 this.dt.setIdDetalleVenta(a);
-                this.dt.setIdProducto(this.list.get(0));
+                this.dt.setIdProducto(this.list.get(a));
                 this.dt.setCantidad(1);
                 this.dt.setTotal(this.dt.getProducto().getPrecioVenta() * this.dt.getCantidad());
                 this.dt.setDescuento(this.d);
                 this.dt.setVenta(this.v);
-
                 this.vendidos.add(this.dt);
-              
-                ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-                externalContext.redirect("http://localhost:22162/Tienda-Online-master/faces/admin/detalleventa.xhtml");
             }
-            msg = "Proceso Realizado";
+            ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+            externalContext.redirect("http://localhost:16786/Tienda-Online/faces/admin/detalleventa.xhtml");
         } catch (IOException e) {
             msg = "Error";
         }
-        FacesMessage msj = new FacesMessage(msg);
-        FacesContext.getCurrentInstance().addMessage(msg, msj);
-
     }
+
 }
+
