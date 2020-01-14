@@ -180,11 +180,11 @@ public class EnvioReporteController implements Serializable {
         try {
             int idCliente = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idUser");
             this.cliente.setIdCliente(idCliente);
-            String correo=this.detalleFacade.obtenerCorreo(cliente);//Recuperamos el correo                     
-            double total = 0;
+            String correo=this.detalleFacade.obtenerCorreo(cliente);//Recuperamos el correo                                 
             int idventa = this.detalleFacade.ultimaVenta(idCliente);
             this.listaDetalle = this.detalleFacade.detalleFactura(idventa);
             Double cont = 0.0;
+            double total = 0;
 
             this.tabla = "<table border='2' style='width: 100%' class='table-active table-bordered table-borderless table-dark'>";
 
