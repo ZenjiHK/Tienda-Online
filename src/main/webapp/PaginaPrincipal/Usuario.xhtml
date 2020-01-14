@@ -29,7 +29,7 @@
                         <b:row>
                             <b:column>
                                 <h:outputText value="Nombre De Usuario:" />
-                                <b:inputText id="usuario" value="#{userController.user.nombreUsuario}" placeholder="Usuario" required="true" label="username" requiredMessage="Escriba el usuario por favor">
+                                <b:inputText id="usuario" value="#{userController.user.nombreUsuario}" placeholder="Usuario" required="true" requiredMessage="Escriba el usuario por favor">
                                     <f:facet name="prepend">
                                         <b:icon name="user" />
                                     </f:facet>
@@ -39,7 +39,7 @@
                         <b:row>
                             <b:column>
                                 <h:outputText value="Contraseña:" />
-                                <b:inputSecret id="password" value="#{userController.user.clave}" placeholder="Contraseña" required="true" label="password" requiredMessage="Escriba el password por favor">
+                                <b:inputSecret id="password" value="#{userController.user.clave}" placeholder="Contraseña" required="true" requiredMessage="Escriba el password por favor">
                                     <f:facet name="prepend">
                                         <b:iconAwesome name="key" /> 
                                     </f:facet>

@@ -18,7 +18,7 @@
         <f:event type="preRenderView" listener="#{validarSesionController.index()}"/>
     </h:head>
     <h:body class="body">
-        <div id="usuarioLogeadoDIV">#{userController.kevin}</div>
+        <div id="usuarioLogeadoDIV" style="display: none" >#{userController.kevin}</div>
         <div class="menu">
             <b:navBar brand-img="../resources/Imagenes/a1 - copia (2).jpg" brandHref="PaginaPrincipal.xhtml" inverse="false">
 
@@ -80,17 +80,16 @@
                 </b:carouselItem>
             </b:carousel>
         </h:form>
-
+        <b:button look="info" value="CATÁLOGO DE ROPA" outcome="/landpage/catalogo.xhtml" style="width: 100%; height: 50px;
+                  font-size: 20px"/>
         <b:row>
-            <br></br>
-            <br></br>
             <b:column col-sm="6" col-md="4">
                 <b:thumbnail>
                     <img src="../resources/Imagenes/67070531_94_D5.jpg" alt="Generic placeholder thumbnail"/>
                     <f:facet name="caption">
                         <h3 style="text-align: center">Ropa para niños</h3>
                         <p>
-                            <b:button look="info" value="Ir a categoría de Niños" outcome="../landpage/catalogo.xhtml" style="margin-right: 10px;width: 100%"/>
+                            <b:button look="info" value="Ir a categoría de Niños" outcome="/landpage/ninos.xhtml" style="margin-right: 10px;width: 100%"/>
                         </p>
                     </f:facet>
                 </b:thumbnail>
@@ -101,7 +100,7 @@
                     <f:facet name="caption">
                         <h3 style="text-align: center">Ropa para Caballeros</h3>
                         <p>
-                            <b:button look="info" value="Ir a categoría de Caballero" outcome="../landpage/catalogo.xhtml" style="margin-right: 10px;width: 100%"/>
+                            <b:button look="info" value="Ir a categoría de Caballero" outcome="/landpage/hombres.xhtml" style="margin-right: 10px;width: 100%"/>
                         </p>
                     </f:facet>
                 </b:thumbnail>
@@ -112,7 +111,7 @@
                     <f:facet name="caption">
                         <h3 style="text-align: center">Ropa para Damas</h3>
                         <p>
-                            <b:button look="info" value="Ir a categoría de Damas" outcome="../landpage/catalogo.xhtml" style="margin-right: 10px;width: 100%"/>
+                            <b:button look="info" value="Ir a categoría de Damas" outcome="/landpage/mujeres.xhtml" style="margin-right: 10px;width: 100%"/>
                         </p>
                     </f:facet>
                 </b:thumbnail>
@@ -123,8 +122,11 @@
                 let kevin = document.getElementById("usuarioLogeadoDIV");
                 if (kevin.innerHTML === "0") {
                     document.getElementsByClassName("btnVerOPCUser")[0].style.display = "none";
+                }else if(kevin.innerHTML !="0"){
+                    document.getElementsByClassName("btnOcultarOPCUser")[0].style.display = "none";
+                    document.getElementsByClassName("btnVerOPCUser")[0].style.display = "inline";
                 }
-            }, 500);
+            }, 50);
         </script>
     </h:body>
 </html>
