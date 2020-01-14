@@ -1,27 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:b="http://bootsfaces.net/ui"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>C'est La Vie</title>
-        <link href="../resources/css/PaginaPrincipal.css" rel="stylesheet" type="text/css"/>
-        <style>
-            .margin{
-                margin-top: 50px;
-                margin-bottom: 100px;
-                margin-right: 150px;
-                margin-left: 80px;
-            }
-            .buttons{
-                width: 100%;
-                margin-bottom: 10px
-            }
-        </style>
-        <f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>
+        <title>Detalle de venta</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Facelets Template</title>
     </h:head>
     <h:body class="body">
         <p:growl id="msj"/>
@@ -37,7 +27,7 @@
                     <h:form id="Datos">
                         <p:panel header="DATOS DE COMPRA" >
                             <img src="../resources/Imagenes/icon.jpg" width="150px"/><br/>
-                            
+
                         </p:panel>
                     </h:form>
 

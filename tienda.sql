@@ -339,6 +339,10 @@ CREATE TABLE cliente(
 
 ALTER TABLE cliente ADD CONSTRAINT FOREIGN KEY fk_cliente_pais(id_pais) REFERENCES pais(id_pais);
 
+insert into cliente(nombre_cliente,apellido_cliente,correo,direccion,id_pais) 
+values('Pablo','Ramírez','zhentsuwo@gmail.com','San Francisco Gotera',68),
+('Juan','Pérez','zenji503@gmail.com','San Francisco Gotera',68);
+
 CREATE TABLE forma_pago(
 		id_forma_pago int auto_increment primary key,
 		nombre_forma_pago varchar(50) not null);
@@ -372,6 +376,8 @@ CREATE TABLE user(
 		id_rol int not null,
 		estado boolean not null);
 
+insert into user(nombre_usuario,id_cliente,clave,id_rol,estado) 
+values('pablo',1,'123',1,true),('juan',2,'123',2,true);
 select * from user;
 
 ALTER TABLE user ADD CONSTRAINT FOREIGN KEY fk_user_cliente(id_cliente) REFERENCES cliente(id_cliente);

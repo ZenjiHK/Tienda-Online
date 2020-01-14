@@ -18,41 +18,9 @@
         <f:event type="preRenderView" listener="#{validarSesionController.index()}"/>
     </h:head>
     <h:body class="body">
+        <h:outputScript library="js" name="userActivo.js" />
         <div id="usuarioLogeadoDIV" style="display: none" >#{userController.kevin}</div>
-        <div class="menu">
-            <b:navBar brand-img="../resources/Imagenes/a1 - copia (2).jpg" brandHref="PaginaPrincipal.xhtml" inverse="false">
-
-                <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
-                <b:navbarLinks pull="right" styleClass="hidden-xs">
-                    <b:dropMenu value="Iniciar Sesión" icon="user" styleClass="btnOcultarOPCUser">
-                        <h:form>
-                            <b:container fluid="true">
-                                <br></br>
-                                <b:commandButton value="Iniciar Sesión" look="info" style="width: 100%" action="Usuario"/>
-                                <br></br>
-                                <br></br>
-                                <p>¿No tienes cuenta? </p>
-                                <b:link value="Registrate" outcome="RegistroUsuario"/>
-                                <br></br>
-                                <br></br>
-                            </b:container>
-                        </h:form>
-                    </b:dropMenu>
-                    <b:dropMenu value="Usuario logeado"  icon="user" style="height: 35%" rendered="#{facesContext.getCurrentInstance().getExternalContext().getSessionMap()!=null}" styleClass="btnVerOPCUser">
-                        <b:container fluid="true" style="align-content: center;text-align: center">
-                            <h:form>
-                                <img src="../resources/Imagenes/icon.jpg" style="width: 100%"/>
-                                <p:separator/>
-                                <b:commandButton value="Editar perfil" look="info" action="#{validarSesionController.redireccion()}" style="width: 100%"/><br/><br/>
-                                <b:commandButton value="Cerrar sesión"  actionListener="#{validarSesionController.salir()}" look="info" style="width: 100%"/>
-                            </h:form>
-                        </b:container>
-                    </b:dropMenu>
-                    <b:navLink value="Favoritos" icon="heart" href="#"></b:navLink>
-                    <b:navLink value="Bolsa" icon="shopping-cart" href="#"></b:navLink>
-                </b:navbarLinks>
-            </b:navBar>
-        </div>
+        <ui:include src="/PaginaPrincipal/navbarPrincipal.xhtml"/>
         <h:form>
             <b:carousel id="tiovivo" style="width: 1450px" interval="5500">
                 <b:carouselItem >
@@ -117,17 +85,6 @@
                 </b:thumbnail>
             </b:column>
         </b:row>
-        <script>
-            setTimeout(function(){
-                let kevin = document.getElementById("usuarioLogeadoDIV");
-                if (kevin.innerHTML === "0") {
-                    document.getElementsByClassName("btnVerOPCUser")[0].style.display = "none";
-                }else if(kevin.innerHTML !="0"){
-                    document.getElementsByClassName("btnOcultarOPCUser")[0].style.display = "none";
-                    document.getElementsByClassName("btnVerOPCUser")[0].style.display = "inline";
-                }
-            }, 50);
-        </script>
     </h:body>
 </html>
 

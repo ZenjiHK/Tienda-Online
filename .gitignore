@@ -743,3 +743,4 @@ target/TiendaEnLinea-1.0-SNAPSHOT/WEB-INF/classes/EJB/DescuentoFacade.class
 !/src/main/webapp/landpage/topnavbar.xhtml
 !/src/main/webapp/landpage/catalogo.xhtml
 !/src/main/webapp/User/detalleventa.xhtml
+!/src/main/webapp/admin/perfilAdmin.xhtml
