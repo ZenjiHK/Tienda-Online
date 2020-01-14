@@ -58,4 +58,11 @@ public class ValidarSesionController implements Serializable{
     return redirect;
     
     }
+    
+    public String redireccionCambioContra(){
+    redirect="/PaginaPrincipal/cambioClave?faces-redirect=true";
+    
+    return redirect;
+    
+    }
 }
