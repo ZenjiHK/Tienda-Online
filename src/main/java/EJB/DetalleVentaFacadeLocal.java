@@ -12,6 +12,7 @@ import javax.ejb.Local;
 /**
  *
  * @author maynor.menjivarusam
+ * @author evelyn.andradeusam
  */
 @Local
 public interface DetalleVentaFacadeLocal {
@@ -30,6 +31,6 @@ public interface DetalleVentaFacadeLocal {
 
     int count();
     
-   public List<DetalleVenta> factura(int iddventa);
+   public List<DetalleVenta> detalleFactura(int venta);
     
 }
