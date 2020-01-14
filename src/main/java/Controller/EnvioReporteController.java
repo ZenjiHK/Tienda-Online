@@ -178,51 +178,47 @@ public class EnvioReporteController implements Serializable {
     //Metodo para enviar correos
     public void enviarReporte() {
         try {
-            int idventa = 1;
+            int clienteId;
+            this.cliente.setCorreo(this.destinatario);//Envio del correo a la clase cliente
+            clienteId = this.clienteFacade.ExisteCorreo(cliente);//Se guarda el id de cliente que retorna el metodo Existe Correo
+            this.cliente.setIdCliente(clienteId);
+            double total = 0;
+            int idventa = getVenta().getIdVenta();
             this.listaDetalle = this.detalleFacade.detalleFactura(idventa);
             Double cont = 0.0;
-            
-              //Metodo para enviar correos
-    public void enviarReporte() {
-        try {
-            int idventa = 1;
-            this.listaDetalle = this.detalleFacade.detalleFactura(idventa);
-            Double cont = 0.0;
-            
-            
+
+            this.tabla = "<table border='2' style='width: 100%' class='table-active table-bordered table-borderless table-dark'>";
+
+            this.tabla += "<thead><tr><th>Codigo</th><th>Producto</th><th>Precio Unitario</th><th>Cantidad</th><th>Descuento</th><th>Sub-Total</th></tr></thead><tbody>";
             for (DetalleVenta nombre : this.listaDetalle) {
                 this.detalle = nombre;
                 double subtotal = 0.00;
                 subtotal = ((this.detalle.getProducto().getPrecioVenta() * this.detalle.getCantidad()) - (this.detalle.getDescuento().getDescuento() * (this.detalle.getProducto().getPrecioVenta() * this.detalle.getCantidad())));
                 cont += subtotal;
-                this.tabla = "<table border='2' style=\"width: 100%\" class=\"table-active table-bordered table-borderless table-dark\" >";
-                this.tabla = this.tabla
-                        + "<tr align='center'>"
-                        + "<br></br>"
+                total += subtotal;
+                this.tabla += ""
+                        + "<br><br>"
                         + "Fecha: " + this.detalle.getVenta().getFecha()
-                        + "<br></br>"
+                        + "<br>"
                         + "Nombre: " + this.detalle.getVenta().getCliente().getNombreCliente() + this.detalle.getVenta().getCliente().getApellidoCliente()
-                        + "<br></br>"
+                        + "<br>"
                         + "Correo: " + this.detalle.getVenta().getCliente().getCorreo()
-                        + "<br></br>"
+                        + "<br>"
                         + "Pais: " + this.detalle.getVenta().getCliente().getPais().getNombrePais()
-                        + "<br></br>"
+                        + "<br>"
                         + "Direccion de envio: " + this.detalle.getVenta().getCliente().getDireccion()
-                        + "<br></br>"
-                        + "</tr>"
-                        + "<tr align='center'>"                       
-                        + "<td>Código: " + this.detalle.getVenta().getIdVenta() + "</td>"
-                        + "<td>Producto: " + this.detalle.getProducto().getNombreProducto() + "</td>"
-                        + "<td>Precio Unitario: " + this.detalle.getProducto().getPrecioVenta() + "</td>"
-                        + "<td>Cantidad: " + this.detalle.getCantidad() + "</td>"
+                        + "<br><br>"
+                        + "<tr align='center'><td>"
+                        + detalle.getVenta().getIdVenta() + "</td><td>"
+                        + detalle.getProducto().getNombreProducto() + "</td><td>"
+                        + detalle.getProducto().getPrecioVenta() + "</td><td>"
+                        + detalle.getCantidad() + "</td>"
                         + "<td>Descuento: " + this.detalle.getDescuento().getDescuento() + "</td>"
                         + "<td>Sub-Total: " + subtotal + "</td>"
                         + "</tr>";
-                this.tabla = this.tabla + "</table>";
-               
+                System.out.println("ajajajajaja" + this.detalle.getProducto().getNombreProducto());
             }
-
-
+            this.tabla += "</tbody></table><h1 style='color:crimson;'>Total: $" + total + "</h1>";
 
             // Propiedades de la conexión
             Properties props = new Properties();
@@ -240,14 +236,13 @@ public class EnvioReporteController implements Serializable {
             message.setFrom(new InternetAddress("celavieonline@gmail.com"));
             message.addRecipient(
                     Message.RecipientType.TO,
-                    new InternetAddress("moran_andrade@hotmail.com"));
+                    new InternetAddress(destinatario));
             message.setSubject("Detalle de factura");
             message.setContent(
                     "\n Hemos Recibido tu pedido. "
                     + " \n\n Este es tu detalle de Compra C'E La Vie"
                     + " \n Gracias por preferirnos"
-                    + this.tabla
-                    +bodytabla,
+                    + this.tabla + "",
                     "text/html");
 
             // Lo enviamos.
