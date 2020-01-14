@@ -80,7 +80,7 @@
                                         <b:commandButton value="Ver tarjetas registradas" action="#{validarSesionController.redireccionTargetas()}" style="font-size: 18px" class="buttons" look="info"/><br/>
                                         <b:commandButton value="Editar información personal" style="font-size: 18px" class="buttons" look="info"
                                                          actionListener="#{clienteController.cargarCliente(lc)}" update=":c" oncomplete="PF('cli').show()"/><br/>
-                                        <b:commandButton value="Editar información de usuario" style="font-size: 18px" class="buttons" look="info"/>
+                                        <b:commandButton value="Cambiar clave de Usuario" action="#{validarSesionController.redireccionCambioContra()}" style="font-size: 18px" class="buttons" look="info"/>
                                         <b:commandButton value="Dar de baja" look="danger" style="font-size: 18px" class="buttons"/>
                                     </p:column>
                                 </p:dataTable>
