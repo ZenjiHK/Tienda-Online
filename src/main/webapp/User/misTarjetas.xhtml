@@ -37,7 +37,7 @@
                     <p:outputLabel for="txtEstado" value="Estado"/>
                     <p:inputText id="txtEstado" value="#{detalleTarjetaController.detalletarjeta.estado}" required="true"/>
                     <p:outputLabel value="Seleccione un método de pago" for="formapago"/>
-                   <p:selectOneMenu id="formapago" value="#{formaPagoController.formapago.idFormaPago}">
+                    <p:selectOneMenu id="formapago" value="#{detalleTarjetaController.formapago.idFormaPago}">
                         <f:selectItems value="#{formaPagoController.listapago}" var="f"
                                        itemLabel="#{f.nombreFormaPago}" itemValue="#{f.idFormaPago}"/>
                 </p:selectOneMenu>
@@ -56,11 +56,11 @@
                     <p:column headerText="Id">
                         <h:outputText value="#{dt.idDetalleTarjeta}"/>
                     </p:column>
-                    <p:column headerText="Numero de tarjeta" width="200" >
-                       <p:inputMask value="#{dt.numero_tarjeta}" mask="xxxx-xxxx-xxxx-xxxx-9999" style="border:none;" readonly="true"/>
-                    </p:column>
                     <p:column headerText="Cliente">
                         <h:outputText value="#{dt.cliente.nombreCliente} #{dt.cliente.apellidoCliente}"/>
+                    </p:column>
+                    <p:column headerText="Numero de tarjeta" width="200" >
+                       <p:inputMask value="#{dt.numero_tarjeta}" mask="xxxx-xxxx-xxxx-xxxx-9999" style="border:none;" readonly="true"/>
                     </p:column>
                     <p:column headerText="Ping">
                         <p:inputMask value="#{dt.ping}" mask="xxx" style="border:none;" readonly="true"/>
@@ -69,6 +69,9 @@
                         <h:outputText value="#{dt.expiracion}">
                             <f:convertDateTime pattern="dd-MM-YYYY"/>
                         </h:outputText>
+                    </p:column>
+                     <p:column headerText="Forma de pago">
+                         <h:outputText value="#{dt.formapago.nombreFormaPago}"/>
                     </p:column>
                     <p:column headerText="Eliminar">
                         <p:commandButton value="Eliminar" actionListener="#{detalleTarjetaController.oculto(dt)}"
