@@ -25,26 +25,6 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
     public ProductoFacade() {
         super(Producto.class);
     }
-
-    
-    @Override
-    public List<Producto> filtroProductosCategoria(String cat){
-        List<Producto> lista = new LinkedList<>();
-        String sql;
-        try {
-            sql = "SELECT p FROM Producto p WHERE p.categoria.idCategoria";
-            Query query = em.createQuery(sql);
-            
-            query.setParameter(1, cat);         
-            
-            lista = query.getResultList();
-           
-        } catch (Exception e) {
-            throw e;
-        } 
-        return lista;
-    }
-    
     /* Metodo que tiene como proposito validar cuantos items existen sobre un producto en
     formulario catalogo de productos */
     /* Override por que posee metodos abstractos declarados en el Facade Local */
@@ -64,7 +44,7 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
              q.setParameter(1, idProducto);
              /* Ejecutando query en un result list almacenado en una variable de lista */
              lista  = q.getResultList();
-             /* Condicion que consulta si hay items del producto consultado 
+             /* Condicion que consulta si hay items del producto consultado
              si los hay, valor se vuelve verdadero */
              if (!lista.isEmpty()) {
                   valor =  true;  
@@ -78,8 +58,8 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
             System.out.println("Causa: "+e);
             return valor;
         }
-    } 
-    
+    }
+   
     @Override
     public String nombreProducto(Producto p){
         Producto producto = null;
@@ -87,9 +67,9 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
         try {
             sql = "SELECT  p FROM Producto p  WHERE p.idProducto=?1";
             Query query = em.createQuery(sql);
-            
+           
             query.setParameter(1, p.getIdProducto());
-                        
+                       
             List<Producto> lista = query.getResultList();
             if (!lista.isEmpty()) {
                 producto = lista.get(0);
@@ -98,8 +78,8 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
             throw e;
         }
         return producto.getNombreProducto();
-    } 
-    
+    }
+   
       @Override
     public Double precioVenta(Producto po){
         Producto producto = null;
@@ -107,9 +87,9 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
         try {
             sql = "SELECT  p FROM Producto p  WHERE p.idProducto=?1";
             Query query = em.createQuery(sql);
-            
+           
             query.setParameter(1, po.getIdProducto());
-                        
+                       
             List<Producto> lista = query.getResultList();
             if (!lista.isEmpty()) {
                 producto = lista.get(0);
@@ -118,7 +98,32 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
             throw e;
         }
         return producto.getPrecioVenta();
-    } 
-    
-    
+    }
+   
+   
+    //Métodos para obtener las listas que irán en las diferentes opciones del catalogo
+    @Override
+     public List<Producto> filtroProductosCategoria(String tipoRopa, String cat) {
+        Query query = em.createQuery("SELECT p FROM Producto p WHERE p.tipoRopa.nombreTipoRopa = ?1 and p.categoria.nombreCategoria = ?2");  
+        query.setParameter(1, tipoRopa);
+        query.setParameter(2, cat);
+        List<Producto> resu= query.getResultList();
+        for (Producto lista : resu) {            
+            System.out.println("Tipo : " + lista.getNombreProducto());
+        }
+        return resu;
+    }
+     //Métodos para obtener las listas que irán en las diferentes opciones del catalogo
+    @Override
+     public List<Producto> filtroCategoria(String cat) {
+        Query query = em.createQuery("SELECT p FROM Producto p WHERE p.categoria.nombreCategoria =:cat");    
+        query.setParameter("cat", cat);
+        List<Producto> resu= query.getResultList();
+        for (Producto lista : resu) {            
+            System.out.println("Tipo : " + lista.getNombreProducto());
+        }
+        return resu;
+    }
+     
 }
+
