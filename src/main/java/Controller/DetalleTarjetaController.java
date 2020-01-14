@@ -25,7 +25,6 @@ public class DetalleTarjetaController implements Serializable {
     private List<DetalleTarjeta> listaCifrado;
     private DetalleTarjeta detalletarjeta;
     private Cliente cliente;
-    private FormaPago formapago;
     String msj;
     
     @EJB
