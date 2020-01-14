@@ -77,7 +77,7 @@ public class ClienteController implements Serializable {
             this.clienteEJB.create(cliente);
             limpiar();
             this.msj = "Cliente Ingresado correctamente";
-            FacesContext.getCurrentInstance().getExternalContext().redirect("insertarUsuario.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("insertUsuario.xhtml");
         } catch (Exception e) {
             this.msj = "Error al ingresar Cliente " + e.getMessage();
             e.printStackTrace();

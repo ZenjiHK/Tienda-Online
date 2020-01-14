@@ -29,7 +29,9 @@ public interface DetalleVentaFacadeLocal {
     List<DetalleVenta> findRange(int[] range);
 
     int count();
-    
-   public List<DetalleVenta> factura(int iddventa);
-    
+
+    public List<DetalleVenta> factura(int iddventa);
+
+    public List<DetalleVenta> detalleFactura(int venta);
+
 }

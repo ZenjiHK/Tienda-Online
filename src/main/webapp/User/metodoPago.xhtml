@@ -7,12 +7,12 @@
       xmlns:b="http://bootsfaces.net/ui">
     <h:head>
         <title>Metodo de pago</title>
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <!-- Utilice este modulo para poder desarrollar la ocultacion de las 
+        tarjetas de credito que se implementara en el modulo de usuario 
+        no debe debe de editar solo "eliminar" o agregar tarjeta-->
     </h:head>
     <h:body>
         <p:growl id="msj"/>
-        <center>
             <h:form id="d">
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Seleccione el metodo de pago" for="forma"/>
@@ -24,7 +24,6 @@
                                                  style="width:100%" />
                 </p:panelGrid>
             </h:form>
-            </center>
     </h:body>
 </html>
 

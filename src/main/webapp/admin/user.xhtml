@@ -62,11 +62,14 @@
                     <p:column headerText="Usuario">
                         <h:outputText value="#{u.nombreUsuario}"/>
                     </p:column>
+                    <p:column headerText="clave">
+                        <h:outputText value="#{u.clave}"/>
+                    </p:column>
                     <p:column headerText="Rol">
                         <h:outputText value="#{u.rol.nombreRol}"/>
                     </p:column>
                     <p:column headerText="Estado">
-                        <h:outputText value="#{u.estado ? 'Activo': 'Inactivo'}" />
+                        <h:outputText value="#{u.estado}"/>
                     </p:column>
                     <p:column headerText="Editar">
                         <p:commandButton value="Editar" actionListener="#{userController.cargarDatos(u)}"

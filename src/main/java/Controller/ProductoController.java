@@ -20,20 +20,19 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-
 @Named(value = "productoController")
 @SessionScoped
-public class ProductoController implements Serializable{
+public class ProductoController implements Serializable {
 
     @EJB
     private ProductoFacadeLocal productoEJB;
     private Producto producto;
     private List<Producto> listaproducto;
-    private List<Producto> consultaProductos;
     private String mensaje;
-    private String estado;  
+    private String estado;
+    //Listas para mostrar las diferentes opciones del catalogo 
     /* Variables para manejar la consulta de condiciones de los items*/
-    /* Aviso es el mensaje que va a imprimir en el UX*/
+ /* Aviso es el mensaje que va a imprimir en el UX*/
     private String aviso;
     /* variable de tipo booleana para corroborar la eficacia del metodo creado en el Facade */
     private boolean res;
@@ -59,10 +58,199 @@ public class ProductoController implements Serializable{
     private List<Categoria> listacategoria;
 
     //Filtros para el menú
-    private List<Producto> filtroProductosCategoria = new ArrayList<>();
+    private List<Producto> listaMujeresBlusas;
+    private List<Producto> listaMujeresTop;
+    private List<Producto> listaMujeresPantalon;
+    private List<Producto> listaMujeresFalda;
+    private List<Producto> listaMujeresVestido;
+    private List<Producto> listaHombreSport;
+    private List<Producto> listaHombreCasual;
+    private List<Producto> listaHombreFormales;
+    private List<Producto> listaHombreJeans;
+    private List<Producto> listaHombrePantalon;
+    private List<Producto> listaHombreShort;
+    private List<Producto> listaNinoCamisa;
+    private List<Producto> listaNinoPijama;
+    private List<Producto> listaNinoPantalon;
+    private List<Producto> listaNinoShort;
+    private List<Producto> listaNinaFaldas;
+    private List<Producto> listaMujer;
+    private List<Producto> listaHombre;
+    private List<Producto> listaInfantil;
+
+    public List<Producto> getListaMujeresBlusas() {
+        this.listaMujeresBlusas = this.productoEJB.filtroProductosCategoria("Blusas", "Mujer");
+        return listaMujeresBlusas;
+    }
+
+    public void setListaMujeresBlusas(List<Producto> listaMujeresBlusas) {
+        this.listaMujeresBlusas = listaMujeresBlusas;
+    }
+
+    public List<Producto> getListaMujeresTop() {
+        this.listaMujeresTop = this.productoEJB.filtroProductosCategoria("Top", "Mujer");
+        return listaMujeresTop;
+    }
+
+    public void setListaMujeresTop(List<Producto> listaMujeresTop) {
+        this.listaMujeresTop = listaMujeresTop;
+    }
+
+    public List<Producto> getListaMujeresPantalon() {
+        this.listaMujeresPantalon = this.productoEJB.filtroProductosCategoria("Pantalon", "Mujer");
+        return listaMujeresPantalon;
+    }
+
+    public void setListaMujeresPantalon(List<Producto> listaMujeresPantalon) {
+        this.listaMujeresPantalon = listaMujeresPantalon;
+    }
+
+    public List<Producto> getListaMujeresFalda() {
+        this.listaMujeresFalda = this.productoEJB.filtroProductosCategoria("Falda", "Mujer");
+        return listaMujeresFalda;
+    }
+
+    public void setListaMujeresFalda(List<Producto> listaMujeresFalda) {
+        this.listaMujeresFalda = listaMujeresFalda;
+    }
+
+    public List<Producto> getListaMujeresVestido() {
+        this.listaMujeresVestido = this.productoEJB.filtroProductosCategoria("Vestido", "Mujer");
+        return listaMujeresVestido;
+    }
+
+    public void setListaMujeresVestido(List<Producto> listaMujeresVestido) {
+        this.listaMujeresVestido = listaMujeresVestido;
+    }
+
+    public List<Producto> getListaHombreSport() {
+        this.listaHombreSport = this.productoEJB.filtroProductosCategoria("Camisas Sport", "Hombre");
+        return listaHombreSport;
+    }
+
+    public void setListaHombreSport(List<Producto> listaHombreSport) {
+        this.listaHombreSport = listaHombreSport;
+    }
+
+    public List<Producto> getListaHombreCasual() {
+        this.listaHombreCasual = this.productoEJB.filtroProductosCategoria("Camisas casuales", "Hombre");
+        return listaHombreCasual;
+    }
+
+    public void setListaHombreCasual(List<Producto> listaHombreCasual) {
+        this.listaHombreCasual = listaHombreCasual;
+    }
+
+    public List<Producto> getListaHombreFormales() {
+        this.listaHombreFormales = this.productoEJB.filtroProductosCategoria("Camisas formales", "Hombre");
+        return listaHombreFormales;
+    }
+
+    public void setListaHombreFormales(List<Producto> listaHombreFormales) {
+        this.listaHombreFormales = listaHombreFormales;
+    }
+
+    public List<Producto> getListaHombreJeans() {
+        this.listaHombreJeans = this.productoEJB.filtroProductosCategoria("Jeans", "Hombre");
+        return listaHombreJeans;
+    }
+
+    public void setListaHombreJeans(List<Producto> listaHombreJeans) {
+        this.listaHombreJeans = listaHombreJeans;
+    }
+
+    public List<Producto> getListaHombrePantalon() {
+        this.listaHombrePantalon = this.productoEJB.filtroProductosCategoria("Pantalon de vestir", "Hombre");
+        return listaHombrePantalon;
+    }
+
+    public void setListaHombrePantalon(List<Producto> listaHombrePantalon) {
+        this.listaHombrePantalon = listaHombrePantalon;
+    }
+
+    public List<Producto> getListaHombreShort() {
+        this.listaHombreShort = this.productoEJB.filtroProductosCategoria("Short", "Hombre");
+        return listaHombreShort;
+    }
+
+    public void setListaHombreShort(List<Producto> listaHombreShort) {
+        this.listaHombreShort = listaHombreShort;
+    }
+
+    public List<Producto> getListaNinoCamisa() {
+        this.listaNinoCamisa = this.productoEJB.filtroProductosCategoria("Camisas", "Infantil");
+        return listaNinoCamisa;
+    }
+
+    public void setListaNinoCamisa(List<Producto> listaNinoCamisa) {
+        this.listaNinoCamisa = listaNinoCamisa;
+    }
+
+    public List<Producto> getListaNinoPijama() {
+        this.listaNinoPijama = this.productoEJB.filtroProductosCategoria("Pijama", "Infantil");
+        return listaNinoPijama;
+    }
+
+    public void setListaNinoPijama(List<Producto> listaNinoPijama) {
+        this.listaNinoPijama = listaNinoPijama;
+    }
+
+    public List<Producto> getListaNinoPantalon() {
+        this.listaNinoPantalon = this.productoEJB.filtroProductosCategoria("Pantalon", "Infantil");
+        return listaNinoPantalon;
+    }
+
+    public void setListaNinoPantalon(List<Producto> listaNinoPantalon) {
+        this.listaNinoPantalon = listaNinoPantalon;
+    }
+
+    public List<Producto> getListaNinoShort() {
+        this.listaNinoShort = this.productoEJB.filtroProductosCategoria("Short", "Infantil");
+        return listaNinoShort;
+    }
+
+    public void setListaNinoShort(List<Producto> listaNinoShort) {
+        this.listaNinoShort = listaNinoShort;
+    }
+
+    public List<Producto> getListaNinaFaldas() {
+        this.listaNinaFaldas = this.productoEJB.filtroProductosCategoria("Faldas", "Infantil");
+        return listaNinaFaldas;
+    }
+
+    public void setListaNinaFaldas(List<Producto> listaNinaFaldas) {
+        this.listaNinaFaldas = listaNinaFaldas;
+    }
+
+    public List<Producto> getListaMujer() {
+        this.listaMujer = this.productoEJB.filtroCategoria("Mujer");
+        return listaMujer;
+    }
+
+    public void setListaMujer(List<Producto> listaMujer) {
+        this.listaMujer = listaMujer;
+    }
+
+    public List<Producto> getListaHombre() {
+        this.listaHombre = this.productoEJB.filtroCategoria("Hombre");
+        return listaHombre;
+    }
+
+    public void setListaHombre(List<Producto> listaHombre) {
+        this.listaHombre = listaHombre;
+    }
+
+    public List<Producto> getListaInfantil() {
+        this.listaInfantil = this.productoEJB.filtroCategoria("Infantil");
+        return listaInfantil;
+    }
+
+    public void setListaInfantil(List<Producto> listaInfantil) {
+        this.listaInfantil = listaInfantil;
+    }
+
+
     
-
-
     public String getEstado() {
         return estado;
     }
@@ -153,27 +341,10 @@ public class ProductoController implements Serializable{
         this.listacategoria = listacategoria;
     }
 
-    public List<Producto> getFiltroProductosCategoria() {
-        return filtroProductosCategoria;
-    }
-
-    public void setFiltroProductosCategoria(List<Producto> filtroProductosCategoria) {
-        this.filtroProductosCategoria = filtroProductosCategoria;
-    }
-
-    public List<Producto> getConsultaProductos() {
-        this.consultaProductos = this.productoEJB.filtroProductosCategoria(estado);
-        return consultaProductos;
-    }
-
-    public void setConsultaProductos(List<Producto> consultaProductos) {
-        this.consultaProductos = consultaProductos;
-    }
-    
     /* Metodo get y set de la variale string aviso */
 
-    /* get */
-    /* se utiliza toda la entidad producto*/ 
+ /* get */
+ /* se utiliza toda la entidad producto*/
     public String getAviso(Producto p) {
         /* Mensajito default vacio que muestra la disponibilidad de los productos*/
         String stock = "";
@@ -317,5 +488,4 @@ public class ProductoController implements Serializable{
         this.listacategoria = categoriaEJB.findAll();
         this.listaproducto = productoEJB.findAll();
     }
-
 }

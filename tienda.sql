@@ -341,11 +341,7 @@ CREATE TABLE cliente(
 
 ALTER TABLE cliente ADD CONSTRAINT FOREIGN KEY fk_cliente_pais(id_pais) REFERENCES pais(id_pais);
 
-CREATE TABLE forma_pago(
-		id_forma_pago int auto_increment primary key,
-		nombre_forma_pago varchar(50) not null);
 
-insert into forma_pago(nombre_forma_pago) values('Crédito'),('Debito'),('Paypal');
 
 CREATE TABLE detalle_tarjeta(
 		id_detalle_tarjeta int auto_increment primary key,
@@ -353,10 +349,7 @@ CREATE TABLE detalle_tarjeta(
 		id_cliente int not null,
 		ping int not null,
 		expiracion date not null,
-		estado boolean not null,
-        id_forma_pago int not null);
-
-ALTER TABLE detalle_tarjeta ADD CONSTRAINT FOREIGN KEY fk_tarjeta_pago(id_forma_pago) REFERENCES forma_pago(id_forma_pago);
+		estado boolean not null);
 
 ALTER TABLE detalle_tarjeta ADD CONSTRAINT FOREIGN KEY fk_tarjeta_cliente(id_cliente) REFERENCES cliente(id_cliente);
 
@@ -380,13 +373,18 @@ ALTER TABLE user ADD CONSTRAINT FOREIGN KEY fk_user_cliente(id_cliente) REFERENC
 
 ALTER TABLE user ADD CONSTRAINT FOREIGN KEY fk_user_rol(id_rol) REFERENCES rol(id_rol);
 
+CREATE TABLE forma_pago(
+		id_forma_pago int auto_increment primary key,
+		nombre_forma_pago varchar(50) not null);
+
+insert into forma_pago(nombre_forma_pago) values('Crédito'),('Debito'),('Paypal');
+
 CREATE TABLE venta(
 		id_venta int auto_increment primary key,
 		id_cliente int not null,
 		id_detalle_tarjeta int not null,
 		fecha date not null,
 		estado varchar(15) not null);
-        
 
 ALTER TABLE venta ADD CONSTRAINT FOREIGN KEY fk_venta_cliente(id_cliente) REFERENCES cliente(id_cliente);
 
@@ -402,8 +400,7 @@ CREATE TABLE detalle_venta(
 		id_producto int not null,
 		cantidad int not null,
 		id_descuento int not null,
-		id_venta int not null,
-        total double not null);
+		id_venta int not null);
         
 ALTER TABLE detalle_venta ADD CONSTRAINT FOREIGN KEY fk_detalle_producto(id_producto) REFERENCES producto(id_producto);
 
@@ -413,8 +410,11 @@ ALTER TABLE detalle_venta ADD CONSTRAINT FOREIGN KEY fk_detalle_venta(id_venta) 
 
 CREATE TABLE factura(
 		id_factura int auto_increment primary key,
-		id_venta int not null);
+		id_venta int not null,
+		id_forma_pago int not null);
 
 ALTER TABLE factura ADD CONSTRAINT FOREIGN KEY fk_factura_venta(id_venta) REFERENCES venta(id_venta);
+
+ALTER TABLE factura ADD CONSTRAINT FOREIGN KEY fk_factura_pago(id_forma_pago) REFERENCES forma_pago(id_forma_pago);
 
 -- drop database tienda;

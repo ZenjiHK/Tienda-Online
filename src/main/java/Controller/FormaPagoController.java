@@ -56,6 +56,7 @@ public class FormaPagoController implements Serializable {
 
     public void limpiar() {
         this.formapago = new FormaPago();
+        this.listapago = formaPagoEJB.findAll();
     }
 
     public void crear() {
@@ -110,25 +111,39 @@ public class FormaPagoController implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
 
-    public void escogerPago() {
-        FormaPago fp = new FormaPago();
+    public String escogerPago() {
+        FormaPago fp;
         String redireccion = "";
         try {
             fp = this.formaPagoEJB.escogerPago(this.formapago);
+            System.out.println("********************" + formapago + "*********************************");
             if (fp != null) {
-                if (fp.getIdFormaPago() == 1) {
-                    redireccion = "http://localhost:8080/Tienda-Online/faces/admin/producto.xhtml";
-                } else if (fp.getIdFormaPago() == 2) {
-                    redireccion = "http://localhost:8080/Tienda-Online/faces/admin/user.xhtml";
-                } else if (fp.getIdFormaPago() == 3) {
-                    redireccion = "http://localhost:8080/Tienda-Online/faces/admin/pagopaypal.xhtml";
+                System.out.println("Acáaaaaa entréee"+ fp.getIdFormaPago());
+                switch (fp.getIdFormaPago()) {
+                    case 1:
+                        redireccion = "../admin/producto?faces-redirect=true";
+                        System.out.println("Traté de redirigir....******************");
+                        ExternalContext context2 = FacesContext.getCurrentInstance().getExternalContext();
+                        try {
+                            context2.redirect(context2.getRequestContextPath() + "http://www.google.com");
+                        } catch (IOException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 2:
+                        redireccion = "../admin/user?faces-redirect=true";
+                        break;
+                    case 3:
+                        redireccion = "../user/pagopaypal?faces-redirect=true";
+                        break;
+                    default:
+                        break;
                 }
             }
-            ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-            externalContext.redirect(redireccion);
-        } catch (IOException e) {
+        } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage((null), new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error"));
         }
-
+        return redireccion;
     }
 }

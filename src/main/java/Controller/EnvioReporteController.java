@@ -64,20 +64,18 @@ public class EnvioReporteController implements Serializable {
     private DetalleVentaFacadeLocal detalleFacade;
     private List<DetalleVenta> listaDetalle;
     private DetalleVenta detalle;
-    String tabla;
 
     @EJB
     private VentaFacadeLocal ventaFacade;
     private List<Venta> listaventa;
     private Venta venta;
-
+    
     @EJB
     private DescuentoFacadeLocal descuentoFacade;
     private List<Descuento> listadescuento;
     private Descuento descuento;
 
     public List<DetalleVenta> getListaDetalle() {
-        this.listaDetalle = this.detalleFacade.findAll();
         return listaDetalle;
     }
 
@@ -157,14 +155,6 @@ public class EnvioReporteController implements Serializable {
         this.destinatario = destinatario;
     }
 
-    public String getTabla() {
-        return tabla;
-    }
-
-    public void setTabla(String tabla) {
-        this.tabla = tabla;
-    }
-
     @PostConstruct
     public void init() {
         cliente = new Cliente();
@@ -172,33 +162,24 @@ public class EnvioReporteController implements Serializable {
         detalle = new DetalleVenta();
         venta = new Venta();
         descuento = new Descuento();
-
+        
     }
-/*
+
     //Metodo para enviar correos
     public void enviarReporte() {
         try {
-            int idventa = 3;
-            this.listaDetalle = this.detalleFacade.detalleFactura(idventa);
-            Double cont = 0.0;
-            for (DetalleVenta nombre : this.listaDetalle) {
-                this.detalle = nombre;
-                double subtotal = 0.00;
-                subtotal = ((this.detalle.getProducto().getPrecioVenta() * this.detalle.getCantidad()) - (this.detalle.getDescuento().getDescuento() * (this.detalle.getProducto().getPrecioVenta() * this.detalle.getCantidad())));
-                cont += subtotal;
-                this.tabla = "<table border='2' style=\"width: 100%\" class=\"table-active table-bordered table-borderless table-dark\" >";
-                this.tabla = this.tabla + "<tr align='center'>"
-                        + "<td>Código: " + this.detalle.getVenta().getIdVenta() + "</td>"
-                        + "<td>Producto: " + this.detalle.getProducto().getNombreProducto() + "</td>"
-                        + "<td>Precio Unitario: " + this.detalle.getProducto().getPrecioVenta() + "</td>"
-                        + "<td>Cantidad: " + this.detalle.getCantidad() + "</td>"
-                        + "<td>Descuento: " + this.detalle.getDescuento().getDescuento() + "</td>"
-                        + "<td>Sub-Total: " + subtotal + "</td>"
-                        + "</tr>";
-                this.tabla = this.tabla + "</table>";
-                System.out.println("ajajajaja" + this.detalle.getProducto().getNombreProducto());
-            }
+            int idventa=3;
+            this.detalleFacade.detalleFactura(idventa);
+            String fecha = "hoy";
+            String nombreCliente = "Amanda";
+           /* String nombreProducto = producto.getNombreProducto();
+            double precioVenta = producto.getPrecioVenta();
+            int cantidad = detalle.getCantidad();
+            int idVenta = venta.getIdVenta();
+            double descuento1 = descuento.getDescuento();
+            double Subtotal = ((precioVenta * cantidad) - (descuento1 * (precioVenta * cantidad)));*/
 
+            
             // Propiedades de la conexión
             Properties props = new Properties();
             props.setProperty("mail.smtp.host", "smtp.gmail.com");
@@ -215,16 +196,35 @@ public class EnvioReporteController implements Serializable {
             message.setFrom(new InternetAddress("celavieonline@gmail.com"));
             message.addRecipient(
                     Message.RecipientType.TO,
-                    new InternetAddress("moran_andrade@hotmail.com"));
-            message.setSubject("Detalle de factura");
+                    new InternetAddress("bluelovesong12@gmail.com"));//Acá se recupera el correo de destino ingresado en el formulario.
+            message.setSubject("Reporte Factura");            
             message.setContent(
-                    "fecha: " + this.detalle.getVenta().getFecha() + ",\n"
-                    + "\n Hola " + this.detalle.getVenta().getCliente().getNombreCliente() + ",\n"
-                    + "\n Hemos Recibido tu pedido. "
-                    + " \n\n Este es tudetal detalle de Compra C'E La Vie"
-                    + " \n Gracias por preferirnos"
-                    + this.tabla,
-                    "text/html");
+                    "fecha: " + fecha + ",\n"
+                      +"\n Hola " + nombreCliente + ",\n"
+                        + "\n Hemos Recibido tu pedido. "
+                        + " \n\n Este es tudetal detalle de Compra C'E La Vie"
+                        + " \n Gracias por preferirnos"
+                    +"<table class=\"egt\">\n"
+                    + "\n"
+                    + "<thead>"
+                    + "<tr>"
+                    + "<th>codigo</th>"
+                    + "<th>Producto</th>"
+                    + "<th>Precio Unitario</th>"
+                    + "<th>Cantidad</th>"
+                    + "<th>Descuento</th>"
+                    + "<th>Sub-Total</th>"
+                    + "</tr>"
+                    + "</thead>"
+                    + "<tbody>"
+                    + "<tr>\n"
+                    + "\n"
+      
+                    + "\n"
+                    + "  </tr>\n"
+                    + "</tbody>"
+                    + "\n"
+                    + "</table>", "text/html");
 
             // Lo enviamos.
             Transport t = session.getTransport("smtp");
@@ -232,8 +232,9 @@ public class EnvioReporteController implements Serializable {
             t.sendMessage(message, message.getAllRecipients());
             // Cierre.
             t.close();
-
+              FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se ha enviado un correo a la dirección ingresada. Verifique.", ""));
         } catch (MessagingException e) {
         }
-    }*/
+    }
+   
 }

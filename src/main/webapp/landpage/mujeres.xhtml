@@ -12,10 +12,24 @@
 
     <h:body>
         <ui:include src="topnavbar.xhtml"/>
-        <h:panelGrid columns="2" id="panel">    
+        <h:panelGrid columns="2" id="panel">
+            
+            <h:outputLabel style="text-align: center">
+                Seleccione categoria:<br></br>
+                <h:form>    
+                    
+                    <p:linkButton value="Blusas" outcome="mujeresBlusas.xhtml" style="width: 100%" ></p:linkButton><br></br>
+                    <p:linkButton value="Top" outcome="mujeresTop.xhtml"  style="width: 100%"></p:linkButton><br></br>
+                    <p:linkButton value="Pantalón" outcome="mujeresPantalon.xhtml"  style="width: 100%"></p:linkButton><br></br>
+                    <p:linkButton value="Falda" outcome="mujeresFalda.xhtml"  style="width: 100%"></p:linkButton><br></br>
+                    <p:linkButton value="Vestido" outcome="mujeresVestido.xhtml"  style="width: 100%"></p:linkButton><br></br>
+                </h:form>
+
+            </h:outputLabel>
             <h:form>
-                <p:dataGrid value="#{productoController.listaproducto}" var="prod" columns="3" layout="grid"
-                            rows="6" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+                <p:dataGrid value="#{productoController.listaMujer}" var="prod" columns="3" layout="grid"
+                            rows="6" paginator="true"
+                            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
                     <f:facet name="header">
                         Ropa disponible

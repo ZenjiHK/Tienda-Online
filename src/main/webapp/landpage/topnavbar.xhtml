@@ -7,51 +7,15 @@
     <h:head>
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
     </h:head>
-    <body>
+    <body>      
         <h:form>
-            <p:megaMenu orientation="horizontal" style="margin-top:20px">
-                <p:submenu label="Mujeres" icon="pi pi-check">
-                    <p:column>
-                        <p:submenu label="Prendas superiores">
-                            <p:menuitem value="Blusas"  />
-                            <p:menuitem value="Top"  />
-                        </p:submenu>
-                        <p:submenu label="Prendas inferiores">
-                            <p:menuitem value="Pantalon" url="#" />
-                            <p:menuitem value="Falda" url="#" />
-                            <p:menuitem value="vestido" url="#" />
-                        </p:submenu>
-                    </p:column>
-                </p:submenu>
-                <p:submenu label="Hombres" icon="pi pi-file">
-                    <p:column>
-                        <p:submenu label="Prendas superiores">
-                            <p:menuitem value="Camisas sport" url="#" />
-                            <p:menuitem value="Camisas casuales" url="#" />
-                            <p:menuitem value="Camisas formales" url="#" />
-                        </p:submenu>
-                        <p:submenu label="Prendas inferiores">
-                            <p:menuitem value="Pantalons jeans" url="#" />
-                            <p:menuitem value="Pantalón de vestir" url="#"/>
-                            <p:menuitem value="Short" url="#" />
-                        </p:submenu>
-                    </p:column>
-                </p:submenu>               
-                <p:submenu label="Niños" icon="pi pi-pencil">
-                    <p:column>
-                        <p:submenu label="Prendas superiores">
-                            <p:menuitem value="Camisas" url="#" />
-                            <p:menuitem value="Pijama" url="#" />
-                        </p:submenu>
-                        <p:submenu label="Prendas inferiores">
-                            <p:menuitem value="Pantalones" url="#" />
-                            <p:menuitem value="Shorts" url="#" />
-                            <p:menuitem value="Faldas" url="#" />
-                        </p:submenu>
-                    </p:column>
-                </p:submenu>
-                <p:menuitem value="Página principal" url="http://localhost:8080/Tienda-Online/" icon="pi pi-times"/>
-            </p:megaMenu>
+            
+            <p:breadCrumb>
+                <p:menuitem value="Inicio" url="../PaginaPrincipal/PaginaPrincipal.xhtml" />  
+                <p:menuitem value="Mujeres" url="mujeres.xhtml" />     
+                <p:menuitem value="Hombres" url="hombres.xhtml" />
+                <p:menuitem value="Niños" url="ninos.xhtml" />                          
+            </p:breadCrumb>
         </h:form>
     </body>
 </html>

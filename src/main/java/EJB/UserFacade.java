@@ -32,20 +32,6 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
     public UserFacade() {
         super(User.class);
     }
-    
-    @Override
-    public void ocultar(User u){
-        int rowsUpdated;
-        try {
-            Query q = em.createQuery("UPDATE User u SET u.estado = ?1 WHERE u.cliente.idCliente = ?2");
-            q.setParameter(1, !u.isEstado());
-            q.setParameter(2, u.getCliente().getIdCliente());
-            rowsUpdated = q.executeUpdate();
-        } catch (QueryException e) {
-            System.out.println("---Error: imposible ejecutar---");
-            System.out.println("causa "+e);
-        }
-    }
 
     @Override
     public User Sesion(User us) {

@@ -1,7 +1,6 @@
 package Controller;
 
 import EJB.DetalleTarjetaFacadeLocal;
-import EJB.FormaPagoFacadeLocal;
 import Entity.Cliente;
 import Entity.DetalleTarjeta;
 import Entity.FormaPago;
@@ -27,27 +26,7 @@ public class DetalleTarjetaController implements Serializable {
     private Cliente cliente;
     String msj;
     
-    @EJB
-    private FormaPagoFacadeLocal FormaPagoEJB;
-    private FormaPago formapago;
-    private List<FormaPago> listaformapago;
 
-    public FormaPago getFormapago() {
-        return formapago;
-    }
-
-    public void setFormapago(FormaPago formapago) {
-        this.formapago = formapago;
-    }
-
-    public List<FormaPago> getListaformapago() {
-        return listaformapago;
-    }
-
-    public void setListaformapago(List<FormaPago> listaformapago) {
-        this.listaformapago = listaformapago;
-    }
-    
     public List<DetalleTarjeta> getListaCifrado() {
         this.listaCifrado = this.DetalleTarjetaEJB.findAll();
         return listaCifrado;
@@ -95,21 +74,18 @@ public class DetalleTarjetaController implements Serializable {
     public void init() {
         this.detalletarjeta = new DetalleTarjeta();
         this.cliente = new Cliente();
-        this.formapago = new FormaPago();
-        this.listaformapago = FormaPagoEJB.findAll();
+        this.detalletarjeta.setCliente(cliente);
     }
 
     public void insertar() {
         try {
-            this.detalletarjeta.setIdDetalleTarjeta(0);
             this.detalletarjeta.setCliente(cliente);
-            this.detalletarjeta.setFormapago(formapago);
             this.DetalleTarjetaEJB.create(detalletarjeta);
-            this.msj = "Detalle de tarjeta ingresado correctamente";
             limpiar();
+            this.msj = "Detalle de tarjeta ingresado correctamente";
         } catch (Exception e) {
            this.msj = "El numero de tarjeta ya esta registrado, favor ingrese uno nuevo";
-            System.out.println(e);
+            e.printStackTrace();
         }
         FacesMessage mensaje = new FacesMessage(this.msj);
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
@@ -125,7 +101,6 @@ public class DetalleTarjetaController implements Serializable {
         try {
             this.detalletarjeta.setCliente(cliente);
             this.DetalleTarjetaEJB.edit(detalletarjeta);
-            this.detalletarjeta.setFormapago(formapago);
             this.detalletarjeta = new DetalleTarjeta();
             this.cliente = new Cliente();
             this.msj = "Detalle de tarjeta actualizado correctamente";
@@ -140,8 +115,6 @@ public class DetalleTarjetaController implements Serializable {
     public void limpiar() {
         this.detalletarjeta = new DetalleTarjeta();
         this.cliente = new Cliente();
-        this.formapago = new FormaPago();
-        this.listaformapago = FormaPagoEJB.findAll();
         this.detalletarjeta.setCliente(cliente);
     }
 
