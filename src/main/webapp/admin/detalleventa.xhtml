@@ -14,26 +14,46 @@
         <title>Facelets Template</title>
     </h:head>
     <h:body>
-        <h:form>
-            <p:dataTable var="dv" style="width: 50%;" value="#{detalleVentaController.vendidos}" scrollable="true" scrollWidth="95%" scrollHeight="150" rows="5" paginator="true" id="tabla">
-                <p:column headerText="Producto">
-                    <h:outputText value="#{dv.producto.nombreProducto}"/>
-                </p:column>
-                <p:column headerText="Imagen">
-                    <h:graphicImage value="#{dv.producto.url}"  width="30px;"/>
-                </p:column>
-                <p:column headerText="Cliente">
-                    <h:outputText value="#{dv.venta.cliente.nombreCliente} #{dv.venta.cliente.apellidoCliente}"/>
-                </p:column>
-                <p:column headerText="Fecha">
-                    <h:outputText value="#{dv.venta.fecha}"/>
-                </p:column>
-                <p:column headerText="Accion">
-                    <h:form>
-                        <p:commandButton value="Borrar" icon="times" action="#{detalleVentaController.borrar(dv)}"/>
-                    </h:form>
+        <p:growl id="msg"/>
+        <h:form id="a">
+            <p:dataTable var="dv" style="width: 50%;" value="#{detalleVentaController.vendidos}" scrollable="true" scrollWidth="95%" scrollHeight="500" rows="5" paginator="true" id="tabla">
+                <p:column headerText="Información de compra" style="text-align: center;width: 35%">
+                    <p:panel header="Producto a comprar: #{dv.producto.nombreProducto}" style="font-size: 20px">
+                        <p:panelGrid columns="2">
+                            <h:outputLabel style="width: 30%">
+                                <h:graphicImage value="#{dv.producto.url}"  width="75px;"/>
+                                <br></br>
+                                <br></br>
+                                <h:outputText value="Cantidad: #{dv.cantidad}"/>
+                                <br></br>
+                                <br></br>
+                                <h:outputText value="Precio $:#{dv.producto.precioVenta}" />
+                                <br></br>
+                                <br></br>
+                                <h:outputText value="Descuento: #{dv.descuento.descuento}"/>
+                                <br></br>
+                            </h:outputLabel>
+
+                            <h:outputLabel>
+                                <h:outputText value="Cliente: #{dv.venta.cliente.nombreCliente} #{dv.venta.cliente.apellidoCliente}" style="font-size: 20px"/> <br/><br/>
+                                <h:outputText value="Fecha y hora de compra: "/>
+                                <h:outputText value="#{dv.venta.fecha}">
+                                    <f:convertDateTime pattern="dd-MM-yyy"/>
+                                </h:outputText>
+                                <br></br>
+                                <br></br>
+                                <h:outputText value="Correo: #{dv.venta.cliente.correo}"/>
+                                <br></br>
+                                <br></br>
+                                <h:outputText value="Direccion de envio: #{dv.venta.cliente.direccion}"/>
+                                <br></br>
+                                <br></br>
+                                <p:commandButton value="Borrar" update="a" icon="times" action="#{detalleVentaController.borrar(dv)}" style="font-size: 15px"/>
+                            </h:outputLabel>                        
+                        </p:panelGrid>
+                    </p:panel>
                 </p:column>
             </p:dataTable>
-        </h:form>
+        </h:form> 
     </h:body>
 </html>
