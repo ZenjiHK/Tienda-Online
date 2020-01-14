@@ -286,7 +286,7 @@ public class UserController implements Serializable{
         try{
         this.userFacade.ocultar(u);
         this.user = new User();
-        this.mensaje = "Detalle de tarjeta eliminado correctamente";
+        this.mensaje = "Usuario dado de baja correctamente";
         } catch (Exception e) {
             this.mensaje = "Error al eliminar" + e.getMessage();
             e.printStackTrace();

@@ -276,7 +276,6 @@ public class DetalleVentaController implements Serializable {
 
     /*Metodo que recibe los datos del carrito y los envia a la vista "Detalle venta"*/
     public void Enviar1() {
-        System.out.println("asdasdasd");
         try {
             for (int a = 0; a < this.list.size(); a++) {
 
@@ -295,9 +294,9 @@ public class DetalleVentaController implements Serializable {
                 this.vendidos.add(this.dt);
             }
             ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-            externalContext.redirect("http://localhost:16786/Tienda-Online/faces/admin/detalleventa.xhtml");
+            externalContext.redirect("http://localhost:8080/Tienda-Online/faces/User/detalleventa.xhtml");
         } catch (IOException e) {
-            msg = "Error";
+            
         }
     }
 
