@@ -6,6 +6,7 @@
 package EJB;
 
 import Entity.Venta;
+import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -50,5 +51,26 @@ public class VentaFacade extends AbstractFacade<Venta> implements VentaFacadeLoc
         }
         return venta.getIdVenta();
     } 
+    @Override
+    public int ultimaVenta(int idCliente) { 
+        Venta venta=new Venta();
+        try {
+            //sql = "SELECT  c FROM Cliente c  WHERE c.correo=?1";
+            Query query = em.createQuery("SELECT c FROM Venta c  WHERE c.cliente.idCliente=?1");
+            System.out.println("Clienteeeeeeeeeeee!!!!!!!!!!"+idCliente);
+            query.setParameter(1, idCliente);
+            List<Venta> lista = new LinkedList<>();
+                    lista = query.getResultList();
+                     System.out.println("VENTAA!!!!!!!!!!!!"+venta.getIdVenta());
+            if (!lista.isEmpty()) {
+                venta = lista.get(0);               
+            }
+            return venta.getIdVenta();
+        } catch (Exception e) {
+            System.out.println("****************");
+            System.out.println(e);
+        }
+        return venta.getIdVenta();
+    }
     
 }

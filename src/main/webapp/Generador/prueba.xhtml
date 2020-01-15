@@ -9,9 +9,8 @@
     <h:body>
         <h:form>
             <h:panelGrid columns="2">                      
-                <p:outputLabel value="Correo"/>
-                <p:inputText value="#{EnviarController.destinatario}"/>  
-                <p:commandButton value="Enviar" action="#{EnvioReporteController.enviarReporte()}"/>             
+                <p:outputLabel value="Correo"/>                
+                <p:commandButton value="Enviar" action="#{envioReporteController.enviarReporte()}"/>             
         </h:panelGrid>
         </h:form>
     </h:body>

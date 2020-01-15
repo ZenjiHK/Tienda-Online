@@ -178,16 +178,29 @@ public class EnvioReporteController implements Serializable {
     //Metodo para enviar correos
     public void enviarReporte() {
         try {
-            int idCliente = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idUser");
+            
+            System.out.println("ENTREEEEEEEEEEEEEEEEEEEEEE");
+            int idCliente = 1;
             this.cliente.setIdCliente(idCliente);
-            String correo=this.detalleFacade.obtenerCorreo(cliente);//Recuperamos el correo                                 
-            int idventa = this.detalleFacade.ultimaVenta(idCliente);
+            String correo = this.detalleFacade.obtenerCorreo(cliente);//Recuperamos el correo   
+            System.out.println("CorREOOOOOOOOOOOOOOOOO:" + correo);
+            int idventa = this.ventaFacade.ultimaVenta(idCliente);
+            System.out.println("Id VENTAAAAAAAAAAAAAAAAA:" + idventa);
             this.listaDetalle = this.detalleFacade.detalleFactura(idventa);
             Double cont = 0.0;
             double total = 0;
 
             this.tabla = "<table border='2' style='width: 100%' class='table-active table-bordered table-borderless table-dark'>";
-
+            this.tabla += ""                   
+                    + "Fecha: " + this.detalle.getVenta().getFecha()
+                    + "<br>"
+                    + "Nombre: " + this.detalle.getVenta().getCliente().getNombreCliente() + this.detalle.getVenta().getCliente().getApellidoCliente()
+                    + "<br>"
+                    + "Correo: " + this.detalle.getVenta().getCliente().getCorreo()
+                    + "<br>"
+                    + "Pais: " + this.detalle.getVenta().getCliente().getPais().getNombrePais()
+                    + "<br>"
+                    + "Direccion de envio: " + this.detalle.getVenta().getCliente().getDireccion();
             this.tabla += "<thead><tr><th>Codigo</th><th>Producto</th><th>Precio Unitario</th><th>Cantidad</th><th>Descuento</th><th>Sub-Total</th></tr></thead><tbody>";
             for (DetalleVenta nombre : this.listaDetalle) {
                 this.detalle = nombre;
@@ -196,17 +209,6 @@ public class EnvioReporteController implements Serializable {
                 cont += subtotal;
                 total += subtotal;
                 this.tabla += ""
-                        + "<br><br>"
-                        + "Fecha: " + this.detalle.getVenta().getFecha()
-                        + "<br>"
-                        + "Nombre: " + this.detalle.getVenta().getCliente().getNombreCliente() + this.detalle.getVenta().getCliente().getApellidoCliente()
-                        + "<br>"
-                        + "Correo: " + this.detalle.getVenta().getCliente().getCorreo()
-                        + "<br>"
-                        + "Pais: " + this.detalle.getVenta().getCliente().getPais().getNombrePais()
-                        + "<br>"
-                        + "Direccion de envio: " + this.detalle.getVenta().getCliente().getDireccion()
-                        + "<br><br>"
                         + "<tr align='center'><td>"
                         + detalle.getVenta().getIdVenta() + "</td><td>"
                         + detalle.getProducto().getNombreProducto() + "</td><td>"
@@ -214,7 +216,7 @@ public class EnvioReporteController implements Serializable {
                         + detalle.getCantidad() + "</td>"
                         + "<td>Descuento: " + this.detalle.getDescuento().getDescuento() + "</td>"
                         + "<td>Sub-Total: " + subtotal + "</td>"
-                        + "</tr>";                
+                        + "</tr>";
             }
             this.tabla += "</tbody></table><h1 style='color:crimson;'>Total: $" + total + "</h1>";
 
@@ -234,7 +236,7 @@ public class EnvioReporteController implements Serializable {
             message.setFrom(new InternetAddress("celavieonline@gmail.com"));
             message.addRecipient(
                     Message.RecipientType.TO,
-                    new InternetAddress(destinatario));
+                    new InternetAddress(correo));
             message.setSubject("Detalle de factura");
             message.setContent(
                     "\n Hemos Recibido tu pedido. "
