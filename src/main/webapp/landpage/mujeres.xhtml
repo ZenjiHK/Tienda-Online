@@ -11,6 +11,8 @@
     </h:head>
 
     <h:body>
+        <h:outputScript library="js" name="userActivo.js" />
+        <div id="usuarioLogeadoDIV" style="display: none" >#{userController.kevin}</div>
         <ui:include src="topnavbar.xhtml"/>
         <h:panelGrid columns="2" id="panel">
             

@@ -294,7 +294,7 @@ public class DetalleVentaController implements Serializable {
                 this.vendidos.add(this.dt);
             }
             ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-            externalContext.redirect("http://localhost:8080/Tienda-Online/faces/User/detalleventa.xhtml");
+            externalContext.redirect("http://localhost:8080/Tienda-Online/faces/User/realizarVenta.xhtml");
         } catch (IOException e) {
             
         }

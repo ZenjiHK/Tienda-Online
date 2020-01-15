@@ -391,8 +391,8 @@ CREATE TABLE venta(
 		fecha date not null,
 		estado varchar(15) not null);
         
-insert into venta( id_cliente,id_detalle_tarjeta,fecha,estado)
-values(1,1,'2019-10-10','En camino');
+insert into venta(id_cliente,id_detalle_tarjeta,fecha,estado)
+values(1,1,'2019-10-10','Progreso');
 
 ALTER TABLE venta ADD CONSTRAINT FOREIGN KEY fk_venta_cliente(id_cliente) REFERENCES cliente(id_cliente);
 

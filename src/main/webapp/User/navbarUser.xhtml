@@ -28,21 +28,19 @@
     </h:head>
     <h:body>
         <div class="menu">
-            <b:navBar brand-img="../resources/Imagenes/a1 - copia (2).jpg" brandHref="../PaginaPrincipal/PaginaPrincipal.xhtml" inverse="false">
-                <b:navbarLinks><b:navLink value="Mujeres" href="mujeres.xhtml" /></b:navbarLinks>
-                <b:navbarLinks><b:navLink value="Hombres" href="hombres.xhtml" /></b:navbarLinks>
-                <b:navbarLinks><b:navLink value="Niños" href="ninos.xhtml" /></b:navbarLinks>
+            <b:navBar brand-img="../resources/Imagenes/a1 - copia (2).jpg" brandHref="PaginaPrincipal.xhtml" inverse="false">
+
                 <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
                 <b:navbarLinks pull="right" styleClass="hidden-xs">
                     <b:dropMenu value="Iniciar Sesión" icon="user" styleClass="btnOcultarOPCUser">
                         <h:form>
                             <b:container fluid="true">
                                 <br></br>
-                                <b:commandButton value="Iniciar Sesión" look="info" style="width: 100%" action="/PaginaPrincipal/Usuario"/>
+                                <b:commandButton value="Iniciar Sesión" look="info" style="width: 100%" action="Usuario"/>
                                 <br></br>
                                 <br></br>
                                 <p>¿No tienes cuenta? </p>
-                                <b:link value="Registrate" outcome="/PaginaPrincipal/RegistroUsuario"/>
+                                <b:link value="Registrate" outcome="RegistroUsuario"/>
                                 <br></br>
                                 <br></br>
                             </b:container>
