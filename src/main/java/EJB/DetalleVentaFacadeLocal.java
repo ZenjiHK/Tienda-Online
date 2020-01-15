@@ -34,6 +34,6 @@ public interface DetalleVentaFacadeLocal {
     
    public List<DetalleVenta> detalleFactura(int venta);
    String obtenerCorreo(Cliente c);
-    int ultimaVenta(int idCliente) ;
+ 
     
 }

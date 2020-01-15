@@ -64,20 +64,6 @@ public class DetalleVentaFacade extends AbstractFacade<DetalleVenta> implements 
         return cliente.getCorreo();    
     }
     
-    public int ultimaVenta(int idCliente) { 
-        Venta venta=null;
-        try {
-            //sql = "SELECT  c FROM Cliente c  WHERE c.correo=?1";
-            Query query = em.createQuery("SELECT  c FROM Venta c  WHERE c.cliente.idCliente=?1 ORDER by c.idVenta DESC ");
-            query.setParameter(1, idCliente);
-            List<Venta> lista = query.getResultList();
-            if (!lista.isEmpty()) {
-                venta = lista.get(0);
-            }
-        } catch (Exception e) {
-            throw e;
-        }
-        return venta.getIdVenta();
-    }
+    
     
 }
