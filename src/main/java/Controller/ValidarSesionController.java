@@ -28,6 +28,17 @@ public class ValidarSesionController implements Serializable{
         }
     }
     
+    public void validarCompra() {
+        try {
+            User dato = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+            if (dato == null) {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("./../User/userInactivo.xhtml");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     public void index() {
         try {
             User dato = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
@@ -54,6 +65,34 @@ public class ValidarSesionController implements Serializable{
     }
     public String redireccionTargetas(){
     redirect="/User/misTarjetas?faces-redirect=true";
+    
+    return redirect;
+    
+    }
+    
+    public String redireccionCompra(){
+    redirect="/User/realizarVenta?faces-redirect=true";
+    
+    return redirect;
+    
+    }
+    
+    public String redireccionInicio(){
+    redirect="/PaginaPrincipal/PaginaPrincipal?faces-redirect=true";
+    
+    return redirect;
+    
+    }
+    
+    public String redireccionSesion(){
+    redirect="/PaginaPrincipal/Usuario?faces-redirect=true";
+    
+    return redirect;
+    
+    }
+    
+    public String redireccionRegistro(){
+    redirect="/PaginaPrincipal/RegistroUsuario?faces-redirect=true";
     
     return redirect;
     

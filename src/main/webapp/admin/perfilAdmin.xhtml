@@ -29,13 +29,28 @@
     </h:head>
     <h:body class="body">
         <p:growl id="msj"/>
-        <h:outputScript library="js" name="userActivo.js" />
-        <div id="usuarioLogeadoDIV" style="display: none" >#{userController.kevin}</div>
-        <ui:include src="/User/navbarUser.xhtml"/>
-        <p:panelGrid style="text-align: center">
+        <div class="menu">
+            <b:navBar brand-img="../resources/Imagenes/a1 - copia (2).jpg" brandHref="../admin/indexAdmin.xhtml" inverse="false">
+
+                <b:navbarLinks pull="right"><b:navLink value="" href="#"></b:navLink></b:navbarLinks>
+                <b:navbarLinks pull="right" styleClass="hidden-xs">
+                    <b:dropMenu value="Usuario logeado"  icon="user" style="height: 35%" >
+                        <b:container fluid="true" style="align-content: center;text-align: center">
+                            <h:form>
+                                <img src="../resources/Imagenes/icon.jpg" style="width: 100%"/>
+                                <p:separator/>
+                                <b:commandButton value="Editar perfil" look="info" action="#{validarSesionController.redireccion()}" style="width: 100%"/><br/><br/>
+                                <b:commandButton value="Cerrar sesión"  actionListener="#{validarSesionController.salir()}" look="info" style="width: 100%"/>
+                            </h:form>
+                        </b:container>
+                    </b:dropMenu>
+                </b:navbarLinks>
+            </b:navBar>
+        </div>
+        <p:panelGrid style="text-align: center; margin: auto">
             <p:row>
                 <p:column >
-                    <h:outputLabel style="width: 300px">
+                    <h:outputLabel style="width: 600px;">
                         <h:form id="Datos">
                             <p:panel header="DATOS PERSONALES" >
                                 <img src="../resources/Imagenes/icon.jpg" width="150px"/><br/>
@@ -45,11 +60,10 @@
                                         <h:outputText value="Correo: #{lc.correo}" style="font-size: 16px"/><br/>
                                         <h:outputText value="Dirección: #{lc.direccion}" style="font-size: 16px"/><br/>
                                         <h:outputText value="País: #{lc.pais.nombrePais}" style="font-size: 16px"/><br/>
-                                        <b:commandButton value="Ver tarjetas registradas" action="#{validarSesionController.redireccionTargetas()}" style="font-size: 18px" class="buttons" look="info"/><br/>
                                         <b:commandButton value="Editar información personal" style="font-size: 18px" class="buttons" look="info"
                                                          actionListener="#{clienteController.cargarCliente(lc)}" update=":c" oncomplete="PF('cli').show()"/><br/>
                                         <b:commandButton value="Cambiar clave de Usuario" action="#{validarSesionController.redireccionCambioContra()}" style="font-size: 18px" class="buttons" look="info"/>
-                                        <b:commandButton value="Dar de baja" look="danger" style="font-size: 18px" class="buttons"/>
+                                        <b:commandButton value="Dar de baja" look="danger" actionListener="#{userController.oculto(lc)}" onclick="confirm('¿Seguro que quieres dar de baja tu cuenta? Esta acción no se puede revertir.')" style="font-size: 18px" class="buttons"/>
                                     </p:column>
                                 </p:dataTable>
                             </p:panel>
@@ -86,38 +100,7 @@
                         </h:form>
                     </h:outputLabel>
                 </p:column>
-                <p:column>
-                    <h:form>
-                        <h:outputLabel>
-                            <p:panel header="COMPRAS REALIZADAS" style="font-size: 22px" >
-                                <p:dataTable style="font-size: 15px" rows="3" paginator="true"
-                                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
-                                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-                                    <p:column headerText="N# Factura">
-
-                                    </p:column>
-                                    <p:column headerText="Información del comprador">
-
-                                    </p:column>
-                                    <p:column headerText="Tarjeta">
-
-                                    </p:column>
-                                    <p:column headerText="Fecha de compra">
-
-                                    </p:column>
-                                    <p:column headerText="Estado">
-
-                                    </p:column>
-                                    <p:column headerText="">
-
-                                    </p:column>
-                                </p:dataTable>
-                            </p:panel>
-                        </h:outputLabel>
-                    </h:form>
-                </p:column>
             </p:row>
-
         </p:panelGrid>
     </h:body>
 </html>

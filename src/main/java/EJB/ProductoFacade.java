@@ -109,7 +109,6 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
         query.setParameter(2, cat);
         List<Producto> resu= query.getResultList();
         for (Producto lista : resu) {            
-            System.out.println("Tipo : " + lista.getNombreProducto());
         }
         return resu;
     }

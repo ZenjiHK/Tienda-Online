@@ -43,11 +43,7 @@
                                        itemLabel="#{r.nombreRol}" itemValue="#{r.idRol}"/>
                     </p:selectOneMenu>
                     <p:commandButton value="Insertar" actionListener="#{userController.insertar()}" 
-                                     oncomplete="PF('registro').hide()" update=":datos :msj :r"
-                                     rendered="#{userController.user.cliente == 0}"/>
-                    <p:commandButton value="Editar" actionListener="#{userController.editar()}" 
-                                     oncomplete="PF('registro').hide()" update=":datos :msj :r"
-                                     rendered="#{userController.user.cliente != 0}"/>
+                                     oncomplete="PF('registro').hide()" update=":datos :msj :r"/>
                 </p:panelGrid>
             </h:form>
         </p:dialog>
@@ -68,12 +64,8 @@
                     <p:column headerText="Estado">
                         <h:outputText value="#{u.estado ? 'Activo': 'Inactivo'}" />
                     </p:column>
-                    <p:column headerText="Editar">
-                        <p:commandButton value="Editar" actionListener="#{userController.cargarDatos(u)}"
-                                         update=":r" oncomplete="PF('registro').show()"/>
-                    </p:column>
                     <p:column headerText="Eliminar">
-                        <p:commandButton value="Eliminar" actionListener="#{userController.eliminar(u)}"
+                        <p:commandButton value="Eliminar" actionListener="#{userController.oculto(u)}"
                                          update=":datos :msj :r"/>
                     </p:column>
                 </p:dataTable>

@@ -3,22 +3,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Recuperar contraseña</title>
         <link href="../resources/css/Login.css" rel="stylesheet" type="text/css"/>
-         <f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>
+        <f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>
     </h:head>
     <h:body>
+        <h:outputScript library="js" name="userActivo.js" />
+            <div id="usuarioLogeadoDIV" style="display: none" >#{userController.kevin}</div>
+            <ui:include src="/PaginaPrincipal/navbarPrincipal.xhtml"/>
         <div class="login">
-
             <h:form id="c"> 
                 <p:growl id="mensaje"  showDetail="true" life="3000" />
                 <p:panel header="Cambio de contraseña" widgetVar="dlg" >
                     <p:dataTable value="#{clienteController.listaCliente}" var="lc">
-                        <p:column headerText="Nombre Usuario :" style="text-align: center">
+                        <p:column headerText="Datos:" style="text-align: center">
                             <h:outputText value=" #{lc.nombreCliente} #{lc.apellidoCliente}"/>
-                        </p:column>
+                        </p:column>                        
                     </p:dataTable>
                     <h:panelGrid columns="2" cellpadding="5">
                         <p:outputLabel for="clave" value="Nueva contraseña:"/>

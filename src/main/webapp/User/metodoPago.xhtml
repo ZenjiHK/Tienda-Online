@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Metodo de pago</title>
         <h:outputStylesheet name="./css/default.css"/>
@@ -12,6 +13,9 @@
          <f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>
     </h:head>
     <h:body>
+        <h:outputScript library="js" name="userActivo.js" />
+        <div id="usuarioLogeadoDIV" style="display: none" >#{userController.kevin}</div>
+        <ui:include src="/User/navbarUser.xhtml"/>
         <p:growl id="msj"/>
         <center>
             <h:form id="d">

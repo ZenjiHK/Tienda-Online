@@ -11,7 +11,8 @@
     </h:head>
 
     <h:body>
-        <div id="usuarioLogeadoDIV" >#{userController.kevin}</div>
+        <h:outputScript library="js" name="userActivo.js" />
+        <div id="usuarioLogeadoDIV" style="display: none" >#{userController.kevin}</div>
         <ui:include src="topnavbar.xhtml"/>
         <h:panelGrid columns="2" id="panel">    
             <h:form>
@@ -76,7 +77,7 @@
                     </br>
                 </h:form>
                 <h:form>
-                    <p:commandButton value="Compra Realizada" actionListener="#{detalleVentaController.Enviar1()}">
+                    <p:commandButton value="Compra Realizada" action="#{validarSesionController.redireccionCompra()}">
                     </p:commandButton>
                     <p:commandButton value="Vaciar carrito" update=":m" action="#{detalleVentaController.deleteAll(d)}" style="margin-left: 50px;"/>
                 </h:form>

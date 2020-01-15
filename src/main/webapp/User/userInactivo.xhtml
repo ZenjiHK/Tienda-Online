@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>C'est La Vie</title>
+        <link href="../resources/css/PaginaPrincipal.css" rel="stylesheet" type="text/css"/>
+        <link href="../resources/css/Login.css" rel="stylesheet" type="text/css"/>
+        <style>
+
+            .margin{
+                margin-top: 10%;
+                margin-bottom: 25%;
+                margin-right: 30%;
+                margin-left: 35%
+            }
+            .buttons{
+                width: 100%;
+                margin-bottom: 10px
+            }
+
+            .titulo{
+                font-size: 30px;
+            }
+            .sesion{
+                width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 5%;
+            }
+
+        </style>
+    </h:head>
+    <h:body class="body" style="background-image: url('../resources/Imagenes/fondo3.jpg')">
+        <div class="sesion margin" style="border-radius: 25px">
+            <h:form id="loginForm" >
+                <p:growl id="mensaje"  showDetail="true" life="3000" />
+                <br></br>
+                <b:container fluid="true">
+                    <p:panelGrid columns="1" >
+                        <h:outputLabel style="text-align: center">
+                            <b:panel title="Debes tener una sesión activa para realizar esta acción" look="info" titleClass="titulo" style="font-size: 20px;width: 100%">
+                                <h:outputText value="¿Qué deseas hacer a continuación?" style="font-size: 25px"/><br/><br/>
+                                <b:commandButton value="Ir a Página Principal" action="#{validarSesionController.redireccionInicio()}" look="info" style="width: 100%" /><br/><br/>
+                                <b:commandButton value="Registrarme" action="#{validarSesionController.redireccionRegistro()}" look="info" style="width: 100%"/><br/><br/>
+                                <b:commandButton value="Iniciar Sesión" action="#{validarSesionController.redireccionSesion()}" look="info" style="width: 100%"/>
+                            </b:panel>
+                        </h:outputLabel>
+                    </p:panelGrid>
+                </b:container>
+            </h:form>
+        </div>
+    </h:body>
+</html>

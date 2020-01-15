@@ -12,42 +12,7 @@
     </h:head>
     <h:body>
         <p:growl id="msj"/>
-        <h:form id="tar">
-            <p:fieldset legend="Nuevo Detalle de tarjeta">
-                <p:panelGrid columns="1">
-                    <p:commandButton value="Nuevo" oncomplete="PF('det').show()"/>
-                </p:panelGrid>
-            </p:fieldset>
-        </h:form>
-        <p:dialog widgetVar="det" modal="true" showEffect="clip" resizable="false">
-            <p:ajax event="close" listener="#{detalleTarjetaController.limpiar()}" update=":d"/>
-            <h:form id="d">
-                <p:panelGrid columns="2">
-                    <p:outputLabel for="tarjeta" value="Numero Tarjeta " />
-                    <p:inputMask id="tarjeta" value="#{detalleTarjetaController.detalletarjeta.numero_tarjeta}" mask="9999-9999-9999-9999" required="true"/>
-                    <p:outputLabel for="cmbCliente" value="Cliente"/>
-                    <p:selectOneMenu id="cmbCliente" value="#{detalleTarjetaController.cliente.idCliente}">
-                        <f:selectItems value="#{clienteController.lista2}" var="cli" itemLabel="#{cli.nombreCliente} #{cli.apellidoCliente}" itemValue="#{cli.idCliente}"/>
-                    </p:selectOneMenu>
-                    <p:outputLabel for="txtPing" value="Ping"/>
-                    <p:inputText id="txtPing" value="#{detalleTarjetaController.detalletarjeta.ping}" required="true"/>
-                    <p:outputLabel for="txtExpiracion" value="Fecha de expiracion"/>
-                    <p:calendar id="txtExpiracion" value="#{detalleTarjetaController.detalletarjeta.expiracion}" required="true"/>
-                    <p:outputLabel for="txtEstado" value="Estado"/>
-                    <p:inputText id="txtEstado" value="#{detalleTarjetaController.detalletarjeta.estado}" required="true"/>
-                       <p:outputLabel for="cmbPago" value="Forma de pago"/>
-                    <p:selectOneMenu id="cmbPago" value="#{detalleTarjetaController.formapago.idFormaPago}">
-                        <f:selectItems value="#{formaPagoController.listapago}" var="p" itemLabel="#{p.nombreFormaPago}" itemValue="#{p.idFormaPago}"/>
-                    </p:selectOneMenu>
-                    <p:commandButton value="Guardar" actionListener="#{detalleTarjetaController.insertar()}"
-                                     rendered="#{detalleTarjetaController.detalletarjeta.idDetalleTarjeta ==0}"
-                                     update=":datos d :msj" oncomplete="PF('det').hide()"/>
-                    <p:commandButton value="Actualizar" actionListener="#{detalleTarjetaController.editar()}"
-                                     rendered="#{detalleTarjetaController.detalletarjeta.idDetalleTarjeta !=0}"
-                                     update=":datos d :msj" oncomplete="PF('det').hide()"/>
-                </p:panelGrid>
-            </h:form>
-        </p:dialog>
+        
         <h:form id="datos">
             <p:fieldset legend="Datos Tarjeta">
                 <p:dataTable value="#{detalleTarjetaController.listaOculta}" var="dt">
