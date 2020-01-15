@@ -33,13 +33,6 @@
                         <h:outputText value="#{r.nombreRol}"/>
                     </p:column>
 
-                    <p:column headerText="Editar">
-                        <p:commandButton value="Editar" actionListener="#{rolController.cargarDatos(r)}" update=":nuevo :datos"
-                                         oncomplete="PF('rol').show()"/>
-                    </p:column>
-                    <p:column headerText="Eliminar">
-                        <p:commandButton value="Eliminar" actionListener="#{rolController.eliminar(r)}" update=":nuevo :datos"/>
-                    </p:column>
                 </p:dataTable>         
         </h:form>
          <p:dialog id="nuevo" widgetVar="rol" >

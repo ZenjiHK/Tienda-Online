@@ -232,6 +232,7 @@ public class UserController implements Serializable{
                     redireccion = "/PaginaPrincipal/PaginaPrincipal?faces-redirect=true";
                 } else if (us.getRol().getNombreRol().equalsIgnoreCase("admin")) {
                     redireccion = "/admin/indexAdmin?faces-redirect=true";
+                    this.kevin = 2;
                 }
                 int idUser = us.getCliente().getIdCliente();
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idUser", idUser);
@@ -266,7 +267,7 @@ public class UserController implements Serializable{
             if (us != null) {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", us);
                 if (us.getRol().getNombreRol().equalsIgnoreCase("cliente")) {
-                    redireccion = "/PaginaPrincipal/PaginaPrincipal?faces-redirect=true";
+                    redireccion = "/User/detalleVenta?faces-redirect=true";
 
                 } else if (us.getRol().getNombreRol().equalsIgnoreCase("admin")) {
                     redireccion = "/admin/indexAdmin?faces-redirect=true";
