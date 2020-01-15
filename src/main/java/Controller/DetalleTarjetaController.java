@@ -58,7 +58,8 @@ public class DetalleTarjetaController implements Serializable {
     }
 
     public List<DetalleTarjeta> getListaOculta() {
-        this.listaOculta = this.DetalleTarjetaEJB.listaoculta();
+        int idUser= (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idUser");
+        this.listaOculta = this.DetalleTarjetaEJB.taregetaEspecifica(idUser);
         return listaOculta;
     }
 
