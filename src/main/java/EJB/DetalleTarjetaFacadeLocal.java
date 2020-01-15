@@ -34,6 +34,5 @@ public interface DetalleTarjetaFacadeLocal {
     
     void ocultar(DetalleTarjeta d);
     
-    List<DetalleTarjeta> listaoculta();
-    
+    public List<DetalleTarjeta> taregetaEspecifica(int id);
 }

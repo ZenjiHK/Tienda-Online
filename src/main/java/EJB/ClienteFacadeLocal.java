@@ -35,5 +35,5 @@ public interface ClienteFacadeLocal {
     public String nombreCliente(Cliente c);
 
     public List<Cliente> bucarCliente(int id);
-
+    
 }

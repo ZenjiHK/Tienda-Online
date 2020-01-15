@@ -58,20 +58,22 @@ public class DetalleTarjetaFacade extends AbstractFacade<DetalleTarjeta> impleme
             System.out.println("causa "+e);
         }
     }
-    
-    @Override
-     public List<DetalleTarjeta> listaoculta(){
-        List<DetalleTarjeta> lista = new LinkedList<>();
+     
+      @Override
+    public List<DetalleTarjeta> taregetaEspecifica(int id) {
+        String sql = "";
         try {
-            Query q = em.createQuery("SELECT d FROM DetalleTarjeta d WHERE d.estado = 1");
-            lista = q.getResultList();
+            sql = "SELECT d FROM DetalleTarjeta d WHERE d.cliente.idCliente = ?1";
+            Query query = em.createQuery(sql);
+            query.setParameter(1, id);
+            List<DetalleTarjeta> lista = query.getResultList();
             return lista;
         } catch (Exception e) {
-            return lista;
+            System.out.println("nulo");
+            return null;
         }
-    }
-     
 
+    }
     
 }
     
