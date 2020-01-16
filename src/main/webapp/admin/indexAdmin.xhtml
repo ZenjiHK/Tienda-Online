@@ -10,6 +10,7 @@
         <title>Intrucciones de Uso- C'est La Vie</title>
     </h:head>
     <h:body>
+        <f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>
         <p:dialog header="Instrucciones de usuario" widgetVar="pasos" modal="true" showEffect="clip" 
                   resizable="false" width="650">
             <h:outputLabel style="font-weight: normal">

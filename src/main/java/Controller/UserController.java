@@ -18,14 +18,13 @@ import javax.faces.context.FacesContext;
 
 @Named(value = "userController")
 @SessionScoped
-public class UserController implements Serializable{
+public class UserController implements Serializable {
 
     @EJB
     private UserFacadeLocal userFacade;
     private User user;
     private List<User> listaUser;
     private String mensaje;
-  
 
     @EJB
     private RolFacadeLocal rolFacade;
@@ -38,7 +37,7 @@ public class UserController implements Serializable{
     private List<Cliente> listaCliente;
     private String clave1;
     private String clave2;
-    
+
     private int kevin;
 
     public int getKevin() {
@@ -143,7 +142,7 @@ public class UserController implements Serializable{
         }
     }
 
-     public void insertarUsuario() {
+    public void insertarUsuario() {
         try {
             this.user.setEstado(true);
             this.user.setCliente(cliente);
@@ -158,7 +157,7 @@ public class UserController implements Serializable{
         FacesMessage msj = new FacesMessage(mensaje);
         FacesContext.getCurrentInstance().addMessage(null, msj);
     }
-     
+
     public void insertar() {
         try {
             this.user.setEstado(true);
@@ -232,7 +231,6 @@ public class UserController implements Serializable{
                     redireccion = "/PaginaPrincipal/PaginaPrincipal?faces-redirect=true";
                 } else if (us.getRol().getNombreRol().equalsIgnoreCase("admin")) {
                     redireccion = "/admin/indexAdmin?faces-redirect=true";
-                    this.kevin = 2;
                 }
                 int idUser = us.getCliente().getIdCliente();
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idUser", idUser);
@@ -245,20 +243,20 @@ public class UserController implements Serializable{
         return redireccion;
     }
 
-    public void cambioClave() {     
+    public void cambioClave() {
         if (this.clave1.equals(this.clave2)) {
             int idCliente = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idUser");//Valor quemado. Se cambiará por el id recuperado de la sesión.         
             //Actualizar clave
             this.cliente.setIdCliente(idCliente);
             user.setCliente(cliente);
-            user.setClave(this.clave1);      
+            user.setClave(this.clave1);
             userFacade.ActualizarUsuario(user);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se ha actualizado su contraseña.", ""));
-        } else {           
+        } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Las contraseñas deben coincidir.", ""));
         }
     }
-    
+
     public String loginPaypal() {
         User us;
         String redireccion = "";
@@ -282,18 +280,18 @@ public class UserController implements Serializable{
         }
         return redireccion;
     }
-    
-    public void oculto(User u){
-        try{
-        this.userFacade.ocultar(u);
-        this.user = new User();
-        this.mensaje = "Usuario dado de baja correctamente";
+
+    public void oculto(User u) {
+        try {
+            this.userFacade.ocultar(u);
+            this.user = new User();
+            this.mensaje = "Usuario dado de baja correctamente";
         } catch (Exception e) {
             this.mensaje = "Error al eliminar" + e.getMessage();
             e.printStackTrace();
         }
         FacesMessage mensaje = new FacesMessage(this.mensaje);
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
-        
+
     }
 }

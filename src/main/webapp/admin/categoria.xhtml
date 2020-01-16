@@ -13,6 +13,7 @@
         <h:outputStylesheet name="./css/cssLayout.css"/>
     </h:head>
     <h:body>
+        <f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>
         <p:growl id="msj"/>
         <center>
             <p:outputLabel value="Categoria" style="font-size: 500%;"/>

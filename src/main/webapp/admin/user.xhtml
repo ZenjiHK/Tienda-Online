@@ -11,6 +11,7 @@
         <h:outputStylesheet name="./css/cssLayout.css"/>
     </h:head>
     <body>
+        <f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>
         <center>
          <p:outputLabel value="Usuario" style="font-size: 500%;"/>
         </center>

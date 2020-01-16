@@ -12,6 +12,7 @@
         <title>Administrador - Ventas</title>
     </h:head>
     <h:body>
+        <f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>
         <center>
          <p:outputLabel value="Registro de Ventas" style="font-size: 500%;"/>
         </center>

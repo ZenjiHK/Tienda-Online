@@ -10,6 +10,7 @@
         <h:outputStylesheet name="./css/cssLayout.css"/>
     </h:head>   
     <h:body>
+        <f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>
          <center>
          <p:outputLabel value="Pais" style="font-size: 500%;"/>
         </center>

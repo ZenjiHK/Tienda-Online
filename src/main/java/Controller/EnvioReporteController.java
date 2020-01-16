@@ -179,13 +179,15 @@ public class EnvioReporteController implements Serializable {
     public void enviarReporte() {
         try {
             
-            System.out.println("ENTREEEEEEEEEEEEEEEEEEEEEE");
+            //System.out.println("ENTREEEEEEEEEEEEEEEEEEEEEE");
             int idCliente = 1;
-            this.cliente.setIdCliente(idCliente);
-            String correo = this.detalleFacade.obtenerCorreo(cliente);//Recuperamos el correo   
-            System.out.println("CorREOOOOOOOOOOOOOOOOO:" + correo);
-            int idventa = this.ventaFacade.ultimaVenta(idCliente);
-            System.out.println("Id VENTAAAAAAAAAAAAAAAAA:" + idventa);
+            //this.cliente.setIdCliente(idCliente);
+            //String correo = this.detalleFacade.obtenerCorreo(cliente);//Recuperamos el correo   
+            //System.out.println("CorREOOOOOOOOOOOOOOOOO:" + correo);
+            //int idventa = this.ventaFacade.ultimaVenta(idCliente);
+            
+            int idventa=1;
+                    //System.out.println("Id VENTAAAAAAAAAAAAAAAAA:" + idventa);
             this.listaDetalle = this.detalleFacade.detalleFactura(idventa);
             Double cont = 0.0;
             double total = 0;
@@ -236,7 +238,7 @@ public class EnvioReporteController implements Serializable {
             message.setFrom(new InternetAddress("celavieonline@gmail.com"));
             message.addRecipient(
                     Message.RecipientType.TO,
-                    new InternetAddress(correo));
+                    new InternetAddress("moran_andrade@hotmail.com"));
             message.setSubject("Detalle de factura");
             message.setContent(
                     "\n Hemos Recibido tu pedido. "

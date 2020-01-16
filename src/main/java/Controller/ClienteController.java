@@ -15,10 +15,11 @@ import javax.inject.Named;
 @Named(value = "clienteController")
 @SessionScoped
 public class ClienteController implements Serializable {
+
     int idUs;
     @EJB
     private ClienteFacadeLocal clienteEJB;
-    private List<Cliente> listaCliente, lista2,lista3;
+    private List<Cliente> listaCliente, lista2, lista3;
     private Cliente cliente;
     private Pais pais;
     String msj;
@@ -28,12 +29,10 @@ public class ClienteController implements Serializable {
     }
 
     public void setLista3(List<Cliente> lista3) {
-        this.lista3=clienteEJB.bucarCliente(idUs);
+        this.lista3 = clienteEJB.bucarCliente(idUs);
         this.lista3 = lista3;
     }
 
-    
-    
     public List<Cliente> getLista2() {
         try {
             this.lista2 = clienteEJB.findAll();
@@ -48,7 +47,7 @@ public class ClienteController implements Serializable {
     }
 
     public List<Cliente> getListaCliente() {
-         this.idUs = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idUser");
+        this.idUs = (int) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idUser");
         this.listaCliente = clienteEJB.bucarCliente(idUs);
         return listaCliente;
     }
@@ -77,11 +76,9 @@ public class ClienteController implements Serializable {
     public void init() {
         this.cliente = new Cliente();
         this.pais = new Pais();
-        this.listaCliente = clienteEJB.findAll();
         this.msj = "";
-        this.cliente.setPais(pais);
     }
-    
+
     public void insertarCliente() {
         try {
             this.cliente.setPais(pais);
@@ -96,13 +93,13 @@ public class ClienteController implements Serializable {
         FacesMessage mensaje = new FacesMessage(this.msj);
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
-    
+
     public void insertar() {
         try {
             this.cliente.setPais(pais);
             this.clienteEJB.create(cliente);
             limpiar();
-            this.msj = "Cliente Ingresado correctamente";            
+            this.msj = "Cliente Ingresado correctamente";
         } catch (Exception e) {
             this.msj = "Error al ingresar Cliente " + e.getMessage();
             e.printStackTrace();
@@ -134,9 +131,7 @@ public class ClienteController implements Serializable {
     public void limpiar() {
         this.cliente = new Cliente();
         this.pais = new Pais();
-        this.listaCliente = clienteEJB.findAll();
         this.msj = "";
-        this.cliente.setPais(pais);
     }
 
     public void eliminar(Cliente cl) {

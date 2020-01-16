@@ -2,16 +2,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
     <h:head>
-        <title>Recuperar contraseña</title>
+        <title>Envío Reporte</title>
     </h:head>
     <h:body>
         <h:form>
-            <h:panelGrid columns="2">                      
-                <p:outputLabel value="Correo"/>                
-                <p:commandButton value="Enviar" action="#{envioReporteController.enviarReporte()}"/>             
-        </h:panelGrid>
+            <p:panelGrid columns="2" style="margin: auto; margin-top: 250px;font-size: 22px">             
+                <p:panel header="Envío de reporte" style="text-align: center">
+                    <h:outputLabel>
+                        <p:outputLabel value="Ingrese un correo para recibir el reporte de su compra"/><br/>
+                        <p:inputText value="#{clienteController.cliente.correo}"/>                <br/><br/>
+                        <b:commandButton value="Enviar Reporte" look="info" action="#{envioReporteController.enviarReporte()}"/>  
+                    </h:outputLabel> 
+                </p:panel>          
+            </p:panelGrid>
         </h:form>
     </h:body>
 </html>

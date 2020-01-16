@@ -21,10 +21,7 @@ CREATE TABLE tipo_ropa(
 		id_ropa int auto_increment primary key,
 		nombre_ropa varchar(50) not null);
         
-INSERT INTO `tipo_ropa` (nombre_ropa) VALUES ('Blusas'),('Top'),('Pantalon'),('Falda'),
-('Vestido'),('Camisas Sport'),('Camisas casuales'),('Camisas formales'),
-('Jeans'),('Pantalon de vestir'),('Short'),('Camisas'),('Pijama');
-
+INSERT INTO `tipo_ropa` VALUES (1,'camisa mujer'),(5,'pantalon hombre'),(6,'falda'),(7,'vestido'),(8,'short mujer'),(9,'short infantil unisex'),(10,'short hombre'),(11,'pantalon infantil unisex'),(12,'camisa hombre'),(13,'pantalon mujer'),(14,'camisa infantil unisex'),(15,'Blusas'),(16,'Top'),(17,'Pantalon'),(18,'Falda'),(19,'Vestido'),(20,'Camisas Sport'),(21,'Camisas casuales'),(22,'Camisas formales'),(23,'Jeans'),(24,'Pantalon de vestir'),(25,'Short'),(26,'Camisas'),(27,'Pijama'),(28,'Faldas'),(29,'pantalon'),(30,'pantalon');
 select * from tipo_ropa;
 
 CREATE TABLE categoria(
@@ -53,37 +50,49 @@ ALTER TABLE producto ADD CONSTRAINT FOREIGN KEY fk_producto_tipo(id_tipo) REFERE
 
 ALTER TABLE producto ADD CONSTRAINT FOREIGN KEY fk_producto_categoria(id_categoria) REFERENCES categoria(id_categoria);
 
-INSERT INTO `producto` 
-VALUES (1,'Kidol Momoiro Shirt',50,15.00,17.00,2,1,1,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa1.jpg'),
-(2,'Red Spring shirt 2020',120,120.00,185.00,3,1,1,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa4.jpg'),
-(3,'Kidol Momoiro Shirt',50,16.00,20.00,2,2,1,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa1.jpg'),
-(4,'Kidol Momoiro Shirt',50,120.00,70.00,2,3,1,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa1.jpg'),
-(5,'Kidol Momoiro Shirt',50,17.00,0.00,1,4,1,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa1.jpg'),
-(6,'Kidol Momoiro Shirt',50,15.00,17.00,2,5,1,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa1.jpg'),
-(7,'Kidol Momoiro Shirt',100,15.00,50.00,2,7,1,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa1.jpg'),
-(8,'Kidol Momoiro Shirt',100,15.00,50.00,2,6,1,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa1.jpg'),
-(9,'Kidol Momoiro',20,15.00,25.50,1,8,1,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa1.jpg'),
-(10,'Red Spring shirt 2020',120,100.00,50.00,6,2,1,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa4.jpg'),
-(11,'Red Spring shirt 2020',120,50.00,50.00,2,3,1,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa4.jpg'),
-(12,'Red Spring shirt 2020',120,50.00,50.00,2,4,1,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa4.jpg'),
-(13,'Red Spring shirt 2020',120,85.00,20.00,2,5,1,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa4.jpg'),
-(14,'Red Spring shirt 2020',120,85.00,20.00,6,6,1,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa4.jpg'),
-(15,'Red Spring shirt 2020',120,56.00,20.00,2,7,1,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa4.jpg'),
-(16,'Red Spring Shirt 2020',120,50.00,50.00,3,8,1,1,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa4.jpg'),
-(17,'Strawberry girl Shirt',500,10.00,15.00,21,1,1,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa16.jpg'),
-(18,'Top pant ',60,50.00,60.00,9,1,13,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalon1-1.jpg'),
-(19,'Top pant',60,60.50,50.00,1,2,13,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalon1-1.jpg'),
-(20,'square pants',80,25.12,30.00,5,1,13,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalon2-1.jpg')
-,(21,'Top Pant',80,52.60,60.00,5,3,13,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalon1-1.jpg'),
-(22,'Top pant',60,150.23,160.89,3,4,13,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalon1-1.jpg'),
-(23,'Top pant',80,60.00,150.00,2,5,13,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalon1-1.jpg'),
-(24,'Top pant',50,120.00,300.00,2,6,13,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalon1-1.jpg'),
-(25,'Top pant',80,120.00,150.00,1,7,13,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalon1-1.jpg'),
-(26,'Top pant',80,202.30,0.00,4,8,13,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalon1-1.jpg'),
-(27,'Strawberry girl shirt',40,80.00,16.20,2,2,1,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa16.jpg'),
-(28,'Strawberry girl shirt',12,45.12,45.90,2,3,1,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa16.jpg'),
-(29,'square pants',45,120.00,150.00,3,4,13,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalon2-1.jpg');
-
+INSERT INTO `producto` VALUES (6,'Kidol Momoiro Shirt',50,15.00,17.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa1.jpg'),
+(7,'Red Spring shirt 2020',120,120.00,185.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa4.jpg'),
+(8,'Kidol Momoiro Shirt',50,16.00,20.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa2.jpg?w=700&h='),
+(9,'Kidol Momoiro Shirt',50,120.00,70.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa3.jpg?w=700&h='),
+(10,'Kidol Momoiro Shirt',50,17.00,11.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa5.jpg?w=700&h='),
+(11,'Kidol Momoiro Shirt',50,15.00,17.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa6.jpg?w=700&h='),
+(12,'Kidol Momoiro Shirt',100,15.00,50.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa7.jpg?w=700&h='),
+(13,'Kidol Momoiro Shirt',100,15.00,50.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa8.jpg?w=700&h='),
+(14,'Kidol Momoiro',20,15.00,25.50,6,2,1,2,'https://y4j9z9c2.stackpathcdn.com/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/0/102679544_4_.jpg'),
+(15,'Camiseta formal diseños ',120,100.00,50.00,6,2,1,2,'https://y4j9z9c2.stackpathcdn.com/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/0/102679671_4_.jpg'),
+(16,'Red Spring shirt 2020',120,50.00,50.00,6,2,1,2,'https://y4j9z9c2.stackpathcdn.com/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/0/102602590_4_.jpg'),
+(17,'Red Spring shirt 2020',120,50.00,50.00,6,2,1,2,'https://y4j9z9c2.stackpathcdn.com/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/0/102665735_4_.jpg'),
+(18,'Red Spring shirt 2020',120,85.00,20.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa9.jpg?w=700&h='),
+(19,'Red Spring shirt 2020',120,85.00,20.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa10.jpg?w=700&h='),
+(20,'Red Spring shirt 2020',120,56.00,20.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa11.jpg?w=700&h='),
+(21,'Red Spring Shirt 2020',120,50.00,50.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa12.jpg?w=700&h='),
+(22,'Strawberry girl Shirt',500,10.00,15.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa14.jpg?w=700&h='),
+(23,'Top pant ',60,50.00,60.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalon3-1.jpg?w=700&h='),
+(24,'Top pant',60,60.50,50.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalon1-1.jpg'),
+(25,'Square Pants',80,25.12,30.00,6,2,1,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalon2-1.jpg'),
+(26,'Top Pant',80,52.60,60.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalon4-1.jpg?w=700&h='),
+(27,'Top pant',60,150.23,160.89,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalon5-1.jpg?w=700&h='),
+(28,'Top pant',80,60.00,150.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalon6-1.jpg?w=700&h='),
+(29,'Top pant',50,120.00,300.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalon7-1.jpg?w=370&h='),
+(30,'Top pant',80,120.00,150.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalon8-1.jpg?w=700&h='),
+(31,'Top pant',80,202.30,33.00,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalon9-1.jpg?w=700&h='),
+(32,'Strawberry girl shirt',40,80.00,16.20,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa16.jpg'),
+(33,'Strawberry girl shirt',12,45.12,45.90,2,1,15,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa16.jpg'),
+(34,'Square Pants',45,120.00,150.00,6,2,1,2,'https://y4j9z9c2.stackpathcdn.com/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/1/0/101862662_2.jpg'),(35,'Falda  niña',12,12.00,2.00,6,2,1,2,'https://y4j9z9c2.stackpathcdn.com/media/catalog/product/cache/1/small_image/300x/9df78eab33525d08d6e5fb8d27136e95/1/0/102267836_1.jpg'),
+(36,'Short Niño',12,11.00,3.00,6,2,1,2,'https://y4j9z9c2.stackpathcdn.com/media/catalog/product/cache/1/small_image/300x/9df78eab33525d08d6e5fb8d27136e95/1/0/102217657_1.jpg'),(37,'Camisa niña',12,2.00,1.00,6,2,1,2,'https://y4j9z9c2.stackpathcdn.com/media/catalog/product/cache/1/small_image/300x/9df78eab33525d08d6e5fb8d27136e95/5/8/58550746521.jpg'),
+(38,'Falda-mujer',22,2.00,33.00,1,1,18,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa1.jpg'),
+(39,'Vestido-mujer',44,2.00,2.00,3,1,19,2,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa1.jpg'),
+(40,'CamisaSport-hombre',44,4.00,5.00,2,2,20,1,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa1.jpg'),
+(41,'Camisas casuales-hombre',545,4.00,3.00,1,1,21,1,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa1.jpg'),
+(42,'Camisas formales-hombre',656,4.00,3.00,1,1,22,1,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa1.jpg'),
+(43,'Jeans-hombre',323,22.00,2.00,1,1,23,1,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/camisa1.jpg'),
+(44,'Pantalon de vestir-hombre',5534,33.00,3.00,1,1,24,1,''),(45,'Short-hombre',657,55.00,6.00,1,1,25,3,'s'),
+(46,'Camisas-niños',54,44.00,44.00,1,1,26,3,'54'),(47,'Pijama-niños',45,4.00,3.00,1,1,27,3,''),
+(48,'Falda-niñs',33,2.00,2.00,1,1,28,3,'2'),(52,'blusa blanca',5,45.00,10.00,1,1,1,1,NULL),
+(53,'Short',323,222.00,100.00,1,1,22,1,'https://mitiendaenlineaisla4.files.wordpress.com/2020/01/pantalonh2.jpg'),
+(54,'Pantalón para niños',55,5.00,4.00,1,1,22,1,'https://y4j9z9c2.stackpathcdn.com/media/catalog/product/cache/1/image/500x500/9df78eab33525d08d6e5fb8d27136e95/1/0/102117634_1.jpg'),
+(55,'Pantalon infantil',34,3.00,2.00,1,1,22,1,'s'),
+(56,'jkj',9,7.00,6.00,1,1,1,1,'u');
 CREATE TABLE pais(
 		id_pais int auto_increment primary key,
 		nombre_pais varchar(50) not null);
@@ -340,8 +349,7 @@ CREATE TABLE cliente(
 ALTER TABLE cliente ADD CONSTRAINT FOREIGN KEY fk_cliente_pais(id_pais) REFERENCES pais(id_pais);
 
 insert into cliente(nombre_cliente,apellido_cliente,correo,direccion,id_pais) 
-values('Pablo','Ramírez','zhentsuwo@gmail.com','San Francisco Gotera',68),
-('Juan','Pérez','zenji503@gmail.com','San Francisco Gotera',68);
+values('Jocelyn','Castellanos','zhentsuwo@gmail.com','San Salvador',68);
 
 CREATE TABLE forma_pago(
 		id_forma_pago int auto_increment primary key,
@@ -377,8 +385,9 @@ CREATE TABLE user(
 		estado boolean not null);
 
 insert into user(nombre_usuario,id_cliente,clave,id_rol,estado) 
-values('pablo',1,'123',1,true),('juan',2,'123',2,true);
+values('zen',1,'123',1,true);
 select * from user;
+select * from cliente;
 
 ALTER TABLE user ADD CONSTRAINT FOREIGN KEY fk_user_cliente(id_cliente) REFERENCES cliente(id_cliente);
 
@@ -391,9 +400,6 @@ CREATE TABLE venta(
 		fecha date not null,
 		estado varchar(15) not null);
         
-insert into venta(id_cliente,id_detalle_tarjeta,fecha,estado)
-values(1,1,'2019-10-10','Progreso');
-
 ALTER TABLE venta ADD CONSTRAINT FOREIGN KEY fk_venta_cliente(id_cliente) REFERENCES cliente(id_cliente);
 
 ALTER TABLE venta ADD CONSTRAINT FOREIGN KEY fk_venta_tarjeta(id_detalle_tarjeta) REFERENCES detalle_tarjeta(id_detalle_tarjeta);

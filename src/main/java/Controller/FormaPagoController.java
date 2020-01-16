@@ -110,18 +110,18 @@ public class FormaPagoController implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
 
-    public void escogerPago() {
+    public String escogerPago() {
         FormaPago fp = new FormaPago();
         String redireccion = "";
         try {
             fp = this.formaPagoEJB.escogerPago(this.formapago);
             if (fp != null) {
                 if (fp.getIdFormaPago() == 1) {
-                    redireccion = "http://localhost:8080/Tienda-Online/faces/admin/producto.xhtml";
+                    redireccion = "/User/metodoPago?faces-redirect=true";
                 } else if (fp.getIdFormaPago() == 2) {
-                    redireccion = "http://localhost:8080/Tienda-Online/faces/admin/user.xhtml";
+                    redireccion = "/User/metodoPago?faces-redirect=true";
                 } else if (fp.getIdFormaPago() == 3) {
-                    redireccion = "http://localhost:8080/Tienda-Online/faces/User/pagopaypal.xhtml";
+                    redireccion = "/User/pagopaypal?faces-redirect=true";
                 }
             }
             ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
@@ -129,6 +129,6 @@ public class FormaPagoController implements Serializable {
         } catch (IOException e) {
             FacesContext.getCurrentInstance().addMessage((null), new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error"));
         }
-
+        return redireccion;
     }
 }

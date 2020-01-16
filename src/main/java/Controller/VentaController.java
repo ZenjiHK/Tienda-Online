@@ -13,7 +13,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -36,7 +35,7 @@ public class VentaController implements Serializable {
     public void init() {
         limpiar();
     }
-    
+
     public void cancelar() {
         try {
             venta.setEstado("Cancelado");
@@ -48,6 +47,7 @@ public class VentaController implements Serializable {
     }
 
     public void crear() {
+            System.out.println("Creando");
         try {
             this.venta.setEstado("Pendiente");
             this.venta.setCliente(cliente);
@@ -65,13 +65,18 @@ public class VentaController implements Serializable {
                     }
                 }
             };
-            time.schedule(tiempo, 30000);
+            System.out.println("Creado**********************************************");
+            time.schedule(tiempo, 3000);
+            FacesMessage mensaje = new FacesMessage(this.msg);
+            FacesContext.getCurrentInstance().addMessage(null, mensaje);
         } catch (Exception e) {
             this.msg = "Error " + e.getMessage();
             e.printStackTrace();
+            FacesMessage mensaje = new FacesMessage(this.msg);
+            FacesContext.getCurrentInstance().addMessage(null, mensaje);
+            System.out.println("Error");
         }
-        FacesMessage mensaje = new FacesMessage(this.msg);
-        FacesContext.getCurrentInstance().addMessage(null, mensaje);
+
     }
 
     public void editar() {
@@ -119,7 +124,6 @@ public class VentaController implements Serializable {
         this.venta = new Venta();
         this.cliente = new Cliente();
         this.detalleTarjeta = new DetalleTarjeta();
-        this.lista_ventas = ventaEJB.findAll();
         this.msg = "";
     }
 
@@ -131,6 +135,7 @@ public class VentaController implements Serializable {
     }
 
     public List<Venta> getLista_ventas() {
+        this.lista_ventas = this.ventaEJB.findAll();
         return lista_ventas;
     }
 

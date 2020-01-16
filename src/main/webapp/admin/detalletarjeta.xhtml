@@ -11,6 +11,7 @@
         no debe debe de editar solo "eliminar" o agregar tarjeta-->
     </h:head>
     <h:body>
+        <f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>
         <p:growl id="msj"/>
         
         <h:form id="datos">

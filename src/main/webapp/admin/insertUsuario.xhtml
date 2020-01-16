@@ -9,6 +9,7 @@
         <link href="../Resourse/css/login_1.css" rel="stylesheet" type="text/css"/>
     </h:head>
     <h:body>
+        <f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>
         <div class="login">
             <h:form>
                 <p:panel header=" Ingrese los datos del usuario" widgetVar="dlg">

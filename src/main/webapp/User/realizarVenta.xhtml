@@ -21,26 +21,32 @@
         </div>
         <b:container fluid="true">
             <h:form>
-                <p:panelGrid columns="1" style="width: 50%;text-align: center">
+                <p:panelGrid columns="1" style="width: 50%;text-align: center;margin: auto">
                     <p:panel header="Necesitamos tu información para procesar la compra">
-                        <p:dataTable value="#{clienteController.listaCliente} #{ventaController}" var="c">                       
-                            <h:outputText  value="Nombre: #{c.nombreCliente} #{c.apellidoCliente}" />
-                            <h:outputText value="Correo: #{c.correo}" />
-                            <h:outputText  value="Direccion: #{c.direccion}" />
-                            <h:outputText  value="Pais: #{c.pais.nombrePais}" /> 
-                        </p:dataTable>
-                        <h:outputText value="Persona que va a comprar"/>
-                        <p:selectOneMenu>
-                            <f:selectItems value="#{clienteController.lista2}" var="c" itemLabel="#{c.nombreCliente} #{c.apellidoCliente}"
-                                           itemValue="#{c.idCliente}"/>
-                        </p:selectOneMenu><br/><br/>
-                            <h:outputText value="Tarjeta a usar que va a comprar"/>
-                        <p:selectOneMenu>
-                            <f:selectItems value="#{detalleTarjetaController.listaTarjeta}" var="t" itemLabel="#{t.numero_tarjeta}" itemValue="#{t.idDetalleTarjeta}"/>
-                        </p:selectOneMenu><br/><br/>
 
-                        <h:commandButton value="Confirmar mis datos" action="#{validarSesionController.redireccionMetodoPago()}" />
+                        <h:form id="v">
+                            <p:panelGrid columns="2" style="margin: auto">
 
+                                <p:outputLabel value="Cliente"/>
+                                <p:selectOneMenu value="#{ventaController.cliente.idCliente}">     
+                                    <f:selectItems value="#{clienteController.lista2}" var="c" itemLabel="#{c.nombreCliente}" itemValue="#{c.idCliente}"/>
+                                </p:selectOneMenu>
+
+                                <p:outputLabel value="Tarjeta"/>
+                                <p:selectOneMenu value="#{ventaController.detalleTarjeta.idDetalleTarjeta}">     
+                                    <f:selectItems value="#{detalleTarjetaController.listaTarjeta}" var="dt" itemLabel="#{dt.ping}" itemValue="#{dt.idDetalleTarjeta}"/>
+                                </p:selectOneMenu>
+
+                                <p:outputLabel value="Fecha de compra"/>
+                                <p:calendar pattern="yyyy-MM-dd" value="#{ventaController.venta.fecha}" />
+                                <h:outputText value="Estado"/>
+                                <p:selectOneMenu value="#{ventaController.venta.estado}">     
+                                    <f:selectItem itemValue="false" itemLabel="Inactivo"/>
+                                    <f:selectItem itemValue="true" itemLabel="Activo"/>
+                                </p:selectOneMenu>
+                                <p:commandButton value="Guardar" actionListener="#{ventaController.crear()}"/>
+                            </p:panelGrid>                
+                        </h:form>
                     </p:panel>
                 </p:panelGrid>
             </h:form>

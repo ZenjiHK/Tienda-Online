@@ -13,6 +13,7 @@
         <title>Administracion - Factura</title>
     </h:head>
     <h:body>
+        <f:event type="preRenderView" listener="#{validarSesionController.validarSesion()}"/>
         <center>
             <p:outputLabel value="Factura" style="font-size: 500%;"/>
         </center>

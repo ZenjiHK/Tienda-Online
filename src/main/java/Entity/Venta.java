@@ -25,8 +25,7 @@ public class Venta implements Serializable {
     private int idVenta;
     
     @Column(name = "fecha")
-    @Temporal(TemporalType.DATE)
-    private Date fecha;
+    private String fecha;
     
     @Column(name = "estado")
     private String estado;
@@ -95,11 +94,11 @@ public class Venta implements Serializable {
         this.estado = estado;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
