@@ -104,4 +104,10 @@ public class ValidarSesionController implements Serializable{
     return redirect;
     
     }
+    
+    public String redireccionMetodoPago(){
+    redirect="/User/metodoPago?faces-redirect=true";
+    
+    return redirect;    
+    }
 }
