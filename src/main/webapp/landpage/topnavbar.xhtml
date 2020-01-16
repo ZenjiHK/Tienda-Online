@@ -59,7 +59,54 @@
                         </b:container>
                     </b:dropMenu>
                     <b:navLink value="Favoritos" icon="heart" href="#"></b:navLink>
-                    <b:navLink value="Bolsa" icon="shopping-cart" href="#"></b:navLink>
+                     <p:growl id="carro" life="2000"/>
+                     <b:dropMenu value="Carrito" icon="shopping-cart" id="carritos"/>
+                      <p:overlayPanel  hideEffect="fade" for=":carritos" style="width:800px;" dynamic="false">
+                <h:form id="mi">
+                    <p:dataTable var="d" style="width: 120%;" value="#{detalleVentaController.list}" scrollable="true" scrollWidth="95%" scrollHeight="150" rows="5" paginator="true">
+                        <p:column>
+                            <h:graphicImage value="#{d.url}" width="50px;"/>
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{d.nombreProducto}" />
+                        </p:column>
+                        <p:column headerText="Marca">
+                            <h:outputText value="#{d.marca.nombreMarca}"/>
+                        </p:column>
+                        <p:column headerText="Precio Venta">
+                            <h:outputText value="#{d.precioVenta}" />
+                        </p:column>
+                        <p:column headerText="Talla">
+                            <h:outputText value="#{d.talla.talla}" />
+                        </p:column>
+
+                        <p:column headerText="Tipo de Ropa">
+                            <h:outputText value="#{d.tipoRopa.nombreTipoRopa}" />
+                        </p:column>
+
+                        <p:column headerText="Categoria">
+                            <h:outputText value="#{d.categoria.nombreCategoria}"/>
+                        </p:column>
+                        <p:column>
+                            <h:form>
+                                <b:commandButton value="Borrar" update="mi"  icon="times" action="#{detalleVentaController.delete(d)}"/>
+                            </h:form>
+                        </p:column>
+                    </p:dataTable>
+
+                    <h:outputLabel for="total" value="Total:" />
+                    <h:outputText id="total" value="$#{detalleVentaController.total}" />
+                    <br>
+                        <h:outputLabel for="contador" value="Prendas:"/>
+                        <h:outputText id="contador" value="#{detalleVentaController.contador}"/>
+                    </br>
+                </h:form>
+                <h:form>
+                    <p:commandButton value="Compra Realizada" action="#{validarSesionController.redireccionCompra()}">
+                    </p:commandButton>
+                    <p:commandButton value="Vaciar carrito" update=":mi" action="#{detalleVentaController.deleteAll(d)}" style="margin-left: 50px;"/>
+                </h:form>
+            </p:overlayPanel>
                 </b:navbarLinks>
             </b:navBar>
         </div>
