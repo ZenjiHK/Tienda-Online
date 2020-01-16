@@ -20,11 +20,30 @@
             <b:navBar brand-img="../resources/Imagenes/a1 - copia (2).jpg" brandHref="../PaginaPrincipal/PaginaPrincipal.xhtml" inverse="false"></b:navBar>
         </div>
         <b:container fluid="true">
-            <p:panelGrid columns="1" style="width: 50%;text-align: center">
-                <p:panel header="Necesitamos tu información para procesar la compra">
-                    
-                </p:panel>
-            </p:panelGrid>
+            <h:form>
+                <p:panelGrid columns="1" style="width: 50%;text-align: center">
+                    <p:panel header="Necesitamos tu información para procesar la compra">
+                        <p:dataTable value="#{clienteController.listaCliente} #{ventaController}" var="c">                       
+                            <h:outputText  value="Nombre: #{c.nombreCliente} #{c.apellidoCliente}" />
+                            <h:outputText value="Correo: #{c.correo}" />
+                            <h:outputText  value="Direccion: #{c.direccion}" />
+                            <h:outputText  value="Pais: #{c.pais.nombrePais}" /> 
+                        </p:dataTable>
+                        <h:outputText value="Persona que va a comprar"/>
+                        <p:selectOneMenu>
+                            <f:selectItems value="#{clienteController.lista2}" var="c" itemLabel="#{c.nombreCliente} #{c.apellidoCliente}"
+                                           itemValue="#{c.idCliente}"/>
+                        </p:selectOneMenu><br/><br/>
+                            <h:outputText value="Tarjeta a usar que va a comprar"/>
+                        <p:selectOneMenu>
+                            <f:selectItems value="#{detalleTarjetaController.listaTarjeta}" var="t" itemLabel="#{t.numero_tarjeta}" itemValue="#{t.idDetalleTarjeta}"/>
+                        </p:selectOneMenu><br/><br/>
+
+                        <h:commandButton value="Confirmar mis datos" actionListener="#{validarSesionController.redireccionMetodoPago()}" />
+
+                    </p:panel>
+                </p:panelGrid>
+            </h:form>
         </b:container>
     </h:body>
 </html>
