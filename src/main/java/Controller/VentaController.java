@@ -9,6 +9,8 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -18,7 +20,7 @@ import javax.faces.context.FacesContext;
 @Named(value = "ventaController")
 @SessionScoped
 public class VentaController implements Serializable {
-    
+
     @EJB
     private VentaFacadeLocal ventaEJB;
     private List<Venta> lista_ventas;
@@ -28,75 +30,105 @@ public class VentaController implements Serializable {
     private String msg;
     private List<Producto> lista;
 
-    
+    Timer time = new Timer();
+
     @PostConstruct
-    public void init(){
+    public void init() {
         limpiar();
     }
-    
-    public void crear(){
-        try{
+
+    public void compra() {
+        TimerTask tiempo = new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    venta.setEstado("Enviado");
+                    ventaEJB.edit(venta);
+                } catch (Exception e) {
+                }
+            }
+        };
+        time.schedule(tiempo, 3000);
+    }
+
+    public void cancelar() {
+        try {
+            venta.setEstado("Cancelado");
+            ventaEJB.edit(venta);
+            time.cancel();
+            time.purge();
+        } catch (Exception e) {
+        }
+    }
+
+    public void crear() {
+        try {
+            this.venta.setEstado("Pendiente");
             this.venta.setCliente(cliente);
             this.venta.setDetalleTarjeta(detalleTarjeta);
             this.ventaEJB.create(venta);
             limpiar();
             this.msg = "Exito";
-        }catch(Exception e){
-            this.msg = "Error "+e.getMessage();
+        } catch (Exception e) {
+            this.msg = "Error " + e.getMessage();
             e.printStackTrace();
         }
         FacesMessage mensaje = new FacesMessage(this.msg);
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
-    public void editar(){
-        try{
+
+    public void editar() {
+        try {
             this.venta.setCliente(cliente);
             this.venta.setDetalleTarjeta(detalleTarjeta);
             this.ventaEJB.edit(venta);
             limpiar();
             this.msg = "Exito";
-        }catch(Exception e){
-            this.msg = "Error "+e.getMessage();
+        } catch (Exception e) {
+            this.msg = "Error " + e.getMessage();
             e.printStackTrace();
         }
         FacesMessage mensaje = new FacesMessage(this.msg);
         FacesContext.getCurrentInstance().addMessage(msg, mensaje);
     }
-    public void eliminar(Venta v){
-        try{
+
+    public void eliminar(Venta v) {
+        try {
             this.ventaEJB.remove(v);
             limpiar();
             this.msg = "Exito";
-        }catch(Exception e){
-            this.msg = "Error "+e.getMessage();
+        } catch (Exception e) {
+            this.msg = "Error " + e.getMessage();
             e.printStackTrace();
         }
         FacesMessage mensaje = new FacesMessage(this.msg);
         FacesContext.getCurrentInstance().addMessage(msg, mensaje);
     }
-    public void cargarDatos(Venta v){
-        try{
+
+    public void cargarDatos(Venta v) {
+        try {
             limpiar();
-            this.venta=v;
+            this.venta = v;
             this.msg = "Exito";
-        }catch(Exception e){
-            this.msg = "Error "+e.getMessage();
+        } catch (Exception e) {
+            this.msg = "Error " + e.getMessage();
             e.printStackTrace();
         }
         FacesMessage mensaje = new FacesMessage(this.msg);
         FacesContext.getCurrentInstance().addMessage(msg, mensaje);
     }
-    public void limpiar(){
+
+    public void limpiar() {
         this.venta = new Venta();
         this.cliente = new Cliente();
         this.detalleTarjeta = new DetalleTarjeta();
-        this.lista_ventas=ventaEJB.findAll();
+        this.lista_ventas = ventaEJB.findAll();
         this.msg = "";
     }
-    
-    public void contador(){
+
+    public void contador() {
         try {
-            
+
         } catch (Exception e) {
         }
     }
@@ -132,7 +164,8 @@ public class VentaController implements Serializable {
     public void setDetalleTarjeta(DetalleTarjeta detalleTarjeta) {
         this.detalleTarjeta = detalleTarjeta;
     }
-        public void Enviar(List<Producto> l){
+
+    public void Enviar(List<Producto> l) {
         try {
             lista = l;
             msg = "Proceso Realizado";

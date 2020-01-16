@@ -32,7 +32,10 @@
                     <p:column headerText="Usuario">
                         <h:outputText value="#{r.nombreRol}"/>
                     </p:column>
-
+                    <p:column headerText="Prueba"> 
+                        <p:commandButton value="Prueba" actionListener="#{rolController.cambios()}" id="cambio" onclick="cambios" update=":datos :msj"/>
+                        <p:commandButton value="Cancel" actionListener="#{rolController.cancelar()}" id="cancel" onclick="cancelar" update=":datos :msj"/>
+                    </p:column>
                 </p:dataTable>         
         </h:form>
          <p:dialog id="nuevo" widgetVar="rol" >
@@ -43,7 +46,21 @@
                 <p:inputText value="#{rolController.rol.nombreRol}"/>
                 <p:commandButton value="Modificar" actionListener="#{rolController.editar()}" update=":datos :msj" oncomplete="PF('rol').hide()"/>
                 <p:commandButton value="Cancelar" oncomplete="PF('rol').hide()"/>
+                
             </h:form>
         </p:dialog>
     </body>
+    <script>
+        $(document).ready(function (){
+            document.getElementById("cancel").style.display = "none"; 
+            let cambios = function (){
+              document.getElementById("cambio").style.display = "inline";  
+              document.getElementById("cancel").style.display = "none";  
+            };
+            let cancelar = function (){
+              document.getElementById("cambio").style.display = "none";  
+              document.getElementById("cancel").style.display = "inline";  
+            };
+        });
+    </script>
 </html>
