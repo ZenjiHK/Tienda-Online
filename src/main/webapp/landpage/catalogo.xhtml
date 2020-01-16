@@ -11,13 +11,15 @@
     </h:head>
 
     <h:body>
-        <h:outputScript library="js" name="userActivo.js" />
-        <div id="usuarioLogeadoDIV" style="display: none" >#{userController.kevin}</div>
         <ui:include src="topnavbar.xhtml"/>
-        <h:panelGrid columns="2" id="panel">    
+        <h:panelGrid columns="2" id="panel">
+            <p:panel header="Nombre Usuario" style="font-size: 20px; text-align: center">
+                <img src="../Resourse/img/user.png" height="100" width="100" style="align-content: center"/>
+            </p:panel>
             <h:form>
                 <p:dataGrid value="#{productoController.listaproducto}" var="prod" columns="3" layout="grid"
-                            rows="6" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+                            rows="6" paginator="true"
+                            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
                     <f:facet name="header">
                         Ropa disponible
@@ -64,11 +66,10 @@
                         </p:column>
                         <p:column>
                             <h:form>
-                                <b:commandButton value="Borrar" update="m"  icon="times" action="#{detalleVentaController.delete(d)}"/>
+                                <b:commandButton value="Borrar" update="m" icon="times" action="#{detalleVentaController.delete(d)}"/>
                             </h:form>
                         </p:column>
                     </p:dataTable>
-
                     <h:outputLabel for="total" value="Total:" />
                     <h:outputText id="total" value="$#{detalleVentaController.total}" />
                     <br>
@@ -77,8 +78,7 @@
                     </br>
                 </h:form>
                 <h:form>
-                    <p:commandButton value="Compra Realizada" action="#{validarSesionController.redireccionCompra()}">
-                    </p:commandButton>
+                    <p:commandButton value="Compra Realizada" actionListener="#{detalleVentaController.Enviar1()}"/>
                     <p:commandButton value="Vaciar carrito" update=":m" action="#{detalleVentaController.deleteAll(d)}" style="margin-left: 50px;"/>
                 </h:form>
             </p:overlayPanel>
