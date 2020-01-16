@@ -39,7 +39,7 @@
                             <f:selectItems value="#{detalleTarjetaController.listaTarjeta}" var="t" itemLabel="#{t.numero_tarjeta}" itemValue="#{t.idDetalleTarjeta}"/>
                         </p:selectOneMenu><br/><br/>
 
-                        <h:commandButton value="Confirmar mis datos" actionListener="#{validarSesionController.redireccionMetodoPago()}" />
+                        <h:commandButton value="Confirmar mis datos" action="#{validarSesionController.redireccionMetodoPago()}" />
 
                     </p:panel>
                 </p:panelGrid>
