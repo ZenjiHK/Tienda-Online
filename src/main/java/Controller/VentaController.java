@@ -36,21 +36,7 @@ public class VentaController implements Serializable {
     public void init() {
         limpiar();
     }
-
-    public void compra() {
-        TimerTask tiempo = new TimerTask() {
-            @Override
-            public void run() {
-                try {
-                    venta.setEstado("Enviado");
-                    ventaEJB.edit(venta);
-                } catch (Exception e) {
-                }
-            }
-        };
-        time.schedule(tiempo, 3000);
-    }
-
+    
     public void cancelar() {
         try {
             venta.setEstado("Cancelado");
@@ -69,6 +55,17 @@ public class VentaController implements Serializable {
             this.ventaEJB.create(venta);
             limpiar();
             this.msg = "Exito";
+            TimerTask tiempo = new TimerTask() {
+                @Override
+                public void run() {
+                    try {
+                        venta.setEstado("Enviado");
+                        ventaEJB.edit(venta);
+                    } catch (Exception e) {
+                    }
+                }
+            };
+            time.schedule(tiempo, 30000);
         } catch (Exception e) {
             this.msg = "Error " + e.getMessage();
             e.printStackTrace();
