@@ -57,7 +57,7 @@
                                     <h:outputText value="Talla #{prod.talla.talla}"/><br/>
                                     <h:outputText value="$#{prod.precioVenta}"/><br/>
                                     <h:outputText value="#{ProductoController.getAviso(prod)}" style="color: #ff0000"/><br/>
-                                    <p:commandButton value="Añadir al carrito"  action="#{detalleVentaController.añadir(prod)}" style="margin-right: 20px;"/>
+                                    <p:commandButton value="Añadir al carrito" update=":carro :mi" action="#{detalleVentaController.añadir(prod)}" style="margin-right: 20px;"/>
                                 </h:outputLabel>
                             </p:panelGrid>
                         </p:panel>
@@ -74,7 +74,7 @@
                                     <h:outputText value="Talla #{prod.talla.talla}"/><br/>
                                     <h:outputText value="$#{prod.precioVenta}"/><br/>
                                     <h:outputText value="#{productoController.getAviso(prod)}" style="color: #ff0000"/><br/>
-                                    <p:commandButton value="Añadir al carrito"  action="#{detalleVentaController.añadir(prod)}" style="margin-right: 20px;"/>
+                                    <p:commandButton value="Añadir al carrito" update=":carro :mi" action="#{detalleVentaController.añadir(prod)}" style="margin-right: 20px;"/>
                                 </h:outputLabel>
                             </p:panelGrid>
                         </p:panel>
